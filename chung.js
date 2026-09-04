@@ -19,7 +19,7 @@ const REPO_CONG = "myafp/chuanhoadulieu";
 // Wrangler in ra URL dạng https://afp-gop-y.<tên>.workers.dev — dán vào đây.
 // Phiên bản của chính file này, do cong/xuat-ban.sh dập vào lúc xuất bản.
 // So với du-lieu/phien-ban.json trên máy chủ để biết trang đang chạy có cũ không.
-const PHIEN_BAN = "20260904-085628";
+const PHIEN_BAN = "20260904-085844";
 
 // Trang mở sẵn trong tab thì giữ mã cũ vô hạn, mà GitHub Pages đệm HTML 10 phút
 // nữa. Một nhân viên đã mất cả buổi gõ vì chuyện này: bản cũ mở form Issue của

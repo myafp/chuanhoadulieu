@@ -172,6 +172,15 @@ button.nguy:hover{background:var(--sua-nen)}
 .hopO-nut{display:flex;align-items:center;gap:8px;margin-top:9px}
 .hopO-goi{margin-right:auto;font-size:11.5px;color:var(--nhat)}
 
+/* Dải nhắc trang đã cũ. Đặt trên cùng, màu đỏ, không cho bỏ qua — đây là thứ
+   duy nhất ngăn người ta gõ cả buổi rồi bấm Gửi vào hư không. */
+.dai-cu{background:var(--sua-nen);border-bottom:1px solid var(--sua-vien);color:var(--sua);
+  padding:11px 20px;font-size:13.5px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.dai-cu b{color:var(--sua)}
+.dai-cu button{margin-left:auto;border-color:var(--sua-vien);color:var(--sua);font-weight:600}
+.dai-cu button:hover{background:#fbe3e1}
+@media (max-width:760px){ .dai-cu{padding:10px 14px} .dai-cu button{margin-left:0;width:100%} }
+
 /* ---------- thanh đầu ---------- */
 .dau{background:var(--trang);border-bottom:1px solid var(--line);padding:14px 24px 0}
 .dau-tren{display:flex;align-items:center;gap:14px;flex-wrap:wrap}

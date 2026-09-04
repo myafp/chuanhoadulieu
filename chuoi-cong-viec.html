@@ -618,6 +618,7 @@ function doiTab(t) {
 
 /* ---------- nạp ---------- */
 (async () => {
+  kiemPhienBan();          // không await: đừng để nó chặn việc vẽ trang
   await doDanhTinh();
   // Sau Cloudflare Access thì đã biết người dùng là ai, không phải hỏi lại email.
   if (EMAIL_ACCESS) email = EMAIL_ACCESS;
