@@ -92,7 +92,6 @@ const khoaMoi = (i, cot) => `${i}|${cot}`;
 // việc. Nên phải nhớ ô nào đã gửi rồi: lần gửi sau chỉ ghi phần đổi từ lần trước,
 // không ghi lại cả mớ. Sửa lại một ô đã gửi thì nó rời khỏi đây, tính là mới.
 let daGuiSua = new Set(), daGuiMoi = new Set();
-let commitCuoi = "";
 
 const chuaGuiSua = () => [...oSua.entries()].filter(([k]) => !daGuiSua.has(k));
 const chuaGuiMoi = () => [...oMoi.entries()].filter(([k]) => !daGuiMoi.has(k));
@@ -120,7 +119,6 @@ function luuNhap() {
       oMoi: [...oMoi.entries()],
       daGuiSua: [...daGuiSua],
       daGuiMoi: [...daGuiMoi],
-      commitCuoi,
       soDongMoi
     }));
   } catch {}
@@ -136,7 +134,6 @@ function docNhap() {
     (d.oMoi || []).forEach(([k, v]) => oMoi.set(k, v));
     (d.daGuiSua || []).forEach(k => daGuiSua.add(k));
     (d.daGuiMoi || []).forEach(k => daGuiMoi.add(k));
-    commitCuoi = d.commitCuoi || "";
     if (d.soDongMoi > soDongMoi) soDongMoi = d.soDongMoi;
   } catch { oSua.clear(); oMoi.clear(); daGuiSua.clear(); daGuiMoi.clear(); }
 }
@@ -256,8 +253,6 @@ function thanhSua() {
   if (daGuiSua.size || daGuiMoi.size) {
     return `<div class="thanh-sua thanh-xong"><b class="bao-ok">Cảm ơn bạn đã góp ý.</b>` +
       `<span>Sửa tiếp ô nào cũng được — lần gửi sau chỉ ghi phần mới.</span>` +
-      (commitCuoi ? `<a class="lien-nho" href="${commitCuoi}" target="_blank" rel="noopener">xem commit</a>` : "") +
-      `<button id="nThuBanSao">✉ Gửi bản sao vào email của bạn</button>` +
       `<button id="nBoSua">Dọn bảng</button></div>`;
   }
 
@@ -565,7 +560,6 @@ async function guiGopYGop() {
       // Chỉ đánh dấu những gì vừa gửi, để lần sau không gửi lại.
       goiSua.forEach(([k]) => daGuiSua.add(k));
       goiMoi.forEach(([k]) => daGuiMoi.add(k));
-      commitCuoi = j.url || "";
       luuNhap();
       $("eThanhSua").innerHTML = thanhSua();
       return;
@@ -595,81 +589,12 @@ async function guiGopYGop() {
   }
 }
 
-/* ---------- bản sao gửi vào hộp thư người góp ý ---------- */
-// Trang tĩnh không tự gửi thư được: không có máy chủ, mà nhét khoá dịch vụ mail
-// vào file HTML công khai thì ai xem mã nguồn cũng gửi thư nhân danh công ty
-// được. Nên dựng sẵn nội dung rồi mở ứng dụng mail của chính người góp ý — họ
-// bấm Gửi, thư đi từ hộp thư của họ, và họ giữ được bản sao trong Sent.
-//
-// Thân thư để chữ thường, không markdown: nó vào hộp thư chứ không vào GitHub.
-const NGUONG_MAILTO = 1800;   // vượt ngưỡng này nhiều ứng dụng mail cắt mất đuôi
-
-function thanThuBanSao() {
-  const d = new Date();
-  const ngay = `${String(d.getDate()).padStart(2,"0")}/${String(d.getMonth()+1).padStart(2,"0")}/${d.getFullYear()}`;
-  const L = [`Góp ý chuỗi công việc — soạn ngày ${ngay}`, `Người góp ý: ${email}`, ""];
-
-  if (oSua.size) {
-    const ds = [...oSua.values()].sort((a, b) =>
-      a.rid.localeCompare(b.rid) || a.k - b.k || a.cot.localeCompare(b.cot));
-    L.push(`SỬA NỘI DUNG ĐÃ CÓ — ${ds.length} ô`, "");
-    ds.forEach((o, i) => {
-      const r = DONG.find(x => x.rid === o.rid && x.k === o.k) || {};
-      L.push(`${i + 1}. ${o.rid} · dòng ${o.k + 1} · ${o.cot}`);
-      if (r.mt) L.push(`   Mục tiêu : ${r.mt}`);
-      if (r.nv) L.push(`   Nhiệm vụ : ${r.nv}`);
-      L.push(`   Hiện tại : ${o.cu || "(trống)"}`);
-      L.push(`   Đề xuất  : ${o.xoa ? "XOÁ nội dung này" : o.moi}`, "");
-    });
-  }
-
-  if (oMoi.size) {
-    const theo = new Map();
-    for (const [kh, v] of oMoi) {
-      const [i, cot] = kh.split("|");
-      if (!theo.has(i)) theo.set(i, {});
-      theo.get(i)[cot] = v;
-    }
-    L.push(`ĐỀ NGHỊ THÊM MỚI — ${theo.size} dòng`, "");
-    [...theo.entries()].sort((a, b) => +a[0] - +b[0]).forEach(([, o], i) => {
-      L.push(`${i + 1}.`);
-      COT_MOI.forEach(c => { if (o[c]) L.push(`   ${c} : ${o[c]}`); });
-      L.push("");
-    });
-  }
-
-  L.push("---",
-    "Thư này chỉ là bản sao để bạn giữ. Bản chính thức là Issue trên GitHub:",
-    `https://github.com/${REPO_CONG}/issues`,
-    "Ban Điều hành duyệt Issue rồi mới vào dữ liệu thật.");
-  return L.join("\n");
-}
-
-function moThuBanSao() {
-  if (!emailHopLe(email)) return;
-  let than = thanThuBanSao();
-  const dat = (t) => `mailto:${encodeURIComponent(email)}` +
-    `?subject=${encodeURIComponent("Bản sao góp ý chuỗi công việc — " + email)}` +
-    `&body=${encodeURIComponent(t)}`;
-  // Thư quá dài thì nhiều ứng dụng mail cắt cụt mà không báo. Cắt chủ động và
-  // nói rõ còn thiếu, hơn là để người nhận tưởng mình gửi thiếu.
-  if (dat(than).length > NGUONG_MAILTO * 3) {
-    const duoi = "\n\n… danh sách còn dài. Xem đủ ở Issue trên GitHub.";
-    while (than.length > 300 && dat(than + duoi).length > NGUONG_MAILTO * 3) {
-      than = than.slice(0, Math.floor(than.length * 0.8));
-    }
-    than += duoi;
-  }
-  location.href = dat(than);
-}
-
 function baoGui(chu, loi) {
   const t = $("eChuoi").querySelector(".thanh-sua");
   if (!t) return;
   // Lỗi thì phải để lại nút Gửi. Trước đây thanh báo lỗi chỉ còn "Bỏ hết", tức
   // cách duy nhất thoát khỏi một lần mạng hỏng là xoá hết công sức vừa gõ.
   t.innerHTML = `<b class="${loi ? "bao-loi" : "bao-ok"}">${chu}</b>` +
-    (loi ? "" : `<button id="nThuBanSao">✉ Gửi bản sao vào email của bạn</button>`) +
     `<button id="nBoSua">${loi ? "Bỏ hết" : "Xong — dọn bảng"}</button>` +
     (loi ? `<button class="pri" id="nGuiSua">Gửi lại</button>` : "");
 }
@@ -739,11 +664,10 @@ $("eChuoi").addEventListener("input", (e) => {
 
 $("eChuoi").addEventListener("click", (e) => {
   if (e.target.id === "nGuiSua")    return guiGopYGop();
-  if (e.target.id === "nThuBanSao") return moThuBanSao();
   if (e.target.id === "nThemDong")  { soDongMoi++; return veChuoi(); }
   if (e.target.id === "nBoSua")     {
     oSua.clear(); oMoi.clear(); daGuiSua.clear(); daGuiMoi.clear();
-    commitCuoi = ""; soDongMoi = SO_DONG_DAU; xoaNhap(); return veChuoi();
+    soDongMoi = SO_DONG_DAU; xoaNhap(); return veChuoi();
   }
 
   // Ô sửa được thì bấm vào là soạn, kể cả ô đang trống — chỗ trống chính là chỗ
