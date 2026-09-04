@@ -38,7 +38,22 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-04T08:34:42.851Z",
+   "email": "tuan@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-18-S02",
+     "k": 0,
+     "cot": "Nhiệm vụ",
+     "cu": "Thực hiện, ghi nhận đầu ra và đóng quy trình Account plan cơ sở trọng điểm",
+     "moi": "",
+     "xoa": true
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-04T08:31:01.348Z"
+ "cap_nhat": "2026-09-04T08:34:43.480Z"
 }
