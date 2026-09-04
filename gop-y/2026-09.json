@@ -15,7 +15,30 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-04T08:31:00.905Z",
+   "email": "tuan@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-18-S02",
+     "k": 0,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "test",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 1,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "Test",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-04T08:30:20.637Z"
+ "cap_nhat": "2026-09-04T08:31:01.348Z"
 }
