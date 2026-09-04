@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AFP · Cổng từ điển</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="chung.css">
+<style>
+/* Chỉ trang cổng dùng mấy luật này, không nhét vào chung.css cho hai trang kia
+   phải tải theo. */
+.cong{max-width:760px;margin:0 auto;padding:38px 20px 60px}
+.cong h1{font-size:26px;line-height:1.25;margin-bottom:8px}
+.cong .dan{color:var(--mut);font-size:15px;margin-bottom:28px}
+.loi-vao{display:grid;gap:14px}
+.the-vao{display:block;background:var(--trang);border:1px solid var(--line);border-radius:13px;
+  padding:20px 22px;text-decoration:none;color:inherit}
+.the-vao:hover{border-color:var(--acc);box-shadow:0 4px 16px rgba(19,32,32,.07)}
+.the-vao h2{font-size:18px;margin-bottom:6px;color:var(--acc2)}
+.the-vao p{font-size:14px;color:var(--mut);line-height:1.55}
+.the-vao .ai{display:inline-block;margin-top:11px;font-size:12px;color:var(--nhat);
+  background:var(--bg);border:1px solid var(--line-mo);border-radius:20px;padding:4px 11px}
+.cong .chan-cong{margin-top:30px;font-size:13px;color:var(--nhat);line-height:1.6}
+.cong .chan-cong code{font-family:var(--mono);font-size:12px}
+@media (max-width:760px){
+  .cong{padding:24px 14px 48px}
+  .cong h1{font-size:22px}
+  .the-vao{padding:17px 16px}
+}
+</style>
+</head>
+<body>
+
+<div class="cong">
+  <h1>Cổng từ điển AFP</h1>
+  <p class="dan">Đọc mô tả công việc và gửi góp ý. Không ai sửa thẳng dữ liệu — mỗi lần
+     bấm Gửi là một đề xuất để Ban Điều hành duyệt.</p>
+
+  <div class="loi-vao">
+    <a class="the-vao" href="mo-ta-cong-viec.html">
+      <h2>Mô tả công việc →</h2>
+      <p>Khung JD 8 mục của 76 vị trí: mục đích, kết quả đầu ra, nhiệm vụ, năng lực,
+         hành vi. Năm mục sửa được ngay trên trang, mỗi đề xuất mở một Pull request.</p>
+      <span class="ai">Cho mọi người trong công ty</span>
+    </a>
+
+    <a class="the-vao" href="chuoi-cong-viec.html">
+      <h2>Góp ý chuỗi công việc →</h2>
+      <p>Bảng Mục tiêu → Nhiệm vụ → Đầu việc → Việc cụ thể. Bấm vào ô nào cũng sửa
+         được; sửa xong gom lại thành một góp ý gửi đi một lần.</p>
+      <span class="ai">Cho HPS · HPM · Trưởng đơn vị Detailing · Kế toán bán hàng · Medical Marketing</span>
+    </a>
+  </div>
+
+  <p class="chan-cong">
+    Dữ liệu gốc nằm ở <code>myafp/aBP</code>, bản xuất bản ở <code>myafp/chuanhoadulieu</code>.
+    Góp ý gửi đi thành Issue hoặc Pull request, duyệt xong trang tự đổi theo.
+  </p>
+</div>
+
+</body>
+</html>

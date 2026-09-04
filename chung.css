@@ -1,0 +1,408 @@
+/* Giao diện dùng chung cho index.html (mô tả công việc) và chuoi.html (chuỗi
+   công việc). Để nguyên một khối, không cắt đôi theo trang: cắt ra thì mỗi lần
+   đổi một biến màu lại phải nhớ sửa hai chỗ, mà quên một chỗ là hai trang lệch
+   nhau. Vài chục dòng thừa cho mỗi trang rẻ hơn cái lỗi đó nhiều. */
+
+:root{
+  --acc:#0d6568; --acc2:#084b4e; --acc-nhat:#e1f0ef;
+  --line:#dce5e5; --line-mo:#eaf0f0;
+  --ink:#132020; --mut:#5b6463; --nhat:#8a9493;
+  --bg:#f3f6f6; --trang:#fff;
+  --cho:#8a6d1f; --cho-nen:#faf0da;
+  --du:#1f6b45; --du-nen:#e4f3ea;
+  --na:#7a8382; --na-nen:#eef1f1;
+  /* Đỏ = đã sửa, chưa gửi đi. Một bộ màu cho ô, cho thanh gom, cho ô email
+     báo lỗi — ba chỗ cùng nói một chuyện thì phải cùng một màu. */
+  --sua:#a3352f; --sua-nen:#fdeeed; --sua-vien:#e2bdb9;
+  --ui:"Be Vietnam Pro","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+/* Phải đặt !important: .dai/.than/.chan đều có display riêng, đè mất `hidden`. */
+[hidden]{display:none!important}
+body{font:15px/1.55 var(--ui);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:var(--trang);color:var(--ink);padding:6px 12px;font-size:13px}
+button:hover{background:var(--bg)}
+button.pri{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}
+button.pri:hover{filter:brightness(1.08)}
+button:disabled{opacity:.5;cursor:default}
+a{color:var(--acc)}
+
+/* ---------- bảng chuỗi công việc ---------- */
+.dau-bang{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.dau-bang h3{font-size:17px}
+.dau-bang .dem-bang{font-size:12.5px;color:var(--nhat);font-family:var(--mono)}
+
+.hang-loc{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.o-loc{display:flex;flex-direction:column;gap:5px;min-width:0}
+.o-loc>label{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+             color:var(--nhat);font-weight:700}
+.o-loc select{font:inherit;font-size:13.5px;font-weight:500;color:var(--ink);background:var(--trang);
+    border:1px solid var(--line);border-radius:9px;padding:7px 30px 7px 11px;
+    max-width:min(340px,42vw);appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' fill='none' stroke='%235b6463' stroke-width='1.6'/></svg>");
+    background-repeat:no-repeat;background-position:right 11px center;
+    text-overflow:ellipsis}
+.o-loc select:hover{border-color:var(--acc)}
+.o-loc select.tat{color:var(--nhat);background-color:var(--bg)}
+
+.khung-bang{background:var(--trang);border:1px solid var(--line);border-radius:11px;
+            overflow-x:hidden;overflow-y:auto;max-height:calc(100vh - 280px)}
+
+/* Bảng co theo bề ngang màn hình, không đặt min-width để phải cuộn ngang. Muốn
+   vậy thì phải table-layout:fixed — để `auto`, trình duyệt tự nới cột theo nội
+   dung dài nhất và bảng lại phình ra quá khung. Bề rộng cột khai bằng phần trăm
+   ở <colgroup> bên dưới; chữ dài thì xuống dòng, quá ba dòng thì cắt như cũ. */
+table.bang-chuoi{border-collapse:separate;border-spacing:0;width:100%;table-layout:fixed;
+  font-size:13.5px}
+table.bang-chuoi th,table.bang-chuoi td{overflow-wrap:anywhere}
+table.bang-chuoi th{position:sticky;top:0;z-index:2;background:var(--bg);text-align:left;
+  font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--nhat);font-weight:700;
+  padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+table.bang-chuoi td{padding:7px 12px;border-bottom:1px solid var(--line-mo);vertical-align:top}
+table.bang-chuoi tr:last-child td{border-bottom:none}
+table.bang-chuoi tbody tr:hover td{background:#fafcfc}
+/* Bề rộng bảy cột, cộng lại đúng 100%. Sửa số nào thì phải bù vào số khác. */
+table.bang-chuoi th:nth-child(1),table.bang-chuoi td:nth-child(1){width:12%}   /* Chức danh */
+table.bang-chuoi th:nth-child(2),table.bang-chuoi td:nth-child(2){width:15%}   /* Mục tiêu */
+table.bang-chuoi th:nth-child(3),table.bang-chuoi td:nth-child(3){width:19%}   /* Nhiệm vụ */
+table.bang-chuoi th:nth-child(4),table.bang-chuoi td:nth-child(4){width:15%}   /* Đầu việc */
+table.bang-chuoi th:nth-child(5),table.bang-chuoi td:nth-child(5){width:15%}   /* Việc cụ thể */
+table.bang-chuoi th:nth-child(6),table.bang-chuoi td:nth-child(6){width:12%}   /* Đơn vị đo */
+table.bang-chuoi th:nth-child(7),table.bang-chuoi td:nth-child(7){width:12%}   /* Quy trình */
+table.bang-chuoi th{white-space:normal}
+td.o-mt{font-weight:600}
+td.o-dvi,td.o-qt{color:var(--mut);font-size:12.5px}
+.trong-o{color:var(--nhat);font-size:12.5px}
+.nut-gy{border-radius:7px;padding:3px 9px;font-size:12px;white-space:nowrap}
+
+/* Ô text dài: luôn 3 dòng, không giãn theo nội dung. Bấm vào xem đủ.
+   max-height phải cộng thêm padding: box-sizing là border-box nên 4.5em trơn ăn
+   mất một phần dòng thứ ba, chữ bị xén ngang thân mà không có dấu "…". */
+.o-dai{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+       line-height:1.5;max-height:calc(4.5em + 6px);border-radius:6px;padding:3px 5px;margin:-3px -5px}
+.o-dai.cat{cursor:pointer}
+.o-dai.cat:hover{background:var(--acc-nhat)}
+
+#tip{position:absolute;z-index:60;max-width:420px;background:var(--trang);
+     border:1px solid var(--acc);border-radius:10px;padding:11px 13px;font-size:13.5px;
+     line-height:1.55;box-shadow:0 10px 28px rgba(19,32,32,.16)}
+#tip .tip-nhan,#hopO .tip-nhan{display:block;font-size:10.5px;letter-spacing:.08em;
+               text-transform:uppercase;color:var(--nhat);font-weight:700;margin-bottom:5px}
+
+/* Ô sửa được: trông vẫn là chữ thường, chỉ đổi nền khi rê chuột — viền hộp nhập
+   ở mọi ô thì cả bảng thành một mớ khung, đọc không ra nội dung nữa. */
+.o-sua{cursor:text}
+.o-sua:hover{background:var(--acc-nhat)}
+/* Đã lưu là đỏ ngay, không đợi bấm Gửi: nhìn lướt cả bảng là biết mình đã
+   động vào những đâu, và biết còn thứ chưa gửi đi. */
+.o-sua.da-sua{background:var(--sua-nen);box-shadow:inset 2px 0 0 var(--sua);color:var(--sua)}
+.o-sua.da-sua:hover{background:#fbe3e1}
+
+/* Cột chức danh gói ba thông tin vào một cột: mã ở trên, đơn vị · vị trí ở dưới.
+   Tách thành ba cột thì bảng rộng quá, cuộn ngang mới đọc hết một dòng. */
+td.o-cd{width:150px}
+.cd-ten{font-family:var(--mono);font-size:12px;color:var(--acc2)}
+.cd-phu{font-size:11.5px;color:var(--nhat);line-height:1.4;margin-top:2px}
+
+/* Xoá cũng đỏ, phân biệt bằng gạch ngang và cái nhãn, không bằng màu khác. */
+.o-sua.da-xoa{background:var(--sua-nen);box-shadow:inset 2px 0 0 var(--sua)}
+.o-sua.da-xoa s{color:var(--nhat)}
+.the-xoa{font-size:11px;color:var(--sua);font-weight:700;white-space:nowrap}
+
+.hang-email{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;max-width:420px}
+.hang-email label{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--nhat);font-weight:700}
+.hang-email .bat-buoc{color:var(--sua);letter-spacing:0;text-transform:none;font-size:11px}
+.hang-email input{font:inherit;font-size:13.5px;color:var(--ink);background:var(--trang);
+  border:1px solid var(--line);border-radius:9px;padding:8px 11px}
+.hang-email input:focus{outline:none;border-color:var(--acc)}
+.hang-email input.loi{border-color:var(--sua-vien);background:var(--sua-nen)}
+.email-nhac{font-size:11.5px;color:var(--nhat)}
+.email-nhac.loi{color:var(--sua);font-weight:600}
+
+button.nguy{border-color:var(--sua-vien);color:var(--sua)}
+button.nguy:hover{background:var(--sua-nen)}
+
+.thanh-sua{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px;
+  background:var(--sua-nen);border:1px solid var(--sua-vien);border-radius:10px;
+  padding:9px 14px;font-size:13.5px}
+.thanh-sua b{color:var(--sua)}
+.thanh-sua span{color:var(--mut);font-size:12.5px}
+.thanh-sua button{margin-left:0}
+.thanh-sua #nGuiSua{margin-left:auto}
+.thanh-sua .bao-ok{color:var(--du)}
+.thanh-sua .bao-loi{color:var(--sua)}
+
+#hopO{position:absolute;z-index:61;width:min(460px,92vw);background:var(--trang);
+  border:1px solid var(--acc);border-radius:10px;padding:11px 13px;
+  box-shadow:0 10px 28px rgba(19,32,32,.16)}
+#hopO textarea{width:100%;font:inherit;font-size:13.5px;line-height:1.55;color:var(--ink);
+  border:1px solid var(--line);border-radius:8px;padding:8px 10px;resize:vertical;min-height:84px}
+#hopO textarea:focus{outline:none;border-color:var(--acc)}
+.hopO-nut{display:flex;align-items:center;gap:8px;margin-top:9px}
+.hopO-goi{margin-right:auto;font-size:11.5px;color:var(--nhat)}
+
+/* ---------- thanh đầu ---------- */
+.dau{background:var(--trang);border-bottom:1px solid var(--line);padding:14px 24px 0}
+.dau-tren{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.ma-vt{font-family:var(--mono);font-size:13px;color:var(--acc2);background:var(--acc-nhat);
+       border:1px solid #c9e0de;border-radius:7px;padding:4px 9px;white-space:nowrap}
+.xo{font:inherit;font-size:15px;font-weight:600;color:var(--ink);background:var(--trang);
+    border:1px solid var(--line);border-radius:9px;padding:8px 32px 8px 12px;max-width:min(560px,54vw);
+    appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' fill='none' stroke='%235b6463' stroke-width='1.6'/></svg>");
+    background-repeat:no-repeat;background-position:right 12px center}
+.xo:hover{border-color:var(--acc)}
+.dau-nut{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.vien{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--du);
+      background:var(--du-nen);border:1px solid #bfe1cf;border-radius:20px;padding:5px 12px;white-space:nowrap}
+.vien::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+
+/* ---------- thanh tab ---------- */
+.tabs{display:flex;gap:4px;margin-top:13px}
+.tabs button{border:none;background:none;border-radius:0;border-bottom:2px solid transparent;
+  padding:8px 2px;margin-right:18px;font-size:14px;font-weight:600;color:var(--mut)}
+.tabs button:hover{background:none;color:var(--ink)}
+.tabs button[aria-selected="true"]{color:var(--acc2);border-bottom-color:var(--acc)}
+
+/* ---------- dải tiến độ ---------- */
+.dai{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:12px 0 13px;margin-top:12px;border-top:1px solid var(--line-mo)}
+.thanh{width:118px;height:6px;border-radius:3px;background:var(--line-mo);overflow:hidden;flex:none}
+.thanh i{display:block;height:100%;background:var(--acc);width:0;transition:width .3s}
+.dai .chu{font-size:13.5px}
+.dai .chu b{font-weight:700}
+.cho-bs{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12.5px;color:var(--mut)}
+.the-cho{background:var(--cho-nen);border:1px solid #e6d59b;color:var(--cho);border-radius:20px;
+         padding:4px 11px;font-size:12.5px;font-weight:600;cursor:pointer}
+
+/* ---------- khung hai cột ---------- */
+.than{display:grid;grid-template-columns:246px minmax(0,1fr);gap:0;align-items:start}
+/* minmax(0,…) chứ không phải 1fr: 1fr tính theo bề rộng nội dung,
+   nên dải cuộn ngang bên trong sẽ đẩy phình cả trang. */
+@media (max-width:900px){.than{grid-template-columns:minmax(0,1fr)}}
+
+.ray{padding:20px 18px 40px;border-right:1px solid var(--line);position:sticky;top:0}
+@media (max-width:900px){.ray{position:static;border-right:none;border-bottom:1px solid var(--line)}}
+.ray h2{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--nhat);font-weight:700;margin-bottom:10px}
+.muc-ds{list-style:none;display:flex;flex-direction:column;gap:1px;margin-bottom:24px}
+.muc-ds button{display:grid;grid-template-columns:16px 1fr auto;gap:9px;align-items:center;width:100%;
+  text-align:left;border:none;background:none;padding:7px 8px;border-radius:8px;font-size:13.5px}
+.muc-ds button:hover{background:var(--trang)}
+.muc-ds .so{color:var(--nhat);font-family:var(--mono);font-size:12px}
+.nhan{font-size:11.5px;font-weight:600;border-radius:20px;padding:2px 8px;white-space:nowrap}
+.nhan.ok{color:var(--du)}
+.nhan.gap{background:var(--cho-nen);border:1px solid #e6d59b;color:var(--cho)}
+.nhan.na{color:var(--na)}
+.hop-ray{background:var(--trang);border:1px solid var(--line);border-radius:11px;padding:13px 14px;margin-bottom:14px}
+.hop-ray h2{margin-bottom:9px}
+.hang-ray{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;padding:3px 0}
+.hang-ray span:first-child{color:var(--mut)}
+.td-ma{font-family:var(--mono);font-size:11.5px;color:var(--acc2);background:var(--acc-nhat);border-radius:5px;padding:2px 6px}
+
+/* ---------- mục nội dung ---------- */
+.noi{padding:22px 26px 90px;max-width:980px}
+/* Trang chuỗi dùng chung lớp .noi với trang JD, nhưng hai thứ cần bề ngang khác
+   nhau: JD là văn bản để đọc, dòng dài quá 980px là mỏi mắt; còn bảng chuỗi bảy
+   cột thì càng rộng càng ít phải xuống dòng. Vẫn đặt trần, kẻo màn siêu rộng thì
+   một dòng kéo ngang cả mét, đọc xong đầu dòng đã quên cuối dòng. */
+#eChuoi{max-width:1600px}
+.muc{margin-bottom:30px;scroll-margin-top:20px}
+.muc-dau{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:11px}
+.stt{width:23px;height:23px;border-radius:6px;background:var(--acc2);color:#fff;font-size:12.5px;
+     font-weight:700;display:grid;place-items:center;flex:none}
+.muc-dau h3{font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.nguon{font-family:var(--mono);font-size:11.5px;color:var(--mut);background:var(--bg);
+       border:1px solid var(--line-mo);border-radius:6px;padding:2px 8px}
+.sua{margin-left:auto;font-size:12.5px;color:var(--acc);background:none;border:none;padding:4px 6px}
+.sua:hover{background:var(--acc-nhat)}
+
+.van{background:var(--trang);border:1px solid var(--line);border-radius:11px;padding:15px 17px;font-size:15px;line-height:1.65}
+.cut{color:var(--cho);font-size:13px;margin-top:9px;display:block}
+
+.ba-o{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px}
+.o-org{background:var(--trang);border:1px solid var(--line);border-radius:11px;padding:13px 15px}
+.o-org h4{font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--nhat);font-weight:700;margin-bottom:8px}
+.o-org p{font-size:14px;margin-bottom:5px}
+.the-cap{font-size:11px;font-weight:600;border-radius:5px;padding:2px 7px;background:var(--acc-nhat);color:var(--acc2);margin-right:6px}
+
+.bang{width:100%;background:var(--trang);border:1px solid var(--line);border-radius:11px;border-collapse:separate;border-spacing:0;overflow:hidden;font-size:14px}
+.bang th{text-align:left;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--nhat);
+         font-weight:700;padding:10px 14px;border-bottom:1px solid var(--line)}
+.bang td{padding:11px 14px;border-bottom:1px solid var(--line-mo);vertical-align:top}
+.bang tr:last-child td{border-bottom:none}
+.bang td.n{color:var(--nhat);font-family:var(--mono);font-size:12px;width:34px}
+.bang td.ma{font-family:var(--mono);font-size:12px;color:var(--mut);white-space:nowrap}
+.dan{font-size:14px;color:var(--mut);margin-bottom:11px}
+.dan b{color:var(--ink)}
+
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{background:var(--trang);border:1px solid var(--line);border-radius:8px;padding:6px 11px;font-size:13px}
+.chip .id{font-family:var(--mono);font-size:11.5px;color:var(--acc2);margin-right:7px}
+.chip.mo{border-style:dashed;color:var(--cho)}
+
+.trong{background:var(--cho-nen);border:1px solid #e6d59b;border-radius:11px;padding:14px 16px;font-size:14px;color:#6b5518}
+.trong b{color:var(--cho)}
+
+.hv{background:var(--trang);border:1px solid var(--line);border-radius:11px;overflow:hidden}
+.hv details{border-bottom:1px solid var(--line-mo)}
+.hv details:last-child{border-bottom:none}
+.hv summary{padding:10px 14px;cursor:pointer;font-size:14px;display:flex;gap:10px;align-items:center;list-style:none}
+.hv summary::-webkit-details-marker{display:none}
+.hv summary:hover{background:var(--bg)}
+.hv .gt{font-size:11px;font-weight:700;color:var(--acc2);background:var(--acc-nhat);border-radius:5px;padding:2px 7px;white-space:nowrap}
+.hv .muc3{padding:2px 14px 13px;display:grid;gap:7px;font-size:13.5px;color:var(--mut)}
+.hv .muc3 b{color:var(--ink);font-weight:600}
+
+/* ---------- thanh chân ---------- */
+.chan{position:sticky;bottom:0;background:var(--trang);border-top:1px solid var(--line);
+      padding:11px 24px;display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+.chan .ghi{font-size:12.5px;color:var(--nhat);font-style:italic}
+.chan .nut{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+
+/* ---------- hộp sửa, nổi cạnh nút ---------- */
+#hop{position:absolute;z-index:90;width:min(540px,92vw);background:var(--trang);border:1px solid var(--line);
+     border-radius:13px;box-shadow:0 16px 48px rgba(10,30,30,.24);padding:17px 19px}
+#hop[hidden]{display:none}
+#hop h3{font-size:15px;color:var(--acc2)}
+#hop .meta{font-size:12.5px;color:var(--mut);margin-bottom:11px}
+#hop label{display:block;font-size:12px;font-weight:700;color:var(--mut);margin:11px 0 5px;text-transform:uppercase;letter-spacing:.04em}
+#hop textarea{width:100%;font:inherit;font-size:14px;border:1px solid var(--line);border-radius:9px;padding:9px 11px;resize:vertical}
+#hop .cu{background:var(--bg);border:1px solid var(--line-mo);border-radius:9px;padding:9px 11px;font-size:13.5px;
+         color:var(--mut);white-space:pre-wrap;max-height:140px;overflow:auto}
+#hop .hang{display:flex;gap:8px;justify-content:flex-end;margin-top:14px}
+.kq{margin-top:10px;font-size:13.5px;padding:9px 11px;border-radius:9px;display:none}
+.kq.ok{display:block;background:var(--du-nen);border:1px solid #bfe1cf}
+.kq.no{display:block;background:#fae7e4;border:1px solid #e8bcb5}
+
+/* ---------- điện thoại ----------
+   Phần lớn người xem bằng điện thoại. Ray 8 mục chuyển thành dải cuộn ngang
+   ở đầu trang; bảng cuộn ngang trong khung riêng; thanh chân bám đáy.        */
+@media (max-width:760px){
+  body{font-size:14.5px}
+  .dau{padding:10px 14px 0}
+  .dau-tren{gap:9px}
+  .xo{max-width:100%;font-size:15px;padding:10px 32px 10px 12px}
+  .ma-vt{display:none}   /* trùng với ô xổ, ô xổ đã mở đầu bằng mã */
+  .hang-xo{padding:10px 0 0}
+  /* Trang chuỗi không có ô xổ trên thanh đầu, nên mã từ điển không trùng với
+     thứ gì — cho nó hiện, kẻo thanh đầu thành một vạch trắng trống trơn. */
+  body.trang-chuoi .ma-vt{display:inline-flex}
+
+  /* Thanh đầu điện thoại: .ma-vt bị ẩn nên chỉ còn thẻ trạng thái và mấy nút.
+     Cho thẻ chiếm trọn một dòng, nút chia nhau dòng dưới — nhét cả ba vào một
+     dòng 375px thì nhãn nút bị xén mất chữ. */
+  .dau-nut{margin-left:auto;gap:6px;flex:1;min-width:0;flex-wrap:wrap}
+  .dau-nut .vien{flex:1 1 100%;order:-1}
+  .dau-nut button{white-space:nowrap;font-size:13px;padding:8px 10px}
+  .vien{font-size:11.5px;padding:4px 10px}
+  .dau-nut button{flex:1;min-width:0}
+  .tabs{margin-top:9px}
+  .tabs button{margin-right:14px;font-size:14.5px;padding:9px 2px}
+
+  .dai{gap:9px;padding:10px 0}
+  .thanh{width:74px}
+  .dai .chu{font-size:12.5px}
+  .cho-bs{margin-left:0;width:100%}
+
+  /* Ray 8 mục: cuộn ngang thay vì cột dọc chiếm nửa màn hình */
+  .ray{padding:12px 14px;border-bottom:1px solid var(--line);min-width:0}
+  .muc-ds{flex-direction:row;overflow-x:auto;min-width:0;gap:6px;padding-bottom:5px;margin-bottom:14px;
+          scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+  .muc-ds li{flex:none;scroll-snap-align:start}
+  .muc-ds button{width:auto;grid-template-columns:auto auto auto;gap:7px;white-space:nowrap;
+                 border:1px solid var(--line);background:var(--trang);padding:7px 11px;font-size:13px}
+  .hop-ray{padding:11px 12px}
+
+  .noi{padding:16px 14px 80px;min-width:0}
+  .muc{margin-bottom:24px}
+  .muc-dau{gap:8px}
+  .muc-dau h3{font-size:13px}
+  .sua{margin-left:0;order:9;border:1px solid var(--line);border-radius:7px;padding:5px 10px}
+  .van{padding:13px 14px;font-size:14.5px}
+
+  /* Bảng rộng: cuộn ngang trong khung của nó, không đẩy cả trang */
+  .bang{display:block;overflow-x:auto;white-space:nowrap}
+  .bang td,.bang th{white-space:normal;min-width:110px}
+  .bang td.n{min-width:0}
+
+  .ba-o{grid-template-columns:1fr}
+  .dem{margin-left:0;flex:1 1 100%}
+
+  .chan{padding:9px 14px}
+  .chan .ghi{display:none}
+  .chan .nut{margin-left:0;width:100%}
+  .chan .nut button{flex:1}
+
+  #hop{width:calc(100vw - 20px);left:10px!important}
+  .hv summary{flex-wrap:wrap}
+
+  /* ---------- trang chuỗi công việc trên điện thoại ----------
+     Bảng bảy cột rộng 960px trong khung 345px là phải kéo ngang 615px mới đọc
+     hết một dòng — không dùng được bằng một ngón tay. Nên rã bảng thành thẻ
+     dọc: mỗi nhiệm vụ một thẻ, mỗi ô một dòng nhãn–giá trị. Rã bằng CSS chứ
+     không vẽ lại bằng JS, để chỉ có MỘT cây DOM, xoay ngang máy là tự thành
+     bảng trở lại, không phải nạp lại trang.                                 */
+
+  .dau-bang{margin-bottom:11px}
+  .dau-bang h3{font-size:16px}
+
+  /* Nhãn lọc dài ("Tất cả — 9 mục tiêu") bị cắt mất khi xếp hai ô một hàng */
+  .hang-loc{gap:11px;margin-bottom:12px}
+  .o-loc{flex:1 1 100%}
+  .o-loc select{max-width:100%;width:100%;font-size:15px;padding:10px 32px 10px 12px}
+
+  .hang-email{max-width:100%;margin-bottom:13px}
+  .hang-email input{font-size:16px;padding:10px 12px}   /* dưới 16px là iOS tự phóng to trang */
+
+  .thanh-sua{position:sticky;top:0;z-index:5;gap:8px;padding:10px 13px}
+  .thanh-sua span{flex:1 1 100%;order:3}
+  .thanh-sua button{flex:1;min-width:0}
+  .thanh-sua #nGuiSua{margin-left:0}
+
+  .khung-bang{max-height:none;overflow:visible;background:none;border:none;border-radius:0}
+  table.bang-chuoi{display:block;min-width:0;width:100%;font-size:14px}
+  table.bang-chuoi thead{display:none}          /* nhãn cột chuyển vào từng dòng */
+  table.bang-chuoi tbody{display:block}
+
+  table.bang-chuoi tr{display:block;background:var(--trang);border:1px solid var(--line);
+    border-radius:11px;padding:4px 13px 9px;margin-bottom:10px}
+  table.bang-chuoi tr:hover td,table.bang-chuoi tbody tr:hover td{background:none}
+
+  table.bang-chuoi td{display:grid;grid-template-columns:88px minmax(0,1fr);gap:10px;
+    align-items:start;width:auto;padding:7px 0;border-bottom:1px solid var(--line-mo)}
+  table.bang-chuoi tr td:last-child{border-bottom:none}
+  table.bang-chuoi td::before{content:attr(data-nhan);font-size:10px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--nhat);font-weight:700;line-height:1.5;padding-top:3px}
+
+  /* Chức danh là đầu thẻ: cho chiếm cả bề ngang, bỏ nhãn đi cho đỡ thừa */
+  table.bang-chuoi td.o-cd{grid-template-columns:1fr;gap:0;padding:9px 0 8px}
+  table.bang-chuoi td.o-cd::before{display:none}
+  .cd-ten{font-size:13px}
+
+  table.bang-chuoi td.o-dvi,table.bang-chuoi td.o-qt{font-size:13px}
+
+  /* Bề rộng phần trăm chỉ có nghĩa với bảng; rã thành thẻ thì bỏ hết đi */
+  table.bang-chuoi td[class]{width:auto}
+  table.bang-chuoi th:nth-child(n),table.bang-chuoi td:nth-child(n){width:auto}
+
+  /* Ô chạm được phải đủ cao cho ngón tay, kể cả ô đang trống. Padding to hơn
+     bản máy tính nên trần chiều cao phải nới theo, kẻo xén mất dòng thứ ba. */
+  .o-dai{min-height:22px;max-height:calc(4.5em + 10px)}
+  .o-sua{padding:5px 7px;margin:-5px -7px}
+
+  #tip{max-width:calc(100vw - 20px)}
+  #hopO{width:calc(100vw - 20px)}
+  #hopO textarea{font-size:16px}
+  .hopO-goi{flex:1 1 100%;order:9;margin-right:0}
+}
+
+@media print{
+  .dau-nut,.chan,.ray,.sua,#hop,.cho-bs,.tabs{display:none!important}
+  body{background:#fff}
+  .than{grid-template-columns:1fr}
+  .noi{padding:0;max-width:none}
+  .muc{break-inside:avoid}
+}

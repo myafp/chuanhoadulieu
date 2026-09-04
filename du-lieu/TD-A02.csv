@@ -1,0 +1,308 @@
+Mã,Tên vị trí,Phòng ban,Cấp,Còn thiếu,Mục đích vị trí,Kết quả đầu ra (mỗi dòng một mục),Nhiệm vụ (mỗi dòng một mục),Năng lực (TD-A04),"Quy trình (TD-C01, ngăn bằng dấu phẩy)",Tình trạng,Ghi chú,Người sửa
+VT-01-H01,Chủ tịch Hội đồng Quản trị,01 Ban Quản trị,Head,nhiệm vụ (12 dòng) · năng lực,"Chủ tịch Hội đồng Quản trị dẫn dắt Ban Quản trị (BQT) thực hiện đầy đủ chức năng giám sát và phê duyệt trong phạm vi thẩm quyền bảo lưu, bảo đảm công ty được quản trị minh bạch, tuân thủ pháp luật và bảo vệ lợi ích của cổ đông. Vị trí này không tham gia điều hành hoạt động hằng ngày (thuộc thẩm quyền CEO) mà tập trung vào: tổ chức các phiên họp và quyết nghị của BQT; phê duyệt mục tiêu, ngân sách và các quyết định vượt ngưỡng uỷ quyền của CEO; giám sát và đánh giá kết quả điều hành của CEO; bảo đảm phương án kế nhiệm CEO luôn sẵn sàng; và chủ trì tổ chức Đại hội đồng cổ đông thường niên.","Nghị quyết Ban Quản trị ban hành đúng thủ tục sau mỗi phiên họp, có biên bản và chữ ký đầy đủ
+Mục tiêu năm, ngân sách và các quyết định vượt ngưỡng ủy quyền của CEO được phê duyệt hoặc bác bỏ, có căn cứ ghi trong biên bản
+Kết quả đánh giá Trưởng ban điều hành theo kỳ, kèm kết luận về mức hoàn thành và điều chỉnh cần thiết
+Phương án kế nhiệm Trưởng ban điều hành luôn ở trạng thái sẵn sàng, được rà soát ít nhất một lần mỗi năm
+Đại hội đồng cổ đông thường niên tổ chức đúng luật: tài liệu gửi đúng hạn, nghị quyết được thông qua và công bố",,Chờ TD-A04 mở rộng,,Đã ban hành v2,,
+VT-01-L01,Thành viên Ban Quản trị độc lập,01 Ban Quản trị,Lead,mục đích cụt · nhiệm vụ (10 dòng) · năng lực,"Mang góc nhìn độc lập và khách quan vào các quyết định của Ban Quản trị, bảo vệ lợi ích của công ty và của cổ đông…","Ý kiến độc lập bằng văn bản cho từng nội dung trình Ban Quản trị thuộc phạm vi thẩm quyền bảo lưu
+Phiếu biểu quyết có nêu lý do đối với giao dịch với bên liên quan hoặc có xung đột lợi ích
+Cảnh báo sớm gửi Chủ tịch khi phát hiện rủi ro quản trị mà Ban Điều hành chưa xử lý
+Bản xác nhận tính độc lập được cập nhật hằng năm theo quy định",,Chờ TD-A04 mở rộng,,Đã ban hành v2,,
+VT-01-L02,"Trưởng Ủy ban Kiểm toán và Quản trị nội bộ - Chair of the Audit Committee. Là thành viên Ban Quản trị độc lập, có chuyên môn về tài chính kế toán, không kiêm nhiệm chức danh điều hành trong công ty",01 Ban Quản trị,Lead,mục đích cụt · nhiệm vụ (12 dòng) · năng lực,"Nhận ủy quyền và nhiệm vụ từ Ban Quản trị, chuyển thành chương trình giám sát độc lập đối với báo cáo tài chính,…","Chương trình kiểm toán nội bộ năm được Ban Quản trị phê duyệt, rõ phạm vi và nguồn lực
+Báo cáo của Ủy ban sau mỗi kỳ: kết luận về báo cáo tài chính, phát hiện kiểm toán và hành động khắc phục
+Ý kiến của Ủy ban về lựa chọn và thù lao của kiểm toán độc lập
+Danh sách phát hiện quá hạn khắc phục kèm kiến nghị xử lý, gửi Ban Quản trị",,Chờ TD-A04 mở rộng,,Đã ban hành v2,,
+VT-01-L03,"Trưởng Ủy ban Lương thưởng và Đãi ngộ - Chair of the Remuneration Committee. Là thành viên Ban Quản trị độc lập, không kiêm nhiệm chức danh điều hành trong công ty",01 Ban Quản trị,Lead,mục đích cụt · nhiệm vụ (12 dòng) · năng lực,"Nhận ủy quyền và nhiệm vụ từ Ban Quản trị, chuyển thành chính sách đãi ngộ cấp cao theo nguyên tắc 3P là vị trí,…","Chính sách đãi ngộ cấp cao theo nguyên tắc 3P được Ban Quản trị phê duyệt
+Khung lương thưởng và quỹ thưởng năm gắn với chỉ tiêu đã duyệt
+Đề xuất mức thưởng và điều chỉnh lương cho Trưởng ban điều hành và các Head, có căn cứ đo lường
+Báo cáo của Ủy ban đối chiếu mức chi trả thực tế với chính sách đã ban hành",,Chờ TD-A04 mở rộng,,Đã ban hành v2,,
+VT-01-L04,"Trưởng Ủy ban Nhân sự và Kế nhiệm - Chair of the Nomination and Succession Committee. Là thành viên Ban Quản trị độc lập, không kiêm nhiệm chức danh điều hành trong công ty",01 Ban Quản trị,Lead,mục đích cụt · nhiệm vụ (12 dòng) · năng lực,"Nhận ủy quyền và nhiệm vụ từ Ban Quản trị, chuyển thành chương trình làm việc của Ủy ban Nhân sự và Kế nhiệm gồm…","Tiêu chí và quy trình đề cử thành viên Ban Quản trị và các chức danh chủ chốt
+Bản đồ kế nhiệm cho Trưởng ban điều hành và các vị trí trọng yếu, cập nhật hằng năm
+Hồ sơ đề xuất nhân sự trình Ban Quản trị kèm đánh giá năng lực
+Báo cáo của Ủy ban về mức độ sẵn sàng của đội ngũ kế cận",,Chờ TD-A04 mở rộng,,Đã ban hành v2,,
+VT-01-S01,Thư ký Ban Quản trị,01 Ban Quản trị,Staff,mục đích cụt · nhiệm vụ (12 dòng) · năng lực,"Bảo đảm Ban Quản trị và các ủy ban vận hành đúng thủ tục và đúng nhịp: triệu tập hợp lệ, tài liệu đầy đủ và gửi…","Giấy triệu tập và tài liệu họp gửi đủ, đúng hạn trước mỗi phiên Ban Quản trị và các ủy ban
+Biên bản họp và nghị quyết soạn đúng mẫu, ký và lưu trữ đầy đủ
+Sổ theo dõi nghị quyết với tình trạng thực hiện của từng đầu việc
+Hồ sơ pháp lý của Ban Quản trị và Đại hội đồng cổ đông lưu trữ đúng quy định, tra cứu được",,Chờ TD-A04 mở rộng,,Đã ban hành v2,,
+VT-01-S02,Trợ lý Chủ tịch Hội đồng Quản trị,01 Ban Quản trị,Trợ lý,mục đích cụt · nhiệm vụ (0 dòng) · năng lực,"Hỗ trợ trực tiếp Chủ tịch Hội đồng Quản trị: theo dõi, tổng hợp, nhập liệu và soát xét (review) số liệu/kế hoạch trên các phiên bản CHƯA KHÓA (mọi nội dung tự nhập/sửa hiển thị màu đỏ); được xem toàn bộ chuỗi dữ liệu từ Hoạch định → Kế hoạch năm → Kế hoạch quý/tháng → Kế hoạch tuần; sau đó trình Chủ tịch xem, sửa và phê duyệt/khóa — không có quyền tự phê duyệt…","Bản tổng hợp số liệu và kế hoạch trên các phiên bản chưa khóa, phần tự nhập đánh dấu màu đỏ để phân biệt
+Bản soát xét chỉ ra điểm lệch giữa Hoạch định, Kế hoạch năm, kế hoạch quý tháng và kế hoạch tuần
+Hồ sơ trình Chủ tịch đủ căn cứ để xem, sửa và phê duyệt trong một lần
+Nhật ký theo dõi việc Chủ tịch đã giao, kèm tình trạng và hạn của từng việc",,Chờ TD-A04 mở rộng,,"Bản thảo mới — bổ sung 19/08/2026 theo yêu cầu Chủ tịch/CEO, chưa qua quy trình duyệt JD chuẩn",,
+VT-02-H01,Head of Platform IT - Trưởng đơn vị Nền tảng công nghệ sản phẩm,02 Nền tảng CNTT dùng chung,Head,nhiệm vụ (13 dòng) · năng lực · quy trình (thiếu 3 mã),"Head of Platform IT chịu trách nhiệm xây dựng, vận hành và bảo đảm độ tin cậy của nền tảng công nghệ sản phẩm my-afp.com — hệ thống ERP lõi phục vụ toàn bộ 22 phòng ban của AFP. Vị trí này nhận định hướng và ngân sách công nghệ từ Trưởng ban điều hành, chuyển hoá thành lộ trình sản phẩm nền tảng, tổ chức đội ngũ Platform IT thực thi, và chịu trách nhiệm cuối cùng trước CEO về mức độ sẵn sàng hệ thống, chất lượng dữ liệu gốc, và an toàn của các kết nối API giữa các phân hệ — bao gồm cả các kết nối phục vụ ứng dụng AI đang được mở rộng trong công ty.","Lộ trình sản phẩm nền tảng my-afp.com theo quý, được Trưởng ban điều hành duyệt cùng ngân sách
+Mức sẵn sàng hệ thống đạt cam kết, có số liệu theo dõi và báo cáo sự cố theo kỳ
+Danh mục API giữa các phân hệ có tài liệu, phân quyền và nhật ký truy cập
+Quy tắc kiểm tra chất lượng dữ liệu gốc của 22 phòng ban và báo cáo sai lệch định kỳ",,Chờ TD-A04 mở rộng,"02-P01, 02-P02, 02-P03, 02-P04",Bản thảo chờ duyệt,,
+VT-02-L01,Lead Platform IT - Trưởng nhóm Nền tảng dữ liệu và Ứng dụng,02 Nền tảng CNTT dùng chung,Lead,mục đích cụt · nhiệm vụ (12 dòng) · năng lực · quy trình (thiếu 3 mã),"Nhận các dòng nhiệm vụ và chỉ tiêu đã được Head of Platform IT phân bổ, xác nhận hoặc đề xuất điều chỉnh, rồi chia tiếp…","Kế hoạch phát triển và vận hành từng phân hệ theo chu kỳ, rõ người phụ trách và hạn
+Bản phát hành đã kiểm thử, kèm ghi chú thay đổi và phương án quay lui
+Báo cáo sự cố và thời gian khắc phục theo từng phân hệ
+Tài liệu kỹ thuật và hướng dẫn người dùng của các phân hệ nhóm phụ trách",,Chờ TD-A04 mở rộng,"02-P01, 02-P02, 02-P03, 02-P04",Bản thảo chờ duyệt,,
+VT-02-S01,Platform Operations Officer - Chuyên viên Vận hành nền tảng,02 Nền tảng CNTT dùng chung,Staff,mục đích cụt · nhiệm vụ (11 dòng) · năng lực · quy trình (thiếu 3 mã),"Nhận nhiệm vụ từ Lead Platform IT theo phân hệ và đầu việc được phân công, thực hiện đúng quy trình của phòng và đúng…","Nhật ký vận hành và sao lưu hằng ngày, có xác nhận khôi phục thử định kỳ
+Phiếu yêu cầu của người dùng đóng đúng hạn theo mức ưu tiên
+Bản ghi giám sát hiệu năng và cảnh báo, kèm hành động đã xử lý
+Dữ liệu chuẩn hóa theo quy tắc của từ điển nền, sai lệch báo về Lead trong ngày",,Chờ TD-A04 mở rộng,"02-P01, 02-P02, 02-P03, 02-P04",Bản thảo chờ duyệt,,
+VT-03-C01,Trưởng ban điều hành (Chief Executive Officer - CEO),03 Ban Điều hành,CEO,mục đích cụt · nhiệm vụ (13 dòng) · năng lực · quy trình (thiếu 31 mã),"Nhận nhiệm vụ và chỉ tiêu năm từ Ban Quản trị, chuyển thành hệ thống nhiệm vụ phân bổ cho các khối chức năng, tổ…","Kế hoạch năm toàn công ty được Ban Quản trị phê duyệt, chỉ tiêu phân bổ hết xuống 22 phòng ban
+Cam kết kết quả năm theo bốn phương diện, có mốc kỳ và ngưỡng cảnh báo
+Quyết định điều chuyển nguồn lực giữa các khối khi lệch chuẩn vượt ngưỡng
+Báo cáo điều hành định kỳ trình Ban Quản trị, kèm giải trình lệch chuẩn theo mã lý do
+Bộ máy 22 phòng ban đủ Head, mỗi vị trí có mô tả công việc và có chỉ tiêu",,Chờ TD-A04 mở rộng,"03-P01, 07-P03, 07-P05, 07-P07",Đã ban hành v2,,
+VT-03-H01,Giám đốc Văn phòng Chiến lược - Head thường trực Ban Điều hành,03 Ban Điều hành,Head,mục đích cụt · nhiệm vụ (12 dòng) · năng lực · quy trình (thiếu 1 mã),"Nhận định hướng và mục tiêu chiến lược từ CEO, chuyển thành chuỗi hoạch định truy vết được và Kế hoạch năm với đầy đủ…","Chuỗi hoạch định truy vết được từ sứ mệnh tới việc cụ thể, không đứt mắt xích
+Kế hoạch năm đủ chỉ tiêu, thang đo và ngân sách cho từng phòng, chốt đúng lịch
+Bộ review lệch chuẩn theo kỳ, có mã lý do và hành động khắc phục
+Phiên bản kế hoạch được quản lý chặt, mỗi lần mở lại đều có bản chụp lưu vết",,Chờ TD-A04 mở rộng,"03-P01, 03-P02, 03-P03, 03-P04",Đã ban hành v2,,
+VT-03-L01,Lead Strategy and PMO - Trưởng nhóm Hoạch định và Quản trị dự án,03 Ban Điều hành,Lead,mục đích cụt · nhiệm vụ (11 dòng) · năng lực,"Nhận nhiệm vụ và chỉ tiêu đã được Head phân bổ, chuyển thành kế hoạch làm việc của nhóm và phân bổ cho từng Staff theo…","Kế hoạch làm việc của nhóm theo tuần, gắn với dòng nhiệm vụ đã khóa
+Dữ liệu theo dõi tiến độ danh mục dự án chiến lược, cập nhật đúng nhịp
+Biên bản review lệch chuẩn của nhóm kèm kiến nghị gửi Head
+Bộ biểu mẫu hoạch định chuẩn hóa dùng chung cho các phòng",,Chờ TD-A04 mở rộng,"03-P01, 03-P02, 03-P03, 03-P04",Đã ban hành v2,,
+VT-03-S01,Staff Strategy and PMO - Chuyên viên Hoạch định và Quản trị dự án,03 Ban Điều hành,Staff,mục đích cụt · nhiệm vụ (10 dòng) · năng lực,"Nhận nhiệm vụ và chỉ tiêu đã được Lead phân bổ, xác nhận hoặc đề xuất điều chỉnh trước khi dòng nhiệm vụ được khóa, sau…","Số liệu thực tế cập nhật đúng hạn vào từng dòng nhiệm vụ được giao
+Bản tổng hợp tiến độ dự án theo mốc, nêu rõ việc trễ và nguyên nhân
+Biểu mẫu và tài liệu họp chuẩn bị đủ trước mỗi phiên hoạch định
+Hồ sơ lưu vết thay đổi kế hoạch theo từng phiên bản",,Chờ TD-A04 mở rộng,"03-P01, 03-P02, 03-P03, 03-P04",Đã ban hành v2,,
+VT-03-S02,Trợ lý Trưởng ban điều hành (Trợ lý CEO),03 Ban Điều hành,Trợ lý,mục đích cụt · nhiệm vụ (0 dòng) · năng lực,"Hỗ trợ trực tiếp Trưởng ban điều hành (CEO): theo dõi, tổng hợp, nhập liệu và soát xét (review) số liệu/kế hoạch trên các phiên bản CHƯA KHÓA (mọi nội dung tự nhập/sửa hiển thị màu đỏ); được xem toàn bộ chuỗi dữ liệu từ Hoạch định → Kế hoạch năm → Kế hoạch quý/tháng → Kế hoạch tuần; sau đó trình CEO xem, sửa và phê duyệt/khóa — không có quyền tự phê duyệt…","Bản tổng hợp số liệu và kế hoạch trên các phiên bản chưa khóa, phần tự nhập đánh dấu màu đỏ để phân biệt
+Bản soát xét nêu điểm lệch giữa Hoạch định, Kế hoạch năm, kế hoạch quý tháng và kế hoạch tuần
+Hồ sơ trình Trưởng ban điều hành đủ căn cứ để xem, sửa và phê duyệt trong một lần
+Nhật ký việc Trưởng ban điều hành đã giao cho các phòng, kèm tình trạng và hạn",,Chờ TD-A04 mở rộng,,"Bản thảo mới — bổ sung 19/08/2026 theo yêu cầu Chủ tịch/CEO, chưa qua quy trình duyệt JD chuẩn",,
+VT-04-H01,Head of Corporate Governance and Legal - Trưởng đơn vị Pháp lý doanh nghiệp và Tuân thủ quản trị,04 Pháp lý doanh nghiệp và Tuân thủ quản trị,Head,mục đích cụt · nhiệm vụ (12 dòng) · năng lực · quy trình (thiếu 4 mã),"Nhận nhiệm vụ và chỉ tiêu pháp lý doanh nghiệp từ CEO, chuyển thành kế hoạch nhiệm vụ của phòng và phân bổ cho Lead rồi…","Danh mục pháp nhân và giấy phép ngành dược còn hiệu lực, có lịch gia hạn không để quá hạn
+Bộ mẫu hợp đồng chuẩn và ngưỡng phê duyệt được ban hành và áp dụng thống nhất
+Báo cáo rủi ro pháp lý và tranh chấp theo kỳ, kèm phương án xử lý
+Quy chế ủy quyền, con dấu và lưu trữ được ban hành và tuân thủ",,Chờ TD-A04 mở rộng,"04-P01, 04-P02, 04-P03, 04-P04",Đã ban hành v2,,
+VT-04-L01,Legal Lead - Trưởng nhóm Pháp lý doanh nghiệp,04 Pháp lý doanh nghiệp và Tuân thủ quản trị,Lead,mục đích cụt · nhiệm vụ (11 dòng) · năng lực · quy trình (thiếu 4 mã),"Nhận nhiệm vụ và danh mục được phân bổ từ Head, chuyển thành lịch xử lý và phân công cho từng Staff theo hồ sơ. Trực…","Hợp đồng được rà soát và có ý kiến pháp lý trong thời hạn cam kết
+Hồ sơ pháp nhân và giấy phép cập nhật, gia hạn trước hạn
+Hồ sơ vụ việc tranh chấp đủ chứng cứ và bám đúng mốc tố tụng
+Bản cập nhật quy định mới ảnh hưởng tới hoạt động, gửi các phòng liên quan",,Chờ TD-A04 mở rộng,"04-P01, 04-P02, 04-P03, 04-P04",Đã ban hành v2,,
+VT-04-S01,Legal Officer - Chuyên viên Pháp lý doanh nghiệp,04 Pháp lý doanh nghiệp và Tuân thủ quản trị,Staff,mục đích cụt · nhiệm vụ (10 dòng) · năng lực · quy trình (thiếu 4 mã),"Nhận nhiệm vụ và danh sách hồ sơ được phân công từ Lead, chuyển thành lịch làm việc tuần cá nhân và trực tiếp thực hiện…","Bản rà soát hợp đồng theo mẫu, nêu rõ điều khoản rủi ro và kiến nghị sửa
+Hồ sơ xin cấp và gia hạn giấy phép nộp đúng thành phần, đúng hạn
+Sổ theo dõi ủy quyền và sử dụng con dấu cập nhật từng lần
+Hồ sơ pháp lý lưu trữ theo danh mục, tra cứu được",,Chờ TD-A04 mở rộng,"04-P01, 04-P02, 04-P03, 04-P04",Đã ban hành v2,,
+VT-05-H01,Head of Board and Shareholder Management - Trưởng đơn vị Quan hệ Ban Quản trị và Cổ đông,05 Quan hệ BQT và Cổ đông,Head,mục đích cụt · nhiệm vụ (12 dòng) · năng lực,"Nhận nhiệm vụ và chỉ tiêu quản trị từ CEO, chuyển thành kế hoạch nhiệm vụ của phòng và phân bổ cho Lead rồi tới Staff…","Lịch phiên họp Ban Quản trị và Đại hội đồng cổ đông cả năm, tài liệu chuẩn bị đúng hạn
+Bộ hồ sơ trình duyệt cấp cao đạt chuẩn, không bị trả lại vì thiếu căn cứ
+Sổ đăng ký cổ đông và hồ sơ quan hệ cổ đông cập nhật đầy đủ
+Báo cáo tình trạng thực hiện nghị quyết gửi Ban Quản trị theo kỳ",,Chờ TD-A04 mở rộng,"05-P01, 05-P02, 05-P03, 05-P04",Đã ban hành v2,,
+VT-05-L01,Governance Lead - Trưởng nhóm Hồ sơ trình duyệt cấp cao và Quan hệ cổ đông,05 Quan hệ BQT và Cổ đông,Lead,mục đích cụt · nhiệm vụ (11 dòng) · năng lực,"Nhận nhiệm vụ và danh mục hồ sơ, phiên họp được phân bổ từ Head, chuyển thành lịch xử lý và phân công cho từng Staff.…","Lịch xử lý hồ sơ trình duyệt theo từng phiên, phân công rõ người và hạn
+Bộ tài liệu phiên họp hoàn chỉnh trước thời hạn gửi
+Bản theo dõi nghị quyết và tình trạng thực hiện, cập nhật sau mỗi phiên
+Đầu mối trả lời cổ đông vận hành theo quy trình đã duyệt",,Chờ TD-A04 mở rộng,"05-P01, 05-P02, 05-P03, 05-P04",Đã ban hành v2,,
+VT-05-S01,Governance Officer - Chuyên viên Thư ký quản trị và Hồ sơ trình duyệt,05 Quan hệ BQT và Cổ đông,Staff,mục đích cụt · nhiệm vụ (10 dòng) · năng lực,"Nhận nhiệm vụ và danh sách hồ sơ được phân công từ Lead, chuyển thành lịch làm việc tuần cá nhân và trực tiếp thực hiện…","Hồ sơ trình duyệt soạn đúng mẫu, đủ phụ lục và căn cứ
+Biên bản và nghị quyết ghi đúng nội dung đã diễn ra tại phiên họp
+Dữ liệu cổ đông và thay đổi sở hữu cập nhật kịp thời
+Hồ sơ quản trị lưu trữ theo đúng danh mục",,Chờ TD-A04 mở rộng,"05-P01, 05-P02, 05-P03, 05-P04",Đã ban hành v2,,
+VT-06-H01,Head of External Reporting and Filings - Trưởng đơn vị Báo cáo và Công bố đối ngoại,06 Báo cáo và Công bố đối ngoại,Head,mục đích cụt · nhiệm vụ (12 dòng) · năng lực,"Nhận nhiệm vụ và chỉ tiêu về báo cáo, công bố đối ngoại từ CEO, chuyển thành lịch nghĩa vụ báo cáo và bộ dòng nhiệm vụ…","Lịch nghĩa vụ báo cáo cả năm theo từng cơ quan quản lý, không bỏ sót đầu mối
+Hồ sơ nộp đúng hạn, không phát sinh nhắc nhở hoặc xử phạt hành chính
+Dữ liệu nguồn cho báo cáo đối ngoại được đối chiếu trước khi nộp
+Sổ theo dõi văn bản đến và đi với cơ quan quản lý",,Chờ TD-A04 mở rộng,"06-P01, 06-P02, 06-P03",Đã ban hành v2,,
+VT-06-L01,Lead of External Reporting and Filings - Trưởng nhóm Báo cáo và Hồ sơ nộp đối ngoại,06 Báo cáo và Công bố đối ngoại,Lead,mục đích cụt · nhiệm vụ (11 dòng) · năng lực,"Nhận dòng nhiệm vụ đã khóa từ Head, chuyển thành kế hoạch lập và nộp hồ sơ theo từng hạn của nhóm nghĩa vụ được giao,…","Kế hoạch lập và nộp hồ sơ theo từng hạn của nhóm nghĩa vụ được giao
+Hồ sơ hoàn chỉnh và đã soát xét trước khi trình ký
+Bản đối chiếu số liệu giữa các khối trước khi đưa vào báo cáo
+Báo cáo tình trạng nộp và phản hồi của cơ quan quản lý",,Chờ TD-A04 mở rộng,"06-P01, 06-P02, 06-P03",Đã ban hành v2,,
+VT-06-S01,External Reporting and Filings Officer - Chuyên viên Báo cáo và Hồ sơ nộp đối ngoại,06 Báo cáo và Công bố đối ngoại,Staff,mục đích cụt · nhiệm vụ (10 dòng) · năng lực,"Nhận nhiệm vụ đã khóa từ Lead theo từng hồ sơ và từng kỳ, thu thập dữ liệu từ đầu mối các khối, lập hồ sơ đúng biểu…","Hồ sơ lập đúng biểu mẫu, đủ số liệu và chữ ký
+Dữ liệu thu thập từ các khối có nguồn và ngày chốt rõ ràng
+Biên nhận nộp hồ sơ lưu đầy đủ
+Sổ theo dõi hạn của từng nghĩa vụ báo cáo",,Chờ TD-A04 mở rộng,"06-P01, 06-P02, 06-P03",Đã ban hành v2,,
+VT-07-H01,Head of Finance - Giám đốc Tài chính (CFO),07 Tài chính - Kế toán,Head,mục đích cụt · nhiệm vụ (12 dòng) · năng lực · quy trình (thiếu 20 mã),"Nhận nhiệm vụ và chỉ tiêu tài chính từ CEO, chuyển thành kế hoạch nhiệm vụ của khối Tài chính, phân bổ cho Lead và…","Kế hoạch tài chính năm và dự báo dòng tiền theo kỳ, được Trưởng ban điều hành duyệt
+Báo cáo tài chính và báo cáo quản trị phát hành đúng lịch, số liệu đối chiếu được
+Ngân sách hoạt động, nhân sự và đầu tư kiểm soát trong ngưỡng đã duyệt
+Giá thành lô và biên lợi nhuận theo sản phẩm, làm căn cứ quyết định giá
+Nghĩa vụ thuế thực hiện đầy đủ, không phát sinh truy thu do lỗi hồ sơ",,Chờ TD-A04 mở rộng,"07-P01, 07-P02, 07-P03, 07-P04",Đã ban hành v2,,
+VT-07-L01,Kế toán trưởng (Chief Accountant),07 Tài chính - Kế toán,Lead,mục đích cụt · nhiệm vụ (12 dòng) · năng lực · quy trình (thiếu 7 mã),"Nhận các dòng nhiệm vụ và chỉ tiêu đã được Head of Finance phân bổ, xác nhận hoặc đề xuất điều chỉnh, rồi chia tiếp cho…","Sổ sách kế toán khóa đúng kỳ, số dư đối chiếu khớp giữa các phân hệ
+Báo cáo thuế lập và nộp đúng hạn, đúng số liệu
+Bộ chứng từ hợp lệ cho mọi bút toán, đủ điều kiện kiểm toán
+Bảng tuổi nợ và biên bản đối chiếu công nợ theo kỳ",,Chờ TD-A04 mở rộng,"07-P01, 07-P02, 07-P03, 07-P04",Đã ban hành v2,,
+VT-07-S01,Kế toán bán hàng,07 Tài chính - Kế toán,Staff,mục đích cụt · nhiệm vụ (9 dòng) · năng lực · quy trình (thiếu 7 mã),"Nhận nhiệm vụ từ cấp trên trực tiếp, ghi nhận đầy đủ và chính xác các nghiệp vụ bán hàng, kiểm soát hóa đơn và chứng…","Hóa đơn bán hàng phát hành đúng, đủ và đúng thời điểm ghi nhận doanh thu
+Doanh thu ghi nhận khớp với đơn hàng và phiếu giao đã ký
+Bảng theo dõi công nợ phải thu theo khách hàng, cập nhật hằng ngày
+Hồ sơ chiết khấu và hàng trả lại có đủ căn cứ phê duyệt",,Chờ TD-A04 mở rộng,"07-P01, 07-P02, 07-P03, 07-P04",Đã ban hành v2,,
+VT-07-S02,Kế toán thuế,07 Tài chính - Kế toán,Staff,mục đích cụt · nhiệm vụ (9 dòng) · năng lực · quy trình (thiếu 7 mã),"Nhận nhiệm vụ từ cấp trên trực tiếp, thực hiện kê khai và nộp thuế đúng hạn, đúng số liệu, kiểm soát hóa đơn và hồ sơ…","Tờ khai các sắc thuế nộp đúng hạn, đúng số liệu
+Hóa đơn đầu vào và đầu ra đối chiếu khớp với tờ khai
+Hồ sơ hoàn thuế và giải trình với cơ quan thuế đủ căn cứ
+Bản cập nhật thay đổi chính sách thuế ảnh hưởng tới công ty",,Chờ TD-A04 mở rộng,"07-P01, 07-P02, 07-P03, 07-P04",Đã ban hành v2,,
+VT-07-S03,Thủ quỹ,07 Tài chính - Kế toán,Staff,mục đích cụt · nhiệm vụ (9 dòng) · năng lực · quy trình (thiếu 7 mã),"Nhận nhiệm vụ từ cấp trên trực tiếp, thực hiện thu chi tiền mặt trên cơ sở chứng từ hợp lệ và phê duyệt đúng thẩm…","Sổ quỹ tiền mặt khớp tồn quỹ thực tế tại mọi thời điểm kiểm kê
+Phiếu thu và phiếu chi có chứng từ hợp lệ, đúng thẩm quyền phê duyệt
+Biên bản kiểm kê quỹ định kỳ có chữ ký đủ thành phần
+Báo cáo tồn quỹ và đề nghị bổ sung tiền mặt đúng nhịp",,Chờ TD-A04 mở rộng,"07-P01, 07-P02, 07-P03, 07-P04",Đã ban hành v2,,
+VT-08-H01,Head of Human Resources (Trưởng đơn vị Nhân sự),08 Nhân sự,Head,mục đích cụt · nhiệm vụ (12 dòng) · năng lực · quy trình (thiếu 18 mã),"Nhận nhiệm vụ và chỉ tiêu năm về năng lực thực thi và văn hóa từ CEO trong phiên kế hoạch năm, chuyển thành các dòng…","Cơ cấu tổ chức và bộ mô tả công việc cho toàn bộ vị trí, quản lý theo phiên bản
+Kế hoạch tuyển dụng và kế nhiệm đáp ứng nhu cầu của kế hoạch năm
+Chính sách lương thưởng và đánh giá hiệu suất được ban hành và áp dụng
+Chương trình đào tạo gắn với từ điển năng lực, có kết quả đo được",,Chờ TD-A04 mở rộng,"08-P01, 08-P02, 08-P03, 08-P04",Đã ban hành v2,,
+VT-08-L01,HR Lead (Trưởng nhóm Nhân sự),08 Nhân sự,Lead,mục đích cụt · nhiệm vụ (11 dòng) · năng lực · quy trình (thiếu 13 mã),"Nhận các dòng nhiệm vụ đã được Head phân bổ, xác nhận hoặc đề xuất điều chỉnh, rồi chia tiếp cho từng HR Staff theo hồ…","Hồ sơ tuyển dụng từng vị trí đóng đúng thời hạn cam kết
+Bảng lương và chế độ bảo hiểm tính đúng, chi trả đúng hạn
+Hồ sơ nhân sự đầy đủ và cập nhật cho từng người lao động
+Kết quả đánh giá hiệu suất theo kỳ, tổng hợp và trình Head",,Chờ TD-A04 mở rộng,"08-P01, 08-P02, 08-P03, 08-P04",Đã ban hành v2,,
+VT-08-S01,HR Staff (Chuyên viên Nhân sự),08 Nhân sự,Staff,mục đích cụt · nhiệm vụ (11 dòng) · năng lực · quy trình (thiếu 13 mã),"Nhận các dòng nhiệm vụ do HR Lead phân bổ, xác nhận hoặc đề xuất điều chỉnh, rồi trực tiếp thực hiện trên từng hồ sơ…","Hồ sơ ứng viên và lịch phỏng vấn tổ chức đúng kế hoạch
+Hợp đồng lao động và phụ lục ký đúng hạn, đúng mẫu
+Dữ liệu chấm công và nghỉ phép chốt đúng kỳ tính lương
+Hồ sơ bảo hiểm xã hội nộp đúng thành phần và đúng hạn",,Chờ TD-A04 mở rộng,"08-P01, 08-P02, 08-P03, 08-P04",Đã ban hành v2,,
+VT-09-H01,Head of Digital and AI,"09 IT, Truyền thông nội bộ và AI",Head,mục đích cụt · nhiệm vụ (10 dòng) · năng lực · quy trình (thiếu 3 mã),"Nhận nhiệm vụ và chỉ tiêu từ CEO, chuyển thành danh mục sáng kiến Digital và AI có ưu tiên, phân bổ cho Lead và Staff,…","Danh mục sáng kiến Digital và AI có thứ tự ưu tiên và ngân sách được duyệt
+Hạ tầng CNTT và tài khoản người dùng vận hành ổn định, phân quyền rõ ràng
+Bộ dashboard điều hành phục vụ các phòng, số liệu lấy từ nguồn chuẩn
+Kênh truyền thông nội bộ hoạt động đúng nhịp, nội dung đã qua duyệt",,Chờ TD-A04 mở rộng,"09-P01, 09-P02, 09-P03, 09-P04",Đã ban hành v2,,
+VT-09-L01,"Lead IT, Truyền thông nội bộ và AI","09 IT, Truyền thông nội bộ và AI",Lead,mục đích cụt · nhiệm vụ (12 dòng) · năng lực · quy trình (thiếu 3 mã),"Nhận các dòng nhiệm vụ và chỉ tiêu đã được Head of Digital and AI phân bổ, xác nhận hoặc đề xuất điều chỉnh, rồi chia…","Hệ thống mạng, máy chủ và thiết bị đầu cuối đạt mức sẵn sàng cam kết
+Phiếu hỗ trợ người dùng đóng đúng hạn theo mức ưu tiên
+Bản sao lưu và phương án khôi phục được kiểm thử định kỳ
+Tài khoản và phân quyền rà soát theo kỳ, thu hồi ngay khi nhân sự nghỉ",,Chờ TD-A04 mở rộng,"09-P01, 09-P02, 09-P03, 09-P04",Đã ban hành v2,,
+VT-09-S01,Digital Operations and AI Executive,"09 IT, Truyền thông nội bộ và AI",Staff,mục đích cụt · nhiệm vụ (10 dòng) · năng lực · quy trình (thiếu 3 mã),"Nhận nhiệm vụ từ cấp trên trực tiếp, xây dựng và duy trì các công cụ dữ liệu, dashboard, tự động hóa và ứng dụng AI…","Dashboard và báo cáo tự động chạy đúng lịch, số liệu khớp nguồn
+Công cụ tự động hóa bàn giao kèm hướng dẫn sử dụng
+Phiếu hỗ trợ xử lý đúng quy trình, có ghi nhận nguyên nhân
+Nội dung truyền thông nội bộ đăng đúng lịch và đã qua duyệt",,Chờ TD-A04 mở rộng,"09-P01, 09-P02, 09-P03, 09-P04",Đã ban hành v2,,
+VT-10-H01,"Head of Regulatory, Clinical Trial and Legal",10 Đăng ký - Nghiên cứu lâm sàng - Pháp chế sản phẩm,Head,mục đích cụt · nhiệm vụ (12 dòng) · năng lực · quy trình (thiếu 6 mã),"Nhận nhiệm vụ và chỉ tiêu từ CEO, chuyển thành kế hoạch nhiệm vụ của khối, phân bổ cho Lead, kiểm soát chất lượng đầu…","Danh mục số đăng ký và giấy phép còn hiệu lực cho toàn bộ sản phẩm, có lịch gia hạn
+Hồ sơ đăng ký mới nộp đúng kế hoạch, tỷ lệ phải bổ sung trong ngưỡng
+Bộ tài liệu pháp chế sản phẩm được duyệt trước khi lưu hành
+Báo cáo tình trạng hồ sơ theo kỳ gửi Trưởng ban điều hành",,Chờ TD-A04 mở rộng,"10-P01, 10-P02, 10-P03, 10-P04",Đã ban hành v2,,
+VT-10-L01,"Lead Regulatory, Clinical Trial and Legal",10 Đăng ký - Nghiên cứu lâm sàng - Pháp chế sản phẩm,Lead,mục đích cụt · nhiệm vụ (10 dòng) · năng lực · quy trình (thiếu 2 mã),"Nhận nhiệm vụ và chỉ tiêu từ Head, chuyển thành kế hoạch làm việc của nhóm, phân bổ cho Staff, kiểm soát tiến độ và…","Kế hoạch nộp hồ sơ theo từng sản phẩm và từng mốc
+Hồ sơ đăng ký và công bố đủ thành phần trước khi trình ký
+Bản theo dõi phản hồi của cơ quan quản lý và thời hạn bổ sung
+Hồ sơ lưu trữ tra cứu được theo mã sản phẩm",,Chờ TD-A04 mở rộng,"10-P01, 10-P02, 10-P03, 10-P04",Đã ban hành v2,,
+VT-10-S01,"Staff Regulatory, Clinical Trial and Legal",10 Đăng ký - Nghiên cứu lâm sàng - Pháp chế sản phẩm,Staff,mục đích cụt · nhiệm vụ (10 dòng) · năng lực · quy trình (thiếu 2 mã),"Nhận nhiệm vụ và chỉ tiêu từ Lead, trực tiếp thực hiện các đầu việc chuyên môn đúng chuẩn và đúng hạn, cập nhật mức…","Hồ sơ chuyên môn lập đúng chuẩn và đúng hạn được giao
+Dữ liệu và tài liệu kỹ thuật thu thập đủ cho từng bộ hồ sơ
+Tiến độ từng hồ sơ cập nhật trên hệ thống
+Hồ sơ bổ sung theo yêu cầu cơ quan quản lý nộp đúng hạn",,Chờ TD-A04 mở rộng,"10-P01, 10-P02, 10-P03, 10-P04",Đã ban hành v2,,
+VT-11-H01,Head of R&D (Trưởng đơn vị Nghiên cứu và Phát triển),11 Nghiên cứu và Phát triển,Head,mục đích cụt · nhiệm vụ (10 dòng) · năng lực · quy trình (thiếu 1 mã),"Nhận nhiệm vụ và chỉ tiêu từ CEO, chuyển thành danh mục dự án R&D có ưu tiên, phân bổ cho Lead và Staff, bảo đảm đầu ra…","Danh mục dự án R&D có thứ tự ưu tiên, gắn với chiến lược sản phẩm
+Công thức và quy trình sản xuất đủ điều kiện chuyển giao cho sản xuất
+Hồ sơ kỹ thuật sản phẩm đủ để đăng ký lưu hành
+Báo cáo tiến độ và kết quả nghiên cứu theo kỳ",,Chờ TD-A04 mở rộng,"11-P01, 11-P02, 11-P03, 11-P04",Đã ban hành v2,,
+VT-11-L01,Lead R&D Medical Nutrition (chức danh cũ: Head of R&D - Medical Nutrition),11 Nghiên cứu và Phát triển,Lead,mục đích cụt · nhiệm vụ (11 dòng) · năng lực,"Nhận nhiệm vụ và chỉ tiêu từ Head of R&D, chuyển thành kế hoạch dự án của mảng dinh dưỡng y học, phân bổ cho Staff,…","Kế hoạch dự án của mảng dinh dưỡng y học theo mốc
+Công thức thử nghiệm có số liệu và kết luận rõ ràng
+Hồ sơ định mức nguyên liệu cho từng sản phẩm
+Báo cáo cải tiến chất lượng và tiết giảm giá thành",,Chờ TD-A04 mở rộng,"11-P01, 11-P02, 11-P03",Đã ban hành v2,,
+VT-11-S01,Nhân viên R&D công thức và cải tiến QA - QC,11 Nghiên cứu và Phát triển,Staff,mục đích cụt · nhiệm vụ (10 dòng) · năng lực,"Nhận nhiệm vụ từ Lead, trực tiếp thực hiện nghiên cứu và cải tiến công thức, thiết kế và thực hiện thử nghiệm, ghi nhận…","Kết quả thử nghiệm ghi nhận đầy đủ trong sổ tay nghiên cứu
+Mẫu thử và hồ sơ mẫu lưu đúng quy định
+Đề xuất cải tiến công thức có căn cứ số liệu
+Hồ sơ QA QC của từng lô thử nghiệm",,Chờ TD-A04 mở rộng,"11-P01, 11-P02, 11-P03",Đã ban hành v2,,
+VT-12-H01,Head of Clinical Research - Trưởng đơn vị Nghiên cứu lâm sàng,12 Nghiên cứu lâm sàng,Head,mục đích cụt · nhiệm vụ (13 dòng) · năng lực,"Nhận nhiệm vụ và chỉ tiêu về bằng chứng khoa học từ CEO, chuyển thành kế hoạch nghiên cứu lâm sàng của phòng cho danh…","Kế hoạch nghiên cứu lâm sàng cho danh mục sản phẩm, được Trưởng ban điều hành duyệt
+Đề cương nghiên cứu đạt chuẩn đạo đức và pháp lý trước khi triển khai
+Bằng chứng khoa học phục vụ thông điệp sản phẩm, có nguồn trích dẫn đầy đủ
+Báo cáo kết quả nghiên cứu và công bố khoa học theo kế hoạch",,Chờ TD-A04 mở rộng,"12-P01, 12-P02, 12-P03",Bản thảo chờ duyệt,,
+VT-12-L01,Lead Clinical Research - Trưởng nhóm Nghiên cứu lâm sàng và Bằng chứng khoa học,12 Nghiên cứu lâm sàng,Lead,mục đích cụt · nhiệm vụ (12 dòng) · năng lực,"Nhận nhiệm vụ và chỉ tiêu từ Head, chuyển thành kế hoạch triển khai của từng nghiên cứu, phân bổ cho Staff, kiểm soát…","Kế hoạch triển khai từng nghiên cứu theo mốc và theo điểm nghiên cứu
+Hồ sơ nghiên cứu đầy đủ, tuân thủ đề cương và quy định
+Dữ liệu nghiên cứu được kiểm tra chất lượng trước khi phân tích
+Báo cáo tiến độ và sai lệch đề cương gửi Head",,Chờ TD-A04 mở rộng,"12-P01, 12-P02, 12-P03",Bản thảo chờ duyệt,,
+VT-12-S01,Clinical Research Officer - Chuyên viên Nghiên cứu lâm sàng,12 Nghiên cứu lâm sàng,Staff,mục đích cụt · nhiệm vụ (11 dòng) · năng lực,"Nhận nhiệm vụ từ Lead theo từng nghiên cứu và từng hồ sơ cụ thể, trực tiếp thực hiện các đầu việc chuyên môn đúng đề…","Hồ sơ từng ca nghiên cứu ghi nhận đúng đề cương
+Dữ liệu nhập đúng hạn và qua được kiểm tra logic
+Tài liệu nghiên cứu lưu trữ theo đúng danh mục
+Bản ghi nhận và báo cáo biến cố theo quy định",,Chờ TD-A04 mở rộng,"12-P01, 12-P02, 12-P03",Bản thảo chờ duyệt,,
+VT-13-H01,Head of Supply - Trưởng đơn vị Mua hàng và chuỗi cung ứng (Mua hàng và S&OP),13 Mua hàng và chuỗi cung ứng,Head,mục đích cụt · nhiệm vụ (12 dòng) · năng lực · quy trình (thiếu 3 mã),"Nhận nhiệm vụ và chỉ tiêu nguồn cung từ CEO, chuyển thành kế hoạch S&OP và kế hoạch mua của phòng Mua hàng và chuỗi cung ứng, phân bổ cho…","Kế hoạch S&OP theo kỳ, cân đối giữa dự báo bán và năng lực cung
+Kế hoạch mua và hợp đồng khung với nhà cung cấp chiến lược
+Mức tồn kho và mức phục vụ đạt ngưỡng đã cam kết
+Bộ đánh giá nhà cung cấp theo kỳ, làm căn cứ tiếp tục hợp tác",,Chờ TD-A04 mở rộng,"13-P01, 13-P02, 13-P03, 13-P04",Đã ban hành v2,,
+VT-13-L01,Lead Supply - Trưởng nhóm Kế hoạch cung ứng và Mua hàng,13 Mua hàng và chuỗi cung ứng,Lead,mục đích cụt · nhiệm vụ (12 dòng) · năng lực,"Nhận nhiệm vụ và chỉ tiêu từ Head of Supply, chuyển thành kế hoạch mua và lịch làm việc tuần của nhóm, phân bổ cho…","Kế hoạch mua theo tuần bám sát nhu cầu đã chốt
+Đơn hàng đặt và theo dõi tiến độ giao, cảnh báo trễ kịp thời
+Bảng so sánh giá và điều kiện của các nhà cung cấp
+Hồ sơ nhà cung cấp cập nhật đầy đủ trong từ điển đối tác",,Chờ TD-A04 mở rộng,"13-P01, 13-P02, 13-P03, 13-P04",Đã ban hành v2,,
+VT-13-S01,Staff Supply - Chuyên viên Mua hàng và Quản lý nhà cung cấp,13 Mua hàng và chuỗi cung ứng,Staff,mục đích cụt · nhiệm vụ (12 dòng) · năng lực,"Nhận nhiệm vụ từ Lead Supply theo danh sách mã hàng và nhà cung cấp được phân công, thực hiện đặt hàng và theo dõi giao…","Đơn đặt hàng lập đúng nhu cầu và đúng điều kiện đã duyệt
+Lịch giao hàng theo dõi tới khi nhập kho, sai lệch báo ngay
+Hồ sơ nhà cung cấp và chứng từ mua hàng lưu đủ
+Bản đối chiếu công nợ phải trả theo nhà cung cấp",,Chờ TD-A04 mở rộng,"13-P01, 13-P02, 13-P03, 13-P04",Đã ban hành v2,,
+VT-14-H01,Head of Production - Giám đốc Sản xuất kiêm Quản lý Gia công,14 Sản xuất gia công,Head,mục đích cụt · nhiệm vụ (12 dòng) · năng lực · quy trình (thiếu 20 mã),"Nhận nhiệm vụ và chỉ tiêu sản xuất từ CEO, chuyển thành kế hoạch sản xuất và kế hoạch gia công của phòng, phân bổ cho…","Kế hoạch sản xuất và gia công đáp ứng nhu cầu bán hàng theo kỳ
+Sản lượng và chất lượng lô đạt chuẩn, tỷ lệ hao hụt trong ngưỡng
+Hồ sơ lô sản xuất đầy đủ, đủ điều kiện xuất xưởng
+Báo cáo giá thành sản xuất theo lô gửi Tài chính",,Chờ TD-A04 mở rộng,"14-P01, 14-P02, 14-P03, 14-P04",Đã ban hành v2,,
+VT-14-L01,"Lead Production - Tổ trưởng ca sản xuất, chuyền sản xuất hoặc nhóm gia công",14 Sản xuất gia công,Lead,mục đích cụt · nhiệm vụ (12 dòng) · năng lực,"Nhận nhiệm vụ và chỉ tiêu từ Head of Production, chuyển thành kế hoạch ca và lịch làm việc tuần của chuyền hoặc nhóm…","Kế hoạch ca và phân công chuyền đáp ứng lệnh sản xuất
+Lô sản xuất chạy đúng SOP và đúng thông số công nghệ
+Hồ sơ ca sản xuất ghi nhận đầy đủ, có xác nhận
+Báo cáo sự cố dây chuyền và hành động khắc phục",,Chờ TD-A04 mở rộng,"14-P01, 14-P02, 14-P03, 14-P04",Đã ban hành v2,,
+VT-14-S01,Staff Production - Nhân viên vận hành sản xuất,14 Sản xuất gia công,Staff,mục đích cụt · nhiệm vụ (12 dòng) · năng lực,"Nhận nhiệm vụ từ Lead Production theo lô và lệnh sản xuất được phân công, vận hành đúng SOP và đúng thông số công nghệ,…","Sản phẩm của ca đạt tiêu chuẩn kiểm tra trong quá trình
+Hồ sơ lô ghi chép đầy đủ ngay tại thời điểm thao tác
+Vệ sinh và bàn giao ca theo đúng quy định
+Bất thường được ghi nhận và báo cáo ngay khi phát hiện",,Chờ TD-A04 mở rộng,"14-P01, 14-P02, 14-P03, 14-P04",Đã ban hành v2,,
+VT-15-H01,Head of Factory Project and GMP Compliance - Trưởng đơn vị Vận hành nhà máy,15 Vận hành nhà máy,Head,mục đích cụt · nhiệm vụ (13 dòng) · năng lực · quy trình (thiếu 4 mã),"Nhận nhiệm vụ đầu tư nhà máy và chuẩn GMP từ CEO, chuyển thành kế hoạch tổng thể dự án theo phase với mốc tiến độ, ngân…","Kế hoạch tổng thể dự án nhà máy theo phase, có mốc tiến độ và ngân sách
+Hồ sơ đáp ứng chuẩn GMP cho từng khu vực, sẵn sàng thẩm định
+Báo cáo giải ngân đầu tư theo mốc, kiểm soát trong ngân sách đã duyệt
+Hồ sơ nghiệm thu và bàn giao từng hạng mục đầy đủ",,Chờ TD-A04 mở rộng,"15-P01, 15-P02, 15-P03, 15-P04",Đã ban hành v2,,
+VT-15-L01,Lead MEP and Utilities - Trưởng nhóm Cơ điện và Hạ tầng kỹ thuật,15 Vận hành nhà máy,Lead,mục đích cụt · nhiệm vụ (12 dòng) · năng lực,"Nhận nhiệm vụ về phần cơ điện và hạ tầng kỹ thuật do Head phân bổ, chuyển thành kế hoạch thiết kế, lắp đặt, kiểm tra…","Kế hoạch thiết kế và lắp đặt hệ cơ điện theo tiến độ dự án
+Biên bản kiểm tra và nghiệm thu từng hạng mục kỹ thuật
+Hồ sơ hoàn công và tài liệu vận hành thiết bị
+Báo cáo khối lượng và phát sinh so với dự toán",,Chờ TD-A04 mở rộng,"15-P01, 15-P04, 15-P05, 15-P08",Đã ban hành v2,,
+VT-15-S01,Staff MEP and Project Documentation - Nhân viên Kỹ thuật Cơ điện và Hồ sơ Dự án,15 Vận hành nhà máy,Staff,mục đích cụt · nhiệm vụ (11 dòng) · năng lực,"Nhận nhiệm vụ do Lead phân bổ cho từng hạng mục thiết bị và từng bộ hồ sơ, thực hiện việc theo dõi hiện trường, đo và…","Nhật ký hiện trường và số liệu đo ghi nhận đầy đủ
+Bộ hồ sơ dự án sắp xếp theo danh mục, tra cứu được
+Bảng bóc tách khối lượng vật tư theo từng hạng mục
+Biên bản kiểm tra thiết bị trước nghiệm thu",,Chờ TD-A04 mở rộng,"15-P01, 15-P04, 15-P05, 15-P08",Đã ban hành v2,,
+VT-16-H01,Head of DMS - Trưởng đơn vị Kho vận và Phân phối nội bộ,16 Kho vận và Phân phối nội bộ,Head,mục đích cụt · nhiệm vụ (12 dòng) · năng lực · quy trình (thiếu 4 mã),"Nhận nhiệm vụ và chỉ tiêu kho vận từ CEO, chuyển thành kế hoạch nhiệm vụ của phòng theo từng kho và từng nhóm hàng,…","Kế hoạch kho vận theo từng kho và nhóm hàng, đáp ứng mức phục vụ cam kết
+Tồn kho chính xác theo lô và hạn dùng, chênh lệch kiểm kê trong ngưỡng
+Điều kiện bảo quản đạt chuẩn GSP, có dữ liệu theo dõi nhiệt độ và độ ẩm
+Báo cáo hàng cận hạn và hàng chậm luân chuyển theo kỳ",,Chờ TD-A04 mở rộng,"16-P01, 16-P02, 16-P03, 16-P04",Đã ban hành v2,,
+VT-16-L01,Lead Kho vùng - Tổ trưởng kho khu vực,16 Kho vận và Phân phối nội bộ,Lead,mục đích cụt · nhiệm vụ (12 dòng) · năng lực · quy trình (thiếu 4 mã),"Nhận nhiệm vụ và chỉ tiêu từ Head of DMS cho kho khu vực được giao, phân công cho Staff kho theo phiếu và theo khu vực…","Phiếu nhập xuất xử lý đúng ngày, đúng lô theo nguyên tắc FEFO
+Kết quả kiểm kê định kỳ có biên bản và giải trình chênh lệch
+Sơ đồ sắp xếp kho cập nhật, hàng biệt trữ tách khu rõ ràng
+Báo cáo nhiệt độ và độ ẩm của kho theo nhịp quy định",,Chờ TD-A04 mở rộng,"16-P01, 16-P02, 16-P03, 16-P04",Đã ban hành v2,,
+VT-16-S01,Nhân viên kho vận,16 Kho vận và Phân phối nội bộ,Staff,mục đích cụt · nhiệm vụ (12 dòng) · năng lực · quy trình (thiếu 4 mã),"Nhận phiếu và đơn hàng do Lead phân công, trực tiếp kiểm nhận hàng về theo lô và hạn dùng, sắp xếp bảo quản, soạn và…","Hàng nhập kiểm nhận đúng số lượng, đúng lô và hạn dùng
+Đơn hàng soạn và giao đúng, tỷ lệ soạn sai trong ngưỡng
+Chứng từ kho ký nhận đầy đủ và nộp về đúng ngày
+Khu vực kho giữ đúng điều kiện bảo quản và gọn gàng",,Chờ TD-A04 mở rộng,"16-P01, 16-P02, 16-P03, 16-P04",Đã ban hành v2,,
+VT-17-H01,Head of Medical Marketing - Trưởng đơn vị Medical Marketing,17 Medical Marketing,Head,mục đích cụt · nhiệm vụ (12 dòng) · năng lực · quy trình (thiếu 5 mã),"Nhận nhiệm vụ về độ phủ phân khúc mục tiêu và hành trình A2D giai đoạn 1 đến 3 từ CEO, chuyển thành kế hoạch marketing…","Kế hoạch marketing y khoa theo brand, gắn với hành trình A2D giai đoạn 1 đến 3
+Bộ thông điệp sản phẩm được duyệt, có bằng chứng khoa học kèm theo
+Ấn phẩm và tài liệu thực địa đã qua duyệt nội dung và còn hiệu lực
+Báo cáo độ phủ phân khúc mục tiêu và số HCP tương tác theo kỳ",,Chờ TD-A04 mở rộng,"17-P01, 17-P02, 17-P03, 17-P04",Đã ban hành v2,,
+VT-17-L01,Medical Marketing Manager - Quản lý Medical Marketing,17 Medical Marketing,Lead,mục đích cụt · nhiệm vụ (12 dòng) · năng lực,Nhận nhiệm vụ và phần chỉ tiêu độ phủ phân khúc cùng số HCP tương tác do Head phân bổ cho brand hoặc ngành hàng được…,"Kế hoạch brand theo tháng với chương trình và ngân sách rõ ràng
+Tài liệu và chương trình khoa học tổ chức đúng kế hoạch
+Bản cập nhật bằng chứng khoa học cho từng thông điệp
+Báo cáo hiệu quả chương trình theo chỉ tiêu đã đặt",,Chờ TD-A04 mở rộng,"17-P01, 17-P02, 17-P03",Đã ban hành v2,,
+VT-17-S01,Medical Marketing Executive - Chuyên viên Medical Marketing,17 Medical Marketing,Staff,mục đích cụt · nhiệm vụ (12 dòng) · năng lực,"Nhận nhiệm vụ được Lead phân công theo tài liệu, chương trình và dữ liệu cụ thể, thực hiện đúng quy trình phê duyệt và…","Tài liệu và ấn phẩm hoàn thiện đúng khuôn đã phê duyệt
+Hồ sơ chương trình và hội thảo đủ chứng từ tuân thủ
+Dữ liệu tương tác HCP cập nhật đúng hạn
+Bản tổng hợp phản hồi từ thực địa gửi Lead",,Chờ TD-A04 mở rộng,"17-P01, 17-P02, 17-P03",Đã ban hành v2,,
+VT-18-H01,"Head of Detailing - ETC, Trưởng kênh Detailing ETC",18 Detailing Sales,Head,mục đích cụt · nhiệm vụ (12 dòng) · quy trình (thiếu 8 mã),"Nhận nhiệm vụ và chỉ tiêu doanh thu sản phẩm chiến lược từ CEO, chuyển thành kế hoạch kênh detailing theo sản phẩm,…","Kế hoạch kênh detailing theo sản phẩm và theo vùng, chỉ tiêu phân bổ hết
+Doanh thu ETC đạt chỉ tiêu, có số liệu theo từng vùng và từng sản phẩm
+Độ phủ và chất lượng viếng thăm đạt chuẩn, dữ liệu ghi nhận trên hệ thống
+Kết quả thầu bệnh viện theo danh mục được giao",,KN-01 → KN-20,"18-P01, 18-P02, 18-P03, 18-P04",Đã ban hành v2,,
+VT-18-L01,Lead HPM - Quản lý Phát triển Đối tác Y tế (Healthcare Partner Manager),18 Detailing Sales,Lead,mục đích cụt · nhiệm vụ (12 dòng) · quy trình (thiếu 3 mã),"Nhận nhiệm vụ và phần chỉ tiêu được Head phân bổ cho vùng, chuyển thành kế hoạch triển khai theo tháng, theo chu kỳ và…","Kế hoạch vùng theo tháng và theo chu kỳ viếng thăm
+Chỉ tiêu vùng đạt, có phân tích tới từng HPS
+Biên bản đi thực địa cùng HPS và kế hoạch huấn luyện
+Dữ liệu khách hàng và tương tác của vùng đúng và đủ",,KN-01 → KN-20,"18-P01, 18-P02, 18-P03, 18-P04",Đã ban hành v2,,
+VT-18-L02,Lead KAM Pharmacy Chain - Quản lý Khách hàng Trọng điểm Chuỗi Nhà thuốc,18 Detailing Sales,Lead,mục đích cụt · nhiệm vụ (12 dòng),"Nhận nhiệm vụ và phần chỉ tiêu kênh chuỗi nhà thuốc do Head phân bổ, chuyển thành kế hoạch riêng cho từng chuỗi theo mã…","Kế hoạch riêng cho từng chuỗi, gắn mã khách hàng và điều kiện thương mại
+Doanh số và độ phủ SKU tại từng chuỗi đạt chỉ tiêu
+Hợp đồng và chương trình với chuỗi được ký và triển khai đúng cam kết
+Báo cáo hiệu quả trưng bày và khuyến mại theo từng chuỗi",,KN-01 → KN-20,"18-P06, 18-P07, 18-P08, 18-P09",Đã ban hành v2,,
+VT-18-S01,"Staff Admin hỗ trợ kinh doanh và thầu - Nhân viên Hành chính Chi nhánh, Hỗ trợ Bán hàng và Hành chính Đấu thầu",18 Detailing Sales,Staff,mục đích cụt · nhiệm vụ (12 dòng),"Nhận phần việc hỗ trợ vận hành do Lead phân bổ, chuyển thành các đầu việc có thời hạn về đơn hàng, dữ liệu, chứng từ,…","Đơn hàng nhập và xử lý đúng ngày, không để tồn đọng
+Hồ sơ thầu chuẩn bị đủ thành phần trước hạn nộp
+Chứng từ bán hàng và công nợ đối chiếu khớp với Kế toán
+Dữ liệu khách hàng và báo cáo bán hàng cập nhật đúng nhịp",,KN-01 → KN-20,"18-P06, 18-P07, 18-P08, 18-P09",Đã ban hành v2,,
+VT-18-S02,Staff HPS - Chuyên viên Phát triển Đối tác Y tế (Healthcare Partner Specialist),18 Detailing Sales,Staff,mục đích cụt · nhiệm vụ (12 dòng) · quy trình (thiếu 3 mã),"Nhận nhiệm vụ và phần chỉ tiêu do Lead HPM phân bổ cho cá nhân, chuyển thành call plan và kế hoạch chăm sóc từng khách…","Call plan thực hiện đúng kế hoạch, có bản ghi tiếp xúc từng lượt
+Chỉ tiêu doanh số và độ phủ cá nhân đạt theo kỳ
+Dữ liệu khách hàng và giai đoạn A2D cập nhật ngay sau mỗi lượt viếng thăm
+Phản hồi và phản đối của HCP ghi nhận đầy đủ để đội y khoa xử lý",,KN-01 → KN-20,"18-P01, 18-P02, 18-P03, 18-P04",Đã ban hành v2,,
+VT-19-H01,Head of Online Sales - Giám đốc Online Sales,19 Online Sales,Head,mục đích cụt · nhiệm vụ (12 dòng) · năng lực · quy trình (thiếu 3 mã),"Nhận nhiệm vụ và chỉ tiêu tăng trưởng kênh số từ CEO, chuyển thành kế hoạch bán hàng kênh online theo sàn, danh mục và…","Kế hoạch bán hàng kênh online theo sàn và theo danh mục
+Doanh thu và biên lợi nhuận kênh số đạt chỉ tiêu
+Gian hàng vận hành đúng chuẩn thương hiệu và đúng quy định quảng cáo
+Báo cáo hiệu quả chiến dịch và chi phí trên mỗi đơn hàng",,Chờ TD-A04 mở rộng,"19-P01, 19-P02, 19-P03, 19-P04",Đã ban hành v2,,
+VT-19-L01,Lead Online Sales - Trưởng nhóm Online Sales,19 Online Sales,Lead,mục đích cụt · nhiệm vụ (12 dòng) · năng lực,"Nhận nhiệm vụ và phần chỉ tiêu được Head phân bổ cho nhóm, chuyển thành kế hoạch triển khai theo sàn và theo tuần, phân…","Kế hoạch triển khai theo sàn và theo tuần
+Nội dung và chương trình khuyến mại đăng đúng lịch, đã được duyệt
+Chỉ tiêu đơn hàng và tỷ lệ chuyển đổi đạt theo kỳ
+Tồn kho và giá bán trên sàn khớp với chính sách",,Chờ TD-A04 mở rộng,"19-P01, 19-P02, 19-P03",Đã ban hành v2,,
+VT-19-S01,Nhân viên Online Sales,19 Online Sales,Staff,mục đích cụt · nhiệm vụ (11 dòng) · năng lực,"Nhận nhiệm vụ từ Lead, trực tiếp vận hành gian hàng, đăng nội dung đã được duyệt, tư vấn và chăm sóc khách hàng online,…","Gian hàng cập nhật đủ SKU, giá và tồn đúng chính sách
+Nội dung đăng đúng bản đã duyệt, không phát sinh vi phạm
+Đơn hàng xử lý và khách được chăm sóc trong thời hạn cam kết
+Bản tổng hợp phản hồi và đánh giá của khách hàng",,Chờ TD-A04 mở rộng,"19-P01, 19-P02, 19-P03",Đã ban hành v2,,
+VT-20-H01,"Head of OxDC - Trưởng đơn vị Giao hàng, Thu tiền và Hậu mãi",20 Giao hàng - Thu tiền - Hậu mãi,Head,mục đích cụt · nhiệm vụ (12 dòng) · năng lực,"Nhận nhiệm vụ và chỉ tiêu giao hàng, thu tiền và hậu mãi từ CEO, chuyển thành kế hoạch nhiệm vụ của phòng theo vùng và…","Kế hoạch giao hàng và thu tiền theo vùng, đạt mức phục vụ cam kết
+Tỷ lệ giao đúng hạn và tỷ lệ thu đúng hạn đạt chỉ tiêu
+Tuổi nợ kiểm soát trong ngưỡng, công nợ được đối chiếu theo kỳ
+Hồ sơ hậu mãi và khiếu nại xử lý đúng quy trình",,Chờ TD-A04 mở rộng,"20-P01, 20-P02, 20-P03, 20-P04",Đã ban hành v2,,
+VT-20-L01,Lead Giao nhận và Công nợ vùng,20 Giao hàng - Thu tiền - Hậu mãi,Lead,mục đích cụt · nhiệm vụ (12 dòng) · năng lực,"Nhận nhiệm vụ và chỉ tiêu từ Head of OxDC cho vùng được giao, phân công tuyến giao hàng và danh mục công nợ cho Staff,…","Tuyến giao hàng phân công tối ưu theo ngày
+Công nợ vùng theo dõi tới từng khách hàng, cảnh báo quá hạn kịp thời
+Biên bản đối chiếu công nợ ký với khách hàng theo kỳ
+Báo cáo sự cố giao hàng và hàng trả về",,Chờ TD-A04 mở rộng,"20-P01, 20-P02, 20-P03, 20-P04",Đã ban hành v2,,
+VT-20-S01,"Nhân viên Giao hàng, Thu tiền và Chăm sóc sau bán",20 Giao hàng - Thu tiền - Hậu mãi,Staff,mục đích cụt · nhiệm vụ (12 dòng) · năng lực,"Nhận tuyến giao hàng và danh mục khách hàng do Lead phân công, trực tiếp nhận hàng từ kho, giao đến khách hàng, thu…","Hàng giao đủ, đúng khách và đúng thời gian đã hẹn
+Tiền thu nộp về đúng ngày, chứng từ đầy đủ
+Chứng từ giao nhận có ký nhận của khách hàng
+Phản hồi và yêu cầu hậu mãi chuyển về đúng đầu mối",,Chờ TD-A04 mở rộng,"20-P01, 20-P02, 20-P03, 20-P04",Đã ban hành v2,,
+VT-21-H01,Head of Value Added Shared - Trưởng đơn vị Giá trị thương hiệu và Tài sản trí tuệ,21 Giá trị Thương hiệu và Tài sản Trí tuệ (VAS),Head,mục đích cụt · nhiệm vụ (12 dòng) · năng lực,"Nhận nhiệm vụ và chỉ tiêu về giá trị thương hiệu, tài sản trí tuệ từ CEO, chuyển thành kế hoạch xây dựng, bảo vệ và…","Chiến lược thương hiệu và bộ nhận diện được ban hành, áp dụng thống nhất
+Danh mục tài sản trí tuệ được bảo hộ, không để mất hiệu lực
+Kế hoạch bảo vệ thương hiệu trước xâm phạm, có hồ sơ xử lý
+Báo cáo giá trị thương hiệu theo kỳ",,Chờ TD-A04 mở rộng,"21-P01, 21-P02, 21-P03",Đã ban hành v2,,
+VT-21-L01,Lead of Value Added Shared - Trưởng nhóm Thương hiệu và Tài sản trí tuệ,21 Giá trị Thương hiệu và Tài sản Trí tuệ (VAS),Lead,mục đích cụt · nhiệm vụ (11 dòng) · năng lực,"Nhận dòng nhiệm vụ đã khóa từ Head, chuyển thành chương trình và kế hoạch triển khai cho nhóm thương hiệu hoặc nhóm tài…","Chương trình triển khai thương hiệu theo kế hoạch đã duyệt
+Hồ sơ đăng ký nhãn hiệu và sáng chế nộp đúng hạn
+Bản theo dõi hiệu lực và lịch gia hạn của từng tài sản trí tuệ
+Báo cáo giám sát xâm phạm và kiến nghị xử lý",,Chờ TD-A04 mở rộng,"21-P01, 21-P02, 21-P03",Đã ban hành v2,,
+VT-21-S01,Brand and Intellectual Property Officer - Chuyên viên Thương hiệu và Sở hữu trí tuệ,21 Giá trị Thương hiệu và Tài sản Trí tuệ (VAS),Staff,mục đích cụt · nhiệm vụ (10 dòng) · năng lực,"Nhận nhiệm vụ đã khóa từ Lead theo từng thương hiệu và từng hồ sơ, trực tiếp lập hồ sơ bảo hộ, thu thập dữ liệu đo…","Hồ sơ bảo hộ lập đủ thành phần và nộp đúng hạn
+Dữ liệu đo lường thương hiệu thu thập đúng phương pháp
+Bộ tài liệu nhận diện thương hiệu cập nhật và phát hành đúng chuẩn
+Bản ghi nhận dấu hiệu xâm phạm kèm chứng cứ",,Chờ TD-A04 mở rộng,"21-P01, 21-P02, 21-P03",Đã ban hành v2,,
+VT-22-H01,"Head of Risk, Compliance and Internal Control - Trưởng đơn vị Quản trị Rủi ro, Tuân thủ và Kiểm soát nội bộ","22 Rủi ro, Tuân thủ và Kiểm soát nội bộ",Head,mục đích cụt · nhiệm vụ (12 dòng) · năng lực · quy trình (thiếu 3 mã),"Nhận nhiệm vụ về quản trị rủi ro và kiểm soát từ CEO, chuyển thành khung rủi ro, chương trình kiểm toán nội bộ và bộ…","Khung quản trị rủi ro và danh mục rủi ro trọng yếu được Ban Quản trị thông qua
+Chương trình kiểm toán nội bộ năm và kết quả của từng cuộc kiểm toán
+Bộ kiểm soát nội bộ cho các quy trình trọng yếu, có chủ sở hữu rõ ràng
+Báo cáo tuân thủ và tình trạng khắc phục phát hiện, gửi Ủy ban Kiểm toán",,Chờ TD-A04 mở rộng,"22-P01, 22-P02, 22-P03, 22-P04",Đã ban hành v2,,
+VT-22-L01,"Lead Risk, Compliance and Internal Audit - Trưởng nhóm Kiểm toán nội bộ và Kiểm soát tuân thủ","22 Rủi ro, Tuân thủ và Kiểm soát nội bộ",Lead,mục đích cụt · nhiệm vụ (12 dòng) · năng lực · quy trình (thiếu 2 mã),"Nhận nhiệm vụ và phần chương trình kiểm toán được Head phân bổ, chuyển thành kế hoạch từng cuộc kiểm toán và lịch kiểm…","Kế hoạch từng cuộc kiểm toán với phạm vi và tiêu chí rõ ràng
+Báo cáo kiểm toán nêu phát hiện, rủi ro và kiến nghị cụ thể
+Bản theo dõi hành động khắc phục theo hạn
+Kết quả kiểm thử kiểm soát định kỳ",,Chờ TD-A04 mở rộng,"22-P01, 22-P02, 22-P03, 22-P04",Đã ban hành v2,,
+VT-22-S01,Nhân viên Kiểm soát nội bộ và Tuân thủ,"22 Rủi ro, Tuân thủ và Kiểm soát nội bộ",Staff,mục đích cụt · nhiệm vụ (11 dòng) · năng lực · quy trình (thiếu 2 mã),"Nhận nhiệm vụ từ Lead, trực tiếp thu thập dữ liệu, kiểm thử kiểm soát, lập giấy làm việc, theo dõi hạn của các hành…","Giấy làm việc kiểm toán đầy đủ bằng chứng
+Dữ liệu kiểm thử thu thập đúng mẫu và đúng phương pháp
+Bản theo dõi hạn của các hành động khắc phục
+Báo cáo dấu hiệu vi phạm tuân thủ ngay khi phát hiện",,Chờ TD-A04 mở rộng,"22-P01, 22-P02, 22-P03, 22-P04",Đã ban hành v2,,

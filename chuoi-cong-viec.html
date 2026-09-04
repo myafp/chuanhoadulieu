@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AFP · Góp ý chuỗi công việc</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="chung.css">
+</head>
+<body class="trang-chuoi">
+
+<header class="dau">
+  <div class="dau-tren">
+    <span class="ma-vt">TD-A07 · TD-A08 · TD-A09</span>
+  </div>
+</header>
+
+<section class="noi" id="eChuoi"></section>
+
+<div id="tip" hidden></div>
+<div id="hopO" hidden>
+  <span class="tip-nhan" id="hopONhan"></span>
+  <textarea id="hopOTa" rows="5" aria-label="Nội dung đề xuất"></textarea>
+  <div class="hopO-nut">
+    <button id="hopOXoa" class="nguy">Xoá</button>
+    <span class="hopO-goi">Esc huỷ · ⌘/Ctrl + Enter lưu</span>
+    <button id="hopOHuy">Huỷ</button>
+    <button class="pri" id="hopOLuu">Lưu</button>
+  </div>
+</div>
+
+<script src="chung.js"></script>
+<script>
+// Trang này chỉ làm một việc: góp ý chuỗi công việc. Mô tả công việc nằm ở
+// mo-ta-cong-viec.html, và index.html là trang cổng dẫn vào cả hai. Mỗi bên
+// một địa chỉ riêng để gửi link cho team là gửi đúng thứ họ cần, không bắt
+// họ vào rồi tự tìm tab.
+
+let CHI_MUC = [];
+
+/* ---------- tab CHUỖI CÔNG VIỆC ----------
+   Một bảng phẳng: mỗi dòng là một nhiệm vụ, cột là bốn tầng của chuỗi.
+   Chỉ tầng nhiệm vụ có dữ liệu (TD-A07 qua hồ sơ vị trí). Đầu việc TD-A08
+   và việc cụ thể TD-A09 còn RỖNG trong nguồn — để trống chứ không bịa ra,
+   và đó chính là chỗ team điền vào. Mọi ô đều sửa được: sửa xong gom lại
+   thành một góp ý gửi đi, dữ liệu gốc không đụng tới.                    */
+
+// Bộ lọc là ô xổ chọn, không phải thẻ bấm-tắt-bật: chọn một giá trị thì rõ mình
+// đang xem gì. "*" nghĩa là không lọc.
+//
+// Mảng việc = 14 mục tiêu công ty, nạp từ du-lieu/muc-tieu.json. Nguồn duy nhất
+// là cột "Mục tiêu" của TD-A07, sinh ra bằng cong/sinh-jd.py — đừng gõ tay vào đây.
+// Năm nhóm chức danh được góp ý qua bảng chuỗi. "Medical marketing" không chỉ
+// đúng một vị trí nên lấy cả ba cấp của phòng đó.
+const CHUC_DANH_CHO = [
+  "VT-18-S02",   // HPS  · Nhân viên Staff HPS
+  "VT-18-L01",   // HPM  · Trưởng nhóm Lead HPM
+  "VT-18-H01",   // Trưởng đơn vị Head of Detailing - ETC
+  "VT-07-S01",   // Nhân viên Kế toán bán hàng
+  "VT-17-H01",   // Trưởng đơn vị Head of Medical Marketing
+  "VT-17-L01",   // Trưởng nhóm Medical Marketing Manager
+  "VT-17-S01"    // Nhân viên Medical Marketing Executive
+];
+
+// Bảng gộp cả bảy chức danh chứ không mỗi lúc một chức danh: chọn mảng việc là
+// thấy hết đơn vị nào, vị trí nào cũng đang gánh mục tiêu đó. Nạp một lần rồi giữ.
+let DONG = null, loiNapDong = null;
+
+// Bộ lọc bậc thang. "*" = không lọc. Ô sau chỉ liệt kê thứ còn với tới được sau
+// khi các ô kia đã lọc, nên không bao giờ chọn ra một bảng rỗng.
+const LOC = { donVi: "*", viTri: "*", rid: "*", vaiTro: "*" };
+const TRUONG = [
+  { k: "donVi",   id: "xoDonVi",    nhan: "Đơn vị",    dv: "đơn vị" },
+  { k: "viTri",   id: "xoViTri",    nhan: "Vị trí",    dv: "cấp" },
+  { k: "rid",     id: "xoChucDanh", nhan: "Chức danh", dv: "chức danh" },
+  { k: "vaiTro",  id: "xoVaiTro",   nhan: "Vai trò",   dv: "vai trò" }
+];
+
+// Ô đã sửa nhưng chưa gửi. Khoá = mã chức danh | số thứ tự nhiệm vụ | tên cột.
+let oSua = new Map();
+const khoaO = (rid, k, cot) => `${rid}|${k}|${cot}`;
+
+const KHOA_EMAIL = "afp-cong-email";
+const HAU_TO = "@alpha-france.com";
+let email = "";
+try { email = localStorage.getItem(KHOA_EMAIL) || ""; } catch {}
+const emailHopLe = (v) => new RegExp("^[^\\s@]+" + HAU_TO.replace(".", "\\.") + "$", "i").test((v || "").trim());
+
+async function napDong() {
+  if (DONG) return;
+  const ds = CHI_MUC.filter(x => CHUC_DANH_CHO.includes(x.ma));
+  try {
+    const hs = await Promise.all(ds.map(async x => {
+      const r = await fetch("du-lieu/jd/" + x.ma + ".json?v=" + Date.now());
+      if (!r.ok) throw new Error(x.ma + ": HTTP " + r.status);
+      return [x, await r.json()];
+    }));
+    DONG = [];
+    hs.forEach(([x, d]) => {
+      ((d.chuoi && d.chuoi.list) || []).forEach((n, k) => DONG.push({
+        rid: x.ma, ten: x.ten, donVi: x.phong, viTri: x.cap, vaiTro: x.vai_tro || "",
+        k, mt: (n.p || "").trim() || "(chưa gắn mục tiêu)", nv: n.n || "", u: n.u || "", q: n.q || ""
+      }));
+    });
+  } catch (e) {
+    DONG = [];
+    loiNapDong = e.message;
+  }
+}
+
+// Một dòng khớp bộ lọc, có thể bỏ qua vài trường — dùng để tính danh sách chọn
+// cho chính trường đó: nếu tự lọc chính mình thì ô xổ chỉ còn đúng giá trị đang chọn.
+function khop(r, boQua) {
+  for (const t of TRUONG) {
+    if (t.k === boQua || LOC[t.k] === "*") continue;
+    if (r[t.k] !== LOC[t.k]) return false;
+  }
+  return true;
+}
+
+const nhanTruong = (k, v) => k === "rid" ? `${v} · ${(DONG.find(r => r.rid === v) || {}).ten || ""}` : v;
+
+async function veChuoi() {
+  await napDong();
+
+  if (loiNapDong) {
+    $("eChuoi").innerHTML = `<div class="trong"><b>Lỗi nạp dữ liệu.</b> ${esc(loiNapDong)}. ` +
+      `Kiểm tra thư mục <code>du-lieu/jd/</code> đã lên máy chủ chưa.</div>`;
+    return;
+  }
+
+  // Giá trị nào không còn với tới được thì bỏ khỏi bộ lọc, đừng để treo một lựa
+  // chọn cho ra bảng rỗng mà người dùng không hiểu vì sao.
+  const chon = {};
+  TRUONG.forEach(t => {
+    const co = [...new Set(DONG.filter(r => khop(r, t.k)).map(r => r[t.k]))].filter(Boolean).sort();
+    if (LOC[t.k] !== "*" && !co.includes(LOC[t.k])) LOC[t.k] = "*";
+    chon[t.k] = co;
+  });
+
+  const hang = `<div class="hang-loc">` + TRUONG.map(t =>
+    xoHtml(t.id, t.nhan,
+      [{ v: "*", t: `Tất cả — ${chon[t.k].length} ${t.dv}` }]
+        .concat(chon[t.k].map(v => ({ v, t: nhanTruong(t.k, v) }))),
+      LOC[t.k], LOC[t.k] === "*")).join("") + `</div>`;
+
+  const dsDong = DONG.filter(r => khop(r, null));
+
+  const dau = `<div class="dau-bang"><h3>Góp ý chuỗi công việc</h3>` +
+    `<span class="dem-bang">${dsDong.length} nhiệm vụ · ` +
+    `${new Set(dsDong.map(r => r.rid)).size} chức danh</span></div>`;
+
+  const oEmail = `<div class="hang-email">
+    <label for="oEmail">Email Alpha France của bạn <b class="bat-buoc">bắt buộc</b></label>
+    <input id="oEmail" type="email" inputmode="email" autocomplete="email" spellcheck="false"
+           placeholder="ten${HAU_TO}" value="${esc(email)}">
+    <span class="email-nhac" id="oEmailNhac">Góp ý gửi đi mang địa chỉ này — không có thì Ban Điều hành không biết hỏi lại ai.</span>
+  </div>`;
+
+  $("eChuoi").innerHTML = dau + hang + oEmail + thanhSua() +
+    (dsDong.length ? veBang(dsDong)
+      : `<div class="trong"><b>Không nhiệm vụ nào khớp bộ lọc.</b> Đổi một ô xổ chọn ở trên về "Tất cả".</div>`);
+  dongTip(); dongSua();
+  ganCat($("eChuoi"));
+}
+
+const xoHtml = (id, nhan, ds, dangChon, tat) =>
+  `<div class="o-loc"><label for="${id}">${esc(nhan)}</label>` +
+  `<select id="${id}" class="${tat ? "tat" : ""}">` +
+  ds.map(o => `<option value="${esc(o.v)}"${o.v === dangChon ? " selected" : ""}>${esc(o.t)}</option>`).join("") +
+  `</select></div>`;
+
+// Thanh gom các ô đã sửa. Chỉ hiện khi có sửa — treo một thanh rỗng chỉ tổ chiếm chỗ.
+function thanhSua() {
+  if (!oSua.size) return "";
+  return `<div class="thanh-sua"><b>${oSua.size} ô đã sửa</b>` +
+    `<span>chưa gửi đi đâu cả — soát lại rồi bấm Gửi</span>` +
+    `<button id="nBoSua">Bỏ hết</button>` +
+    `<button class="pri" id="nGuiSua">Gửi góp ý</button></div>`;
+}
+
+const COT_BANG = ["Chức danh", "Mục tiêu", "Nhiệm vụ", "Đầu việc", "Việc cụ thể", "Đơn vị đo", "Quy trình"];
+
+function veBang(ds) {
+  // Mục tiêu là một cột bình thường, đứng ngay trước Nhiệm vụ. Trước đây nó gộp
+  // bằng rowspan rồi bằng dòng tiêu đề nhóm — cả hai đều bắt người đọc ngước lên
+  // tìm xem dòng này thuộc mục tiêu nào. Lặp lại ở mỗi dòng thì tốn chỗ hơn một
+  // chút, đổi lại đọc ngang một dòng là đủ hiểu, và lọc kiểu gì cũng không sai.
+  //
+  // Vẫn xếp theo mục tiêu trước để các dòng cùng mục tiêu nằm liền nhau.
+  const sx = [...ds].sort((a, b) =>
+    a.mt.localeCompare(b.mt) || a.rid.localeCompare(b.rid) || a.k - b.k);
+
+  const o = (r, cot, goc, lop) =>
+    `<td class="${lop}" data-nhan="${esc(cot)}">${oSuaHtml(r, cot, goc)}</td>`;
+
+  const than = sx.map(r =>
+    `<tr>` +
+    `<td class="o-cd" data-nhan="Chức danh"><div class="cd-ten">${esc(r.rid)}</div>` +
+    `<div class="cd-phu">${esc(r.donVi)} · ${esc(r.viTri)}</div></td>` +
+    // Mục tiêu chỉ đọc: đổi mục tiêu của một nhiệm vụ là xếp lại chỗ đứng của nó
+    // trong chuỗi, không phải sửa câu chữ — việc đó nên làm ở TD-A07, không phải
+    // gõ tay vào đây rồi mỗi người viết một kiểu.
+    `<td class="o-mt" data-nhan="Mục tiêu">${oXem(r.mt)}</td>` +
+    o(r, "Nhiệm vụ",    r.nv, "o-nv") +
+    o(r, "Đầu việc",    "",   "") +
+    o(r, "Việc cụ thể", "",   "") +
+    o(r, "Đơn vị đo",   r.u,  "o-dvi") +
+    o(r, "Quy trình",   r.q,  "o-qt") +
+    `</tr>`).join("");
+
+  return `<div class="khung-bang"><table class="bang-chuoi"><thead><tr>` +
+    COT_BANG.map(c => `<th>${esc(c)}</th>`).join("") +
+    `</tr></thead><tbody>${than}</tbody></table></div>`;
+}
+
+const oXem = (chu) => `<div class="o-dai">${esc(chu)}</div>`;
+
+function oSuaHtml(r, cot, goc) {
+  const kh = khoaO(r.rid, r.k, cot);
+  const s = oSua.get(kh);
+  const lop = "o-dai o-sua" + (s ? (s.xoa ? " da-xoa" : " da-sua") : "");
+  const than = s
+    ? (s.xoa ? `<s>${esc(goc)}</s> <span class="the-xoa">đề xuất xoá</span>` : esc(s.moi))
+    : (goc ? esc(goc) : '<span class="trong-o">chưa có</span>');
+  return `<div class="${lop}" data-o="${esc(kh)}" data-goc="${esc(goc)}" title="Bấm để sửa">${than}</div>`;
+}
+
+function ganCat(goc) {
+  goc.querySelectorAll(".o-dai").forEach(el => {
+    el.classList.toggle("cat", el.scrollHeight - el.clientHeight > 1);
+  });
+}
+
+/* ---------- hộp nổi cạnh ô ---------- */
+// Dùng chung một hàm đặt chỗ cho cả hộp xem và hộp sửa: hai hộp lệch nhau vài
+// pixel là nhìn ra ngay, mà sửa hai chỗ thì sớm muộn cũng quên một chỗ.
+function datCanhO(t, el) {
+  t.hidden = false;
+  t.style.left = "-9999px";
+  t.style.top = "0px";
+  const r = t.getBoundingClientRect();
+  const o = el.getBoundingClientRect();
+  let y = o.bottom + 6;
+  if (y + r.height + 8 > innerHeight) y = o.top - r.height - 6;
+  y = Math.max(8, Math.min(y, innerHeight - r.height - 8));
+  const x = Math.max(8, Math.min(o.left, innerWidth - r.width - 8));
+  t.style.left = (x + scrollX) + "px";
+  t.style.top  = (y + scrollY) + "px";
+}
+
+function moTip(el) {
+  const t = $("tip");
+  t.innerHTML = `<span class="tip-nhan">Nội dung đầy đủ</span>${esc(el.textContent)}`;
+  datCanhO(t, el);
+  t.__o = el;
+}
+function dongTip() { $("tip").hidden = true; $("tip").__o = null; }
+
+/* ---------- hộp sửa một ô ---------- */
+function moSuaO(el) {
+  dongTip();
+  const [, k, cot] = el.dataset.o.split("|");
+  const s = oSua.get(el.dataset.o);
+  $("hopONhan").textContent = `${cot} · dòng ${(+k) + 1}`;
+  $("hopOTa").value = s && !s.xoa ? s.moi : el.dataset.goc;
+  // Ô vốn đã trống thì không có gì để xoá — để nút bấm được chỉ tổ gửi đi một
+  // đề xuất rỗng, người duyệt đọc không hiểu muốn gì.
+  $("hopOXoa").disabled = !el.dataset.goc;
+  datCanhO($("hopO"), el);
+  $("hopO").__o = el;
+  $("hopOTa").focus();
+  $("hopOTa").setSelectionRange($("hopOTa").value.length, $("hopOTa").value.length);
+}
+function dongSua() { $("hopO").hidden = true; $("hopO").__o = null; }
+
+async function ghiO(xoa) {
+  const el = $("hopO").__o;
+  if (!el) return;
+  const kh = el.dataset.o, goc = el.dataset.goc;
+  const [rid, k, cot] = kh.split("|");
+  const moi = $("hopOTa").value;
+  // Sửa về đúng bản gốc thì gỡ khỏi danh sách, đừng đếm nó là một ô đã sửa.
+  if (!xoa && moi === goc) oSua.delete(kh);
+  else oSua.set(kh, { rid, k: +k, cot, cu: goc, moi: xoa ? "" : moi, xoa: !!xoa });
+
+  // Vẽ lại là thay cả bảng, mà thanh "N ô đã sửa" vừa hiện ra còn đẩy trang dài
+  // thêm — sửa một ô ở giữa danh sách là bị ném về đầu trang. Ghi lại ô đang sửa
+  // nằm cách mép trên bao nhiêu, vẽ xong kéo lại đúng chỗ đó.
+  const cachMepTren = el.getBoundingClientRect().top;
+  dongSua();
+  await veChuoi();
+  const sau = document.querySelector(`[data-o="${CSS.escape(kh)}"]`);
+  if (sau) scrollBy(0, sau.getBoundingClientRect().top - cachMepTren);
+}
+
+$("hopOLuu").onclick = () => ghiO(false);
+$("hopOXoa").onclick = () => ghiO(true);
+$("hopOHuy").onclick = dongSua;
+$("hopOTa").addEventListener("keydown", (e) => {
+  if (e.key === "Escape") { e.stopPropagation(); dongSua(); }
+  // Ctrl/Cmd+Enter lưu — gõ nhiều dòng mà Enter lưu luôn thì không xuống dòng được.
+  if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) ghiO(false);
+});
+
+addEventListener("scroll", () => { if (!$("tip").hidden) dongTip(); }, true);
+addEventListener("resize", () => { dongTip(); dongSua(); });
+$("tip").addEventListener("dblclick", dongTip);
+$("tip").addEventListener("mouseleave", (e) => {
+  if (!e.relatedTarget || !$("tip").__o || !$("tip").__o.contains(e.relatedTarget)) dongTip();
+});
+// Bấm ra ngoài hộp sửa mà chưa Lưu = Huỷ, đúng như skill bảng ô dài quy định.
+document.addEventListener("mousedown", (e) => {
+  if ($("hopO").hidden) return;
+  if ($("hopO").contains(e.target) || ($("hopO").__o && $("hopO").__o.contains(e.target))) return;
+  dongSua();
+});
+
+/* ---------- gửi cả loạt ô đã sửa ---------- */
+function thanGopYGop() {
+  const ds = [...oSua.values()].sort((a, b) =>
+    a.rid.localeCompare(b.rid) || a.k - b.k || a.cot.localeCompare(b.cot));
+  const trich = (v) => (v || "_(trống)_").replace(/\|/g, "\\|").replace(/\n/g, "<br>");
+
+  return `| | |\n|---|---|\n| Người góp ý | ${email} |\n| Số ô sửa | ${ds.length} |\n\n---\n\n` +
+    ds.map((o, i) => {
+      const r = DONG.find(x => x.rid === o.rid && x.k === o.k) || {};
+      return `### ${i + 1}. ${o.cot} — ${o.rid} dòng ${o.k + 1}\n\n` +
+             `| | |\n|---|---|\n| Chức danh | ${r.ten || o.rid} |\n` +
+             `| Đơn vị · Vị trí · Vai trò | ${r.donVi || "—"} · ${r.viTri || "—"} · ${r.vaiTro || "—"} |\n` +
+             `| Mục tiêu | ${r.mt || "—"} |\n| Nhiệm vụ | ${trich(r.nv)} |\n\n` +
+             `| Bản hiện tại | Đề xuất |\n|---|---|\n| ${trich(o.cu)} | ` +
+             `${o.xoa ? "**xoá nội dung này**" : trich(o.moi)} |\n`;
+    }).join("\n");
+}
+
+async function guiGopYGop() {
+  if (!oSua.size) return;
+  if (!emailHopLe(email)) {
+    const o = $("oEmail");
+    $("oEmailNhac").textContent = `Cần một địa chỉ ${HAU_TO} hợp lệ mới gửi được.`;
+    $("oEmailNhac").classList.add("loi");
+    if (o) { o.classList.add("loi"); o.focus(); }
+    return;
+  }
+
+  const tieuDe = `TD-A07 · ${oSua.size} ô sửa — ${email}`;
+  const than = thanGopYGop();
+
+  if (!CO_API) {
+    const { cat } = moFormIssue("TD-A07", tieuDe, than);
+    return baoGui(cat
+      ? "Nội dung dài nên form chỉ điền được một phần — phần còn lại đã chép vào bộ nhớ tạm, dán nốt rồi bấm Create."
+      : "Đã mở sẵn form trên GitHub — soát lại rồi bấm Create. Ban Điều hành sẽ duyệt.");
+  }
+  try {
+    const r = await fetch("/api/gop-y", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ tuDien: "TD-A07", rid: [...new Set([...oSua.values()].map(o => o.rid))].join(", "),
+                             cot: "Chuỗi công việc", noiDung: than })
+    });
+    const j = await r.json();
+    if (!r.ok) throw new Error(j.loi || ("HTTP " + r.status));
+    baoGui(`Đã mở Issue #${j.issue} — <a href="${j.url}" target="_blank" rel="noopener">xem trên GitHub</a>.`);
+  } catch (e) {
+    baoGui("Không gửi được: " + esc(e.message), true);
+  }
+}
+
+function baoGui(chu, loi) {
+  const t = $("eChuoi").querySelector(".thanh-sua");
+  if (t) t.innerHTML = `<b class="${loi ? "bao-loi" : "bao-ok"}">${chu}</b>` +
+                       `<button id="nBoSua">${loi ? "Bỏ hết" : "Xong — dọn bảng"}</button>`;
+}
+
+function doiTab(t) {
+  const chuoi = t === "chuoi";
+  $("tabJd").setAttribute("aria-selected", String(!chuoi));
+  $("tabChuoi").setAttribute("aria-selected", String(chuoi));
+  $("eThan").hidden = chuoi;
+  $("eDai").hidden = chuoi;
+  $("eHangXo").hidden = chuoi;   // tab chuỗi có bộ ô xổ chọn riêng ở trên bảng
+  $("eChuoi").hidden = !chuoi;
+  document.querySelector(".chan").hidden = chuoi;
+  if (chuoi) {
+    // Đang xem một chức danh thuộc nhóm được góp ý thì lọc sẵn về đúng nó — sang
+    // tab mà phải tự tìm lại vị trí vừa đọc thì thà không giữ.
+    if (HS && CHUC_DANH_CHO.includes(HS.ma)) LOC.rid = HS.ma;
+    veChuoi();
+  }
+}
+
+/* ---------- nạp ---------- */
+(async () => {
+  await doDanhTinh();
+  // Sau Cloudflare Access thì đã biết người dùng là ai, không phải hỏi lại email.
+  if (EMAIL_ACCESS) email = EMAIL_ACCESS;
+
+  try {
+    CHI_MUC = await nap("du-lieu/jd-index.json");
+  } catch (e) {
+    $("eChuoi").innerHTML = `<div class="trong"><b>Không nạp được danh sách chức danh.</b> ` +
+      `${esc(e.message)} — kiểm tra <code>du-lieu/jd-index.json</code> đã lên máy chủ chưa.</div>`;
+    return;
+  }
+
+  // Vào thẳng một chức danh: chuoi-cong-viec.html?cd=VT-18-H01
+  const tuUrl = new URLSearchParams(location.search).get("cd");
+  if (tuUrl && CHUC_DANH_CHO.includes(tuUrl)) LOC.rid = tuUrl;
+
+  veChuoi();
+})();
+
+/* ---------- nối sự kiện ---------- */
+$("eChuoi").addEventListener("change", (e) => {
+  const t = TRUONG.find(x => x.id === e.target.id);
+  if (!t) return;
+  LOC[t.k] = e.target.value;
+  veChuoi();
+});
+
+// Gõ email thì nhớ lại cho lần sau, khỏi phải gõ mỗi lần vào trang. Không vẽ lại
+// bảng ở đây — vẽ lại là ô nhập mất tiêu điểm ngay giữa lúc đang gõ.
+$("eChuoi").addEventListener("input", (e) => {
+  if (e.target.id !== "oEmail") return;
+  email = e.target.value.trim();
+  try { localStorage.setItem(KHOA_EMAIL, email); } catch {}
+  const ok = emailHopLe(email);
+  e.target.classList.toggle("loi", !!email && !ok);
+  const n = $("oEmailNhac");
+  n.classList.toggle("loi", !!email && !ok);
+  n.textContent = !email || ok
+    ? "Góp ý gửi đi mang địa chỉ này — không có thì Ban Điều hành không biết hỏi lại ai."
+    : `Phải là địa chỉ ${HAU_TO}.`;
+});
+
+$("eChuoi").addEventListener("click", (e) => {
+  if (e.target.id === "nGuiSua") return guiGopYGop();
+  if (e.target.id === "nBoSua")  { oSua.clear(); return veChuoi(); }
+
+  // Ô sửa được thì bấm vào là soạn, kể cả ô đang trống — chỗ trống chính là chỗ
+  // cần điền. Ô chỉ đọc thì chỉ mở xem, mà chỉ khi nội dung bị cắt bớt.
+  const os = e.target.closest(".o-sua");
+  if (os) return os === $("hopO").__o ? dongSua() : moSuaO(os);
+
+  const o = e.target.closest(".o-dai.cat");
+  if (o) return o === $("tip").__o ? dongTip() : moTip(o);
+  dongTip();
+});
+
+// Rời chuột khỏi ô mà không sang hộp thì đóng, đúng như skill bảng ô dài quy định.
+$("eChuoi").addEventListener("mouseout", (e) => {
+  const o = e.target.closest(".o-dai");
+  if (!o || o !== $("tip").__o) return;
+  const sang = e.relatedTarget;
+  if (sang && ($("tip").contains(sang) || o.contains(sang))) return;
+  dongTip();
+});
+</script>
+</body>
+</html>

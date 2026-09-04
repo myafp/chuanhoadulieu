@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AFP · Mô tả công việc</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="chung.css">
+</head>
+<body>
+
+<header class="dau">
+  <div class="dau-tren">
+    <span class="ma-vt" id="eMa">…</span>
+    <div class="dau-nut">
+      <span class="vien" id="eVien" hidden></span>
+      <button id="nLichSu">Lịch sử</button>
+      <button id="nIn">In / PDF</button>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button id="tabJd" aria-selected="true">Mô tả công việc</button>
+    <button id="tabChuoi" aria-selected="false">Chuỗi công việc ↗</button>
+  </div>
+
+  <div class="hang-xo" id="eHangXo">
+    <select class="xo" id="eXo" aria-label="Chọn vị trí"></select>
+  </div>
+
+  <div class="dai" id="eDai">
+    <span class="thanh"><i id="eThanh"></i></span>
+    <span class="chu" id="eChu"></span>
+    <span class="cho-bs" id="eChoBS"></span>
+  </div>
+</header>
+
+<div class="than" id="eThan">
+  <aside class="ray">
+    <h2>8 mục của khung JD</h2>
+    <ul class="muc-ds" id="eRay"></ul>
+    <div class="hop-ray">
+      <h2>Nguồn dữ liệu</h2>
+      <div id="eNguon"></div>
+    </div>
+    <div class="hop-ray">
+      <h2>Ban hành</h2>
+      <div id="eBanHanh"></div>
+    </div>
+  </aside>
+
+  <main class="noi" id="eNoi"></main>
+</div>
+
+<div class="chan">
+  <span class="ghi">JD dựng tự động từ từ điển — sửa nội dung ở từ điển nguồn, không sửa trên bản in.</span>
+  <span class="nut">
+    <button id="nTruoc">◀ Vị trí trước</button>
+    <button id="nSau">Vị trí sau ▶</button>
+  </span>
+</div>
+
+<div id="hop" hidden role="dialog" aria-labelledby="hTieuDe">
+  <h3 id="hTieuDe"></h3>
+  <div class="meta" id="hMeta"></div>
+  <div id="hKhoiSua">
+    <label>Nội dung hiện tại</label>
+    <div class="cu" id="hCu"></div>
+    <label for="hMoi">Nội dung bạn đề xuất</label>
+    <textarea id="hMoi" rows="7"></textarea>
+  </div>
+  <label for="hLyDo" id="hLbLyDo">Lý do</label>
+  <textarea id="hLyDo" rows="3" placeholder="Vì sao nên sửa? Căn cứ ở đâu?"></textarea>
+  <div class="kq" id="hKq"></div>
+  <div class="hang">
+    <button id="hHuy">Hủy</button>
+    <button class="pri" id="hGui">Gửi đề xuất</button>
+  </div>
+</div>
+
+<script src="chung.js"></script>
+<script>
+const TU_DIEN = "TD-A02";
+// Bản sau Access thì người dùng có quyền vào repo private, cho xem lịch sử thật;
+// bản tĩnh thì chỉ có bản public để mà xem. Đường dẫn CSV trong hai repo cũng khác.
+const repoDung  = () => CO_API ? REPO_LAM : REPO_CONG;
+const duongCsv  = () => (CO_API ? "cong/site/du-lieu/" : "du-lieu/") + TU_DIEN + ".csv";
+let CHI_MUC = [], HS = null, iVT = 0, che = {}, neoDangMo = null;
+// Bảng CSV của từ điển. Đây là NGUỒN DUY NHẤT cho 5 mục sửa được: trang hiển thị
+// nó, và PR cũng sửa đúng nó, nên merge PR là bảng đổi theo — không cần dựng lại.
+let CSV = null, CSV_LOI = null;
+/* ---------- nạp ---------- */
+(async () => {
+  await doDanhTinh();
+  if (EMAIL_ACCESS) $("eXo").title = "Bạn: " + EMAIL_ACCESS;
+  try {
+    CHI_MUC = await nap("du-lieu/jd-index.json");
+  } catch (e) {
+    return baoLoi("Không nạp được danh sách vị trí", e.message, "du-lieu/jd-index.json");
+  }
+  // Thiếu CSV thì trang vẫn xem được (rơi về hồ sơ JSON) nhưng KHÔNG cho sửa:
+  // không biết giá trị cũ thì đề xuất gửi đi sẽ đè lên nội dung mình chưa từng thấy.
+  try { CSV = docCsv(await napChu("du-lieu/" + TU_DIEN + ".csv")); }
+  catch (e) { CSV = null; CSV_LOI = e.message; }
+  const tuUrl = new URLSearchParams(location.search).get("vt");
+  const k = CHI_MUC.findIndex(x => x.ma === tuUrl);
+  await moVT(k >= 0 ? k : 0);
+})();
+
+// Cùng một bộ luật CSV như functions/api/_chung.js: ô có dấu phẩy, dấu nháy kép
+// và xuống dòng. Hai bên phải đọc y hệt nhau, lệch một luật là bảng và PR lệch nhau.
+// Trả về { tieuDe: [...], dong: Map(mã dòng → { tên cột: giá trị }) }.
+function docCsv(s) {
+  const bang = []; let o = "", d = [], trongNhay = false;
+  s = s.replace(/\r\n/g, "\n");
+  for (let i = 0; i < s.length; i++) {
+    const c = s[i];
+    if (trongNhay) {
+      if (c === '"' && s[i + 1] === '"') { o += '"'; i++; }
+      else if (c === '"') trongNhay = false;
+      else o += c;
+    } else if (c === '"') trongNhay = true;
+    else if (c === ",")  { d.push(o); o = ""; }
+    else if (c === "\n") { d.push(o); bang.push(d); d = []; o = ""; }
+    else o += c;
+  }
+  if (o !== "" || d.length) { d.push(o); bang.push(d); }
+  if (!bang.length) throw new Error("file CSV rỗng");
+
+  const tieuDe = bang[0], dong = new Map();
+  for (let i = 1; i < bang.length; i++) {
+    if (!bang[i][0]) continue;                       // dòng trắng cuối file
+    const h = {};
+    tieuDe.forEach((t, k) => h[t] = bang[i][k] ?? "");
+    dong.set(bang[i][0], h);
+  }
+  return { tieuDe, dong };
+}
+
+const oCsv = (ma) => CSV ? (CSV.dong.get(ma) || null) : null;
+
+// Báo lỗi phải hiện ra được: viết vào vùng nội dung, đừng chạm vào thẻ đã bỏ.
+function baoLoi(tieuDe, viSao, duong) {
+  $("eNoi").innerHTML =
+    `<div class="trong"><b>${esc(tieuDe)}.</b> ${esc(viSao)}.` +
+    (duong ? `<div style="margin-top:8px">Kiểm tra file <code>${esc(duong)}</code> đã lên máy chủ chưa —` +
+             ` 76 hồ sơ nằm trong thư mục <code>cong/site/du-lieu/jd/</code>, phải được commit và đẩy lên thì Pages mới phục vụ.</div>` : "") +
+    `</div>`;
+}
+
+async function moVT(k) {
+  if (k < 0 || k >= CHI_MUC.length) return;
+  iVT = k;
+  const ma = CHI_MUC[k].ma;
+  try {
+    HS = await nap("du-lieu/jd/" + ma + ".json");
+  } catch (e) {
+    // Ô xổ vẫn phải chọn được để đổi sang vị trí khác, dù hồ sơ này hỏng.
+    veXo($("eXo"), CHI_MUC, ma);
+    $("eMa").textContent = ma;
+    return baoLoi("Không nạp được hồ sơ " + ma, e.message, "du-lieu/jd/" + ma + ".json");
+  }
+  history.replaceState(null, "", "?vt=" + ma);
+  ve();
+  window.scrollTo({ top: 0 });
+}
+
+/* ---------- vẽ ---------- */
+// Ô xổ chọn vị trí, gom theo phòng ban. Dùng chung cho cả hai tab.
+function veXo(oXo, ds, maDangChon) {
+  let html = "", phong = null;
+  for (const x of ds) {
+    if (x.phong !== phong) {
+      if (phong !== null) html += "</optgroup>";
+      phong = x.phong;
+      html += `<optgroup label="${esc(phong)}">`;
+    }
+    html += `<option value="${esc(x.ma)}"${x.ma === maDangChon ? " selected" : ""}>` +
+            `${esc(x.ma)} · ${esc(x.ten)}</option>`;
+  }
+  if (phong !== null) html += "</optgroup>";
+  oXo.innerHTML = html || `<option value="">(không có vị trí nào)</option>`;
+}
+
+function ve() {
+  const d = HS;
+  $("eMa").textContent = d.ma;
+  document.title = d.ma + " · " + d.ten;
+  veXo($("eXo"), CHI_MUC, d.ma);
+
+  const vien = $("eVien");
+  if (d.ban_hanh) { vien.hidden = false; vien.textContent = d.ban_hanh + (d.phien_ban ? " · " + d.phien_ban : ""); }
+  else vien.hidden = true;
+
+  const ok = d.muc.filter(m => m.trangthai === "ok").length;
+  const gap = d.muc.filter(m => m.trangthai === "gap");
+  const na = d.muc.filter(m => m.trangthai === "na").length;
+  $("eThanh").style.width = Math.round(ok / d.muc.length * 100) + "%";
+  $("eChu").innerHTML = "<b>" + ok + "/" + d.muc.length + " mục</b> đã có nội dung" +
+    (gap.length ? " · " + gap.length + " mục chờ nguồn từ điển" : "") +
+    (na ? " · " + na + " mục không áp dụng" : "");
+  $("eChoBS").innerHTML = gap.length
+    ? "Chờ bổ sung: " + gap.map(m => `<button class="the-cho" data-di="${m.n}">${m.n} · ${esc(m.muc)}</button>`).join("")
+    : "";
+
+  $("eRay").innerHTML = d.muc.map(m =>
+    `<li><button data-di="${m.n}"><span class="so">${m.n}</span>` +
+    `<span>${esc(m.muc)}</span><span class="nhan ${m.trangthai}">${esc(m.nhan)}</span></button></li>`).join("");
+
+  $("eNguon").innerHTML = (d.tu_dien_goc || []).map(t =>
+    `<div class="hang-ray"><span>${esc(TEN_TD[t] || t)}</span><span class="td-ma">${esc(t)}</span></div>`).join("");
+
+  $("eBanHanh").innerHTML =
+    (d.phien_ban ? `<div class="hang-ray"><span>Phiên bản</span><span>${esc(d.phien_ban)}</span></div>` : "") +
+    (d.chu_so_huu ? `<div class="hang-ray" style="display:block"><span>Chủ sở hữu</span><div style="margin-top:4px">${esc(d.chu_so_huu.split("·").slice(0,2).join("·"))}</div></div>` : "");
+
+  $("eNoi").innerHTML = canhCsv(d) + d.muc.map(m => veMuc(m, d)).join("");
+  $("nTruoc").disabled = iVT === 0;
+  $("nSau").disabled = iVT === CHI_MUC.length - 1;
+}
+
+const TEN_TD = {
+  "TD-A01": "Cơ cấu tổ chức", "TD-A02": "Mô tả công việc", "TD-A04": "Từ điển năng lực",
+  "TD-A05": "Từ điển hành vi", "TD-A07": "Từ điển nhiệm vụ", "TD-A08": "Từ điển đầu việc",
+  "TD-C01": "Từ điển quy trình"
+};
+
+// Không đọc được ô CSV thì không có nút Sửa — chỉ Góp ý. Gửi đề xuất mà không
+// biết giá trị cũ là gửi mù, dễ đè mất nội dung người khác vừa được duyệt.
+function canhCsv(d) {
+  if (CSV && oCsv(d.ma)) return "";
+  return `<div class="trong" style="margin-bottom:22px"><b>Chỉ đọc.</b> ` +
+    (CSV
+      ? `Từ điển <code>${esc(TU_DIEN)}.csv</code> không có dòng <code>${esc(d.ma)}</code>, ` +
+        `nên không xác định được ô nào cần sửa.`
+      : `Không nạp được <code>du-lieu/${esc(TU_DIEN)}.csv</code> — ${esc(CSV_LOI || "chưa rõ lý do")}.`) +
+    ` Nút <b>✎ Sửa</b> tạm thay bằng <b>✎ Góp ý</b>: góp ý mở Issue, không cần biết nội dung cũ.</div>`;
+}
+
+function veMuc(m, d) {
+  const sua = (m.cot && oCsv(d.ma))
+    ? `<button class="sua" data-sua="${m.n}">✎ Sửa</button>`
+    : `<button class="sua" data-gopy="${m.n}">✎ Góp ý</button>`;
+  return `<section class="muc" id="muc-${m.n}">
+    <div class="muc-dau"><span class="stt">${m.n}</span><h3>${esc(m.muc)}</h3>
+      <span class="nguon">${esc(m.nguon)}</span>${sua}</div>
+    ${than(m, d)}</section>`;
+}
+
+// Giá trị ô CSV của mục, null nếu mục không gắn cột hoặc chưa nạp được CSV.
+// Năm mục sửa được đều VẼ TỪ ĐÂY, không vẽ từ hồ sơ JSON: hồ sơ dựng từ
+// du-lieu-nen nên đã lệch khỏi CSV ở vài chỗ (và còn mang dấu cắt "… +3").
+function giaTriMuc(m, d) {
+  const o = oCsv(d.ma);
+  return (m.cot && o) ? (o[m.cot] ?? "") : null;
+}
+const dongCua = (v) => v.split("\n").map(x => x.trim()).filter(Boolean);
+
+function than(m, d) {
+  switch (m.n) {
+    case 1: {
+      const v = giaTriMuc(m, d);
+      const t = (v !== null ? v : (d.muc_dich || "")).trim();
+      if (!t) return `<div class="trong"><b>Chưa có nội dung.</b> Mục đích vị trí lấy từ TD-A02.</div>`;
+      return `<div class="van">${esc(t)}` +
+        (/(…|\.\.\.)$/.test(t) ? `<span class="cut">⚑ Đoạn trên bị cắt cụt ngay trong nguồn — cần viết trọn lại.</span>` : "") + `</div>`;
+    }
+    case 2: {
+      const o = d.org || {};
+      const ds = (a) => (a && a.length) ? a.map(x => `<p>${esc(x)}</p>`).join("") : `<p style="color:var(--nhat)">—</p>`;
+      return `<div class="ba-o">
+        <div class="o-org"><h4>Báo cáo lên</h4>${o.up ? `<p>${esc(o.up)}</p>` : `<p style="color:var(--nhat)">—</p>`}</div>
+        <div class="o-org"><h4>Quản lý trực tiếp</h4>${ds(o.down)}</div>
+        <div class="o-org"><h4>Ngang cấp trong phòng</h4>${ds(o.peer)}</div></div>`;
+    }
+    case 3: {
+      const v = giaTriMuc(m, d);
+      const a = v !== null ? dongCua(v) : (d.ket_qua || []);
+      if (!a.length) return `<div class="trong"><b>Chưa có kết quả đầu ra nào.</b></div>`;
+      return `<p class="dan"><b>${a.length} kết quả đầu ra</b> viết trực tiếp trong Mô tả công việc — mỗi dòng là một sản phẩm bàn giao được, để sau này gắn thang đo và chấm được.</p>
+        <table class="bang"><thead><tr><th>#</th><th>Kết quả đầu ra chính</th></tr></thead><tbody>` +
+        a.map((x, i) => `<tr><td class="n">${i + 1}</td><td><b>${esc(x)}</b></td></tr>`).join("") + `</tbody></table>`;
+    }
+    case 4: {
+      // Hai nguồn khác nhau, phải nói rõ đang xem cái nào:
+      //   · cột "Nhiệm vụ" của TD-A02 — bản CHỐT, là thứ sửa được qua trang này
+      //   · d.nhiem_vu — dựng từ TD-A07, kèm đo bằng / chỉ tiêu / kỳ, chỉ là ĐỀ NGHỊ
+      // Hôm nay cột chốt trống ở cả 76 vị trí, nên mặc định thấy bản đề nghị.
+      const v = giaTriMuc(m, d);
+      const chot = v !== null ? dongCua(v) : [];
+      const a = d.nhiem_vu || [];
+
+      if (chot.length) {
+        const dt = a.length
+          ? `<p class="dan">Bản chốt trong TD-A02 gồm <b>${chot.length} nhiệm vụ</b>. TD-A07 đang đề nghị ${a.length} dòng — bấm <b>✎ Sửa</b> để đối chiếu.</p>`
+          : `<p class="dan">Bản chốt trong TD-A02 gồm <b>${chot.length} nhiệm vụ</b>.</p>`;
+        return dt + `<table class="bang"><thead><tr><th>#</th><th>Nhiệm vụ</th></tr></thead><tbody>` +
+          chot.map((x, i) => `<tr><td class="n">${i + 1}</td><td><b>${esc(x)}</b></td></tr>`).join("") +
+          `</tbody></table>`;
+      }
+
+      if (!a.length) return `<div class="trong"><b>Chưa có nội dung.</b> Nguồn chỉ ghi ${esc(d.nhiem_vu_ghi_chu || "số dòng")}, không có nhiệm vụ nào. Bấm <b>✎ Sửa</b> để đề xuất, mỗi dòng một nhiệm vụ.</div>`;
+
+      const nhac = v === null ? "" :
+        `<div class="trong" style="margin-bottom:12px"><b>Chưa chốt.</b> Cột <i>Nhiệm vụ</i> của TD-A02 đang trống;
+         bảng dưới dựng từ <b>${esc(m.nguon)}</b> nên chỉ là đề nghị. Bấm <b>✎ Sửa</b> để chốt vào TD-A02 —
+         hộp sửa mở ra sẵn ${a.length} dòng này để bạn cắt bớt hoặc viết lại.</div>`;
+
+      return nhac + `<table class="bang"><thead><tr><th>#</th><th>Mã</th><th>Nhiệm vụ</th><th>Đo bằng</th><th>Chỉ tiêu</th><th>Kỳ</th></tr></thead><tbody>` +
+        a.map((x, i) => `<tr><td class="n">${i + 1}</td><td class="ma">${esc(x.ma || "")}</td>
+          <td><b>${esc(x.ten || "")}</b></td><td>${esc(x.u || "—")}</td><td>${esc(x.t || "—")}</td><td>${esc(x.f || "—")}</td></tr>`).join("") +
+        `</tbody></table>`;
+    }
+    case 5: {
+      // Mã lấy từ CSV (bản duyệt được), tên quy trình tra từ hồ sơ. Làm ngược lại
+      // là lôi cả dấu cắt "02-P04 … +3" của hồ sơ vào ô sửa, rồi ghi thẳng vào CSV.
+      const ten = new Map((d.quy_trinh || []).map(x => [x.id, x.t]));
+      const v = giaTriMuc(m, d);
+      const a = v !== null
+        ? v.split(",").map(x => x.trim()).filter(Boolean)
+            .map(id => ({ id, t: ten.get(id) || "", unresolved: !ten.get(id) }))
+        : (d.quy_trinh || []);
+      if (!a.length) return `<div class="trong"><b>Không áp dụng</b> — vị trí này chưa gắn quy trình nào.</div>`;
+      return `<div class="chips">` + a.map(x =>
+        `<span class="chip${x.unresolved ? " mo" : ""}"><span class="id">${esc(x.id)}</span>${esc(x.t || "chưa có tên")}</span>`).join("") + `</div>`;
+    }
+    case 6: {
+      const v = giaTriMuc(m, d);
+      const t = (v !== null ? v : (d.nang_luc || "")).trim();
+      if (!t || t.includes("Chờ TD-A04"))
+        return `<div class="trong"><b>Chờ TD-A04 mở rộng.</b> Từ điển năng lực chưa đủ mục để gắn cho vị trí này.</div>`;
+      return `<div class="van">${esc(t)}</div>`;
+    }
+    case 7: {
+      const a = d.hanh_vi || [];
+      if (!a.length) return `<div class="trong"><b>Chưa gắn hành vi nào.</b></div>`;
+      return `<p class="dan">${esc(d.hanh_vi_chu || (a.length + " hành vi"))} — bấm từng dòng để xem ba mức đánh giá.</p>
+        <div class="hv">` + a.map(x => `<details><summary><span class="gt">${esc(x.gt || "")}</span>${esc(x.n || "")}</summary>
+          <div class="muc3"><div><b>Mức 1</b> — ${esc(x.m1 || "—")}</div>
+          <div><b>Mức 2</b> — ${esc(x.m2 || "—")}</div>
+          <div><b>Mức 3</b> — ${esc(x.m3 || "—")}</div></div></details>`).join("") + `</div>`;
+    }
+    case 8:
+      return `<div class="trong"><b>Chưa có từ điển nguồn.</b> Ngân sách được giao sẽ gắn vào khi có từ điển tương ứng.</div>`;
+    default:
+      return "";
+  }
+}
+
+/* ---------- hộp sửa ---------- */
+function datCanh(neo) {
+  const r = neo.getBoundingClientRect();
+  const h = $("hop"); h.hidden = false;
+  const b = h.getBoundingClientRect();
+  let x = window.scrollX + r.right - b.width;
+  if (x < window.scrollX + 8) x = window.scrollX + 8;
+  let y = window.scrollY + r.bottom + 8;
+  const day = window.scrollY + document.documentElement.clientHeight - 8;
+  if (y + b.height > day) y = Math.max(window.scrollY + 8, day - b.height);
+  h.style.left = x + "px"; h.style.top = y + "px";
+}
+
+function moHop(kieu, n, neo) {
+  const m = HS.muc.find(x => x.n === n);
+  che = { kieu, n, cot: m.cot || null, cu: kieu === "sua" ? giaTriCsv(n) : "" };
+  $("hTieuDe").textContent = kieu === "sua" ? "Đề xuất sửa · mục " + n : "Góp ý · mục " + n;
+  $("hMeta").textContent = `${HS.ma} · ${m.muc}` + (m.cot ? ` · cột "${m.cot}"` : ` · ${m.nguon}`);
+  $("hKhoiSua").style.display = kieu === "sua" ? "" : "none";
+  $("hLbLyDo").textContent = kieu === "sua" ? "Lý do" : "Nội dung góp ý";
+  const goi = che.cu ? "" : goiY(n);
+  if (goi) $("hMeta").textContent += ` · mồi sẵn ${goi.split("\n").length} dòng từ ${m.nguon}`;
+  $("hCu").textContent = che.cu || "(trống)";
+  $("hMoi").value = che.cu || goi; $("hLyDo").value = "";
+  $("hKq").className = "kq"; $("hKq").textContent = "";
+  $("hGui").disabled = false; $("hGui").textContent = nhanGui();
+  neoDangMo = neo; datCanh(neo);
+  (kieu === "sua" ? $("hMoi") : $("hLyDo")).focus();
+}
+
+// Nội dung hiện tại là ĐÚNG Ô CSV mà PR sẽ sửa — không dựng lại từ hồ sơ JSON.
+// Gửi kèm giá trị này lên API làm mốc: nhánh chính đổi từ lúc mở trang thì API
+// trả lỗi thay vì đè lên bản vừa được duyệt.
+function giaTriCsv(n) {
+  const m = HS.muc.find(x => x.n === n);
+  return giaTriMuc(m, HS) ?? "";
+}
+
+// Ô trống thì mồi sẵn nội dung bảng đang xem (dựng từ từ điển khác) cho đỡ đánh
+// lại. "Nội dung hiện tại" vẫn hiện đúng là "(trống)" — không nhập nhèm hai nguồn.
+function goiY(n) {
+  if (n !== 4) return "";
+  return (HS.nhiem_vu || []).map(x => x.ten || "").filter(Boolean).join("\n");
+}
+
+function dongHop() { $("hop").hidden = true; neoDangMo = null; }
+
+/* ---------- nối sự kiện ---------- */
+$("eXo").onchange = (e) => {
+  const k = CHI_MUC.findIndex(x => x.ma === e.target.value);
+  if (k >= 0) moVT(k);
+};
+$("nTruoc").onclick = () => moVT(iVT - 1);
+$("nSau").onclick = () => moVT(iVT + 1);
+$("nIn").onclick = () => window.print();
+$("nLichSu").onclick = () =>
+  window.open(`https://github.com/${repoDung()}/commits/main/${duongCsv()}`, "_blank", "noopener");
+
+// Chuỗi công việc giờ là một trang riêng, không phải một tab ẩn hiện. Mang theo
+// chức danh đang xem để sang bên kia khỏi phải tìm lại vị trí vừa đọc.
+$("tabChuoi").onclick = () => {
+  location.href = "chuoi-cong-viec.html" + (HS ? "?cd=" + HS.ma : "");
+};
+
+// Đề xuất một tầng còn trống → mở Issue, vì TD-A08/A09 chưa có file CSV để sửa.
+document.addEventListener("click", (e) => {
+  const s = e.target.closest("[data-sua]"); if (s) return moHop("sua", +s.dataset.sua, s);
+  const g = e.target.closest("[data-gopy]"); if (g) return moHop("gopy", +g.dataset.gopy, g);
+  const d = e.target.closest("[data-di]");
+  if (d) { const el = $("muc-" + d.dataset.di); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); }
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key !== "Escape") return;
+  if (!$("hop").hidden) dongHop();
+});
+document.addEventListener("mousedown", (e) => {
+  if ($("hop").hidden) return;
+  if ($("hop").contains(e.target) || (neoDangMo && neoDangMo.contains(e.target))) return;
+  dongHop();
+});
+$("hHuy").onclick = dongHop;
+
+/* ---------- gửi khi không có máy chủ ---------- */
+// Trang tĩnh không thể tự ghi vào GitHub: muốn ghi phải có token, mà token nhét
+// vào file HTML công khai thì ai xem mã nguồn cũng lấy được và sửa được cả repo.
+// Nên bản GitHub Pages dựng sẵn tiêu đề + nội dung rồi mở form Issue của GitHub.
+// Người góp ý chỉ soát lại và bấm Create — và chính tài khoản GitHub của họ đứng
+// tên, nên không phải khai lại họ là ai, cũng không có email nào chạy qua URL.
+
+function nhanGui() { return CO_API ? "Gửi đề xuất" : "Mở góp ý trên GitHub"; }
+
+// Dựng đúng thân mà functions/api/*.js dựng, trừ dòng "Người góp ý" — GitHub đã
+// ghi sẵn ai mở Issue. Hai bên lệch nhau thì hai luồng ra hai kiểu Issue khác nhau.
+function thanIssue(sua, b) {
+  const dau = `| | |\n|---|---|\n| Từ điển | \`${b.tuDien}\` |\n| Mã dòng | \`${b.rid}\` |\n` +
+              `| Cột | ${b.cot || "_(cả dòng)_"} |\n\n---\n\n`;
+  if (!sua) return dau + b.noiDung + "\n";
+  const trich = (v) => "> " + String(v || "_(trống)_").replace(/\n/g, "\n> ");
+  return dau +
+    `**Nội dung cũ**\n\n${trich(b.giaTriCu)}\n\n` +
+    `**Nội dung đề xuất**\n\n${trich(b.giaTriMoi)}\n\n` +
+    `**Lý do**\n\n${b.lyDo || "_(không ghi)_"}\n`;
+}
+
+function guiQuaGitHub(sua, b) {
+  const tieuDe = `${b.tuDien} · ${b.rid}${b.cot ? " · " + b.cot : ""}`;
+  const { cat } = moFormIssue(b.tuDien, tieuDe, thanIssue(sua, b));
+  $("hKq").className = "kq ok";
+  $("hKq").innerHTML = cat
+    ? "Nội dung dài nên form chỉ điền được một phần — phần còn lại đã chép vào bộ nhớ " +
+      "tạm, dán nốt vào ô mô tả rồi bấm <b>Create</b>."
+    : "Đã mở sẵn form trên GitHub — soát lại rồi bấm <b>Create</b>. Ban Điều hành sẽ duyệt.";
+  $("hGui").textContent = "Đã mở GitHub";
+}
+
+$("hGui").onclick = async () => {
+  $("hGui").disabled = true; $("hGui").textContent = "Đang gửi…";
+  const sua = che.kieu === "sua";
+  let than;
+  {
+    const m = HS.muc.find(x => x.n === che.n);
+    if (sua && $("hMoi").value === che.cu) {
+      $("hKq").className = "kq no";
+      $("hKq").textContent = "Nội dung chưa đổi so với bản hiện tại — chưa có gì để đề xuất.";
+      $("hGui").disabled = false; $("hGui").textContent = nhanGui();
+      return;
+    }
+    than = sua
+      ? { tuDien: TU_DIEN, rid: HS.ma, cot: che.cot,
+          giaTriCu: che.cu, giaTriMoi: $("hMoi").value, lyDo: $("hLyDo").value }
+      : { tuDien: TU_DIEN, rid: HS.ma, cot: m.muc, noiDung: $("hLyDo").value };
+  }
+  if (!CO_API) return guiQuaGitHub(sua, than);
+
+  try {
+    const r = await fetch(sua ? "/api/de-xuat-sua" : "/api/gop-y",
+      { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(than) });
+    if (r.status === 404) throw new Error("Cổng API chưa chạy (chỉ có khi xem thử tại chỗ).");
+    const j = await r.json();
+    if (!r.ok) throw new Error(j.loi || ("HTTP " + r.status));
+    $("hKq").className = "kq ok";
+    $("hKq").innerHTML = (sua ? "Đã mở Pull request #" + j.pr : "Đã mở Issue #" + j.issue) +
+      ` — <a href="${j.url}" target="_blank" rel="noopener">xem trên GitHub</a>. Ban Điều hành sẽ duyệt.`;
+    $("hGui").textContent = "Đã gửi";
+  } catch (e) {
+    $("hKq").className = "kq no"; $("hKq").textContent = "Không gửi được: " + e.message;
+    $("hGui").disabled = false; $("hGui").textContent = "Gửi lại";
+  }
+};
+</script>
+</body>
+</html>
