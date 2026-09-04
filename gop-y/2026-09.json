@@ -1,40 +1,5 @@
 {
  "v": 1,
- "gop_y": [
-  {
-   "luc": "2026-09-04T08:25:36.236Z",
-   "email": "kiem-thu@alpha-france.com",
-   "sua": [
-    {
-     "rid": "VT-07-S01",
-     "k": 0,
-     "cot": "Đầu việc",
-     "cu": "",
-     "moi": "MỤC KIỂM THỬ — xoá được",
-     "xoa": false
-    }
-   ],
-   "them": [
-    {
-     "Nhiệm vụ": "MỤC KIỂM THỬ — xoá được"
-    }
-   ]
-  },
-  {
-   "luc": "2026-09-04T08:27:14.424Z",
-   "email": "kiem-thu@alpha-france.com",
-   "sua": [
-    {
-     "rid": "VT-07-S01",
-     "k": 0,
-     "cot": "Việc cụ thể",
-     "cu": "",
-     "moi": "KIỂM THỬ TỪ TRANG THẬT — xoá được",
-     "xoa": false
-    }
-   ],
-   "them": []
-  }
- ],
+ "gop_y": [],
  "cap_nhat": "2026-09-04T08:27:15.155Z"
 }
