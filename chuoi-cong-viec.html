@@ -93,6 +93,39 @@ let soDongMoi = SO_DONG_DAU;
 const demDongMoi = () => new Set([...oMoi.keys()].map(k => +k.split("|")[0])).size;
 
 const KHOA_EMAIL = "afp-cong-email";
+const KHOA_NHAP  = "afp-cong-gopy-chuoi";
+
+// Lưu ở giao diện là xong: nội dung đã sửa nằm lại trong máy người góp ý cho tới
+// khi họ bấm Gửi hoặc Bỏ hết. Không có nó thì tải lại trang, đóng tab, hay máy
+// tự ngủ là mất sạch — mà bảng này có 93 dòng, ai điền được nửa buổi rồi mất thì
+// không bao giờ quay lại điền lần hai.
+//
+// Chỉ nằm trong máy họ, không đi đâu cả: localStorage là của riêng từng trình
+// duyệt. Ban Điều hành không thấy gì cho tới khi họ bấm Gửi.
+function luuNhap() {
+  try {
+    localStorage.setItem(KHOA_NHAP, JSON.stringify({
+      v: 1, luc: Date.now(),
+      oSua: [...oSua.entries()],
+      oMoi: [...oMoi.entries()],
+      soDongMoi
+    }));
+  } catch {}
+}
+
+function docNhap() {
+  let d;
+  try { d = JSON.parse(localStorage.getItem(KHOA_NHAP) || "null"); } catch { return; }
+  // Đọc lại thứ do bản cũ ghi ra mà đổ cả trang thì tệ hơn là mất bản nháp.
+  if (!d || d.v !== 1) return;
+  try {
+    (d.oSua || []).forEach(([k, v]) => oSua.set(k, v));
+    (d.oMoi || []).forEach(([k, v]) => oMoi.set(k, v));
+    if (d.soDongMoi > soDongMoi) soDongMoi = d.soDongMoi;
+  } catch { oSua.clear(); oMoi.clear(); }
+}
+
+function xoaNhap() { try { localStorage.removeItem(KHOA_NHAP); } catch {} }
 const HAU_TO = "@alpha-france.com";
 let email = "";
 try { email = localStorage.getItem(KHOA_EMAIL) || ""; } catch {}
@@ -190,7 +223,7 @@ function thanhSua() {
   if (oSua.size) phan.push(`${oSua.size} ô đã sửa`);
   if (oMoi.size) phan.push(`${demDongMoi()} dòng đề nghị thêm`);
   return `<div class="thanh-sua"><b>${phan.join(" · ")}</b>` +
-    `<span>chưa gửi đi đâu cả — soát lại rồi bấm Gửi</span>` +
+    `<span>đã lưu trong máy bạn, chưa gửi đi đâu — soát lại rồi bấm Gửi</span>` +
     `<button id="nBoSua">Bỏ hết</button>` +
     `<button class="pri" id="nGuiSua">Gửi góp ý</button></div>`;
 }
@@ -347,6 +380,7 @@ function ghiO(xoa) {
     else oSua.set(kh, { rid, k: +k, cot, cu: goc, moi: xoa ? "" : moi, xoa: !!xoa });
   }
 
+  luuNhap();
   dongSua();
   veLaiO(el, them, kh, themDong);
 }
@@ -592,6 +626,8 @@ function doiTab(t) {
     return;
   }
 
+  docNhap();
+
   // Vào thẳng một chức danh: chuoi-cong-viec.html?cd=VT-18-H01
   const tuUrl = new URLSearchParams(location.search).get("cd");
   if (tuUrl && CHUC_DANH_CHO.includes(tuUrl)) LOC.rid = tuUrl;
@@ -627,7 +663,7 @@ $("eChuoi").addEventListener("click", (e) => {
   if (e.target.id === "nThuBanSao") return moThuBanSao();
   if (e.target.id === "nThemDong")  { soDongMoi++; return veChuoi(); }
   if (e.target.id === "nBoSua")     {
-    oSua.clear(); oMoi.clear(); soDongMoi = SO_DONG_DAU; return veChuoi();
+    oSua.clear(); oMoi.clear(); soDongMoi = SO_DONG_DAU; xoaNhap(); return veChuoi();
   }
 
   // Ô sửa được thì bấm vào là soạn, kể cả ô đang trống — chỗ trống chính là chỗ
