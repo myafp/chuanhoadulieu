@@ -17,7 +17,7 @@ const REPO_CONG = "myafp/chuanhoadulieu";
 //     cd cong/worker-gop-y && npx wrangler deploy
 //
 // Wrangler in ra URL dạng https://afp-gop-y.<tên>.workers.dev — dán vào đây.
-const API_GOP_Y = "";
+const API_GOP_Y = "https://abp.alpha-5ae.workers.dev";
 
 // Trang chạy được ở hai nơi, khác nhau đúng một chỗ: nút Gửi làm gì.
 //   · Sau Cloudflare Access — có /api/*, hàm máy chủ giữ token, tự mở PR/Issue.
