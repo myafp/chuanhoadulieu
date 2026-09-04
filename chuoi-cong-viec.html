@@ -144,7 +144,12 @@ async function napDong() {
     hs.forEach(([x, d]) => {
       ((d.chuoi && d.chuoi.list) || []).forEach((n, k) => DONG.push({
         rid: x.ma, ten: x.ten, donVi: x.phong, viTri: x.cap, vaiTro: x.vai_tro || "",
-        k, mt: (n.p || "").trim() || "(chưa gắn mục tiêu)", nv: n.n || "", u: n.u || "", q: n.q || ""
+        k, mt: (n.p || "").trim() || "(chưa gắn mục tiêu)", nv: n.n || "",
+        // Một nhiệm vụ có thể mang nhiều đầu việc, mỗi đầu việc nhiều việc cụ
+        // thể. Bảng vẫn một dòng một nhiệm vụ, nên nối bằng xuống dòng — ô cắt
+        // ở ba dòng, bấm vào xem đủ.
+        dv: (n.dv || []).join("\n"), vc: (n.vc || []).join("\n"),
+        u: n.u || "", q: n.q || ""
       }));
     });
   } catch (e) {
@@ -252,8 +257,8 @@ function veBang(ds) {
     // gõ tay vào đây rồi mỗi người viết một kiểu.
     `<td class="o-mt" data-nhan="Mục tiêu">${oXem(r.mt)}</td>` +
     o(r, "Nhiệm vụ",    r.nv, "o-nv") +
-    o(r, "Đầu việc",    "",   "") +
-    o(r, "Việc cụ thể", "",   "") +
+    o(r, "Đầu việc",    r.dv, "") +
+    o(r, "Việc cụ thể", r.vc, "") +
     o(r, "Đơn vị đo",   r.u,  "o-dvi") +
     o(r, "Quy trình",   r.q,  "o-qt") +
     `</tr>`).join("");
