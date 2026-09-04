@@ -169,7 +169,7 @@ async function veChuoi() {
     <span class="email-nhac" id="oEmailNhac">Góp ý gửi đi mang địa chỉ này — không có thì Ban Điều hành không biết hỏi lại ai.</span>
   </div>`;
 
-  $("eChuoi").innerHTML = dau + hang + oEmail + thanhSua() +
+  $("eChuoi").innerHTML = dau + hang + oEmail + `<div id="eThanhSua">${thanhSua()}</div>` +
     (dsDong.length ? veBang(dsDong)
       : `<div class="trong"><b>Không nhiệm vụ nào khớp bộ lọc.</b> Đổi một ô xổ chọn ở trên về "Tất cả".</div>`) +
     veBangMoi();
@@ -234,20 +234,22 @@ const COT_MOI = ["Chức danh", "Mục tiêu", "Nhiệm vụ", "Đầu việc", 
 
 // Luôn hiện, dù bộ lọc đang chọn gì. Bộ lọc chỉ thu hẹp thứ ĐÃ CÓ; còn thứ chưa
 // có thì không bộ lọc nào tìm ra được, nên chỗ đề nghị phải nằm ngoài bộ lọc.
+function oThemHtml(i, cot) {
+  const kh = khoaMoi(i, cot);
+  const v = oMoi.get(kh);
+  return `<div class="o-dai o-sua o-them${v ? " da-sua" : ""}" data-moi="${esc(kh)}" ` +
+         `title="Bấm để điền">${v ? esc(v) : '<span class="trong-o">—</span>'}</div>`;
+}
+
+const dongThemHtml = (i) =>
+  `<tr>` + COT_MOI.map(cot => `<td data-nhan="${esc(cot)}">${oThemHtml(i, cot)}</td>`).join("") + `</tr>`;
+
 function veBangMoi() {
   let than = "";
-  for (let i = 0; i < soDongMoi; i++) {
-    than += `<tr>` + COT_MOI.map(cot => {
-      const kh = khoaMoi(i, cot);
-      const v = oMoi.get(kh);
-      return `<td data-nhan="${esc(cot)}">` +
-        `<div class="o-dai o-sua o-them${v ? " da-sua" : ""}" data-moi="${esc(kh)}" ` +
-        `title="Bấm để điền">${v ? esc(v) : '<span class="trong-o">—</span>'}</div></td>`;
-    }).join("") + `</tr>`;
-  }
+  for (let i = 0; i < soDongMoi; i++) than += dongThemHtml(i);
 
   return `<div class="dau-bang dau-them"><h3>Đề nghị thêm các mục tiêu, nhiệm vụ, đầu việc, việc cụ thể chưa có</h3>` +
-    `<span class="dem-bang">${demDongMoi()}/${soDongMoi} dòng đã điền</span></div>` +
+    `<span class="dem-bang" id="eDemThem">${demDongMoi()}/${soDongMoi} dòng đã điền</span></div>` +
     `<p class="dan-them">Bảng này không lọc theo gì cả — thứ chưa có trong dữ liệu thì không bộ lọc nào ` +
     `tìm ra. Điền được ô nào thì điền, không bắt buộc đủ bảy cột.</p>` +
     `<div class="khung-bang khung-them"><table class="bang-chuoi"><thead><tr>` +
@@ -320,19 +322,23 @@ function moSuaO(el) {
 }
 function dongSua() { $("hopO").hidden = true; $("hopO").__o = null; }
 
-async function ghiO(xoa) {
+// Lưu một ô thì CHỈ vẽ lại đúng ô đó, không vẽ lại cả bảng. Vẽ lại cả bảng thì
+// màn hình nhảy, mất chỗ đang đọc, và người đang góp ý liên tiếp mấy ô cạnh nhau
+// phải tìm lại vị trí sau mỗi lần Lưu.
+function ghiO(xoa) {
   const el = $("hopO").__o;
   if (!el) return;
   const them = !!el.dataset.moi;
   const kh = el.dataset.moi || el.dataset.o;
   const moi = $("hopOTa").value.trim();
+  let themDong = false;
 
   if (them) {
     // Bảng trắng: gõ rỗng hoặc bấm Xoá đều là bỏ ô đó đi, không giữ chuỗi rỗng.
     if (xoa || !moi) oMoi.delete(kh);
     else oMoi.set(kh, moi);
     // Điền tới dòng cuối thì chừa sẵn một dòng trống nữa, khỏi phải bấm Thêm dòng.
-    if (!xoa && moi && +kh.split("|")[0] === soDongMoi - 1) soDongMoi++;
+    if (!xoa && moi && +kh.split("|")[0] === soDongMoi - 1) { soDongMoi++; themDong = true; }
   } else {
     const goc = el.dataset.goc;
     const [rid, k, cot] = kh.split("|");
@@ -341,15 +347,44 @@ async function ghiO(xoa) {
     else oSua.set(kh, { rid, k: +k, cot, cu: goc, moi: xoa ? "" : moi, xoa: !!xoa });
   }
 
-  // Vẽ lại là thay cả bảng, mà thanh "N ô đã sửa" vừa hiện ra còn đẩy trang dài
-  // thêm — sửa một ô ở giữa danh sách là bị ném về đầu trang. Ghi lại ô đang sửa
-  // nằm cách mép trên bao nhiêu, vẽ xong kéo lại đúng chỗ đó.
-  const cachMepTren = el.getBoundingClientRect().top;
   dongSua();
-  await veChuoi();
-  const sau = document.querySelector(
-    `[${them ? "data-moi" : "data-o"}="${CSS.escape(kh)}"]`);
-  if (sau) scrollBy(0, sau.getBoundingClientRect().top - cachMepTren);
+  veLaiO(el, them, kh, themDong);
+}
+
+// Thay đúng một ô, rồi cập nhật hai con số đếm. Không đụng gì khác trên trang.
+function veLaiO(el, them, kh, themDong) {
+  const oCha = el.parentElement;
+  // Lần sửa đầu tiên làm thanh gom hiện ra, đẩy cả bảng tụt xuống — đo chỗ ô
+  // đang sửa trước và sau, rồi bù lại đúng phần lệch.
+  const truoc = oCha.getBoundingClientRect().top;
+
+  if (them) {
+    const [i, cot] = kh.split("|");
+    oCha.innerHTML = oThemHtml(+i, cot);
+  } else {
+    const [rid, k, cot] = kh.split("|");
+    const r = DONG.find(x => x.rid === rid && x.k === +k);
+    if (r) oCha.innerHTML = oSuaHtml(r, cot, el.dataset.goc);
+  }
+  ganCat(oCha);
+
+  // Thanh gom nằm trong một khung có id cố định nên thay nội dung là xong —
+  // không phải chèn hay xoá phần tử, tức không làm trang co giãn thất thường.
+  if ($("eThanhSua")) $("eThanhSua").innerHTML = thanhSua();
+
+  const dem = $("eDemThem");
+  if (dem) dem.textContent = `${demDongMoi()}/${soDongMoi} dòng đã điền`;
+
+  if (themDong) {
+    const tbody = document.querySelector(".khung-them tbody");
+    if (tbody) {
+      tbody.insertAdjacentHTML("beforeend", dongThemHtml(soDongMoi - 1));
+      ganCat(tbody.lastElementChild);
+    }
+  }
+
+  const lech = oCha.getBoundingClientRect().top - truoc;
+  if (Math.abs(lech) > 1) scrollBy(0, lech);
 }
 
 $("hopOLuu").onclick = () => ghiO(false);
