@@ -19,7 +19,22 @@
      "Nhiệm vụ": "MỤC KIỂM THỬ — xoá được"
     }
    ]
+  },
+  {
+   "luc": "2026-09-04T08:27:14.424Z",
+   "email": "kiem-thu@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-07-S01",
+     "k": 0,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "KIỂM THỬ TỪ TRANG THẬT — xoá được",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-04T08:25:36.565Z"
+ "cap_nhat": "2026-09-04T08:27:15.155Z"
 }
