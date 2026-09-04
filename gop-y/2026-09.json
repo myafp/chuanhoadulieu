@@ -1,5 +1,21 @@
 {
  "v": 1,
- "gop_y": [],
- "cap_nhat": "2026-09-04T08:51:43.487260Z"
+ "gop_y": [
+  {
+   "luc": "2026-09-04T08:58:19.196Z",
+   "email": "tuan@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-18-S02",
+     "k": 0,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "TEST",
+     "xoa": false
+    }
+   ],
+   "them": []
+  }
+ ],
+ "cap_nhat": "2026-09-04T08:58:19.652Z"
 }
