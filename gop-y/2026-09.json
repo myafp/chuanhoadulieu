@@ -330,7 +330,32 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-04T12:04:25.385Z",
+   "email": "ha.dang@alpha-france.com",
+   "sua": [],
+   "them": [
+    {
+     "Chức danh": "VT-18-S02\nDetailing Sales · Nhân viên",
+     "Mục tiêu": "Đạt số liên hệ khách hàng User và Loyal",
+     "Nhiệm vụ": "Đạt số liên hệ khách hàng nhóm User và Loyal của địa bàn phụ trách"
+    },
+    {
+     "Chức danh": "VT-18-S02\nDetailing Sales · Nhân viên",
+     "Mục tiêu": "Triển khai kế hoạch chăm sóc khách hàng PULL cuốn chiếu 90 ngày",
+     "Nhiệm vụ": "Triển khai kế hoạch chăm sóc khách hàng PULL cuốn chiếu 90 ngày cho các khách hàng trọng điểm"
+    },
+    {
+     "Chức danh": "VT-18-S02\nDetailing Sales · Nhân viên",
+     "Mục tiêu": "Thu hồi công nợ đến hạn",
+     "Nhiệm vụ": "Thu hồi công nợ đến hạn của khách hàng phụ trách"
+    },
+    {
+     "Chức danh": "VT-18-S02\nDetailing Sales · Nhân viên"
+    }
+   ]
   }
  ],
- "cap_nhat": "2026-09-04T11:16:55.763Z"
+ "cap_nhat": "2026-09-04T12:04:25.854Z"
 }
