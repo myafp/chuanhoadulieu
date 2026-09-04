@@ -68,7 +68,22 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-04T08:38:18.179Z",
+   "email": "kiem-thu@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-07-S01",
+     "k": 0,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "KIỂM THỬ lượt 2",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-04T08:38:11.744Z"
+ "cap_nhat": "2026-09-04T08:38:18.556Z"
 }
