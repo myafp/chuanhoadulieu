@@ -1,5 +1,21 @@
 {
  "v": 1,
- "gop_y": [],
- "cap_nhat": "2026-09-04T08:27:15.155Z"
+ "gop_y": [
+  {
+   "luc": "2026-09-04T08:30:20.279Z",
+   "email": "tuan@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-18-S02",
+     "k": 0,
+     "cot": "Nhiệm vụ",
+     "cu": "Thực hiện, ghi nhận đầu ra và đóng quy trình Account plan cơ sở trọng điểm",
+     "moi": "Thực hiện, ghi nhận đầu ra và đóng quy trình Account plan cơ sở trọng điểmcvcv",
+     "xoa": false
+    }
+   ],
+   "them": []
+  }
+ ],
+ "cap_nhat": "2026-09-04T08:30:20.637Z"
 }
