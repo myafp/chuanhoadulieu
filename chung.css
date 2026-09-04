@@ -146,6 +146,8 @@ button.nguy:hover{background:var(--sua-nen)}
 .thanh-sua button{margin-left:0}
 .thanh-sua #nGuiSua{margin-left:auto}
 .thanh-sua .bao-ok{color:var(--du)}
+/* Ghi thẳng vào GitHub xong: đổi sang xanh, vì đỏ nghĩa là 'chưa gửi'. */
+.thanh-sua.thanh-xong{background:var(--du-nen);border-color:#bfe1cf}
 .thanh-sua .bao-loi{color:var(--sua)}
 
 #hopO{position:absolute;z-index:61;width:min(460px,92vw);background:var(--trang);

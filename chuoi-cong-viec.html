@@ -450,22 +450,23 @@ document.addEventListener("mousedown", (e) => {
 
 /* ---------- gửi cả loạt ô đã sửa ---------- */
 // Các dòng đề nghị thêm, gom theo số dòng, bỏ dòng nào chưa điền gì.
-function thanDeNghiThem() {
-  const theoDong = new Map();
+function dongDeNghi() {
+  const theo = new Map();
   for (const [kh, v] of oMoi) {
     const [i, cot] = kh.split("|");
-    if (!theoDong.has(i)) theoDong.set(i, {});
-    theoDong.get(i)[cot] = v;
+    if (!theo.has(i)) theo.set(i, {});
+    theo.get(i)[cot] = v;
   }
-  if (!theoDong.size) return "";
+  return [...theo.entries()].sort((a, b) => +a[0] - +b[0]).map(([, o]) => o);
+}
+
+function thanDeNghiThem() {
+  const ds = dongDeNghi();
+  if (!ds.length) return "";
   const trich = (v) => (v || "_(chưa điền)_").replace(/\|/g, "\\|").replace(/\n/g, "<br>");
-  let i = 0;
   return `\n---\n\n## Đề nghị thêm mới\n\n` +
-    [...theoDong.entries()].sort((a, b) => +a[0] - +b[0]).map(([, o]) => {
-      i++;
-      return `### Dòng đề nghị ${i}\n\n| | |\n|---|---|\n` +
-        COT_MOI.map(c => `| ${c} | ${trich(o[c])} |`).join("\n") + "\n";
-    }).join("\n");
+    ds.map((o, i) => `### Dòng đề nghị ${i + 1}\n\n| | |\n|---|---|\n` +
+      COT_MOI.map(c => `| ${c} | ${trich(o[c])} |`).join("\n") + "\n").join("\n");
 }
 
 function thanGopYGop() {
@@ -503,6 +504,35 @@ async function guiGopYGop() {
   if (oMoi.size) phan.push(`${demDongMoi()} dòng thêm mới`);
   const tieuDe = `TD-A07 · ${phan.join(" · ")} — ${email}`;
   const than = thanGopYGop();
+
+  // Có Worker thì ghi thẳng vào GitHub: nhân viên bấm Gửi là xong, không đăng
+  // nhập, không mở tab nào. Đây là đường chính; hai đường dưới là dự phòng.
+  if (API_GOP_Y) {
+    const nut = $("nGuiSua");
+    if (nut) { nut.disabled = true; nut.textContent = "Đang ghi…"; }
+    try {
+      const r = await fetch(API_GOP_Y, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          sua: [...oSua.values()].map(o => ({ rid: o.rid, k: o.k, cot: o.cot, cu: o.cu, moi: o.moi, xoa: o.xoa })),
+          them: dongDeNghi()
+        })
+      });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(j.loi || ("HTTP " + r.status));
+      // Ghi xong thì bản nháp trong máy hết việc — giữ lại chỉ khiến lần sau mở
+      // trang thấy một mớ đỏ đã gửi rồi mà tưởng chưa gửi.
+      oSua.clear(); oMoi.clear(); soDongMoi = SO_DONG_DAU; xoaNhap();
+      await veChuoi();
+      return baoGuiXong(j.url
+        ? `Đã ghi vào GitHub — <a href="${j.url}" target="_blank" rel="noopener">xem commit</a>.`
+        : "Đã ghi vào GitHub.");
+    } catch (e) {
+      if (nut) { nut.disabled = false; nut.textContent = "Gửi góp ý"; }
+      return baoGui("Không ghi được: " + esc(e.message), true);
+    }
+  }
 
   if (!CO_API) {
     const { cat } = moFormIssue("TD-A07", tieuDe, than);
@@ -592,12 +622,21 @@ function moThuBanSao() {
   location.href = dat(than);
 }
 
+// Ghi thẳng vào GitHub xong thì bảng đã sạch, không còn nút Bỏ hết để làm gì.
+function baoGuiXong(chu) {
+  const t = $("eChuoi").querySelector("#eThanhSua");
+  if (t) t.innerHTML = `<div class="thanh-sua thanh-xong"><b class="bao-ok">${chu}</b></div>`;
+}
+
 function baoGui(chu, loi) {
   const t = $("eChuoi").querySelector(".thanh-sua");
   if (!t) return;
+  // Lỗi thì phải để lại nút Gửi. Trước đây thanh báo lỗi chỉ còn "Bỏ hết", tức
+  // cách duy nhất thoát khỏi một lần mạng hỏng là xoá hết công sức vừa gõ.
   t.innerHTML = `<b class="${loi ? "bao-loi" : "bao-ok"}">${chu}</b>` +
     (loi ? "" : `<button id="nThuBanSao">✉ Gửi bản sao vào email của bạn</button>`) +
-    `<button id="nBoSua">${loi ? "Bỏ hết" : "Xong — dọn bảng"}</button>`;
+    `<button id="nBoSua">${loi ? "Bỏ hết" : "Xong — dọn bảng"}</button>` +
+    (loi ? `<button class="pri" id="nGuiSua">Gửi lại</button>` : "");
 }
 
 function doiTab(t) {

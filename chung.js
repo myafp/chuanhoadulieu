@@ -10,6 +10,15 @@
 const REPO_LAM  = "myafp/aBP";
 const REPO_CONG = "myafp/chuanhoadulieu";
 
+// Điểm cuối ghi góp ý thẳng vào GitHub. Để trống thì trang rơi về cách cũ — mở
+// sẵn form Issue của GitHub cho người góp ý tự bấm Create, và cách đó bắt họ
+// đăng nhập GitHub. Điền URL Worker vào đây là hết phải đăng nhập.
+//
+//     cd cong/worker-gop-y && npx wrangler deploy
+//
+// Wrangler in ra URL dạng https://afp-gop-y.<tên>.workers.dev — dán vào đây.
+const API_GOP_Y = "";
+
 // Trang chạy được ở hai nơi, khác nhau đúng một chỗ: nút Gửi làm gì.
 //   · Sau Cloudflare Access — có /api/*, hàm máy chủ giữ token, tự mở PR/Issue.
 //   · Trên GitHub Pages    — không có máy chủ, nút Gửi mở sẵn form Issue của GitHub.
