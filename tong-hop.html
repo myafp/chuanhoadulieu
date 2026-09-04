@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AFP · Tổng hợp góp ý</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="chung.css">
+<style>
+/* Trang này để Ban Điều hành đọc, không phải để nhân viên gõ. Nên khác hẳn bảng
+   góp ý: không cắt ba dòng, không ô sửa được — đọc là chính, và phải đọc hết. */
+#eTong{max-width:1600px}
+.tom{display:flex;gap:22px;flex-wrap:wrap;background:var(--trang);border:1px solid var(--line);
+  border-radius:11px;padding:14px 18px;margin-bottom:16px}
+.tom div{display:flex;flex-direction:column;gap:2px}
+.tom .so{font-size:20px;font-weight:700;line-height:1.2}
+.tom .nhan{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--nhat);font-weight:700}
+.tom .canh .so{color:var(--sua)}
+
+table.bang-th{border-collapse:separate;border-spacing:0;width:100%;table-layout:fixed;font-size:13.5px}
+table.bang-th th{position:sticky;top:0;z-index:2;background:var(--bg);text-align:left;
+  font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--nhat);font-weight:700;
+  padding:10px 12px;border-bottom:1px solid var(--line)}
+table.bang-th td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;
+  overflow-wrap:anywhere;line-height:1.5}
+table.bang-th th:nth-child(1),table.bang-th td:nth-child(1){width:13%}
+table.bang-th th:nth-child(2),table.bang-th td:nth-child(2){width:9%}
+table.bang-th th:nth-child(3),table.bang-th td:nth-child(3){width:22%}
+table.bang-th th:nth-child(4),table.bang-th td:nth-child(4){width:22%}
+table.bang-th th:nth-child(5),table.bang-th td:nth-child(5){width:34%}
+tr.canh td{background:#fffaf9}
+
+.ngu-canh{font-size:12px;color:var(--nhat);margin-top:4px;line-height:1.45}
+.de-xuat{border-left:2px solid var(--sua);padding:2px 0 2px 10px;margin-bottom:9px}
+.de-xuat:last-child{margin-bottom:0}
+.de-xuat .ai{font-size:11.5px;color:var(--mut);font-family:var(--mono)}
+.de-xuat .noi{margin-top:2px}
+.de-xuat .xoa-het{color:var(--sua);font-weight:700}
+.the-canh{display:inline-block;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;
+  font-weight:700;color:var(--sua);background:var(--sua-nen);border:1px solid var(--sua-vien);
+  border-radius:20px;padding:2px 8px;margin-left:6px;vertical-align:2px}
+.hien-tai{color:var(--mut)}
+.hien-tai.trong{color:var(--nhat);font-style:italic}
+.lech{margin-top:5px;font-size:11.5px;color:var(--sua)}
+h3.muc-th{font-size:15px;margin:30px 0 10px;padding-top:18px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body class="trang-chuoi">
+
+<header class="dau">
+  <div class="dau-tren"><span class="ma-vt">Tổng hợp góp ý · cho Ban Điều hành</span></div>
+</header>
+
+<section class="noi" id="eTong"><div class="trong">Đang nạp…</div></section>
+
+<script src="chung.js"></script>
+<script>
+// Đọc gop-y/<YYYY-MM>.json rồi gom lại theo TỪNG Ô, để trả lời đúng câu hỏi của
+// người duyệt: ô này đã có những ai đề xuất gì. Nhóm theo lượt gửi thì không trả
+// lời được — cùng một ô có thể bị ba người sửa ở ba lượt cách nhau mấy ngày.
+
+const SO_THANG = 12;   // dò ngược bao nhiêu tháng
+let LUOT = [], CHI_MUC = [], HS = {};
+const LOC = { rid: "*", cot: "*", ai: "*" };
+
+const gonKhoang = (v) => String(v ?? "").replace(/\s+/g, " ").trim();
+
+async function napTatCa() {
+  // Trang tĩnh không liệt kê được thư mục, nên dò lùi từng tháng. File không có
+  // thì bỏ qua — rẻ hơn nhiều so với việc bắt Worker phải giữ thêm một mục lục.
+  const d = new Date();
+  const thang = [];
+  for (let i = 0; i < SO_THANG; i++) {
+    const t = new Date(d.getFullYear(), d.getMonth() - i, 1);
+    thang.push(`${t.getFullYear()}-${String(t.getMonth() + 1).padStart(2, "0")}`);
+  }
+  const kho = await Promise.all(thang.map(async t => {
+    try {
+      const r = await fetch(`gop-y/${t}.json?t=` + Date.now(), { cache: "no-store" });
+      if (!r.ok) return [];
+      const j = await r.json();
+      return (j.gop_y || []).map(x => ({ ...x, thang: t }));
+    } catch { return []; }
+  }));
+  LUOT = kho.flat().sort((a, b) => String(a.luc).localeCompare(String(b.luc)));
+
+  CHI_MUC = await nap("du-lieu/jd-index.json");
+  // Chỉ nạp hồ sơ của những chức danh thật sự có góp ý.
+  const can = [...new Set(LUOT.flatMap(x => (x.sua || []).map(o => o.rid)))];
+  await Promise.all(can.map(async ma => {
+    try { HS[ma] = await nap(`du-lieu/jd/${ma}.json`); } catch {}
+  }));
+}
+
+// Gom theo ô: khoá là chức danh | số dòng | cột.
+function gomTheoO() {
+  const o = new Map();
+  LUOT.forEach(l => (l.sua || []).forEach(s => {
+    const kh = `${s.rid}|${s.k}|${s.cot}`;
+    if (!o.has(kh)) o.set(kh, { rid: s.rid, k: s.k, cot: s.cot, cu: s.cu, dx: [] });
+    o.get(kh).dx.push({ email: l.email, luc: l.luc, moi: s.moi, xoa: !!s.xoa });
+  }));
+  return o;
+}
+
+// Nội dung đang có trong dữ liệu, để đối chiếu với thứ người ta đề xuất.
+function noiDungHienTai(rid, k, cot) {
+  const d = HS[rid];
+  const n = d && d.chuoi && d.chuoi.list && d.chuoi.list[k];
+  if (!n) return null;
+  if (cot === "Nhiệm vụ")    return n.n || "";
+  if (cot === "Đầu việc")    return (n.dv || []).join("\n");
+  if (cot === "Việc cụ thể") return (n.vc || []).join("\n");
+  if (cot === "Đơn vị đo")   return n.u || "";
+  if (cot === "Quy trình")   return n.q || "";
+  return null;
+}
+
+const tenChucDanh = (rid) => {
+  const x = CHI_MUC.find(y => y.ma === rid);
+  return x ? x.ten : "";
+};
+
+function ve() {
+  const oMap = gomTheoO();
+  let o = [...oMap.values()];
+
+  // Ô có từ hai người đề xuất khác nhau → cần người duyệt để mắt trước.
+  const nhieuNguoi = (x) => new Set(x.dx.map(d => d.email)).size > 1;
+
+  const dsRid = [...new Set(o.map(x => x.rid))].sort();
+  const dsCot = [...new Set(o.map(x => x.cot))].sort();
+  const dsAi  = [...new Set(LUOT.map(x => x.email))].sort();
+
+  o = o.filter(x =>
+    (LOC.rid === "*" || x.rid === LOC.rid) &&
+    (LOC.cot === "*" || x.cot === LOC.cot) &&
+    (LOC.ai  === "*" || x.dx.some(d => d.email === LOC.ai)));
+
+  // Xếp: ô nhiều người trước, rồi theo chức danh, dòng, cột.
+  o.sort((a, b) => (nhieuNguoi(b) - nhieuNguoi(a)) ||
+    a.rid.localeCompare(b.rid) || a.k - b.k || a.cot.localeCompare(b.cot));
+
+  const themMoi = LUOT.flatMap(l => (l.them || []).map(t => ({ email: l.email, luc: l.luc, o: t })))
+    .filter(() => LOC.rid === "*" && LOC.cot === "*")
+    .filter(x => LOC.ai === "*" || x.email === LOC.ai);
+
+  const tom = `<div class="tom">
+    <div><span class="so">${LUOT.length}</span><span class="nhan">lượt gửi</span></div>
+    <div><span class="so">${oMap.size}</span><span class="nhan">ô có đề xuất</span></div>
+    <div><span class="so">${dsAi.length}</span><span class="nhan">người góp ý</span></div>
+    <div class="canh"><span class="so">${[...oMap.values()].filter(nhieuNguoi).length}</span>
+      <span class="nhan">ô nhiều người sửa</span></div>
+    <div><span class="so">${LUOT.reduce((s, l) => s + (l.them || []).length, 0)}</span>
+      <span class="nhan">dòng đề nghị thêm</span></div>
+  </div>`;
+
+  const xo = (id, nhan, ds, chon) =>
+    `<div class="o-loc"><label for="${id}">${esc(nhan)}</label><select id="${id}" class="${chon === "*" ? "tat" : ""}">` +
+    `<option value="*">Tất cả — ${ds.length}</option>` +
+    ds.map(v => `<option value="${esc(v)}"${v === chon ? " selected" : ""}>${esc(v)}</option>`).join("") +
+    `</select></div>`;
+
+  const loc = `<div class="hang-loc">` +
+    xo("xoRid", "Chức danh", dsRid, LOC.rid) +
+    xo("xoCot", "Cột", dsCot, LOC.cot) +
+    xo("xoAi",  "Người góp ý", dsAi, LOC.ai) + `</div>`;
+
+  const than = o.map(x => {
+    const nay = noiDungHienTai(x.rid, x.k, x.cot);
+    const d = HS[x.rid], n = d && d.chuoi && d.chuoi.list && d.chuoi.list[x.k];
+    // Bản hiện tại đã đổi từ lúc người ta góp ý → nói ra, kẻo duyệt theo bản cũ.
+    const lech = x.dx.filter(t => gonKhoang(t.cu) !== gonKhoang(nay === null ? t.cu : nay)).length;
+    return `<tr class="${nhieuNguoi(x) ? "canh" : ""}">
+      <td><b>${esc(x.rid)}</b><div class="ngu-canh">${esc(tenChucDanh(x.rid))}</div></td>
+      <td>${esc(x.cot)}<div class="ngu-canh">dòng ${x.k + 1}</div></td>
+      <td>${n ? `<div class="ngu-canh"><b>Mục tiêu:</b> ${esc((n.p || "").trim() || "—")}</div>
+                 <div>${esc(n.n || "")}</div>` : '<span class="hien-tai trong">không tìm thấy dòng này trong dữ liệu</span>'}</td>
+      <td class="hien-tai ${nay ? "" : "trong"}">${nay ? esc(nay) : "(trống)"}
+        ${lech ? `<div class="lech">⚠ bản hiện tại đã đổi từ lúc góp ý</div>` : ""}</td>
+      <td>${x.dx.map(t => `<div class="de-xuat">
+          <div class="ai">${esc(t.email)} · ${esc(String(t.luc).slice(0, 16).replace("T", " "))}</div>
+          <div class="noi">${t.xoa ? '<span class="xoa-het">đề xuất XOÁ nội dung này</span>' : esc(t.moi)}</div>
+        </div>`).join("")}
+        ${nhieuNguoi(x) ? '<span class="the-canh">nhiều người sửa</span>' : ""}</td>
+    </tr>`;
+  }).join("");
+
+  const bang = o.length
+    ? `<div class="khung-bang" style="max-height:none"><table class="bang-th"><thead><tr>
+         <th>Chức danh</th><th>Ô</th><th>Nhiệm vụ đang có</th><th>Bản hiện tại</th><th>Đề xuất</th>
+       </tr></thead><tbody>${than}</tbody></table></div>`
+    : `<div class="trong"><b>Không ô nào khớp bộ lọc.</b></div>`;
+
+  const bangThem = themMoi.length
+    ? `<h3 class="muc-th">Đề nghị thêm mới — ${themMoi.length} dòng</h3>` +
+      `<div class="khung-bang" style="max-height:none"><table class="bang-th"><thead><tr>
+         <th>Người góp ý</th><th>Lúc</th><th colspan="3">Nội dung đề nghị</th>
+       </tr></thead><tbody>` +
+      themMoi.map(x => `<tr><td>${esc(x.email)}</td>
+        <td>${esc(String(x.luc).slice(0, 16).replace("T", " "))}</td>
+        <td colspan="3">${Object.entries(x.o).map(([k, v]) =>
+          `<div class="de-xuat"><div class="ai">${esc(k)}</div><div class="noi">${esc(v)}</div></div>`).join("")}</td></tr>`).join("") +
+      `</tbody></table></div>`
+    : "";
+
+  $("eTong").innerHTML =
+    `<div class="dau-bang"><h3>Tổng hợp góp ý chuỗi công việc</h3>
+       <span class="dem-bang">gom theo từng ô, không theo lượt gửi</span></div>` +
+    tom + loc + bang + bangThem;
+}
+
+$("eTong").addEventListener("change", (e) => {
+  if (e.target.id === "xoRid")      LOC.rid = e.target.value;
+  else if (e.target.id === "xoCot") LOC.cot = e.target.value;
+  else if (e.target.id === "xoAi")  LOC.ai  = e.target.value;
+  else return;
+  ve();
+});
+
+(async () => {
+  kiemPhienBan();
+  try {
+    await napTatCa();
+  } catch (e) {
+    $("eTong").innerHTML = `<div class="trong"><b>Không nạp được dữ liệu.</b> ${esc(e.message)}</div>`;
+    return;
+  }
+  if (!LUOT.length) {
+    $("eTong").innerHTML = `<div class="trong"><b>Chưa có góp ý nào.</b> ` +
+      `Khi có người bấm Gửi trên trang góp ý, nội dung sẽ hiện ở đây.</div>`;
+    return;
+  }
+  ve();
+})();
+</script>
+</body>
+</html>
