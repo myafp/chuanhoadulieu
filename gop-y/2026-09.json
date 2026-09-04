@@ -30,7 +30,22 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-04T09:14:45.782Z",
+   "email": "tung.nguyen@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-18-S02",
+     "k": 0,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "Test",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-04T08:59:16.377Z"
+ "cap_nhat": "2026-09-04T09:14:46.645Z"
 }
