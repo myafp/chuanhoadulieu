@@ -87,6 +87,16 @@ const khoaO = (rid, k, cot) => `${rid}|${k}|${cot}`;
 // mà so, cũng không có mã chức danh để tra ngược.
 let oMoi = new Map();
 const khoaMoi = (i, cot) => `${i}|${cot}`;
+
+// Gửi xong thì ô vẫn đỏ và vẫn sửa được — người góp ý còn đang làm, chưa xong
+// việc. Nên phải nhớ ô nào đã gửi rồi: lần gửi sau chỉ ghi phần đổi từ lần trước,
+// không ghi lại cả mớ. Sửa lại một ô đã gửi thì nó rời khỏi đây, tính là mới.
+let daGuiSua = new Set(), daGuiMoi = new Set();
+let commitCuoi = "";
+
+const chuaGuiSua = () => [...oSua.entries()].filter(([k]) => !daGuiSua.has(k));
+const chuaGuiMoi = () => [...oMoi.entries()].filter(([k]) => !daGuiMoi.has(k));
+const demDongChuaGui = () => new Set(chuaGuiMoi().map(([k]) => +k.split("|")[0])).size;
 const SO_DONG_DAU = 3;
 let soDongMoi = SO_DONG_DAU;
 // Đếm dòng đã có chữ, để biết còn chừa sẵn dòng trống nào không.
@@ -108,6 +118,9 @@ function luuNhap() {
       v: 1, luc: Date.now(),
       oSua: [...oSua.entries()],
       oMoi: [...oMoi.entries()],
+      daGuiSua: [...daGuiSua],
+      daGuiMoi: [...daGuiMoi],
+      commitCuoi,
       soDongMoi
     }));
   } catch {}
@@ -121,8 +134,11 @@ function docNhap() {
   try {
     (d.oSua || []).forEach(([k, v]) => oSua.set(k, v));
     (d.oMoi || []).forEach(([k, v]) => oMoi.set(k, v));
+    (d.daGuiSua || []).forEach(k => daGuiSua.add(k));
+    (d.daGuiMoi || []).forEach(k => daGuiMoi.add(k));
+    commitCuoi = d.commitCuoi || "";
     if (d.soDongMoi > soDongMoi) soDongMoi = d.soDongMoi;
-  } catch { oSua.clear(); oMoi.clear(); }
+  } catch { oSua.clear(); oMoi.clear(); daGuiSua.clear(); daGuiMoi.clear(); }
 }
 
 function xoaNhap() { try { localStorage.removeItem(KHOA_NHAP); } catch {} }
@@ -223,14 +239,29 @@ const xoHtml = (id, nhan, ds, dangChon, tat) =>
 
 // Thanh gom các ô đã sửa. Chỉ hiện khi có sửa — treo một thanh rỗng chỉ tổ chiếm chỗ.
 function thanhSua() {
-  if (!oSua.size && !oMoi.size) return "";
-  const phan = [];
-  if (oSua.size) phan.push(`${oSua.size} ô đã sửa`);
-  if (oMoi.size) phan.push(`${demDongMoi()} dòng đề nghị thêm`);
-  return `<div class="thanh-sua"><b>${phan.join(" · ")}</b>` +
-    `<span>đã lưu trong máy bạn, chưa gửi đi đâu — soát lại rồi bấm Gửi</span>` +
-    `<button id="nBoSua">Bỏ hết</button>` +
-    `<button class="pri" id="nGuiSua">Gửi góp ý</button></div>`;
+  const cSua = chuaGuiSua().length, cMoi = demDongChuaGui();
+
+  // Còn thứ chưa gửi → thanh đỏ kèm nút Gửi.
+  if (cSua || cMoi) {
+    const phan = [];
+    if (cSua) phan.push(`${cSua} ô chưa gửi`);
+    if (cMoi) phan.push(`${cMoi} dòng đề nghị chưa gửi`);
+    return `<div class="thanh-sua"><b>${phan.join(" · ")}</b>` +
+      `<span>đã lưu trong máy bạn, chưa gửi đi đâu — soát lại rồi bấm Gửi</span>` +
+      `<button id="nBoSua">Bỏ hết</button>` +
+      `<button class="pri" id="nGuiSua">Gửi góp ý</button></div>`;
+  }
+
+  // Gửi hết rồi nhưng vẫn còn ô đỏ trên bảng → cảm ơn, và vẫn cho sửa tiếp.
+  if (daGuiSua.size || daGuiMoi.size) {
+    return `<div class="thanh-sua thanh-xong"><b class="bao-ok">Cảm ơn bạn đã góp ý.</b>` +
+      `<span>Sửa tiếp ô nào cũng được — lần gửi sau chỉ ghi phần mới.</span>` +
+      (commitCuoi ? `<a class="lien-nho" href="${commitCuoi}" target="_blank" rel="noopener">xem commit</a>` : "") +
+      `<button id="nThuBanSao">✉ Gửi bản sao vào email của bạn</button>` +
+      `<button id="nBoSua">Dọn bảng</button></div>`;
+  }
+
+  return "";
 }
 
 const COT_BANG = ["Chức danh", "Mục tiêu", "Nhiệm vụ", "Đầu việc", "Việc cụ thể", "Đơn vị đo", "Quy trình"];
@@ -373,6 +404,7 @@ function ghiO(xoa) {
 
   if (them) {
     // Bảng trắng: gõ rỗng hoặc bấm Xoá đều là bỏ ô đó đi, không giữ chuỗi rỗng.
+    daGuiMoi.delete(kh);
     if (xoa || !moi) oMoi.delete(kh);
     else oMoi.set(kh, moi);
     // Điền tới dòng cuối thì chừa sẵn một dòng trống nữa, khỏi phải bấm Thêm dòng.
@@ -380,6 +412,7 @@ function ghiO(xoa) {
   } else {
     const goc = el.dataset.goc;
     const [rid, k, cot] = kh.split("|");
+    daGuiSua.delete(kh);
     // Sửa về đúng bản gốc thì gỡ khỏi danh sách, đừng đếm nó là một ô đã sửa.
     if (!xoa && moi === goc) oSua.delete(kh);
     else oSua.set(kh, { rid, k: +k, cot, cu: goc, moi: xoa ? "" : moi, xoa: !!xoa });
@@ -450,15 +483,17 @@ document.addEventListener("mousedown", (e) => {
 
 /* ---------- gửi cả loạt ô đã sửa ---------- */
 // Các dòng đề nghị thêm, gom theo số dòng, bỏ dòng nào chưa điền gì.
-function dongDeNghi() {
+function gomTheoDong(cap) {
   const theo = new Map();
-  for (const [kh, v] of oMoi) {
+  for (const [kh, v] of cap) {
     const [i, cot] = kh.split("|");
     if (!theo.has(i)) theo.set(i, {});
     theo.get(i)[cot] = v;
   }
   return [...theo.entries()].sort((a, b) => +a[0] - +b[0]).map(([, o]) => o);
 }
+
+const dongDeNghi = () => gomTheoDong([...oMoi.entries()]);
 
 function thanDeNghiThem() {
   const ds = dongDeNghi();
@@ -510,24 +545,30 @@ async function guiGopYGop() {
   if (API_GOP_Y) {
     const nut = $("nGuiSua");
     if (nut) { nut.disabled = true; nut.textContent = "Đang ghi…"; }
+    // Chỉ gửi phần đổi từ lần gửi trước. Gửi lại cả mớ thì lịch sử trên GitHub
+    // đầy bản trùng, và người duyệt không biết lần này người ta sửa cái gì.
+    const goiSua = chuaGuiSua();
+    const goiMoi = chuaGuiMoi();
     try {
       const r = await fetch(API_GOP_Y, {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email,
-          sua: [...oSua.values()].map(o => ({ rid: o.rid, k: o.k, cot: o.cot, cu: o.cu, moi: o.moi, xoa: o.xoa })),
-          them: dongDeNghi()
+          sua: goiSua.map(([, o]) => ({ rid: o.rid, k: o.k, cot: o.cot, cu: o.cu, moi: o.moi, xoa: o.xoa })),
+          them: gomTheoDong(goiMoi)
         })
       });
       const j = await r.json().catch(() => ({}));
       if (!r.ok) throw new Error(j.loi || ("HTTP " + r.status));
-      // Ghi xong thì bản nháp trong máy hết việc — giữ lại chỉ khiến lần sau mở
-      // trang thấy một mớ đỏ đã gửi rồi mà tưởng chưa gửi.
-      oSua.clear(); oMoi.clear(); soDongMoi = SO_DONG_DAU; xoaNhap();
-      await veChuoi();
-      return baoGuiXong(j.url
-        ? `Đã ghi vào GitHub — <a href="${j.url}" target="_blank" rel="noopener">xem commit</a>.`
-        : "Đã ghi vào GitHub.");
+
+      // Không dọn bảng: người góp ý còn đang làm việc, ô vẫn đỏ và vẫn sửa được.
+      // Chỉ đánh dấu những gì vừa gửi, để lần sau không gửi lại.
+      goiSua.forEach(([k]) => daGuiSua.add(k));
+      goiMoi.forEach(([k]) => daGuiMoi.add(k));
+      commitCuoi = j.url || "";
+      luuNhap();
+      $("eThanhSua").innerHTML = thanhSua();
+      return;
     } catch (e) {
       if (nut) { nut.disabled = false; nut.textContent = "Gửi góp ý"; }
       return baoGui("Không ghi được: " + esc(e.message), true);
@@ -622,12 +663,6 @@ function moThuBanSao() {
   location.href = dat(than);
 }
 
-// Ghi thẳng vào GitHub xong thì bảng đã sạch, không còn nút Bỏ hết để làm gì.
-function baoGuiXong(chu) {
-  const t = $("eChuoi").querySelector("#eThanhSua");
-  if (t) t.innerHTML = `<div class="thanh-sua thanh-xong"><b class="bao-ok">${chu}</b></div>`;
-}
-
 function baoGui(chu, loi) {
   const t = $("eChuoi").querySelector(".thanh-sua");
   if (!t) return;
@@ -707,7 +742,8 @@ $("eChuoi").addEventListener("click", (e) => {
   if (e.target.id === "nThuBanSao") return moThuBanSao();
   if (e.target.id === "nThemDong")  { soDongMoi++; return veChuoi(); }
   if (e.target.id === "nBoSua")     {
-    oSua.clear(); oMoi.clear(); soDongMoi = SO_DONG_DAU; xoaNhap(); return veChuoi();
+    oSua.clear(); oMoi.clear(); daGuiSua.clear(); daGuiMoi.clear();
+    commitCuoi = ""; soDongMoi = SO_DONG_DAU; xoaNhap(); return veChuoi();
   }
 
   // Ô sửa được thì bấm vào là soạn, kể cả ô đang trống — chỗ trống chính là chỗ
