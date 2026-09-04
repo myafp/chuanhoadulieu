@@ -45,7 +45,38 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-04T09:29:59.540Z",
+   "email": "tung.nguyen@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-18-S02",
+     "k": 1,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Hồ sơ tổng quan của BV: Số BS, số PK/ lượt khám, người quyết định, quy trình tender/ mua hàng.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 0,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Account plan được phê duyệt\n2. Theo dõi tiến độ",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 0,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "- Hoàn thành bản thảo account plan\n- Họp \n- Theo dõi định kỳ kết quả",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-04T09:14:46.645Z"
+ "cap_nhat": "2026-09-04T09:29:59.923Z"
 }
