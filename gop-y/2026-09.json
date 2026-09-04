@@ -355,7 +355,38 @@
      "Chức danh": "VT-18-S02\nDetailing Sales · Nhân viên"
     }
    ]
+  },
+  {
+   "luc": "2026-09-04T13:24:55.272Z",
+   "email": "tuan@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-18-S02",
+     "k": 0,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "Bản sơ bộ account plan",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 0,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "Tổng hợp thông tin đã đánh giá về địa bàn",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 0,
+     "cot": "Đơn vị đo",
+     "cu": "% đạt Vùng và kênh",
+     "moi": "% hoàn thành",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-04T12:04:25.854Z"
+ "cap_nhat": "2026-09-04T13:24:55.860Z"
 }
