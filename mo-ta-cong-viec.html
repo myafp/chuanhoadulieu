@@ -26,8 +26,16 @@
     <button id="tabChuoi" aria-selected="false">Chuỗi công việc ↗</button>
   </div>
 
-  <div class="hang-xo" id="eHangXo">
-    <select class="xo" id="eXo" aria-label="Chọn vị trí"></select>
+  <!-- Cùng bộ ô lọc như trang Góp ý chuỗi công việc — đơn vị · vị trí · vai trò —
+       chỉ khác chỗ nó lọc cái gì: bên kia lọc dòng của bảng, ở đây lọc danh sách
+       chức danh trong ô xổ, vì trang này mỗi lúc chỉ mở JD của một chức danh.
+       Không có ba ô này thì muốn đọc JD một vị trí phải cuộn qua cả 76 dòng. -->
+  <div class="hang-xo hang-loc" id="eHangXo">
+    <div class="o-loc"><label for="eDonVi">Đơn vị</label><select id="eDonVi"></select></div>
+    <div class="o-loc"><label for="eCap">Vị trí</label><select id="eCap"></select></div>
+    <div class="o-loc o-chinh"><label for="eXo">Chức danh <b id="eDemVT"></b></label>
+      <select id="eXo" aria-label="Chọn chức danh"></select></div>
+    <div class="o-loc"><label for="eVaiTro">Vai trò</label><select id="eVaiTro"></select></div>
   </div>
 
   <div class="dai" id="eDai">
@@ -158,7 +166,7 @@ async function moVT(k) {
     HS = await nap("du-lieu/jd/" + ma + ".json");
   } catch (e) {
     // Ô xổ vẫn phải chọn được để đổi sang vị trí khác, dù hồ sơ này hỏng.
-    veXo($("eXo"), CHI_MUC, ma);
+    veLoc(); veXo($("eXo"), dsLoc(), ma);
     $("eMa").textContent = ma;
     return baoLoi("Không nạp được hồ sơ " + ma, e.message, "du-lieu/jd/" + ma + ".json");
   }
@@ -167,8 +175,39 @@ async function moVT(k) {
   window.scrollTo({ top: 0 });
 }
 
+/* ---------- ba ô lọc bậc thang ----------
+   "*" = không lọc. Ô nào cũng chỉ liệt kê thứ còn với tới được sau khi ba ô kia
+   đã lọc, nên không bao giờ chọn ra một danh sách chức danh rỗng.            */
+const LOC = { phong: "*", cap: "*", vai_tro: "*" };
+const TRUONG = [
+  { k: "phong",   id: "eDonVi",  dv: "đơn vị" },
+  { k: "cap",     id: "eCap",    dv: "cấp" },
+  { k: "vai_tro", id: "eVaiTro", dv: "vai trò" }
+];
+
+// Một vị trí khớp bộ lọc, có thể bỏ qua một trường — dùng để tính danh sách chọn
+// cho chính trường đó: tự lọc chính mình thì ô xổ chỉ còn đúng giá trị đang chọn.
+const khopLoc = (x, boQua) =>
+  TRUONG.every(t => t.k === boQua || LOC[t.k] === "*" || x[t.k] === LOC[t.k]);
+const dsLoc = () => CHI_MUC.filter(x => khopLoc(x, null));
+
+function veLoc() {
+  TRUONG.forEach(t => {
+    const co = [...new Set(CHI_MUC.filter(x => khopLoc(x, t.k)).map(x => x[t.k]))]
+      .filter(Boolean).sort();
+    // Giá trị không còn với tới được thì bỏ khỏi bộ lọc, đừng để treo một lựa
+    // chọn cho ra danh sách rỗng mà người dùng không hiểu vì sao.
+    if (LOC[t.k] !== "*" && !co.includes(LOC[t.k])) LOC[t.k] = "*";
+    const o = $(t.id);
+    o.innerHTML = `<option value="*"${LOC[t.k] === "*" ? " selected" : ""}>` +
+      `Tất cả — ${co.length} ${t.dv}</option>` +
+      co.map(v => `<option value="${esc(v)}"${v === LOC[t.k] ? " selected" : ""}>${esc(v)}</option>`).join("");
+    o.classList.toggle("tat", LOC[t.k] === "*");
+  });
+}
+
 /* ---------- vẽ ---------- */
-// Ô xổ chọn vị trí, gom theo phòng ban. Dùng chung cho cả hai tab.
+// Ô xổ chọn vị trí, gom theo phòng ban. Chỉ liệt kê vị trí còn khớp ba ô lọc.
 function veXo(oXo, ds, maDangChon) {
   let html = "", phong = null;
   for (const x of ds) {
@@ -188,7 +227,12 @@ function ve() {
   const d = HS;
   $("eMa").textContent = d.ma;
   document.title = d.ma + " · " + d.ten;
-  veXo($("eXo"), CHI_MUC, d.ma);
+  veLoc();
+  const dsVT = dsLoc();
+  veXo($("eXo"), dsVT, d.ma);
+  // Đếm để biết bộ lọc còn chừa lại bao nhiêu vị trí, khỏi phải bung ô xổ ra đếm.
+  $("eDemVT").textContent = dsVT.length === CHI_MUC.length
+    ? CHI_MUC.length : dsVT.length + "/" + CHI_MUC.length;
 
   const vien = $("eVien");
   if (d.ban_hanh) { vien.hidden = false; vien.textContent = d.ban_hanh + (d.phien_ban ? " · " + d.phien_ban : ""); }
@@ -217,8 +261,13 @@ function ve() {
     (d.chu_so_huu ? `<div class="hang-ray" style="display:block"><span>Chủ sở hữu</span><div style="margin-top:4px">${esc(d.chu_so_huu.split("·").slice(0,2).join("·"))}</div></div>` : "");
 
   $("eNoi").innerHTML = canhCsv(d) + d.muc.map(m => veMuc(m, d)).join("");
-  $("nTruoc").disabled = iVT === 0;
-  $("nSau").disabled = iVT === CHI_MUC.length - 1;
+  // Trước/Sau đi trong danh sách ĐANG LỌC, không phải cả 76 vị trí — bấm Sau mà
+  // nhảy sang một phòng vừa bị lọc ra thì bộ lọc coi như không có tác dụng gì.
+  const iLoc = dsVT.findIndex(x => x.ma === d.ma);
+  $("nTruoc").disabled = iLoc <= 0;
+  $("nSau").disabled = iLoc < 0 || iLoc === dsVT.length - 1;
+  const trong = dsVT.length === CHI_MUC.length ? "" : ` trong ${dsVT.length} vị trí đang lọc`;
+  $("nTruoc").title = $("nSau").title = `Vị trí ${iLoc + 1}/${dsVT.length}${trong}`;
 }
 
 const TEN_TD = {
@@ -401,8 +450,25 @@ $("eXo").onchange = (e) => {
   const k = CHI_MUC.findIndex(x => x.ma === e.target.value);
   if (k >= 0) moVT(k);
 };
-$("nTruoc").onclick = () => moVT(iVT - 1);
-$("nSau").onclick = () => moVT(iVT + 1);
+const diVT = (buoc) => {
+  const ds = dsLoc(), i = ds.findIndex(x => x.ma === CHI_MUC[iVT].ma) + buoc;
+  if (i >= 0 && i < ds.length) moVT(CHI_MUC.findIndex(x => x.ma === ds[i].ma));
+};
+$("nTruoc").onclick = () => diVT(-1);
+$("nSau").onclick = () => diVT(1);
+
+// Đổi một ô lọc thì danh sách chức danh hẹp lại. Vị trí đang đọc rơi ra ngoài
+// danh sách mới thì mở luôn vị trí đầu — để lại một JD không khớp bộ lọc thì ô
+// xổ và nội dung dưới nó nói hai chuyện khác nhau.
+$("eHangXo").addEventListener("change", (e) => {
+  const t = TRUONG.find(x => x.id === e.target.id);
+  if (!t) return;
+  LOC[t.k] = e.target.value;
+  veLoc();
+  const ds = dsLoc();
+  if (HS && ds.some(x => x.ma === HS.ma)) return ve();
+  if (ds.length) moVT(CHI_MUC.findIndex(x => x.ma === ds[0].ma));
+});
 $("nIn").onclick = () => window.print();
 $("nLichSu").onclick = () =>
   window.open(`https://github.com/${repoDung()}/commits/main/${duongCsv()}`, "_blank", "noopener");

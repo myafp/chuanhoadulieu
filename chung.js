@@ -17,6 +17,29 @@ const REPO_CONG = "myafp/chuanhoadulieu";
 //     cd cong/worker-gop-y && npx wrangler deploy
 //
 // Wrangler in ra URL dạng https://afp-gop-y.<tên>.workers.dev — dán vào đây.
+// Phiên bản của chính file này, do cong/xuat-ban.sh dập vào lúc xuất bản.
+// So với du-lieu/phien-ban.json trên máy chủ để biết trang đang chạy có cũ không.
+const PHIEN_BAN = "20260904-085628";
+
+// Trang mở sẵn trong tab thì giữ mã cũ vô hạn, mà GitHub Pages đệm HTML 10 phút
+// nữa. Một nhân viên đã mất cả buổi gõ vì chuyện này: bản cũ mở form Issue của
+// GitHub, GitHub đòi đăng nhập, góp ý không tới đâu, và trang không có dấu hiệu
+// nào cho biết nó đã cũ. Nên bây giờ tự kiểm, và nói thẳng ra.
+async function kiemPhienBan() {
+  try {
+    const r = await fetch("phien-ban.json?t=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) return;
+    const j = await r.json();
+    if (!j.phien_ban || j.phien_ban === PHIEN_BAN) return;
+    const d = document.createElement("div");
+    d.className = "dai-cu";
+    d.innerHTML = `<b>Trang này đã cũ.</b> Có bản mới rồi — tải lại trước khi gửi góp ý, ` +
+      `kẻo bấm Gửi mà không tới đâu. <button id="nTaiLai">Tải lại ngay</button>`;
+    document.body.insertBefore(d, document.body.firstChild);
+    d.querySelector("#nTaiLai").onclick = () => location.reload();
+  } catch {}
+}
+
 const API_GOP_Y = "https://abp.alpha-5ae.workers.dev";
 
 // Trang chạy được ở hai nơi, khác nhau đúng một chỗ: nút Gửi làm gì.

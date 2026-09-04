@@ -47,6 +47,18 @@ a{color:var(--acc)}
     text-overflow:ellipsis}
 .o-loc select:hover{border-color:var(--acc)}
 .o-loc select.tat{color:var(--nhat);background-color:var(--bg)}
+.o-loc>label b{font-family:var(--mono);font-weight:500;letter-spacing:0}
+
+/* Trang mô tả công việc: hàng lọc nằm trong thanh đầu, và ô Chức danh là ô CHÍNH
+   — mỗi dòng là "mã · tên chức danh" dài cả câu, để chung 340px như ba ô lọc kia
+   thì tên bị cắt mất. .dai ngay dưới đã có margin-top riêng nên hàng lọc không
+   cần margin-bottom, kẻo hở thêm một khoảng trống giữa thanh đầu và vạch tiến độ. */
+.hang-xo.hang-loc{margin-bottom:0;padding:12px 0 0;align-items:flex-end}
+/* Ô Chức danh nong ra hết chỗ còn lại của hàng, không đặt bề rộng cứng: đặt cứng
+   thì màn hẹp là ô Vai trò bị đẩy xuống dòng dưới, màn rộng lại thừa chỗ mà tên
+   chức danh vẫn bị cắt. */
+.o-loc.o-chinh{flex:1 1 240px}
+.o-loc.o-chinh select{max-width:100%;width:100%;font-size:14.5px;font-weight:600}
 
 .khung-bang{background:var(--trang);border:1px solid var(--line);border-radius:11px;
             overflow-x:hidden;overflow-y:auto;max-height:calc(100vh - 280px)}
@@ -165,12 +177,6 @@ button.nguy:hover{background:var(--sua-nen)}
 .dau-tren{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .ma-vt{font-family:var(--mono);font-size:13px;color:var(--acc2);background:var(--acc-nhat);
        border:1px solid #c9e0de;border-radius:7px;padding:4px 9px;white-space:nowrap}
-.xo{font:inherit;font-size:15px;font-weight:600;color:var(--ink);background:var(--trang);
-    border:1px solid var(--line);border-radius:9px;padding:8px 32px 8px 12px;max-width:min(560px,54vw);
-    appearance:none;cursor:pointer;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' fill='none' stroke='%235b6463' stroke-width='1.6'/></svg>");
-    background-repeat:no-repeat;background-position:right 12px center}
-.xo:hover{border-color:var(--acc)}
 .dau-nut{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .vien{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--du);
       background:var(--du-nen);border:1px solid #bfe1cf;border-radius:20px;padding:5px 12px;white-space:nowrap}
@@ -299,9 +305,9 @@ button.nguy:hover{background:var(--sua-nen)}
   body{font-size:14.5px}
   .dau{padding:10px 14px 0}
   .dau-tren{gap:9px}
-  .xo{max-width:100%;font-size:15px;padding:10px 32px 10px 12px}
   .ma-vt{display:none}   /* trùng với ô xổ, ô xổ đã mở đầu bằng mã */
-  .hang-xo{padding:10px 0 0}
+  .hang-xo.hang-loc{padding:10px 0 0}
+  .o-loc.o-chinh select{max-width:100%;font-size:15px}
   /* Trang chuỗi không có ô xổ trên thanh đầu, nên mã từ điển không trùng với
      thứ gì — cho nó hiện, kẻo thanh đầu thành một vạch trắng trống trơn. */
   body.trang-chuoi .ma-vt{display:inline-flex}
@@ -419,6 +425,10 @@ button.nguy:hover{background:var(--sua-nen)}
 
 @media print{
   .dau-nut,.chan,.ray,.sua,#hop,.cho-bs,.tabs{display:none!important}
+  /* Bản in giữ ô Chức danh làm dòng tên — người đọc bản giấy phải biết đây là JD
+     của ai. Ba ô lọc là công cụ bấm trên màn hình, in ra chỉ tốn giấy. */
+  .hang-xo .o-loc:not(.o-chinh){display:none!important}
+  .hang-xo .o-loc.o-chinh>label{display:none}
   body{background:#fff}
   .than{grid-template-columns:1fr}
   .noi{padding:0;max-width:none}
