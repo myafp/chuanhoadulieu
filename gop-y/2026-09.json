@@ -307,7 +307,30 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-04T11:16:55.242Z",
+   "email": "ha.dang@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-18-S02",
+     "k": 2,
+     "cot": "Đơn vị đo",
+     "cu": "% đạt Cuộc tiếp xúc",
+     "moi": "số user/loyal",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 3,
+     "cot": "Đơn vị đo",
+     "cu": "% đạt Cuộc tiếp xúc",
+     "moi": "số user/loyal",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-04T10:51:29.313Z"
+ "cap_nhat": "2026-09-04T11:16:55.763Z"
 }
