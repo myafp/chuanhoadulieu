@@ -76,7 +76,238 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-04T10:51:28.893Z",
+   "email": "ha.dang@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-18-S02",
+     "k": 0,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "Bản Kế hoạch Phát triển account plan trọng điểm được phê duyệt.\nBáo cáo tiến độ hoàn thành mục tiêu chiến lược tại cơ sở trọng điểm.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 0,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "Soạn thảo bản Kế hoạch Account Plan (Mục tiêu doanh số, hoạt động đầu tư, trải nghiệm lâm sàng, tiến độ listing...).\nTrình phê duyệt Account Plan qua các cấp thẩm quyền trên hệ thống CRM/ERP.\nTheo dõi, định kỳ cập nhật kết quả thực hiện các cột mốc trong kế hoạch.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 1,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "Hồ sơ tổng quan Cơ sở Y tế trọng điểm (Bệnh viện/Chuỗi nhà thuốc/Phòng khám lớn)\nSơ đồ người quyết định (Key Stakeholders / KOLs) và dữ liệu sức mua/tiềm năng/số lượng bệnh/khoa phòng/số bác sĩ",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 1,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "Khảo sát và thu thập thông tin về lượng bệnh nhân, danh mục hiện tại/dự kiến của cơ sở.\nPhân tích vai trò của từng cá nhân ảnh hưởng (Trưởng khoa, Dược, Nhà thuốc, KHTH).\nRà soát hạn mức ngân sách hoặc chương trình đề xuất cho Khách hàng này.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 2,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "Nhật ký cuộc gặp (Call Report) hoàn chỉnh trên CRM.\nCập nhật trạng thái chuyển đổi A2D của khách hàng (nếu có)",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 2,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "Trình bày thông điệp sản phẩm, ghi nhận các câu hỏi, phản hồi hoặc phản đối (Objection) của HCP\nNhập kết quả tiếp xúc sau cuộc gặp (Nội dung trao đổi, cam kết kê đơn/nhập hàng, đề xuất hỗ trợ).\nCập nhật lại giai đoạn A2D mới của khách hàng trên CRM",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 3,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "Xem xét lại các tài liệu E-detailing và kịch bản tiếp xúc theo từng giai đoạn phễu A2D. \nGhi nhận Thông tin call (GPS Check-in) tại điểm đến viếng thăm.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 3,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "Kiểm tra lịch sử call trên CRM để biết HCP đang ở giai đoạn nào trong phễu A2D.\nChuẩn bị thông điệp sản phẩm, vật phẩm Marketing và mẫu thử (Sample) phù hợp với mục tiêu cuộc gặp.\nDi chuyển đến cơ sở y tế và thực hiện Check-in định vị vị trí trên ứng dụng CRM.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 4,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "Xây dựng Kế hoạch Viếng thăm (Call Plan) tuần/tháng hoàn chỉnh trên CRM.\nLấy xác nhận phê duyệt từ Trưởng nhóm/Trưởng phòng.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 4,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "Sắp xếp lịch trình viếng thăm tối ưu ttrên CRM.\nGhi nhận Call Plan lên hệ thống trước hạn chót quy định\nTiếp nhận phản hồi của Trưởng nhóm, điều chỉnh (nếu có) và đóng tác vụ lập kế hoạch.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 5,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "Rà soát và kiểm tra danh mục Khách hàng Mục tiêu (HCP/HCO) thuộc địa bàn quản lý.\nRà soát lịch sử tần suất viếng thăm và mức độ hoàn thành chỉ tiêu tuần/tháng trước.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 5,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "Rà soát danh sách Bác sĩ/Nhà thuốc được phân công trên CRM, kiểm tra thông tin lịch làm việc, địa chỉ và phân đoạn của khách hàng (suppoter/user/loyal...).\nXác định các khách hàng quan trọng và KH chưa đạt định mức viếng thăm ở kỳ trước để đưa vào danh sách ưu tiên.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 6,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "Bảng Phân bổ Chỉ tiêu Doanh số chi tiết theo Khách hàng (Account Quota Allocation) trên hệ thống.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 6,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "Thực hiện bổ chỉ tiêu xuống từng khách hàng cụ thể trên CRM.\nGửi đề xuất điều chỉnh danh sách (Thêm khách hàng tiềm năng mới / Loại bỏ khách hàng không có tiềm năng...)\nTrình phê duyệt Bảng Phân bổ Doanh số chi tiết trên CRM và bấm đóng quy trình tiếp nhận địa bàn.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 7,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "Tiếp nhận địa bàn và danh mục Master Data khách hàng, lịch sử, tiềm năng địa bàn.\nNhận chỉ tiêu Doanh số tổng (Triệu đồng) và số lượng khách hàng mục tiêu.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 7,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "Nhận Doanh số tổng và danh sách khách hàng từ Trưởng nhóm.\nĐối soát dữ liệu doanh số quá khứ (nếu có) và ước tính tiềm năng của các khách hàng trọng điểm trên địa bàn.\nTính toán Khoảng trống doanh số (Sales Gap) và xác định lượng doanh số cần tăng trưởng thêm nằm ở nhóm khách hàng nào.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 8,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "Biên bản/Xác nhận giao/tặng hàng mẫu có chữ ký hoặc xác nhận của Bác sĩ/khoa/viện (nếu có theo quy định)\nBáo cáo danh sách tặng hàng mẫu trên hệ thống.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 8,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "Tặng hàng mẫu trực tiếp cho HCP đúng chủng loại và số lượng.\nCập nhật thông tin, lấy xác nhận của HCP (nếu có) trên hệ thống.\nGhi nhận phản hồi lâm sàng ban đầu của HCP sau khi trải nghiệm mẫu thử và đóng tác vụ trên CRM.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 9,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "Hạn mức/số lượng hàng mẫu (Sample/Trial) được duyệt theo tháng/quý.\nDanh sách HCP đủ điều kiện nhận mẫu thử theo chiến dịch.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 9,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "Kiểm tra số lượng hàng mẫu khả dụng được cấp phát.\nLập danh sách Bác sĩ mục tiêu cần trải nghiệm mẫu thử dựa trên kế hoạch tiếp xúc A2D.\nKiểm tra các quy định tuân thủ (Compliance) về giới hạn số lượng mẫu thử trao cho mỗi Bác sĩ/khoa/viện",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 10,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "Đơn hàng (Sales Order) hoặc Hợp đồng bán hàng được tạo lập thành công.\nPhê duyệt đơn hàng/hợp đồng từ các cấp thẩm quyền.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 10,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "Nhập chính xác thông tin mặt hàng, số lượng, giá và chiết khấu lên biểu mẫu CRM.\nĐính kèm hợp đồng/đơn đặt hàng bản mềm (nếu có) và gửi duyệt qua hệ thống.\nTheo dõi trạng thái duyệt, chuyển giao thông tin cho bộ phận Logistics/Kho để xuất hàng và hoàn tất quy trình.\nGửi phê duyệt và theo dõi tình trạng hợp đồng trên hệ thống",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 11,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "Nhận nhu cầu đặt hàng/ký hợp đồng từ khách hàng.\nRà soát và chuẩn bị Bảng giá, chính sách chiết khấu, hạn mức công nợ (Credit Limit) và mẫu hợp đồng chuẩn.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 11,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "Kiểm tra tình trạng nợ quá hạn và hạn mức tín dụng còn lại của khách hàng trên hệ thống.\nKiểm tra tồn kho khả dụng của sản phẩm trên ERP/CRM trước khi chốt đơn với khách hàng.\nRà soát các điều khoản thương mại trong hợp đồng để bảo đảm không vượt khung thẩm quyền.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 12,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "Hồ sơ khách hàng mới (HCP/HCO Profile) được tạo trên hệ thống.\nPhê duyệt chính thức từ Quản lý trực tiếp để đưa vào Master Data.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 12,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "Khởi tạo thông tin khách hàng mới trên hệ thống.\nĐính kèm các tài liệu/hình ảnh xác minh (Danh thiếp, bảng tên phòng khám, GPKD, GPP...).\nSubmit hệ thống và đóng quy trình sau khi hồ sơ được cấp mã Master Data chính thức.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 13,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "Thông tin thô về Bác sĩ/Nhà thuốc/Phòng khám/Bệnh viện mới phát sinh trên địa bàn.\nChecklist thông tin định danh bắt buộc (Tên, Chuyên khoa, Chức vụ, SĐT, Địa chỉ, Mã số thuế/GPKD...)",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 13,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "Thu thập thông tin định danh của khách hàng mới qua quá trình khảo sát thực địa.\nTra cứu sơ bộ trên hệ thống để tránh tạo trùng lặp với dữ liệu khách hàng đã có.",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-04T09:29:59.923Z"
+ "cap_nhat": "2026-09-04T10:51:29.313Z"
 }
