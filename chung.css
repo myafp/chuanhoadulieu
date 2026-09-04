@@ -112,6 +112,18 @@ td.o-cd{width:150px}
 .o-sua.da-xoa s{color:var(--nhat)}
 .the-xoa{font-size:11px;color:var(--sua);font-weight:700;white-space:nowrap}
 
+/* Bảng trắng đề nghị thêm — luôn nằm cuối trang, không lọc theo gì */
+.dau-them{margin-top:34px;padding-top:22px;border-top:2px solid var(--line)}
+.dau-them h3{font-size:16px;max-width:62ch;line-height:1.35}
+.dan-them{font-size:13px;color:var(--nhat);margin:-6px 0 12px;max-width:70ch;line-height:1.55}
+/* Nền hơi khác bảng trên để không nhìn nhầm là dữ liệu đã có */
+.khung-them{background:repeating-linear-gradient(-45deg,var(--trang),var(--trang) 9px,#fbfcfc 9px,#fbfcfc 18px);
+  border-style:dashed}
+.khung-them table.bang-chuoi th{background:var(--bg)}
+.o-them{color:var(--nhat)}
+.o-them.da-sua{color:var(--sua)}
+.hang-them{margin-top:10px}
+
 .hang-email{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;max-width:420px}
 .hang-email label{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
   color:var(--nhat);font-weight:700}
@@ -359,7 +371,10 @@ button.nguy:hover{background:var(--sua-nen)}
 
   .thanh-sua{position:sticky;top:0;z-index:5;gap:8px;padding:10px 13px}
   .thanh-sua span{flex:1 1 100%;order:3}
-  .thanh-sua button{flex:1;min-width:0}
+  .thanh-sua button{flex:1;min-width:0;white-space:nowrap;padding:8px 6px}
+
+  .dau-them{margin-top:26px;padding-top:18px}
+  .dau-them h3{font-size:15.5px}
   .thanh-sua #nGuiSua{margin-left:0}
 
   .khung-bang{max-height:none;overflow:visible;background:none;border:none;border-radius:0}
