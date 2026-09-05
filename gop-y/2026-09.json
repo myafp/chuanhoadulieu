@@ -899,7 +899,126 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-05T12:37:41.763Z",
+   "email": "tung.nguyen@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-18-S02",
+     "k": 1,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Nhận danh sách cơ sở trọng điểm\n2. Thu thập dữ liệu nền của từng cơ sở",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 3,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Chuẩn bị trước mỗi lượt tiếp xúc\n2. Kiểm tài liệu và thông điệp đã duyệt\n3. Chốt mục tiêu của lượt",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 2,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Thực hiện lượt tiếp xúc\n2. Ghi nhận ngay sau lượt (trong ngày)\n3. Chốt bước tiếp theo và lưu",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 10,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "Đơn hàng:\n1. Nhập đơn hàng\n2. Theo dõi duyệt và giao\n3. Theo dõi công nợ\n\nHợp đồng\n1. Trình ký HD được duyệt\n2. Follow ký hai bên & gửi lưu bản đã ký về cty",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 10,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "Đơn hàng\n1. Nhập đơn lên CRM đúng mã hàng, số lượng, giá và chương trình\n2. Theo dõi trạng thái duyệt & giao hàng, báo khách ngày giao dự kiến\n3. Theo dõi nhận hàng và công nợ\n\nHợp đồng\n1. Soạn draft HD\n2. Trình duyệt & Trình ký\n3. Follow với Khách hàng & gửi lại bản ký cả hai bên",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 3,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "1. Trước ngày đi, mở lịch xem lịch sử tiếp xúc, giai đoạn A2D và phản đối lần trước\n2. Chọn thông điệp và tài liệu đúng bản đã duyệt cho khách đó\n3. Đặt mục tiêu cụ thể: giữ giai đoạn hay đẩy lên giai đoạn nào\n4. Chuẩn bị tài liệu đã được duyệt\n5. Thiếu tài liệu đã duyệt thì báo Lead HPM và Medical trước, không tự chế bản thay thế",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 2,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "1. Tóm tắt phản hồi của HCP: nội dung, phản đối, cam kết của khách\n2. Cập nhật giai đoạn A2D, chỉ nâng khi có bằng chứng từ lời khách, không theo cảm nhận\n3. Ghi bước tiếp theo \n4. Phản đối chuyên môn chưa trả lời được thì chuyển sang HPM, Medical",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 1,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "1. Nhận từ công ty danh sách cơ sở trọng điểm thuộc địa bàn và kỳ 90 ngày áp dụng\n2. Lấy data sẵn có của địa bàn: doanh số, sp đang dùng, HCP chủ chốt, công nợ\n3. Xác định người quyết định, người ảnh hưởng, người dùng chính ở từng cơ sở\n4. Thu thập thông tin về tiềm năng, số lượt khám, số phòng, số HCP, \n5. Ghi rào cản đang có: danh mục, thầu, tồn kho, đối thủ",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 5,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "1. Review danh sách khách hàng và địa bàn ưu tiên\n2. Ưu tiên các khách hàng có lộ trình nâng lên user/ loyal\n3. Lập call plan trong tuần trước T2 hàng tuần",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 4,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "1. Họp tuần với HPM chốt lịch call plan/ tuần vào đầu tuần\n2. Thực hiện và cập nhật cuối ngày\n3. Lượt nào dời thì ghi lý do và có kế hoạch bổ sung trong tuần\n4. Tổng kết vào cuối tuần & báo % đạt cho Lead HPM",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 9,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Lập đề nghị cấp hàng mẫu theo mục đích: nhân viên mới; GP; RTD; Trial sample ...\n2. Lên đơn Gửi hàng mẫu",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 9,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "1. Trình plan hàng mẫu vào họp tuần/ hoặc khi có nhu cầu\n2. Họp duyệt - approved thì lên đơn",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 8,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Gửi cho HCP/ cá nhân\n2. Ghi chú gắn với A2D kèm chỉ định sử dụng\n3. HDSD & đảm bảo sử dụng đúng chỉ định mong muốn",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 8,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "1. Gửi đúng HCP được duyệt\n2. Cập nhật vào call A2D",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-05T10:52:22.192Z"
+ "cap_nhat": "2026-09-05T12:37:42.108Z"
 }
