@@ -599,7 +599,22 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-05T05:34:16.948Z",
+   "email": "ha.dang@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-18-H01",
+     "k": 12,
+     "cot": "Quy trình",
+     "cu": "18-P07 · Ngừng giao dịch và khóa hạn mức khách hàng",
+     "moi": "18-P07 · Quản lý và thu hồi công nợ",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-05T05:28:43.045Z"
+ "cap_nhat": "2026-09-05T05:34:17.388Z"
 }
