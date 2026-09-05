@@ -648,7 +648,66 @@
      "Quy trình": "18-P06 - Xử lý khiếu nại khách hàng"
     }
    ]
+  },
+  {
+   "luc": "2026-09-05T08:56:01.496Z",
+   "email": "ha.dang@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-18-L01",
+     "k": 21,
+     "cot": "Nhiệm vụ",
+     "cu": "Triển khai kế hoạch chăm sóc khách hàng PULL cuốn chiếu 90 ngày cho các chuỗi trọng điểm",
+     "moi": "Triển khai kế hoạch chăm sóc khách hàng PULL cuốn chiếu 90 ngày cho các chuỗi trọng điểm\nPhê duyệt danh sách HCP Navi tham gia PULL 90 ngày; giám sát lộ trình 3 tháng và hỗ trợ sự kiện PULL.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-L01",
+     "k": 19,
+     "cot": "Nhiệm vụ",
+     "cu": "Thu hồi công nợ đến hạn của vùng",
+     "moi": "Giám sát bảng công nợ toàn nhóm, đôn đốc thu nợ đúng hạn; trực tiếp đàm phán thu hồi các khoản nợ quá hạn phức tạp.",
+     "xoa": false
+    }
+   ],
+   "them": [
+    {
+     "Chức danh": "VT-18-L01\nDetailing Sales · Trưởng nhóm",
+     "Mục tiêu": "Phân bổ địa bàn và danh sách khách hàng",
+     "Nhiệm vụ": "Phê duyệt Bảng phân bổ mục tiêu chi tiết từng Account của nhân viên và cân bằng tiềm năng địa bàn toàn nhóm."
+    },
+    {
+     "Chức danh": "VT-18-L01\nDetailing Sales · Trưởng nhóm",
+     "Mục tiêu": "Lập và duyệt call plan",
+     "Nhiệm vụ": "Phê duyệt Call Plan tuần của nhân viên trước 17h00 Chủ nhật; kiểm tra ngẫu nhiên GPS Check-in để chống lệch tuyến."
+    },
+    {
+     "Chức danh": "VT-18-L01\nDetailing Sales · Trưởng nhóm",
+     "Mục tiêu": "Ghi nhận tiếp xúc A2D và chuyển đổi",
+     "Nhiệm vụ": "Đi tuyến đôi (Co-visiting) 1-2 buổi/tuần/nhân viên, đánh giá chất lượng Call, feedback tại chỗ và đôn đốc tỷ lệ chuyển đổi phễu A2D nhóm."
+    },
+    {
+     "Chức danh": "VT-18-L01\nDetailing Sales · Trưởng nhóm",
+     "Mục tiêu": "Account plan cơ sở trọng điểm",
+     "Nhiệm vụ": "Thẩm định, phê duyệt bản AP của nhân viên; trực tiếp đồng hành làm việc với KOLs/Trưởng khoa tại các khách hàng trọng điểm."
+    },
+    {
+     "Chức danh": "VT-18-L01\nDetailing Sales · Trưởng nhóm",
+     "Mục tiêu": "Quản lý hàng mẫu và mẫu thử cho HCP",
+     "Nhiệm vụ": "Phê duyệt hạn mức cấp phát Hàng mẫu cho nhân viên đúng mục tiêu PULL 90 ngày, bảo đảm không vượt ngân sách."
+    },
+    {
+     "Chức danh": "VT-18-L01\nDetailing Sales · Trưởng nhóm",
+     "Mục tiêu": "Xử lý khiếu nại khách hàng",
+     "Nhiệm vụ": "Chủ trì xử lý các Ticket khiếu nại leo thang cấp địa bàn; phối hợp với QA/Kho/Logistics giải quyết triệt để trong thời hạn quy định"
+    },
+    {
+     "Chức danh": "VT-18-L01\nDetailing Sales · Trưởng nhóm",
+     "Mục tiêu": "Tạo và duyệt khách hàng, liên hệ",
+     "Nhiệm vụ": "Thẩm định tính chính xác của hồ sơ và phê duyệt Master Data khách hàng mới trước khi chuyển cho quản lý cấp trên và các bộ phận khác"
+    }
+   ]
   }
  ],
- "cap_nhat": "2026-09-05T06:48:43.563Z"
+ "cap_nhat": "2026-09-05T08:56:02.198Z"
 }
