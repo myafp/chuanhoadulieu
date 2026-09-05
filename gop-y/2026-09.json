@@ -457,7 +457,78 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-05T02:10:10.718Z",
+   "email": "tung.nguyen@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-18-S02",
+     "k": 1,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Hồ sơ tổng quan của BV: Số BS, số PK/ lượt khám, người quyết định, quy trình tender/ mua hàng...",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 0,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "- Hoàn thành bản thảo account plan\n- Họp - Phê duyệt\n- Theo dõi định kỳ kết quả",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 3,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Kiểm tra & bổ sung đầy đủ danh sách HCP trên CRM\n2. Xác định stage của HCP",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 2,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Hành trình khách hàng được duyệt\n2. Cập nhật tiến trình hàng tuần/ user, loyal",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 4,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Lịch làm việc và call plan được duyệt\n2. Cập nhật sau mỗi ngày",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 5,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Lên thứ tự ưu tiên công việc hàng tuần\n2. Phân bổ Call plan hợp lý theo mức độ ưu tiên công việc",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 13,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Thu thập đầy đủ thông tin KH: \n- Tên, địa chỉ, SDT, MST, người nhận hàng ...\n2. Check trên hệ thống/ admin\n3. Tạo mới",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 12,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Khách hàng đã được duyệt",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-05T01:50:08.643Z"
+ "cap_nhat": "2026-09-05T02:10:11.189Z"
 }
