@@ -876,7 +876,30 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-05T10:52:21.257Z",
+   "email": "quan.le@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-18-L01",
+     "k": 3,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Xác định nhu cầu đặt hàng của khách hàng\n2. Kiểm tra điều kiện khách hàng và công nợ\n3. Nhập hoặc đề nghị tạo đơn hàng trên CRM\n4. Phối hợp hoàn thiện hồ sơ hợp đồng theo quy định (nếu có)\n5. Theo dõi trạng thái đơn hàng và đóng yêu cầu",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-L01",
+     "k": 3,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "1. CHUẨN BỊ: Ghi nhận nhu cầu đặt hàng (sản phẩm, quy cách, số lượng, thời điểm giao) và xác nhận với người có thẩm quyền của khách hàng.\n2. KIỂM TRA: Đối chiếu thông tin khách hàng trên CRM — mã khách hàng, pháp nhân, địa chỉ giao, hạn mức công nợ, tình trạng hợp đồng, chính sách giá đang hiệu lực.\n3. KIỂM TRA: Xác nhận chương trình/chiết khấu áp dụng nằm trong chính sách đã được phê duyệt; không cam kết điều khoản ngoài chính sách.\n4. THỰC HIỆN: Nhập đơn hàng hoặc gửi yêu cầu tạo đơn trên CRM đúng biểu mẫu; đính kèm chứng từ đặt hàng của khách hàng.\n5. GHI NHẬN: Kiểm tra lại dữ liệu đã nhập (sản phẩm, số lượng, giá, điều kiện giao) trước khi submit; lưu số tham chiếu đơn hàng.\n6. THEO DÕI: Theo dõi trạng thái phê duyệt – xuất hàng – giao hàng;\n7. BÁO CÁO & ĐÓNG: Báo cáo quản lý khi đơn hàng bị treo/quá hạn hoặc phát sinh yêu cầu vượt thẩm quyền; đóng yêu cầu khi khách hàng xác nhận đã nhận đủ hàng và chứng từ.",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-05T10:46:37.548Z"
+ "cap_nhat": "2026-09-05T10:52:22.192Z"
 }
