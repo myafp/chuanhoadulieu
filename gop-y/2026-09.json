@@ -614,7 +614,41 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-05T06:48:42.556Z",
+   "email": "ha.dang@alpha-france.com",
+   "sua": [],
+   "them": [
+    {
+     "Đầu việc": "Danh sách viếng thăm khách hàng nhóm User/Loyal hoàn thành theo tuần/tháng.\n\nNhật ký tiếp xúc khách hàng (Call Report) và trạng thái kê đơn ghi nhận trên CRM",
+     "Việc cụ thể": "Lọc danh sách HCP thuộc nhóm User và Loyal trên CRM để đưa vào Call Plan ưu tiên hàng tuần.\n\nThực hiện viếng thăm trực tiếp/trực tuyến theo đúng tần suất quy định (Loyal: 3-4 lần/tháng; User: 2-3 lần/tháng).\n\nTrình bày thông điệp sản phẩm chuyên sâu, ghi nhận phản hồi và cập nhật nhật ký cuộc gặp trên CRM  sau tiếp xúc.",
+     "Đơn vị đo": "Số lượng Liên hệ  User/Loyal",
+     "Quy trình": "18-P03 - Ghi nhận tiếp xúc A2D và chuyển đổi"
+    },
+    {
+     "Nhiệm vụ": "Triển khai kế hoạch chuyển đổi HCP từ Navi sang User trong chu kỳ 90 ngày",
+     "Đầu việc": "1. Bảng Kế hoạch PULL 90 ngày trên hệ thống\n2. Báo cáo tỷ lệ chuyển đổi phễu A2D định kỳ.\n3. Danh sách HCP Navi đã chính thức trở thành User.",
+     "Đơn vị đo": "% Chuyển đổi Navi sang User",
+     "Quy trình": "18-P03 - Ghi nhận tiếp xúc A2D và chuyển đổi",
+     "Việc cụ thể": "1. Tháng 1 (Awareness, Consensus): Tiếp cận HCP Navi tạo nhận biết sản phẩm, tìm hiểu nhu cầu, giải quyết nhu cầu\n2. Tháng 2 (Trial): Cung cấp tài liệu lâm sàng/hàng mẫu, chốt cam kết kê đơn dùng thử lần đầu.\n3. Tháng 3 (User): Theo dõi hiệu quả lâm sàng, củng cố thói quen kê đơn hàng tuần.\n4. Cập nhật phân hạng \"User\" trên CRM và cuốn chiếu bổ sung tập Navi mới."
+    },
+    {
+     "Đầu việc": "Biên bản đối chiếu công nợ định kỳ có chữ ký/xác nhận của khách hàng.\n\nChứng từ thu tiền/Thông báo chuyển khoản hoàn tất cập nhật trên ERP",
+     "Việc cụ thể": "Theo dõi bảng cảnh báo công nợ trên hệ thống ERP đối với các khách hàng trên địa bàn phụ trách.\n\nGửi thông báo nợ, biên bản đối chiếu công nợ và chốt lịch thanh toán với khách hàng trước 3-5 ngày so với hạn thanh toán.\n\nĐôn đốc thu hồi tiền mặt/tiền chuyển khoản, cập nhật chứng từ lên hệ thống để giải tỏa hạn mức xuất đơn hàng mới.",
+     "Đơn vị đo": "% đạt Thu hồi công nợ",
+     "Quy trình": "18-P07 - Quản lý và Thu hồi công nợ"
+    },
+    {
+     "Mục tiêu": "Nâng chất lượng tương tác và chuyển đổi khách hàng",
+     "Nhiệm vụ": "Xử lý khiếu nại của khách hàng phụ trách trong thời hạn",
+     "Đầu việc": "Phiếu ghi nhận khiếu nại (Ticket); \nBiên bản giải quyết khiếu nại có chữ ký/email xác nhận",
+     "Việc cụ thể": "1. Ghi nhận khiếu nại lên ERP trong 2h.\n2. Phối hợp manager/QA/Kho xác minh và đưa ra hướng xử lý.\n3. Đổi trả hàng/bù hóa đơn cho khách hàng và đóng ticket.",
+     "Đơn vị đo": "% Khiếu nại",
+     "Quy trình": "18-P06 - Xử lý khiếu nại khách hàng"
+    }
+   ]
   }
  ],
- "cap_nhat": "2026-09-05T05:34:17.388Z"
+ "cap_nhat": "2026-09-05T06:48:43.563Z"
 }
