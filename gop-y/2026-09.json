@@ -528,7 +528,78 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-05T05:28:42.402Z",
+   "email": "tung.nguyen@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-18-S02",
+     "k": 13,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Nhận yêu cầu tạo mới khách hàng, liên hệ\n2. Kiểm đủ hồ sơ nhận diện\n3. Chặn trùng trước khi tạo",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 12,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Tạo bản ghi trên CRM\n2. Trình duyệt\n3. Hoàn thiện sau duyệt và đóng",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 13,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "1. Ghi nguồn phát sinh khách mới: viếng thăm, giới thiệu hay danh sách công ty  giao\n2. Thu đủ trường bắt buộc theo KH/ liên hệ: tên, chức danh, khoa phòng, cơ sở, số điện thoại, phân nhóm ...\n3. Check với admin theo tên và số điện thoại để loại trùng trước khi tạo\n4. Đủ đầu vào thì tạo khách hàng, liên hệ trên CRM",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 12,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "1. Nhập bản ghi khách hàng và liên hệ, gán địa bàn và chủ sở hữu là mình\n2. Gắn phân nhóm khách hàng và giai đoạn A2D ban đầu với liên hệ\n3. Trình Lead HPM duyệt chậm nhất ngày làm việc kế tiếp\n4. Bản ghi được duyệt thì đưa vào call plan kỳ gần nhất\n5. Cuối tuần rà bản ghi treo chưa duyệt, đóng hoặc xin ý kiến Lead",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 11,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Nhận nhu cầu đặt hàng của khách\n2. Kiểm điều kiện bán\n3. Xác nhận đơn trước khi nhập",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 11,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "ĐƠN HÀNG\n1. Ghi nhận nhu cầu: mã hàng, số lượng, ngày cần giao\n2. Kiểm trên CRM: khách đã được duyệt, còn hạn mức, công nợ không quá hạn, CTKM/ HD được duyệt.\n3. Đối chiếu giá và chương trình đang áp dụng đúng bản đã duyệt\n4. Vướng công nợ hoặc hạn mức thì báo Lead và kế toán trước, không hứa giao hàng\n5. Đủ điều kiện thì xác nhận lại đơn với khách hàng rồi mới lên đơn\n\nHỢP ĐỒNG\n1. Ghi nhận thông tin từ Khách hàng cần làm HD: MST, GPKD, Người liên hệ ...\n2. Rà soát các điều khoản trong HD với các điều khoản được duyệt của cty.\n3. Soạn draft HD và xin phê duyệt từ HPM",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 10,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Nhập đơn hàng\n2. Theo dõi duyệt và giao\n3. Theo dõi công nợ",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 10,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "1. Nhập đơn lên CRM đúng mã hàng, số lượng, giá và chương trình\n2. Theo dõi trạng thái duyệt & giao hàng, báo khách ngày giao dự kiến\n3. Theo dõi nhận hàng và công nợ",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-05T02:10:11.189Z"
+ "cap_nhat": "2026-09-05T05:28:43.045Z"
 }
