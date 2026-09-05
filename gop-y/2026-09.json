@@ -853,7 +853,30 @@
      "Đơn vị đo": "% Ngân sách (Tỷ lệ thực chi / Ngân sách cá nhân được cấp"
     }
    ]
+  },
+  {
+   "luc": "2026-09-05T10:46:37.027Z",
+   "email": "quan.le@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-18-L01",
+     "k": 0,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Thống nhất lịch coaching và tiêu chí đánh giá giai đoạn thử việc\n2. Chuẩn bị và tham gia field call\n3. Tiếp nhận phản hồi và lập kế hoạch cải thiện\n4. Hoàn thiện hồ sơ coaching đủ tần suất\n5. Tham gia đánh giá kết thúc thử việc",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-L01",
+     "k": 0,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "1. CHUẨN BỊ: Xác nhận lịch coaching/field visit vớiHPM theo tần suất quy định. Thời hạn cần xác nhận theo SOP/Policy hiện hành của công ty.\n2. CHUẨN BỊ: Gửi trước kế hoạch tuyến, danh sách khách hàng và mục tiêu từng cuộc gặp cập nhật trên CRM\n3. THỰC HIỆN: Thực hiện cuộc gặp theo mô hình chuẩn call A2D trong buổi coaching.\n4. GHI NHẬN: Cùng HPM hoàn tất Coaching Form ngay sau mỗi buổi — điểm mạnh, điểm cần cải thiện, hành động cụ thể, thời hạn; ký xác nhận hai bên.\n5. THEO DÕI: Thực hiện hành động cải thiện đã cam kết và báo cáo tiến độ ở buổi coaching kế tiếp.\n6. BÁO CÁO: Lưu đủ hồ sơ coaching theo số buổi tối thiểu của giai đoạn thử việc; nộp cho HPM/HR theo quy định.\n7. ĐÓNG QUY TRÌNH: Tham gia đánh giá kết thúc thử việc dựa trên KPI và hồ sơ coaching; nhận kết luận và kế hoạch phát triển tiếp theo.",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-05T10:41:59.616Z"
+ "cap_nhat": "2026-09-05T10:46:37.548Z"
 }
