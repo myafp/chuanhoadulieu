@@ -746,7 +746,114 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-05T10:41:58.921Z",
+   "email": "ha.dang@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-18-L01",
+     "k": 0,
+     "cot": "Nhiệm vụ",
+     "cu": "Coaching giai đoạn thử việc đủ tần suất và có hồ sơ",
+     "moi": "Coaching giai đoạn thử việc đủ tần suất và có đánh giá thử việc",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-L01",
+     "k": 21,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "1. Phê duyệt danh sách HCP Navi do nhân viên lựa chọn dựa trên tiềm năng địa bàn.\n2. Theo dõi tiến độ dịch chuyển phễu 3 tháng của nhân viên: Tháng 1 (Awareness), Tháng 2 (Trial - duyệt Sample), Tháng 3 (User).\n3. Hỗ trợ chuyên môn hoặc tham dự các sự kiện PULL/CME để tác động đến nhóm Bác sĩ khó chuyển đổi.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-L01",
+     "k": 19,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "1. Rà soát bảng cảnh báo công nợ toàn nhóm trên ERP hàng tuần.\n2. Đôn đốc nhân viên gửi đối chiếu công nợ và chốt lịch thu tiền trước ngày đến hạn.\n3. Trực tiếp can thiệp đàm phán với Chủ nhà thuốc/Kế toán bệnh viện đối với các khoản nợ quá hạn > 15 ngày; dừng duyệt đơn mới nếu vượt trần.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-L01",
+     "k": 21,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Danh sách HCP Navi tham gia PULL 90 ngày được phê duyệt.\n2. Báo cáo tỷ lệ chuyển đổi Navi -> User toàn nhóm sau 90 ngày.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-L01",
+     "k": 19,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Báo cáo theo dõi tuổi nợ nhóm hàng tuần.\n2. Đề xuất lệnh tạm khóa xuất hàng đối với tài khoản nợ xấu/quá hạn.",
+     "xoa": false
+    }
+   ],
+   "them": [
+    {
+     "Đầu việc": "1. Bảng phân bổ mục tiêu Doanh số (Triệu đồng) chi tiết từng nhân viên/Account được duyệt.\n2. Báo cáo cân đối tiềm năng địa bàn nhóm",
+     "Việc cụ thể": "1. Tiếp nhận chỉ tiêu tổng của nhóm và rà soát dữ liệu tiềm năng thực tế từng địa bàn.\n2. Kiểm tra và duyệt Bảng phân bổ mục tiêu do nhân viên đệ trình trên CRM.\n3. Thẩm định đề xuất thêm/bớt khách hàng mục tiêu để điều chỉnh ranh giới địa bàn.",
+     "Đơn vị đo": "Triệu đồng (Doanh số nhóm)"
+    },
+    {
+     "Việc cụ thể": "1. Rà soát Call Plan nhân viên gửi trên CRM trước 17h00 Chủ nhật (kiểm tra định mức viếng thăm User/Loyal).\n2. Phê duyệt hoặc yêu cầu điều chỉnh lộ trình di chuyển trên hệ thống.\n3. Kiểm tra ngẫu nhiên vị trí GPS Check-in thực tế của nhân viên để chống viếng thăm ảo.",
+     "Đầu việc": "1. Call Plan tuần của 100% nhân viên được duyệt trên CRM.\n2. Báo cáo kiểm định định vị Check-in GPS và tỷ lệ tuân thủ."
+    },
+    {
+     "Việc cụ thể": "1. Lập lịch Co-visiting trực tiếp với từng nhân viên (tối thiểu 1-2 buổi/tuần/nhân viên).\n2. Trực tiếp quan sát cuộc gặp Bác sĩ, đánh giá kỹ năng E-detailing và xử lý từ chối.\n3. Họp phản hồi rút kinh nghiệm ngay sau cuộc gặp và cập nhật báo cáo Co-visiting lên CRM.\n4. Đôn đốc nhân viên thúc đẩy các HCP chuyển đổi phễu A2D đúng lộ trình.",
+     "Đầu việc": "1. Lịch & Báo cáo Coaching đi tuyến đôi (Co-visiting Report) tuần/tháng.\n2. Báo cáo nhận xét kỹ năng Call của nhân viên và đề xuất phát triển"
+    },
+    {
+     "Việc cụ thể": "1. Thẩm định tính khả thi của mục tiêu doanh số, sơ đồ KOLs và đề xuất ngân sách AP do nhân viên đề xuất\n2. Đồng hành cùng nhân viên tiếp xúc các Stakeholders quan trọng (Trưởng khoa, Dược sĩ trưởng) tại cơ sở trọng điểm.\n3. Theo dõi tiến độ thực hiện các cột mốc trong AP và can thiệp tháo gỡ rào cản.",
+     "Đầu việc": "1. Bản Account Plan cơ sở trọng điểm của từng nhân viên được phê duyệt.\n2. Báo cáo tiến độ mở thầu/vào hàng tại các tài khoản trọng điểm."
+    },
+    {
+     "Việc cụ thể": "1. Kiểm tra đề xuất cấp hàng mẫu của nhân viên (đúng đối tượng Bác sĩ Trial, không vượt định mức).\n2. Phê duyệt phiếu xuất hàng mẫu trên CRM.\n3. Kiểm tra đối soát biên bản bàn giao và báo cáo phản hồi lâm sàng do nhân viên thu thập.",
+     "Đầu việc": "1. Danh mục phiếu cấp phát Hàng mẫu được duyệt trên CRM.\n2. Báo cáo quyết toán và hiệu quả sử dụng hàng mẫu toàn nhóm."
+    },
+    {
+     "Việc cụ thể": "1. Tiếp nhận các Ticket khiếu nại leo thang do nhân viên báo lên (sự cố chất lượng, giao nhầm/thiếu hàng, thái độ).\n2. Phối hợp với QA, Logistics, Kế toán xác minh nguyên nhân và đưa ra phương án xử lý trong 24h.\n3. Trực tiếp gặp gỡ hoặc liên hệ khách hàng lớn để xoa dịu và thống nhất phương án đền bù/đổi trả.",
+     "Đầu việc": "1. Nhật ký khiếu nại khách hàng của nhóm trên CRM.\n2. Biên bản giải quyết khiếu nại cấp 1 thành công."
+    },
+    {
+     "Việc cụ thể": "1. Kiểm tra tính đầy đủ và chính xác của thông tin định danh (Tên, GPKD/Chứng chỉ hành nghề, SĐT, Địa chỉ, Chuyên khoa).\n2. Kiểm tra đối soát chống trùng lặp dữ liệu trên CRM.\n3. Phê duyệt chuyển trình Sales Ops/Kế toán cấp mã Master Data chính thức.",
+     "Đầu việc": "Danh sách hồ sơ khách hàng mới (HCP/HCO Master Data) được duyệt bước 1 trên CRM."
+    },
+    {
+     "Mục tiêu": "Đạt số liên hệ khách hàng User và Loyal",
+     "Chức danh": "VT-18-L01\nDetailing Sales · Trưởng nhóm",
+     "Nhiệm vụ": "Đảm bảo và phát triển số lượng khách hàng nhóm User và Loyal của nhóm đạt/vượt chỉ tiêu được giao; đôn đốc chuyển đổi khách hàng tiềm năng lên nhóm User/Loyal và trực tiếp can thiệp giữ chân các khách hàng nòng cốt có nguy cơ sụt giảm phân hạng.",
+     "Đầu việc": "1. Bảng phân bổ chỉ tiêu Số lượng HCP User & Loyal chi tiết cho từng nhân viên/địa bàn.\n2. Báo cáo biến động tập khách hàng User/Loyal hàng tháng (Số lượng phát triển mới vs. Số lượng rớt hạng/ngừng kê đơn).\n3. Kế hoạch can thiệp giữ chân & phục hồi khách hàng User/Loyal có nguy cơ sụt giảm doanh số.",
+     "Việc cụ thể": "1. Giao chỉ tiêu số lượng: Tiếp nhận chỉ tiêu số lượng HCP User và Loyal từ Trưởng phòng, phân bổ con số cụ thể xuống từng nhân viên dựa trên tiềm năng địa bàn và dữ liệu lịch sử.\n2. Thúc đẩy tạo mới User/Loyal : Giám sát phễu A2D và Kế hoạch PULL 90 ngày của từng nhân viên; đôn đốc đẩy nhanh tiến độ chuyển đổi Bác sĩ từ nhóm Navi/Trial lên User/Loyal để bù đắp và nâng cao tổng số lượng.\n3. Giữ chân & Cảnh báo rớt hạng: Đối soát dữ liệu kê đơn/doanh số hàng tháng; phát hiện sớm các Bác sĩ/Nhà thuốc nhóm User/Loyal có dấu hiệu giảm kê đơn hoặc chuyển sang đối thủ.\n4. Trực tiếp can thiệp thực địa: Trực tiếp đi tuyến đôi (Co-visiting) cùng nhân viên đến gặp các Bác sĩ User/Loyal trọng điểm đang gặp vướng mắc để tháo gỡ rào cản, bảo vệ tập khách hàng nòng cốt của nhóm.\n5. Dồn nguồn lực mở rộng: Ưu tiên duyệt ngân sách, hàng mẫu (Sample), hội thảo Y khoa cho các Bác sĩ tiệm cận ngưỡng trở thành User/Loyal."
+    },
+    {
+     "Chức danh": "VT-18-L01\nDetailing Sales · Trưởng nhóm",
+     "Mục tiêu": "Tạo đơn hàng và hợp đồng",
+     "Nhiệm vụ": "Phê duyệt bước 1 điều khoản thương mại, chính sách chiết khấu, hạn mức nợ trên đơn hàng/hợp đồng của nhân viên.",
+     "Việc cụ thể": "1. Kiểm tra tính chính xác về giá, chiết khấu, hạn mức nợ trên đơn hàng/hợp đồng nhân viên tạo.\n2. Phê duyệt chuyển tiếp trên CRM nếu hợp lệ; trả về yêu cầu chỉnh sửa nếu sai chính sách.\n3. Thẩm định các đề xuất nới hạn mức nợ hoặc chiết khấu đặc biệt trước khi trình Trưởng phòng.",
+     "Đầu việc": "1. Danh mục Đơn hàng/Hợp đồng được duyệt bước 1 trên CRM/ERP.\n2. Tờ trình giải trình các đơn hàng/hợp đồng ngoại lệ."
+    },
+    {
+     "Chức danh": "VT-18-L01\nDetailing Sales · Trưởng nhóm",
+     "Mục tiêu": "Kiểm soát ngân sách hoạt động đội nhóm trong mức được duyệt",
+     "Nhiệm vụ": "Phê duyệt đề xuất chi phí, thẩm định chứng từ thanh toán và kiểm soát định mức thực chi (A&P, công tác phí, tiếp khách, kinh phí PULL) của toàn nhóm, bảo đảm không vượt tổng trần ngân sách được giao",
+     "Đầu việc": "Bảng phân bổ định mức chi phí hoạt động chi tiết cho từng nhân viên/địa bàn.\n\nDanh mục Đề xuất chi phí / Tờ trình hoạt động được kiểm duyệt bước 1 trên CRM/ERP.\n\nBáo cáo tiến độ thực chi so với ngân sách (Actual vs. Budget Report) toàn nhóm hàng tháng.",
+     "Việc cụ thể": "1. Phân bổ định mức: Căn cứ tổng ngân sách nhóm được Trưởng phòng phê duyệt theo tháng/quý, phân bổ hạn mức chi tiết (công tác phí, chi phí tiếp khách, kinh phí hỗ trợ hội thảo/PULL) cho từng nhân viên dựa trên tiềm năng địa bàn.\n2. Thẩm định đề xuất (Duyệt đầu vào): Rà soát các đề xuất chi phí phát sinh do nhân viên đệ trình trên hệ thống trước khi thực hiện. Kiểm tra tính hợp lý, hiệu quả dự kiến và điều kiện hạn mức. Phê duyệt chuyển tiếp lên Trưởng phòng/Kế toán nếu đạt chuẩn hoặc trả về nếu không hợp lệ.\n3. Kiểm tra chứng từ quyết toán: Kiểm tra tính chính xác và hợp lệ của bộ chứng từ, hóa đơn, biên bản nghiệm thu do nhân viên gửi lên trước khi xác nhận chuyển bộ phận Kế toán thanh toán.\n4. Giám sát & Cảnh báo thực chi: Theo dõi báo cáo giải ngân hàng tuần trên CRM/ERP. Kịp thời cảnh báo và chỉ đạo điều chỉnh/cắt giảm đối với các địa bàn có nguy cơ bội chi ngân sách.",
+     "Đơn vị đo": "% Thực chi / Tổng ngân sách nhóm được duyệt"
+    },
+    {
+     "Chức danh": "VT-18-S02\nDetailing Sales · Nhân viên",
+     "Mục tiêu": "Kiểm soát ngân sách hoạt động cá nhân trong mức được duyệt",
+     "Nhiệm vụ": "Lập đề xuất chi phí, sử dụng ngân sách đúng mục đích/định mức được cấp và hoàn tất bộ hồ sơ chứng từ quyết toán thanh/hoàn ứng đúng quy định.",
+     "Đầu việc": "Phiếu Đề xuất Chi phí / Tờ trình Hoạt động được phê duyệt trên CRM/ERP trước khi thực hiện.\n\nBộ hồ sơ quyết toán thanh toán/hoàn ứng hợp lệ (Hóa đơn VAT, Biên bản nghiệm thu, Danh sách khách hàng xác nhận).\n\nBáo cáo theo dõi tiến độ giải ngân ngân sách cá nhân hàng tháng.",
+     "Việc cụ thể": "1. Lập đề xuất chi phí (Duyệt trước khi chi): Căn cứ vào hạn mức được Trưởng nhóm phân bổ hàng tháng/quý, đề xuất chi phí trên CRM/ERP trước khi triển khai các hoạt động.\n2. Thực thi chi tiêu đúng mục đích: Sử dụng kinh phí chính xác theo số tiền, nội dung và tập khách hàng mục tiêu (HCP/HCO) đã trình duyệt.\n3. Thu thập chứng từ hợp lệ: Thu thập đầy đủ chứng từ tài chính chuẩn pháp lý ngay sau khi kết thúc hoạt động (Hóa đơn điện tử VAT, Biên bản bàn giao/nghiệm thu, Danh sách Bác sĩ tham dự/ký nhận POSM/quà tặng, ảnh chụp sự kiện...).\n4. Khởi tạo quyết toán đúng hạn: Lập hồ sơ quyết toán thanh toán/hoàn ứng trên CRM/ERP và trình Trưởng nhóm thẩm định hàng tháng/quý.",
+     "Đơn vị đo": "% Ngân sách (Tỷ lệ thực chi / Ngân sách cá nhân được cấp"
+    }
+   ]
   }
  ],
- "cap_nhat": "2026-09-05T10:07:53.146Z"
+ "cap_nhat": "2026-09-05T10:41:59.616Z"
 }
