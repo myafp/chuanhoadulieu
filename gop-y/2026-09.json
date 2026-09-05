@@ -1049,7 +1049,54 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-05T13:04:38.453Z",
+   "email": "tung.nguyen@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-18-S02",
+     "k": 1,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Nhận danh sách cơ sở trọng điểm\n2. Thu thập dữ liệu nền của từng cơ sở",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 0,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Account plan được phê duyệt\n2. Theo dõi tiến độ",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 0,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "- Hoàn thành bản thảo account plan\n- Họp - Phê duyệt\n- Theo dõi định kỳ kết quả",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 4,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "1. Họp tuần với HPM chốt lịch call plan/ tuần vào đầu tuần\n2. Thực hiện và cập nhật cuối ngày\n3. Lượt nào dời thì ghi lý do và có kế hoạch bổ sung trong tuần\n4. Tổng kết vào cuối tuần & báo % đạt cho Lead HPM",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 6,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Chuyển chỉ tiêu đã chốt thành kế hoạch theo tháng/ KH\n2. Triển khai và cập nhật tiến độ hàng tuần\n3. Đề xuất phương án khi chậm tiến độ đề ra (nếu cần)",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-05T12:55:50.008Z"
+ "cap_nhat": "2026-09-05T13:04:39.761Z"
 }
