@@ -1018,7 +1018,38 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-05T12:55:49.251Z",
+   "email": "tung.nguyen@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-18-S02",
+     "k": 7,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Nhận địa bàn và chỉ tiêu cá nhân\n2. Rà danh sách khách hàng được gán\n3. Phản hồi trước khi chốt",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 7,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "1. Nhận phân bổ địa bàn, danh sách khách và phần chỉ tiêu doanh số của mình\n2. Rà soát lại khách hàng & chỉ tiêu doanh số\n3. Gửi phản hồi (nếu có) \n4. Họp chốt",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 6,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Chuyển chỉ tiêu đã chốt thành kế hoạch theo tháng/ KH\n2. Triển khai và cập nhật tiến độ hàng tuần\n3. Đề xuất phương án khi chậm tiến độ đề ra",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-05T12:37:42.108Z"
+ "cap_nhat": "2026-09-05T12:55:50.008Z"
 }
