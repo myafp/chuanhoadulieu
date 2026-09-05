@@ -707,7 +707,46 @@
      "Nhiệm vụ": "Thẩm định tính chính xác của hồ sơ và phê duyệt Master Data khách hàng mới trước khi chuyển cho quản lý cấp trên và các bộ phận khác"
     }
    ]
+  },
+  {
+   "luc": "2026-09-05T10:07:52.541Z",
+   "email": "quan.le@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-18-S02",
+     "k": 1,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "1. CHUẨN BỊ: Nhận danh sách account trọng điểm từ HPM; xác định tiêu chí phân loại (tiềm năng, doanh số, chuyên khoa, mức độ ưu tiên).\n2. KIỂM TRA: Đối chiếu account trên CRM (tên cơ sở, mã, địa chỉ, phân hạng, tình trạng hoạt động);chỉnh sửa thông tin đúng trên CRM\n3. THỰC HIỆN: Tìm hiểu thông tin cơ bản của account trọng điểm bao gồm: quy trình nhập hàng,số bệnh nhân mục tiêu/tháng,khoa phòng mục tiêu,số lượng HCP mục tiêu.\n4. THỰC HIỆN: Xác định người ảnh hưởng (bác sĩ điều trị, trưởng khoa, dược lâm sàng, khoa dược, hội đồng thuốc, ban giám đốc) kèm mức độ ủng hộ.\n5. GHI NHẬN: Phân tích tiềm năng doanh số, mức độ sử dụng sản phẩm, đối thủ cạnh tranh, cơ hội và rào cản; nhập hồ sơ account lên CRM.\n6. BÁO CÁO: Trình danh sách account trọng điểm kèm bản phân tích đầu vào để HMP phê duyệt.\n7. ĐÓNG QUY TRÌNH: Sau khi được duyệt, kích hoạt Account Plan trên hệ thống và chuyển sang bước thiết lập mục tiêu và Action Plan.",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 0,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Triển khai Action Plan đã được phê duyệt tại account trọng điểm\n2. Họp tuần cập nhật tiến độ công việc với quản lý trực tiếp HPM\n3. Cập nhật hệ thống CRM sau mỗi tương tác và mỗi hoạt động\n4. Theo dõi chỉ số account so với mục tiêu đã đặt ra\n5. Xử lý sai lệch và điều chỉnh kế hoạch trong thẩm quyền\n6. Ghi nhận đầu ra và đóng chu kỳ Account Plan",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 1,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Tiếp nhận danh sách account trọng điểm được phân công\n2. Thu thập và kiểm tra dữ liệu đầu vào của account\n3. Phân tích tiềm năng \n4. Trình quản lý duyệt danh sách account trọng điểm\n5. Kích hoạt hồ sơ Account Plan trên hệ thống",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 0,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "1. CHUẨN BỊ: Rà soát Account Plan đã được HPM phê duyệt; liệt kê các hoạt động đến hạn trong tuần.\n2. KIỂM TRA: kiểm tra tài liệu đã phê duyệt và chương trình bao gồm cả BM được cấp trước khi triển khai.\n3. THỰC HIỆN: Check-in account trọng điểm hàng tuần theo tần suất đã cam kết; thực hiện đúng các hoạt động trong Action Plan.\n4. GHI NHẬN: Cập nhật CRM sau mỗi cuộc gặp (call report, key message đã dùng, insight, commitment của HCP, next action). Thời hạn cần xác nhận theo SOP/Policy hiện hành của công ty.\n5. THEO DÕI: Cập nhật tiến độ từng action item (% hoàn thành, on-track / at-risk); đối chiếu doanh số và độ phủ account với mục tiêu tháng.\n6. BÁO CÁO: Trình bày tiến độ tại họp tuần; báo cáo ngay cho HPM khi phát sinh rào cản vượt khả năng.\n7. ĐÓNG QUY TRÌNH: Tổng hợp kết quả cuối chu kỳ, ghi nhận bài học, chốt trạng thái Closed trên CRM và chuyển sang chu kỳ kế tiếp.",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-05T08:56:02.198Z"
+ "cap_nhat": "2026-09-05T10:07:53.146Z"
 }
