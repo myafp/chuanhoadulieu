@@ -1096,7 +1096,46 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-06T01:11:25.440Z",
+   "email": "quan.le@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-18-S02",
+     "k": 2,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "1. CHUẨN BỊ: Trước mỗi lần tiếp xúc, xác định mục tiêu cuộc gặp, giai đoạn A2D hiện tại của HCP và key message đã được phê duyệt tương ứng.\n2. KIỂM TRA: Rà soát lịch sử tiếp xúc gần nhất\n3. THỰC HIỆN: A2D; chỉ sử dụng nội dung và claim đã được phê duyệt.\n4. GHI NHẬN: Ghi nhận ngay sau A2D: ngày,đối tượng, mục tiêu, nội dung chính, kết quả, insight, objection,điểm nghẽn và next action.\n6. BÁO CÁO: Báo cáo trong họp tuần kèm đề xuất (nếu có)\n7. ĐÓNG QUY TRÌNH: Đóng lượt tiếp xúc (tiếp tục/không)",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 2,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Thực hiện A2D theo call plan đã duyệt\n2. Ghi nhận nội dung và điểm nghẽn cập nhật trong họp tuần\n3. Theo dõi cam kết và hành động tiếp theo\n4. Báo cáo tỷ lệ chuyển đổi và đóng chu kỳ ghi nhận",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 3,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Tiếp nhận call plan và danh sách HCP thuộc phạm vi ghi nhận A2D theo BV/Địa bàn HPS\n2. Kiểm tra dữ liệu HCP",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 3,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "1. CHUẨN BỊ: Tiếp nhận call plan tuần/tháng đã được phê duyệt và danh sách HCP mục tiêu cần ghi nhận tiếp xúc trong kỳ.\n2. KIỂM TRA: Đối chiếu giai đoạn A2D hiện tại của từng HCP và các next action còn treo từ kỳ trước.\n3. Xác nhận đủ điều kiện đầu vào và kích hoạt chu kỳ ghi nhận;",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-05T13:04:39.761Z"
+ "cap_nhat": "2026-09-06T01:11:25.961Z"
 }
