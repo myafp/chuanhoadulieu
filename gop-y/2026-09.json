@@ -1135,7 +1135,46 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-06T01:34:20.654Z",
+   "email": "quan.le@alpha-france.com",
+   "sua": [
+    {
+     "rid": "VT-18-S02",
+     "k": 4,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Lập call plan tháng và chi tiết hóa theo tuần\n2. Trình quản lý trực tiếp phê duyệt call plan\n3. Thực hiện call plan đã được phê duyệt\n4. Theo dõi mức độ tuân thủ kế hoạch\n5. Ghi nhận điều chỉnh và lý do sai lệch/điểm nghẽn(nếu có)\n6. Báo cáo kết quả và đóng chu kỳ call plan",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 4,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "1. CHUẨN BỊ: Phân tích kết quả kỳ trước — số cuộc gặp thực hiện, độ phủ, tần suất đạt/chưa đạt, gap doanh số — làm căn cứ lập kế hoạch cho kỳ sau (nếu có).\n2. THỰC HIỆN: Lập call plan tháng rồi chi tiết hóa theo tuần\n3. GHI NHẬN: Nhập call plan lên hệ thống và HPM phê duyệt trước khi thực hiện trong họp đầu tuần. \n4. Theo dõi và báo cáo sau cuộc gặp nếu có thay đổi so với ban đầu",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 5,
+     "cot": "Đầu việc",
+     "cu": "",
+     "moi": "1. Tiếp nhận danh sách khách hàng/Địa bàn\n2. Đánh giá theo thứ tự ưu tiên địa bàn/nguồn lực/ thời gian hiện có",
+     "xoa": false
+    },
+    {
+     "rid": "VT-18-S02",
+     "k": 5,
+     "cot": "Việc cụ thể",
+     "cu": "",
+     "moi": "1. CHUẨN BỊ:  kế hoạch (đầu tháng/đầu tuần) hoặc khi có thay đổi địa bàn, danh mục sản phẩm.\n2. KIỂM TRA: Rà soát kết quả kỳ trước, các next action,điểm nghẽn cần xử lý và chỉ tiêu được giao cho kỳ này.\n3. THỰC HIỆN: xác định số ngày làm việc thị trường, lịch chương trình đã duyệt, lịch coaching/field visit, khoảng cách di chuyển giữa các tuyến.",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-06T01:11:25.961Z"
+ "cap_nhat": "2026-09-06T01:34:21.349Z"
 }
