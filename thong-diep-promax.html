@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AFP · Góp ý thông điệp Promax iNO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="chung.css">
+<style>
+/* Riêng trang này: hệ màu chính là mức bằng chứng T1/T2/T3, vì câu hỏi người đọc
+   mang theo là "câu này nói trước hội đồng được không". Màu thương hiệu của cổng
+   chỉ dùng cho khung sườn. */
+:root{
+  --vung:#1f6b45;   --vung-nen:#e6f2ea;   --vung-vien:#bfdccb;
+  --hanche:#8a6420; --hanche-nen:#f8f0dd; --hanche-vien:#e3d3aa;
+  --noibo:#a3352f;  --noibo-nen:#fceceb;  --noibo-vien:#e6c3c0;
+  --na:#6b7a7e;     --na-nen:#eef2f3;     --na-vien:#d3dcde;
+  --chu:"Lora",Georgia,"Times New Roman",serif;
+}
+.pmx{max-width:900px}
+.pmx .dan{margin:0 0 8px;max-width:64ch;color:var(--mut);font-size:14.5px}
+.canh-bao{margin:14px 0 0;padding:12px 16px;border-left:3px solid var(--acc);
+  background:var(--acc-nhat);border-radius:0 9px 9px 0;font-size:13.5px;max-width:66ch}
+.canh-bao b{color:var(--acc2)}
+
+.chu-giai{margin:16px 0 0;border:1px solid var(--line);border-radius:11px;background:var(--trang);
+  padding:13px 16px;display:flex;flex-direction:column;gap:7px}
+.chu-giai h4{margin:0;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--nhat);font-weight:700}
+.chu-giai ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+.chu-giai li{display:flex;align-items:baseline;gap:10px;font-size:13px;color:var(--mut)}
+
+.loc-pmx{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:16px 0 4px}
+.loc-pmx .nhan{font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--nhat);font-weight:700;margin-right:2px}
+.loc-pmx button{font-size:12.5px;font-weight:500;border-radius:20px;padding:5px 12px;color:var(--mut)}
+.loc-pmx button[aria-pressed="true"]{background:var(--acc);border-color:var(--acc);color:#fff}
+.loc-pmx .tach{width:1px;height:20px;background:var(--line);margin:0 4px}
+.loc-pmx .dem-hien{margin-left:auto;font-family:var(--mono);font-size:11.5px;color:var(--nhat)}
+
+.nhom-pmx{margin:30px 0 0}
+.nhom-dau{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap;
+  padding-bottom:10px;border-bottom:2px solid var(--line);margin-bottom:14px}
+.nhom-dau h3{margin:0;font-size:18px;font-weight:700;display:flex;align-items:baseline;gap:9px}
+.chu-nhom{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--acc);
+  background:var(--acc-nhat);border-radius:6px;padding:2px 8px}
+.nhom-dau .phu{margin:0;font-size:12.5px;color:var(--nhat);font-style:italic;flex:1 1 100%}
+.nhom-dau .dem{font-family:var(--mono);font-size:11.5px;color:var(--nhat);margin-left:auto}
+
+.muc{display:flex;background:var(--trang);border:1px solid var(--line);border-radius:11px;
+  overflow:hidden;margin-bottom:11px}
+.rail{width:4px;flex:none}
+.rail-vung{background:var(--vung)} .rail-hanche{background:var(--hanche)}
+.rail-noibo{background:var(--noibo)} .rail-na{background:var(--na)}
+.than{padding:13px 16px 14px;flex:1;min-width:0}
+.dau-muc{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px}
+.ma{font-family:var(--mono);font-size:12.5px;font-weight:500;color:var(--acc2)}
+.chip{font-size:10px;letter-spacing:.05em;text-transform:uppercase;font-weight:700;
+  border-radius:20px;padding:3px 9px;white-space:nowrap;border:1px solid transparent}
+.loai-giu{color:var(--na);background:var(--na-nen);border-color:var(--na-vien)}
+.loai-sua{color:var(--acc2);background:var(--acc-nhat)}
+.loai-bo{color:var(--noibo);background:var(--noibo-nen);border-color:var(--noibo-vien)}
+.loai-dien,.loai-xacminh{color:var(--hanche);background:var(--hanche-nen);border-color:var(--hanche-vien)}
+.bc-vung{color:var(--vung);background:var(--vung-nen);border-color:var(--vung-vien)}
+.bc-hanche{color:var(--hanche);background:var(--hanche-nen);border-color:var(--hanche-vien)}
+.bc-noibo{color:var(--noibo);background:var(--noibo-nen);border-color:var(--noibo-vien)}
+.bc-na{color:var(--na);background:var(--na-nen);border-color:var(--na-vien)}
+
+/* Câu đang được quyết đặt bằng chữ có chân — nó là nội dung, không phải giao diện */
+.cau{font-family:var(--chu);font-size:15.5px;line-height:1.6}
+.cau s{color:var(--nhat)}
+.cau strong{font-weight:600}
+.muc[data-loai="Bỏ hẳn"] .cau s{color:var(--noibo);text-decoration-color:var(--noibo)}
+
+.o-nhan{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--nhat);
+  font-weight:700;margin-bottom:3px;display:block}
+.khoi-o{margin-bottom:10px}
+.ghi-tinh{margin:0;display:grid;grid-template-columns:auto 1fr;gap:3px 12px;
+  font-size:12.5px;line-height:1.5;color:var(--mut)}
+.ghi-tinh dt{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--nhat);
+  font-weight:700;padding-top:2px;white-space:nowrap}
+.ghi-tinh dd{margin:0}
+
+.bang-f{border:1px solid var(--line);border-radius:11px;background:var(--trang);overflow-x:auto}
+.bang-f table{border-collapse:collapse;width:100%;min-width:700px;font-size:13.5px}
+.bang-f th{text-align:left;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--nhat);font-weight:700;padding:10px 13px;background:var(--bg);
+  border-bottom:1px solid var(--line)}
+.bang-f td{padding:11px 13px;border-bottom:1px solid var(--line-mo);vertical-align:top}
+.bang-f tr:last-child td{border-bottom:none}
+.bang-f td.nho{font-size:12.5px;color:var(--mut)}
+
+@media (max-width:640px){
+  .cau{font-size:15px}
+  .loc-pmx .dem-hien{margin-left:0;flex:1 1 100%}
+  .ghi-tinh{grid-template-columns:1fr;gap:0}
+  .ghi-tinh dt{padding-top:6px}
+}
+</style>
+</head>
+<body class="trang-chuoi">
+
+<header class="dau">
+  <div class="dau-tren"><span class="ma-vt">ENT-MD-01 · Medical Marketing</span></div>
+</header>
+
+<section class="noi pmx" id="ePmx"><div class="trong">Đang nạp…</div></section>
+
+<div id="tip" hidden></div>
+<div id="hopO" hidden>
+  <span class="tip-nhan" id="hopONhan"></span>
+  <textarea id="hopOTa" rows="6" aria-label="Nội dung đề xuất"></textarea>
+  <div class="hopO-nut">
+    <button id="hopOXoa" class="nguy">Xoá</button>
+    <span class="hopO-goi">Esc huỷ · ⌘/Ctrl + Enter lưu</span>
+    <button id="hopOHuy">Huỷ</button>
+    <button class="pri" id="hopOLuu">Lưu</button>
+  </div>
+</div>
+
+<script src="chung.js"></script>
+<script>
+// Góp ý thông điệp Promax iNO. Cùng cách dùng với trang chuỗi công việc — bấm vào
+// ô là mở hộp sửa, lưu xong chữ đỏ, gửi xong vẫn sửa tiếp được — nhưng đây là
+// bảng DUYỆT: mỗi mục đã có sẵn phán quyết đề xuất, người góp ý nói mình đồng ý
+// hay muốn sửa thành gì.
+//
+// Luồng riêng nên góp ý rơi vào gop-y/thong-diep-promax/<tháng>.json, không lẫn
+// với chuỗi công việc.
+const LUONG = "thong-diep-promax";
+const KHOA_NHAP = "afp-gopy-" + LUONG;
+const KHOA_EMAIL = "afp-cong-email";
+const HAU_TO = "@alpha-france.com";
+
+let DL = null;
+let oSua = new Map();          // khoá "mã|trường" → { ma, truong, cu, moi, xoa }
+let daGui = new Set();         // ô đã gửi rồi, để lần sau chỉ ghi phần mới
+let email = "";
+try { email = localStorage.getItem(KHOA_EMAIL) || ""; } catch {}
+const emailHopLe = (v) => new RegExp("^[^\\s@]+" + HAU_TO.replace(".", "\\.") + "$", "i").test((v || "").trim());
+const chuaGui = () => [...oSua.entries()].filter(([k]) => !daGui.has(k));
+
+const LOC = { nhom: "*", bc: "*", xuly: false };
+const PHAI_XU_LY = new Set(["Cần điền", "Cần xác minh"]);
+const BC = { "T1": ["vung", "Vững — trình bày tự tin"],
+             "T2": ["hanche", "Dùng được, phải nêu giới hạn"],
+             "T3": ["noibo", "Chỉ nội bộ, không dùng trước hội đồng"],
+             "—":  ["na", "Không áp dụng — quyết định pháp lý hoặc vận hành"] };
+const LOAI = { "Giữ nguyên": "giu", "Sửa câu chữ": "sua", "Bỏ hẳn": "bo",
+               "Cần điền": "dien", "Cần xác minh": "xacminh" };
+
+// Bản gốc dùng ~~gạch~~ = bỏ và **đậm** = thêm. Giữ đúng nghĩa đó khi vẽ ra.
+function chuGoc(s) {
+  return esc(s).replace(/~~(.+?)~~/g, "<s>$1</s>").replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+}
+
+/* ---------- nhớ bản nháp trong máy ---------- */
+function luuNhap() {
+  try {
+    localStorage.setItem(KHOA_NHAP, JSON.stringify({
+      v: 1, oSua: [...oSua.entries()], daGui: [...daGui] }));
+  } catch {}
+}
+function docNhap() {
+  let d;
+  try { d = JSON.parse(localStorage.getItem(KHOA_NHAP) || "null"); } catch { return; }
+  if (!d || d.v !== 1) return;
+  try {
+    (d.oSua || []).forEach(([k, v]) => oSua.set(k, v));
+    (d.daGui || []).forEach(k => daGui.add(k));
+  } catch { oSua.clear(); daGui.clear(); }
+}
+function xoaNhap() { try { localStorage.removeItem(KHOA_NHAP); } catch {} }
+
+/* ---------- vẽ ---------- */
+const khoaO = (ma, truong) => ma + "|" + truong;
+
+// Ô góp ý được: bấm vào là mở hộp sửa. Ô nào đã sửa thì đỏ, y như trang chuỗi.
+function oGopY(ma, truong, goc, lop) {
+  const kh = khoaO(ma, truong);
+  const s = oSua.get(kh);
+  const than = s
+    ? (s.xoa ? `<s>${esc(goc)}</s> <span class="the-xoa">đề xuất bỏ</span>` : esc(s.moi))
+    : (goc ? chuGoc(goc) : '<span class="trong-o">bấm để viết</span>');
+  return `<div class="khoi-o"><span class="o-nhan">${esc(truong)}</span>` +
+    `<div class="o-dai o-sua${s ? (s.xoa ? " da-xoa" : " da-sua") : ""} ${lop || ""}" ` +
+    `data-o="${esc(kh)}" data-goc="${esc(goc)}" title="Bấm để sửa">${than}</div></div>`;
+}
+
+function veMuc(x) {
+  const [lopBc, giai] = BC[x.muc_bc] || BC["—"];
+  return `<article class="muc" data-nhom="${esc(x.nhom)}" data-loai="${esc(x.loai)}" ` +
+    `data-bc="${esc(x.muc_bc)}" data-xuly="${PHAI_XU_LY.has(x.loai) ? 1 : 0}">
+    <div class="rail rail-${lopBc}" title="${esc(giai)}"></div>
+    <div class="than">
+      <div class="dau-muc"><span class="ma">${esc(x.ma)}</span>
+        <span class="chip loai-${LOAI[x.loai] || "giu"}">${esc(x.loai)}</span>
+        <span class="chip bc-${lopBc}">${esc(x.muc_bc)}</span></div>
+      ${oGopY(x.ma, "Câu đề xuất", x.noi, "cau")}
+      ${oGopY(x.ma, "Ý kiến của bạn", "", "")}
+      <dl class="ghi-tinh">
+        <dt>Vì sao</dt><dd>${chuGoc(x.visao)}</dd>
+        <dt>${esc(x.nhan_nguon)}</dt><dd>${esc(x.nguon || "—")}</dd>
+      </dl>
+    </div></article>`;
+}
+
+function veNhom(k) {
+  const ds = DL.muc.filter(x => x.nhom === k);
+  const n = DL.nhom[k] || {};
+  return `<section class="nhom-pmx" data-nhom="${esc(k)}">
+    <div class="nhom-dau"><h3><span class="chu-nhom">${esc(k)}</span>${esc(n.ten || "")}</h3>
+      <span class="dem">${ds.length} mục</span>
+      <p class="phu">${esc(n.phu || "")}</p></div>
+    ${ds.map(veMuc).join("")}</section>`;
+}
+
+function veF() {
+  const n = DL.nhom.F || {};
+  return `<section class="nhom-pmx" data-nhom="F">
+    <div class="nhom-dau"><h3><span class="chu-nhom">F</span>${esc(n.ten || "")}</h3>
+      <span class="dem">${DL.f.length} điểm</span>
+      <p class="phu">${esc(n.phu || "")}</p></div>
+    <div class="bang-f"><table><thead><tr>
+      <th>Mã</th><th>Việc cần chốt</th><th>Ảnh hưởng</th><th>Ai</th><th>Kết quả bạn biết</th>
+    </tr></thead><tbody>` +
+    DL.f.map(x => `<tr><td><span class="ma">${esc(x.ma)}</span></td>
+      <td>${esc(x.viec)}</td><td class="nho">${esc(x.anh_huong)}</td>
+      <td class="nho">${esc(x.ai)}</td>
+      <td>${oGopY(x.ma, "Kết quả", "", "")}</td></tr>`).join("") +
+    `</tbody></table></div></section>`;
+}
+
+function thanhSua() {
+  const c = chuaGui().length;
+  if (c) {
+    return `<div class="thanh-sua"><b>${c} ô chưa gửi</b>` +
+      `<span>đã lưu trong máy bạn, chưa gửi đi đâu — soát lại rồi bấm Gửi</span>` +
+      `<button id="nBoSua">Bỏ hết</button>` +
+      `<button class="pri" id="nGuiSua">Gửi góp ý</button></div>`;
+  }
+  if (daGui.size) {
+    return `<div class="thanh-sua thanh-xong"><b class="bao-ok">Cảm ơn bạn đã góp ý.</b>` +
+      `<span>Sửa tiếp mục nào cũng được — lần gửi sau chỉ ghi phần mới.</span>` +
+      `<button id="nBoSua">Dọn bảng</button></div>`;
+  }
+  return "";
+}
+
+const nut = (k, v, ten, dang) =>
+  `<button type="button" data-loc="${k}" data-gt="${esc(v)}" aria-pressed="${dang ? "true" : "false"}">${esc(ten)}</button>`;
+
+function ve() {
+  const dem = DL.muc.reduce((a, x) => (a[x.loai] = (a[x.loai] || 0) + 1, a), {});
+  const soXuLy = (dem["Cần điền"] || 0) + (dem["Cần xác minh"] || 0) + DL.f.length;
+
+  const dau = `<div class="dau-bang"><h3>Góp ý thông điệp Promax iNO</h3>
+      <span class="dem-bang">${DL.muc.length} thông điệp · ${DL.f.length} điểm cần xác minh</span></div>
+    <p class="dan">Bản đề xuất v1, tổng hợp từ 7 tài liệu. Gạch ngang là phần bỏ so với tài liệu
+      gốc, in đậm là phần thêm hoặc thay. Bấm vào ô nào cũng sửa được.</p>
+    <div class="canh-bao"><b>Promax iNO là trang thiết bị y tế nhóm A, không phải thuốc.</b>
+      Ngôn ngữ hiệu quả giữ ở mức “hỗ trợ”. Bản để duyệt nội bộ — chưa phải tài liệu phát hành.</div>
+    <div class="chu-giai"><h4>Mức bằng chứng — đọc dải màu bên trái mỗi mục</h4><ul>
+      <li><span class="chip bc-vung">T1</span> Vững — trình bày tự tin trước hội đồng.</li>
+      <li><span class="chip bc-hanche">T2</span> Dùng được, nhưng phải nêu giới hạn kèm theo.</li>
+      <li><span class="chip bc-noibo">T3</span> Chỉ nội bộ — không đưa ra trước hội đồng.</li>
+      <li><span class="chip bc-na">—</span> Không áp dụng: quyết định pháp lý hoặc vận hành.</li>
+    </ul></div>`;
+
+  const oEmail = `<div class="hang-email">
+    <label for="oEmail">Email Alpha France của bạn <b class="bat-buoc">bắt buộc</b></label>
+    <input id="oEmail" type="email" inputmode="email" autocomplete="email" spellcheck="false"
+           placeholder="ten${HAU_TO}" value="${esc(email)}">
+    <span class="email-nhac" id="oEmailNhac">Góp ý gửi đi mang địa chỉ này — không có thì Ban Điều hành không biết hỏi lại ai.</span>
+  </div>`;
+
+  const loc = `<div class="loc-pmx">
+    <span class="nhan">Nhóm</span>${["*","A","B","C","D","E"].map(v => nut("nhom", v, v === "*" ? "Tất cả" : v, LOC.nhom === v)).join("")}
+    <span class="tach"></span><span class="nhan">Mức</span>
+    ${["*","T1","T2","T3"].map(v => nut("bc", v, v === "*" ? "Tất cả" : v, LOC.bc === v)).join("")}
+    <span class="tach"></span>
+    ${nut("xuly", "1", "Chỉ việc phải xử lý (" + soXuLy + ")", LOC.xuly)}
+    <span class="dem-hien" id="eDemHien"></span></div>`;
+
+  $("ePmx").innerHTML = dau + oEmail + `<div id="eThanhSua">${thanhSua()}</div>` + loc +
+    "ABCDE".split("").map(veNhom).join("") + veF();
+  locLai();
+  ganCat($("ePmx"));
+}
+
+// Lọc bằng ẩn hiện, không dựng lại: người duyệt bật tắt liên tục để đối chiếu,
+// dựng lại là mất chỗ đang đọc.
+function locLai() {
+  let hien = 0;
+  const muc = [...document.querySelectorAll(".muc")];
+  muc.forEach(m => {
+    const ok = (LOC.nhom === "*" || m.dataset.nhom === LOC.nhom)
+            && (LOC.bc === "*" || m.dataset.bc === LOC.bc)
+            && (!LOC.xuly || m.dataset.xuly === "1");
+    m.hidden = !ok;
+    if (ok) hien++;
+  });
+  document.querySelectorAll(".nhom-pmx").forEach(s => {
+    if (s.dataset.nhom === "F") { s.hidden = (LOC.nhom !== "*" || LOC.bc !== "*"); return; }
+    s.hidden = !s.querySelector(".muc:not([hidden])");
+  });
+  const d = $("eDemHien");
+  if (d) d.textContent = hien + "/" + muc.length + " mục";
+}
+
+function ganCat(goc) {
+  goc.querySelectorAll(".o-dai").forEach(el => {
+    el.classList.toggle("cat", el.scrollHeight - el.clientHeight > 1);
+  });
+}
+
+/* ---------- hộp sửa nổi cạnh ô ---------- */
+function datCanhO(t, el) {
+  t.hidden = false; t.style.left = "-9999px"; t.style.top = "0px";
+  const r = t.getBoundingClientRect(), o = el.getBoundingClientRect();
+  let y = o.bottom + 6;
+  if (y + r.height + 8 > innerHeight) y = o.top - r.height - 6;
+  y = Math.max(8, Math.min(y, innerHeight - r.height - 8));
+  const x = Math.max(8, Math.min(o.left, innerWidth - r.width - 8));
+  t.style.left = (x + scrollX) + "px"; t.style.top = (y + scrollY) + "px";
+}
+function moTip(el) {
+  const t = $("tip");
+  t.innerHTML = `<span class="tip-nhan">Nội dung đầy đủ</span>${esc(el.textContent)}`;
+  datCanhO(t, el); t.__o = el;
+}
+function dongTip() { $("tip").hidden = true; $("tip").__o = null; }
+
+function moSuaO(el) {
+  dongTip();
+  const [ma, truong] = el.dataset.o.split("|");
+  const s = oSua.get(el.dataset.o);
+  $("hopONhan").textContent = ma + " · " + truong;
+  $("hopOTa").value = s && !s.xoa ? s.moi : el.dataset.goc;
+  $("hopOXoa").disabled = !el.dataset.goc && !s;
+  datCanhO($("hopO"), el);
+  $("hopO").__o = el;
+  $("hopOTa").focus();
+  $("hopOTa").setSelectionRange($("hopOTa").value.length, $("hopOTa").value.length);
+}
+function dongSua() { $("hopO").hidden = true; $("hopO").__o = null; }
+
+function ghiO(xoa) {
+  const el = $("hopO").__o;
+  if (!el) return;
+  const kh = el.dataset.o, goc = el.dataset.goc, moi = $("hopOTa").value.trim();
+  const [ma, truong] = kh.split("|");
+  daGui.delete(kh);
+  if (!xoa && moi === goc) oSua.delete(kh);
+  else if (!xoa && !moi && !goc) oSua.delete(kh);
+  else oSua.set(kh, { ma, truong, cu: goc, moi: xoa ? "" : moi, xoa: !!xoa });
+  luuNhap();
+
+  // Chỉ vẽ lại đúng ô vừa sửa; vẽ lại cả trang thì mất chỗ đang đọc.
+  const truoc = el.parentElement.getBoundingClientRect().top;
+  dongSua();
+  const x = DL.muc.find(m => m.ma === ma);
+  el.parentElement.outerHTML = oGopY(ma, truong, goc, truong === "Câu đề xuất" ? "cau" : "");
+  const sau = document.querySelector(`[data-o="${CSS.escape(kh)}"]`);
+  if (sau) {
+    ganCat(sau.parentElement);
+    if ($("eThanhSua")) $("eThanhSua").innerHTML = thanhSua();
+    const lech = sau.parentElement.getBoundingClientRect().top - truoc;
+    if (Math.abs(lech) > 1) scrollBy(0, lech);
+  }
+}
+
+/* ---------- gửi ---------- */
+async function gui() {
+  const goi = chuaGui();
+  if (!goi.length) return;
+  if (!emailHopLe(email)) {
+    $("oEmailNhac").textContent = `Cần một địa chỉ ${HAU_TO} hợp lệ mới gửi được.`;
+    $("oEmailNhac").classList.add("loi");
+    $("oEmail").classList.add("loi"); $("oEmail").focus();
+    return;
+  }
+  const n = $("nGuiSua");
+  if (n) { n.disabled = true; n.textContent = "Đang ghi…"; }
+  try {
+    const r = await fetch(API_GOP_Y, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email, luong: LUONG,
+        sua: goi.map(([, o]) => ({ rid: o.ma, k: 0, cot: o.truong, cu: o.cu, moi: o.moi, xoa: o.xoa })),
+        them: []
+      })
+    });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(j.loi || ("HTTP " + r.status));
+    goi.forEach(([k]) => daGui.add(k));
+    luuNhap();
+    $("eThanhSua").innerHTML = thanhSua();
+  } catch (e) {
+    if (n) { n.disabled = false; n.textContent = "Gửi góp ý"; }
+    const t = $("eThanhSua").querySelector(".thanh-sua");
+    if (t) t.innerHTML = `<b class="bao-loi">Không ghi được: ${esc(e.message)}</b>` +
+      `<button id="nBoSua">Bỏ hết</button><button class="pri" id="nGuiSua">Gửi lại</button>`;
+  }
+}
+
+/* ---------- nối sự kiện ---------- */
+$("ePmx").addEventListener("click", (e) => {
+  const b = e.target.closest("button[data-loc]");
+  if (b) {
+    const k = b.dataset.loc;
+    if (k === "xuly") LOC.xuly = !LOC.xuly;
+    else LOC[k] = b.dataset.gt;
+    document.querySelectorAll(".loc-pmx button").forEach(x => {
+      const kk = x.dataset.loc;
+      x.setAttribute("aria-pressed",
+        kk === "xuly" ? String(LOC.xuly) : String(LOC[kk] === x.dataset.gt));
+    });
+    return locLai();
+  }
+  if (e.target.id === "nGuiSua") return gui();
+  if (e.target.id === "nBoSua") { oSua.clear(); daGui.clear(); xoaNhap(); return ve(); }
+
+  const os = e.target.closest(".o-sua");
+  if (os) return os === $("hopO").__o ? dongSua() : moSuaO(os);
+  const o = e.target.closest(".o-dai.cat");
+  if (o) return o === $("tip").__o ? dongTip() : moTip(o);
+  dongTip();
+});
+
+$("ePmx").addEventListener("input", (e) => {
+  if (e.target.id !== "oEmail") return;
+  email = e.target.value.trim();
+  try { localStorage.setItem(KHOA_EMAIL, email); } catch {}
+  const ok = emailHopLe(email);
+  e.target.classList.toggle("loi", !!email && !ok);
+  const n = $("oEmailNhac");
+  n.classList.toggle("loi", !!email && !ok);
+  n.textContent = !email || ok
+    ? "Góp ý gửi đi mang địa chỉ này — không có thì Ban Điều hành không biết hỏi lại ai."
+    : `Phải là địa chỉ ${HAU_TO}.`;
+});
+
+$("hopOLuu").onclick = () => ghiO(false);
+$("hopOXoa").onclick = () => ghiO(true);
+$("hopOHuy").onclick = dongSua;
+$("hopOTa").addEventListener("keydown", (e) => {
+  if (e.key === "Escape") { e.stopPropagation(); dongSua(); }
+  if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) ghiO(false);
+});
+addEventListener("scroll", () => { if (!$("tip").hidden) dongTip(); }, true);
+addEventListener("resize", () => { dongTip(); dongSua(); });
+$("tip").addEventListener("dblclick", dongTip);
+document.addEventListener("mousedown", (e) => {
+  if ($("hopO").hidden) return;
+  if ($("hopO").contains(e.target) || ($("hopO").__o && $("hopO").__o.contains(e.target))) return;
+  dongSua();
+});
+
+/* ---------- nạp ---------- */
+(async () => {
+  kiemPhienBan();
+  await doDanhTinh();
+  if (EMAIL_ACCESS) email = EMAIL_ACCESS;
+  docNhap();
+  try {
+    DL = await nap("du-lieu/thong-diep-promax.json");
+  } catch (e) {
+    $("ePmx").innerHTML = `<div class="trong"><b>Không nạp được thông điệp.</b> ` +
+      `${esc(e.message)} — kiểm <code>du-lieu/thong-diep-promax.json</code> đã lên máy chủ chưa.</div>`;
+    return;
+  }
+  ve();
+})();
+</script>
+</body>
+</html>

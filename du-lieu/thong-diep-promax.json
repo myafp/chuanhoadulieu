@@ -1,0 +1,428 @@
+{
+ "muc": [
+  {
+   "ma": "A0",
+   "loai": "Giữ nguyên",
+   "muc_bc": "T1",
+   "nhom": "A",
+   "noi": "\"Giá trị của NO không nằm ở nhiều hay ít, mà là NO đúng nồng độ sinh lý – tác động đúng chỗ – can thiệp đúng thời điểm.\"",
+   "visao": "Giữ nguyên làm câu chốt duy nhất. Vô hiệu hóa phản biện \"NO là dao hai lưỡi\".",
+   "nhan_nguon": "Nguồn",
+   "nguon": "MD, GEN, KN; NITRIC trial JAMA 2022"
+  },
+  {
+   "ma": "A1",
+   "loai": "Sửa câu chữ",
+   "muc_bc": "T1",
+   "nhom": "A",
+   "noi": "Đúng nồng độ: Promax iNO bổ sung NO ở nồng độ sinh lý (mục tiêu 0,1–5 ppm, <20 ppm/ngày), không cùng phân khúc với iNO hồi sức 20–80 ppm hay 200–320 ppm **(nồng độ theo sáng chế; chưa có phép đo độc lập công bố)**.",
+   "visao": "Thêm ghi chú \"theo sáng chế\" để không bị bắt lỗi con số chưa đo độc lập.",
+   "nhan_nguon": "Nguồn",
+   "nguon": "Patent claims; INOMAX label"
+  },
+  {
+   "ma": "A2",
+   "loai": "Giữ nguyên",
+   "muc_bc": "T1",
+   "nhom": "A",
+   "noi": "Đúng chỗ: NO tác động tại niêm mạc hốc mũi và phức hợp lỗ ngách (OMC) — giảm phù nề, mở lại dẫn lưu; không phải \"bơm NO vào xoang đã tắc\".",
+   "visao": "Giữ nguyên. Trả lời phản biện \"lỗ thông bít thì NO tới xoang bằng cách nào\".",
+   "nhan_nguon": "Nguồn",
+   "nguon": "Lundberg 2008; EPOS 2020"
+  },
+  {
+   "ma": "A3",
+   "loai": "Giữ nguyên",
+   "muc_bc": "T1",
+   "nhom": "A",
+   "noi": "Bổ sung, không thay thế: dùng song hành với rửa mũi, corticoid, kháng sinh theo phác đồ chuẩn.",
+   "visao": "Giữ nguyên. iNOS xoang kháng steroid nên corticoid không bù được NO.",
+   "nhan_nguon": "Nguồn",
+   "nguon": "Lundberg ERJ 1996; LXQ 2026; DMH 2025"
+  },
+  {
+   "ma": "B1",
+   "loai": "Giữ nguyên",
+   "muc_bc": "T1",
+   "nhom": "B",
+   "noi": "Xoang cạnh mũi là nguồn NO cường độ cao của cơ thể: ≈9,1 ppm trong lòng xoang, nNO hốc mũi ≈344 ppb, hô hấp dưới thấp hơn ~20 lần.",
+   "visao": "Giữ nguyên; KN yêu cầu đối chiếu toàn văn Nature Med 1995 để chốt con số.",
+   "nhan_nguon": "Nguồn",
+   "nguon": "Lundberg Nature Med 1995; Anat Rec 2008"
+  },
+  {
+   "ma": "B2",
+   "loai": "Giữ nguyên",
+   "muc_bc": "T1",
+   "nhom": "B",
+   "noi": "iNOS xoang là ngoại lệ: biểu hiện thường trực, không phụ thuộc Ca²⁺, kháng steroid — hàng rào tuyến đầu, không phải iNOS \"viêm\".",
+   "visao": "Giữ nguyên. Lập luận mạnh nhất cho vai trò bổ trợ.",
+   "nhan_nguon": "Nguồn",
+   "nguon": "Lundberg ERJ 1996; Förstermann 2012"
+  },
+  {
+   "ma": "B3",
+   "loai": "Sửa câu chữ",
+   "muc_bc": "T1",
+   "nhom": "B",
+   "noi": "Vòng xoắn bệnh lý: bít tắc lỗ thông → O₂↓ → NO thoát ra↓ → CBF↓ → ứ nhầy → biofilm → viêm/phù nề → tắc nặng hơn **(ghi rõ: sơ đồ là mô hình khái niệm tổng hợp)**.",
+   "visao": "Thêm nhãn \"mô hình khái niệm tổng hợp\" để không bị hiểu là dữ liệu đo.",
+   "nhan_nguon": "Nguồn",
+   "nguon": "Lundberg 2008; Naraghi 2007"
+  },
+  {
+   "ma": "B4",
+   "loai": "Giữ nguyên",
+   "muc_bc": "T1",
+   "nhom": "B",
+   "noi": "Nghịch lý nNO: nNO hốc mũi giảm (NO không thoát ra được) trong khi chất chuyển hóa NO trong dịch xoang tăng — NO vẫn được tạo nhưng không tới đúng chỗ.",
+   "visao": "Giữ nguyên. Slide phản biện then chốt; nNO CRS 96,4 vs khỏe 233,2 ppb.",
+   "nhan_nguon": "Nguồn",
+   "nguon": "Lindberg 1997; Naraghi 2007"
+  },
+  {
+   "ma": "B5",
+   "loai": "Sửa câu chữ",
+   "muc_bc": "T1",
+   "nhom": "B",
+   "noi": "NO điều hòa tần số đập lông chuyển qua trục sGC–cGMP–PKG **(mức tăng +27%/+37% là số liệu mô hình thỏ — không nói \"trên người\")**.",
+   "visao": "Bắt buộc ghi rõ số % là mô hình thỏ (Runer 1998), tránh gán cho người.",
+   "nhan_nguon": "Nguồn",
+   "nguon": "Xue 1996; Runer et al. OHNS 1998"
+  },
+  {
+   "ma": "B6",
+   "loai": "Sửa câu chữ",
+   "muc_bc": "T1",
+   "nhom": "B",
+   "noi": "Trên người, NO ngoại sinh cải thiện ~~tần số đập lông chuyển (CBF)~~ **hoạt động thanh thải nhầy–lông chuyển (MCC)** (+50,1%) và lưu lượng máu niêm mạc (+75,4%) ở người khỏe.",
+   "visao": "KN cấm nói \"tăng CBF trên người/bệnh nhân\"; nghiên cứu đo MCC và lưu lượng máu, không đo CBF.",
+   "nhan_nguon": "Nguồn",
+   "nguon": "Runer & Lindberg, Ann Otol 1998"
+  },
+  {
+   "ma": "B7",
+   "loai": "Giữ nguyên",
+   "muc_bc": "T1",
+   "nhom": "B",
+   "noi": "Cửa sổ nồng độ: thiếu NO → mất bảo vệ; nồng độ sinh lý → tối ưu; quá mức → peroxynitrite gây độc niêm mạc.",
+   "visao": "Giữ nguyên. Cơ sở cho định vị \"đúng nồng độ\".",
+   "nhan_nguon": "Nguồn",
+   "nguon": "Flak & Goldman 1996; Coleman 2001"
+  },
+  {
+   "ma": "B8",
+   "loai": "Sửa câu chữ",
+   "muc_bc": "T1",
+   "nhom": "B",
+   "noi": "NO liều thấp phân tán biofilm qua giảm c-di-GMP; vi khuẩn về dạng planktonic, nhạy kháng sinh trở lại **(RCT gốc là bệnh nhân xơ nang, NO đường hít 10 ppm — nêu rõ khi trích)**.",
+   "visao": "Thêm bối cảnh RCT để không bị hiểu là bằng chứng trên mũi xoang.",
+   "nhan_nguon": "Nguồn",
+   "nguon": "Barraud 2006; Howlin Mol Ther 2017"
+  },
+  {
+   "ma": "B9",
+   "loai": "Sửa câu chữ",
+   "muc_bc": "T2",
+   "nhom": "B",
+   "noi": "Trên chủng Việt Nam: 65–80% chủng phân lập tạo biofilm; dung dịch tạo NO phân rã ~~87,5% / 70,83% / \"100%\"~~ **70–85%** biofilm S. aureus (gồm MRSA) và P. aeruginosa in-vitro.",
+   "visao": "A2D và 15P đang dùng bộ số khác cho cùng nguồn. Thống nhất một bộ số sau khi đối chiếu bản toàn văn (xem F5).",
+   "nhan_nguon": "Nguồn",
+   "nguon": "Phạm Hùng Vân và cs., TCYHVN"
+  },
+  {
+   "ma": "B10",
+   "loai": "Giữ nguyên",
+   "muc_bc": "T1",
+   "nhom": "B",
+   "noi": "Công nghệ bình đôi: NO bán hủy ~5 giây nên phải sinh tại chỗ; Bình A sodium nitrite 0,5% + Bình B citric acid 0,2% / NaCl 0,9% trộn tại vòi, pH 3–5.",
+   "visao": "Giữ nguyên. Mọi file đều nhất quán.",
+   "nhan_nguon": "Nguồn",
+   "nguon": "Patent in-situ NO; PI/Label"
+  },
+  {
+   "ma": "C1",
+   "loai": "Sửa câu chữ",
+   "muc_bc": "T2",
+   "nhom": "C",
+   "noi": "VMX cấp — ~~RCT:~~ **Nghiên cứu quan sát, có nhóm so sánh (tạo giả thuyết):** trong tuần đầu, NO phối hợp điều trị chuẩn cải thiện SNOT-22 (43,3 vs 52,9; p<0,001) và MLK nội soi (2,68 vs 3,35; p=0,001). **Nêu thẳng: MLK ngày 14 tương đương, ngày 28 nhóm chứng thấp hơn (p=0,028) → lợi ích động học sớm, không phải điểm cuối.**",
+   "visao": "Đổi nhãn \"RCT\" → hàng loạt ca có nhóm so sánh (đúng thiết kế) và nêu chủ động ngày 28.",
+   "nhan_nguon": "Nguồn",
+   "nguon": "Lý Xuân Quang và cs. TCYHVN 2026;560(2)"
+  },
+  {
+   "ma": "C2",
+   "loai": "Giữ nguyên",
+   "muc_bc": "T1",
+   "nhom": "C",
+   "noi": "VMX cấp — >90% khởi phát do virus, kháng sinh chưa có vai trò; NO tại chỗ lấp khoảng trống điều trị sớm và hỗ trợ quản lý kháng sinh.",
+   "visao": "Giữ nguyên.",
+   "nhan_nguon": "Nguồn",
+   "nguon": "StatPearls NBK470383; EPOS 2020"
+  },
+  {
+   "ma": "C3",
+   "loai": "Cần xác minh",
+   "muc_bc": "T2",
+   "nhom": "C",
+   "noi": "VMX mạn — ~~RCT — CAO:~~ **[CHỜ xác nhận thiết kế — F2]** NO phối hợp phác đồ chuẩn cải thiện SNOT-22 và Lund–Kennedy so với nước muối; tác dụng phụ tương đương (9,3% vs 9,8%).",
+   "visao": "GEN/TH gắn nhãn RCT nhưng phụ lục và ghi chú nói không ngẫu nhiên. Chưa gắn nhãn CAO cho tới khi xác nhận.",
+   "nhan_nguon": "Nguồn",
+   "nguon": "Dương Minh Hoàng 2025, ĐHYD TP.HCM"
+  },
+  {
+   "ma": "C4",
+   "loai": "Giữ nguyên",
+   "muc_bc": "T1",
+   "nhom": "C",
+   "noi": "Hậu phẫu FESS — Tại 1 tháng: SNOT-22 8,09 vs 10,73 (p=0,002); Lund–Kennedy 4,04 vs 4,78 (p=0,040); AE tại chỗ 10,9% vs 7,3% (p=0,716); 0% biến cố toàn thân.",
+   "visao": "Giữ nguyên. Bằng chứng mạnh nhất trong nước (RCT n=87); chủ động nêu 100→87 ca.",
+   "nhan_nguon": "Nguồn",
+   "nguon": "Lê Trần Quang Minh, Nguyễn Thị Mai Khanh 2025–26"
+  },
+  {
+   "ma": "C5",
+   "loai": "Sửa câu chữ",
+   "muc_bc": "T1",
+   "nhom": "C",
+   "noi": "Hậu FESS — Lông chuyển cần 4–6 tháng hồi phục; ~80% BN CRS có chỉ định mổ hiện diện biofilm; nNO phục hồi sau FESS. **Ghi rõ mẫu số từng con số biofilm (40–90% BN / ~80% BN mổ / 65–80% chủng đang bị dùng lẫn).**",
+   "visao": "Ba con số biofilm khác mẫu số đang lưu hành lẫn nhau — buộc ghi rõ nguồn từng số.",
+   "nhan_nguon": "Nguồn",
+   "nguon": "Fu CH 2015; Eloy; Rudmik 2011"
+  },
+  {
+   "ma": "C6",
+   "loai": "Sửa câu chữ",
+   "muc_bc": "T2",
+   "nhom": "C",
+   "noi": "Nhiễm virus hô hấp trên — NONS giảm tải lượng virus −0,52 log₁₀ so với giả dược (p=0,010; ≈3,3 lần); RT-PCR âm 82,8% vs 66,7%. **Chỉ dùng ở diễn đàn khoa học, không dùng cho field/quảng bá; chỉ định COVID-19, không phải mũi xoang.**",
+   "visao": "Giới hạn phạm vi dùng; RCT pha III n=306 nhưng khác chỉ định.",
+   "nhan_nguon": "Nguồn",
+   "nguon": "Tandon et al. Lancet Reg Health SEA 2022"
+  },
+  {
+   "ma": "D1",
+   "loai": "Cần điền",
+   "muc_bc": "—",
+   "nhom": "D",
+   "noi": "Promax iNO là trang thiết bị y tế nhóm A, không phải thuốc; ngôn ngữ hiệu quả giữ ở mức \"hỗ trợ\". Số công bố **…/PCBA-HN [RA điền]**.",
+   "visao": "RA điền số công bố thật.",
+   "nhan_nguon": "Nguồn",
+   "nguon": "Số công bố PCBA"
+  },
+  {
+   "ma": "D2",
+   "loai": "Giữ nguyên",
+   "muc_bc": "—",
+   "nhom": "D",
+   "noi": "Đối tượng: người lớn và trẻ em trên 2 tuổi (bản Kids có vòi riêng).",
+   "visao": "Giữ nguyên. Nhất quán giữa các file.",
+   "nhan_nguon": "Nguồn",
+   "nguon": "PI/Label"
+  },
+  {
+   "ma": "D3",
+   "loai": "Cần điền",
+   "muc_bc": "—",
+   "nhom": "D",
+   "noi": "Liều: ~~___~~ **[RA chốt theo PI: 1–2 hay 2]** nhát mỗi bên × 2–3 lần/ngày; đợt cấp 7–14 ngày; dự phòng 7 ngày.",
+   "visao": "MD/GEN ghi 1–2 nhát; A2D/15P ghi 2 nhát. Chốt theo PI (F4).",
+   "nhan_nguon": "Nguồn",
+   "nguon": "PI đang lưu hành"
+  },
+  {
+   "ma": "D4",
+   "loai": "Cần điền",
+   "muc_bc": "—",
+   "nhom": "D",
+   "noi": "Rửa mũi bằng nước muối trước khi xịt; thứ tự với corticoid: ~~A2D: corticoid trước Promax ~15′~~ / ~~15P: Promax trước, corticoid sau 15′~~ **[Medical chốt một câu chuẩn — F1]**.",
+   "visao": "Hai file đang hướng dẫn ngược nhau. Chốt một câu chuẩn.",
+   "nhan_nguon": "Nguồn",
+   "nguon": "—"
+  },
+  {
+   "ma": "D5",
+   "loai": "Giữ nguyên",
+   "muc_bc": "T1",
+   "nhom": "D",
+   "noi": "Dung nạp: cay/rát mũi nhẹ 3–5 lần đầu do pH acid, sau dịu; AE tại chỗ 6,5–10,9%, 0% toàn thân trong theo dõi ≤1 tháng.",
+   "visao": "Giữ nguyên. Tổng hợp từ ba nghiên cứu có nhóm chứng.",
+   "nhan_nguon": "Nguồn",
+   "nguon": "DMH 2025; LTQM 2025–26; Tandon 2022"
+  },
+  {
+   "ma": "D6",
+   "loai": "Giữ nguyên",
+   "muc_bc": "T1",
+   "nhom": "D",
+   "noi": "Giới hạn nêu chủ động: theo dõi tối đa ~1 tháng; chưa có dữ liệu dài hạn, thai kỳ, dùng lặp lại lên biểu mô.",
+   "visao": "Giữ nguyên. Đặt trước phần kết luận mọi deck — tăng uy tín.",
+   "nhan_nguon": "Nguồn",
+   "nguon": "GEN slide 24, phụ lục A"
+  },
+  {
+   "ma": "D7",
+   "loai": "Cần điền",
+   "muc_bc": "—",
+   "nhom": "D",
+   "noi": "Chất bảo quản: ~~benzalkonium 0,02% / paraben~~ **[RA chốt theo PI lưu hành — F4]**.",
+   "visao": "Label + LXQ dùng benzalkonium; một bản PI ghi paraben. Chốt theo PI.",
+   "nhan_nguon": "Nguồn",
+   "nguon": "PI/Label"
+  },
+  {
+   "ma": "E1",
+   "loai": "Bỏ hẳn",
+   "muc_bc": "T3",
+   "nhom": "E",
+   "noi": "~~\"Giảm tải lượng virus gấp 16 lần so với nước muối\"~~",
+   "visao": "Là mức giảm trong nhóm so với nền, không phải so với giả dược (−0,52 log₁₀ ≈ 3,3 lần).",
+   "nhan_nguon": "Đang có ở",
+   "nguon": "TH slide 23"
+  },
+  {
+   "ma": "E2",
+   "loai": "Bỏ hẳn",
+   "muc_bc": "T3",
+   "nhom": "E",
+   "noi": "~~\"Diệt 99,9% virus\" / \"giảm 95–99% trong 24–72h\" trình bày như hiệu quả lâm sàng~~",
+   "visao": "In-vitro hoặc trong nhóm, n nhỏ (Winchester 2021).",
+   "nhan_nguon": "Đang có ở",
+   "nguon": "TH slide 23"
+  },
+  {
+   "ma": "E3",
+   "loai": "Bỏ hẳn",
+   "muc_bc": "T3",
+   "nhom": "E",
+   "noi": "~~\"NO tăng CBF trên bệnh nhân +27% / +37%\"~~",
+   "visao": "Số liệu mô hình thỏ (Runer 1998), không phải người.",
+   "nhan_nguon": "Đang có ở",
+   "nguon": "Giữ cảnh giác — MD/GEN/TH đã ghi đúng"
+  },
+  {
+   "ma": "E4",
+   "loai": "Bỏ hẳn",
+   "muc_bc": "T3",
+   "nhom": "E",
+   "noi": "~~\"Phá vỡ 100% biofilm\" / \"phân rã 70–85% biofilm trên bệnh nhân\"~~",
+   "visao": "Con số in-vitro; chưa có đo trên niêm mạc người.",
+   "nhan_nguon": "Đang có ở",
+   "nguon": "A2D slide 8"
+  },
+  {
+   "ma": "E5",
+   "loai": "Bỏ hẳn",
+   "muc_bc": "T3",
+   "nhom": "E",
+   "noi": "~~\"An toàn dùng kéo dài / dùng lâu dài\"~~",
+   "visao": "Chưa có dữ liệu theo dõi >1 tháng.",
+   "nhan_nguon": "Đang có ở",
+   "nguon": "FESS slide 6, 14, 15"
+  },
+  {
+   "ma": "E6",
+   "loai": "Bỏ hẳn",
+   "muc_bc": "T3",
+   "nhom": "E",
+   "noi": "~~\"Liệu pháp mới, an toàn, hiệu quả trong điều trị và dự phòng\"~~",
+   "visao": "Vượt phạm vi TTBYT nhóm A và bằng chứng hiện có.",
+   "nhan_nguon": "Đang có ở",
+   "nguon": "TH kết luận 04"
+  },
+  {
+   "ma": "E7",
+   "loai": "Bỏ hẳn",
+   "muc_bc": "T3",
+   "nhom": "E",
+   "noi": "~~\"Được đưa vào khuyến cáo điều trị (Hội TMH VN)\"~~",
+   "visao": "Chưa dẫn được văn bản; ghi chú diễn giả cùng slide nói ngược. Loại cho tới khi có văn bản (F3).",
+   "nhan_nguon": "Đang có ở",
+   "nguon": "TH slide 27–28"
+  },
+  {
+   "ma": "E8",
+   "loai": "Bỏ hẳn",
+   "muc_bc": "T3",
+   "nhom": "E",
+   "noi": "~~\"NO hiệu quả hơn povidone-iodine / xylitol\"~~",
+   "visao": "Không có nghiên cứu đối đầu trực tiếp.",
+   "nhan_nguon": "Đang có ở",
+   "nguon": "GEN đã ghi đúng"
+  },
+  {
+   "ma": "E9",
+   "loai": "Bỏ hẳn",
+   "muc_bc": "T3",
+   "nhom": "E",
+   "noi": "~~\"Màng NO tồn tại 72h\", \"Pha 3 trên 13.000 người\", \"tăng oxy mô 10–20%\"~~",
+   "visao": "Không nguồn peer-reviewed; NCT05109611 đã chấm dứt (~1.389 người, không kết quả).",
+   "nhan_nguon": "Đang có ở",
+   "nguon": "KN C2 đã cấm"
+  }
+ ],
+ "f": [
+  {
+   "ma": "F1",
+   "viec": "Thứ tự dùng Promax – corticoid xịt mũi (A2D và 15P đang ngược nhau)",
+   "anh_huong": "D4, A2D, 15P",
+   "ai": "Medical"
+  },
+  {
+   "ma": "F2",
+   "viec": "Dương Minh Hoàng 2025 có phân nhóm ngẫu nhiên không?",
+   "anh_huong": "C3 (nhãn CAO/TB)",
+   "ai": "Medical liên hệ tác giả"
+  },
+  {
+   "ma": "F3",
+   "viec": "NO có trong khuyến cáo của Hội TMH VN không? Văn bản nào, năm nào?",
+   "anh_huong": "E7, TH slide 27–28",
+   "ai": "David / Medical"
+  },
+  {
+   "ma": "F4",
+   "viec": "PI đang lưu hành: liều 1–2 hay 2 nhát; benzalkonium hay paraben; số công bố PCBA",
+   "anh_huong": "D1, D3, D7",
+   "ai": "RA"
+  },
+  {
+   "ma": "F5",
+   "viec": "Bộ số in-vitro Phạm Hùng Vân theo bản toàn văn (70–85% hay 87,5% / 70,83%)",
+   "anh_huong": "B9, A2D, 15P",
+   "ai": "Medical"
+  },
+  {
+   "ma": "F6",
+   "viec": "\"BV Trưng Vương 2025 — cải thiện sau 4 tuần\" là nghiên cứu gì?",
+   "anh_huong": "A2D, 15P slide 8",
+   "ai": "Medical"
+  }
+ ],
+ "nhom": {
+  "A": {
+   "ten": "Thông điệp cốt lõi cấp thương hiệu",
+   "phu": "Một câu chốt và ba trụ — mọi kênh dùng chung."
+  },
+  "B": {
+   "ten": "Thông điệp khoa học",
+   "phu": "Dùng cho HCP, KOL, CME."
+  },
+  "C": {
+   "ten": "Thông điệp theo chỉ định",
+   "phu": "Câu chuẩn cho từng bối cảnh lâm sàng, kèm số liệu được phép trích."
+  },
+  "D": {
+   "ten": "Thông điệp sản phẩm & an toàn",
+   "phu": "Theo hồ sơ công bố và dữ liệu dung nạp."
+  },
+  "E": {
+   "ten": "Claim cần loại khỏi mọi tài liệu",
+   "phu": "Toàn bộ câu gạch ngang = bỏ. Duyệt ở đây = đồng ý loại."
+  },
+  "F": {
+   "ten": "Điểm cần xác minh trước khi khóa bảng",
+   "phu": "Ghi kết quả vào ô ghi chú; duyệt khi đã chốt."
+  }
+ }
+}
