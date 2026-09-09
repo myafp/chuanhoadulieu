@@ -21,10 +21,6 @@
 }
 .pmx{max-width:900px}
 .pmx .dan{margin:0 0 8px;max-width:64ch;color:var(--mut);font-size:14.5px}
-.canh-bao{margin:14px 0 0;padding:12px 16px;border-left:3px solid var(--acc);
-  background:var(--acc-nhat);border-radius:0 9px 9px 0;font-size:13.5px;max-width:66ch}
-.canh-bao b{color:var(--acc2)}
-
 .chu-giai{margin:16px 0 0;border:1px solid var(--line);border-radius:11px;background:var(--trang);
   padding:13px 16px;display:flex;flex-direction:column;gap:7px}
 .chu-giai h4{margin:0;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
@@ -32,13 +28,11 @@
 .chu-giai ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
 .chu-giai li{display:flex;align-items:baseline;gap:10px;font-size:13px;color:var(--mut)}
 
-.loc-pmx{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:16px 0 4px}
-.loc-pmx .nhan{font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;
-  color:var(--nhat);font-weight:700;margin-right:2px}
-.loc-pmx button{font-size:12.5px;font-weight:500;border-radius:20px;padding:5px 12px;color:var(--mut)}
-.loc-pmx button[aria-pressed="true"]{background:var(--acc);border-color:var(--acc);color:#fff}
-.loc-pmx .tach{width:1px;height:20px;background:var(--line);margin:0 4px}
-.loc-pmx .dem-hien{margin-left:auto;font-family:var(--mono);font-size:11.5px;color:var(--nhat)}
+.pmx .loc-pmx{margin:16px 0 4px;align-items:flex-end}
+.loc-nut{flex:1 1 auto;flex-direction:row!important;align-items:center;gap:10px}
+.loc-nut button{font-size:12.5px;font-weight:500;border-radius:20px;padding:7px 13px;color:var(--mut)}
+.loc-nut button[aria-pressed="true"]{background:var(--acc);border-color:var(--acc);color:#fff}
+.loc-nut .dem-hien{margin-left:auto;font-family:var(--mono);font-size:11.5px;color:var(--nhat)}
 
 .nhom-pmx{margin:30px 0 0}
 .nhom-dau{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap;
@@ -94,7 +88,13 @@
 .pmx .o-sua.co-chu{border-style:solid}
 .pmx .o-sua:hover{border-color:var(--acc);border-style:solid;background:var(--acc-nhat)}
 .pmx .o-sua.da-sua,.pmx .o-sua.da-xoa{border:1px solid var(--sua-vien);background:var(--sua-nen);
-  box-shadow:none}
+  box-shadow:none;color:var(--ink)}
+
+/* Chỉ phần khác mới đổi màu. Đỏ cả ô thì biết "có người sửa" nhưng không biết
+   sửa chữ nào — mà đó mới là thứ người duyệt cần đọc. */
+.pmx ins{text-decoration:none;color:var(--sua);font-weight:600;
+  background:#fbdedb;border-radius:3px;padding:0 2px;margin:0 -1px}
+.pmx del{color:var(--nhat);text-decoration-color:var(--nhat)}
 .pmx .o-sua.da-sua:hover,.pmx .o-sua.da-xoa:hover{border-color:var(--sua);background:#fbe3e1}
 .pmx .o-sua.cau{font-family:var(--chu);font-size:15px}
 
@@ -122,7 +122,9 @@
 
 @media (max-width:640px){
   .cau{font-size:15px}
-  .loc-pmx .dem-hien{margin-left:0;flex:1 1 100%}
+  .loc-nut{flex-wrap:wrap}
+  .loc-nut button{flex:1 1 auto}
+  .loc-nut .dem-hien{margin-left:0;flex:1 1 100%}
   .ghi-tinh{grid-template-columns:1fr;gap:0}
   .ghi-tinh dt{padding-top:6px}
 }
@@ -170,7 +172,7 @@ try { email = localStorage.getItem(KHOA_EMAIL) || ""; } catch {}
 const emailHopLe = (v) => new RegExp("^[^\\s@]+" + HAU_TO.replace(".", "\\.") + "$", "i").test((v || "").trim());
 const chuaGui = () => [...oSua.entries()].filter(([k]) => !daGui.has(k));
 
-const LOC = { nhom: "*", bc: "*", xuly: false };
+const LOC = { nhom: "*", xuly: false };
 const PHAI_XU_LY = new Set(["Cần điền", "Cần xác minh"]);
 const BC = { "T1": ["vung", "Vững — trình bày tự tin"],
              "T2": ["hanche", "Dùng được, phải nêu giới hạn"],
@@ -182,6 +184,53 @@ const LOAI = { "Giữ nguyên": "giu", "Sửa câu chữ": "sua", "Bỏ hẳn": 
 // Bản gốc dùng ~~gạch~~ = bỏ và **đậm** = thêm. Giữ đúng nghĩa đó khi vẽ ra.
 function chuGoc(s) {
   return esc(s).replace(/~~(.+?)~~/g, "<s>$1</s>").replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+}
+
+/* ---------- so chữ: chữ thêm đỏ, chữ bỏ gạch ngang ---------- */
+// Đỏ cả ô thì chỉ biết "ô này có người sửa", không biết sửa chữ nào — người
+// duyệt phải đặt hai bản cạnh nhau mà dò từng dòng. Nên chỉ tô đúng phần khác.
+//
+// Cắt theo từ chứ không theo ký tự: đổi một dấu thanh mà tô lẻ từng chữ cái thì
+// cả câu thành một mớ lốm đốm, đọc còn khó hơn không tô.
+const catTu = (s) => String(s ?? "").trim().split(/\s+/).filter(Boolean);
+
+function veKhac(cu, moi) {
+  const a = catTu(cu), b = catTu(moi);
+  if (!a.length) return chuGoc(moi);          // ô trống từ đầu: không có gì để so
+  if (!b.length) return `<del>${chuGoc(cu)}</del>`;
+
+  // LCS thường: câu dài nhất trong bản này hơn trăm từ, bảng n×m vẫn nhẹ tênh.
+  const n = a.length, m = b.length;
+  const d = Array.from({ length: n + 1 }, () => new Uint16Array(m + 1));
+  for (let i = n - 1; i >= 0; i--)
+    for (let j = m - 1; j >= 0; j--)
+      d[i][j] = a[i] === b[j] ? d[i + 1][j + 1] + 1 : Math.max(d[i + 1][j], d[i][j + 1]);
+
+  // Gom từ liền nhau cùng loại thành một đoạn, kẻo mỗi từ một thẻ <ins> thì
+  // viền bo và nền nhạt bị cắt vụn giữa các từ.
+  const doan = [];
+  const day = (loai, t) => {
+    const cuoi = doan[doan.length - 1];
+    if (cuoi && cuoi.loai === loai) cuoi.tu.push(t);
+    else doan.push({ loai, tu: [t] });
+  };
+  let i = 0, j = 0;
+  while (i < n && j < m) {
+    if (a[i] === b[j]) { day("giu", a[i]); i++; j++; }
+    else if (d[i + 1][j] >= d[i][j + 1]) { day("bo", a[i]); i++; }
+    else { day("them", b[j]); j++; }
+  }
+  while (i < n) day("bo", a[i++]);
+  while (j < m) day("them", b[j++]);
+
+  return doan.map(x => {
+    const t = chuGoc(x.tu.join(" "));
+    if (x.loai === "giu") return t;
+    return x.loai === "them" ? `<ins>${t}</ins>` : `<del>${t}</del>`;
+  }).join(" ")
+    // ~~ và ** của bản gốc có thể bị đường cắt tách làm hai đoạn, mở ở đoạn này
+    // đóng ở đoạn kia nên không khớp thành cặp. Dọn dấu lẻ, đừng để lòi ra chữ.
+    .replace(/~~|\*\*/g, "");
 }
 
 /* ---------- nhớ bản nháp trong máy ---------- */
@@ -210,7 +259,7 @@ function oGopY(ma, truong, goc, lop) {
   const kh = khoaO(ma, truong);
   const s = oSua.get(kh);
   const than = s
-    ? (s.xoa ? `<s>${esc(goc)}</s> <span class="the-xoa">đề xuất bỏ</span>` : esc(s.moi))
+    ? (s.xoa ? `<s>${esc(goc)}</s> <span class="the-xoa">đề xuất bỏ</span>` : veKhac(goc, s.moi))
     : (goc ? chuGoc(goc) : '<span class="trong-o">bấm để viết</span>');
   const lopO = ["o-dai", "o-sua", lop || ""];
   if (s) lopO.push(s.xoa ? "da-xoa" : "da-sua");
@@ -298,10 +347,8 @@ function ve() {
 
   const dau = `<div class="dau-bang"><h3>Góp ý thông điệp Promax iNO</h3>
       <span class="dem-bang">${DL.muc.length} thông điệp · ${DL.f.length} điểm cần xác minh</span></div>
-    <p class="dan">Bản đề xuất v1, tổng hợp từ 7 tài liệu. Gạch ngang là phần bỏ so với tài liệu
-      gốc, in đậm là phần thêm hoặc thay. Bấm vào ô nào cũng sửa được.</p>
-    <div class="canh-bao"><b>Promax iNO là trang thiết bị y tế nhóm A, không phải thuốc.</b>
-      Ngôn ngữ hiệu quả giữ ở mức “hỗ trợ”. Bản để duyệt nội bộ — chưa phải tài liệu phát hành.</div>
+    <p class="dan">Bấm vào ô nào cũng sửa được. Chữ bạn thêm hiện <ins>màu đỏ</ins>,
+      chữ bạn bỏ bị <del>gạch ngang</del>.</p>
     <div class="chu-giai"><h4>Mức bằng chứng — đọc dải màu bên trái mỗi mục</h4><ul>
       <li><span class="chip bc-vung">T1</span> Vững — trình bày tự tin trước hội đồng.</li>
       <li><span class="chip bc-hanche">T2</span> Dùng được, nhưng phải nêu giới hạn kèm theo.</li>
@@ -316,13 +363,21 @@ function ve() {
     <span class="email-nhac" id="oEmailNhac">Góp ý gửi đi mang địa chỉ này — không có thì Ban Điều hành không biết hỏi lại ai.</span>
   </div>`;
 
-  const loc = `<div class="loc-pmx">
-    <span class="nhan">Nhóm</span>${["*","A","B","C","D","E"].map(v => nut("nhom", v, v === "*" ? "Tất cả" : v, LOC.nhom === v)).join("")}
-    <span class="tach"></span><span class="nhan">Mức</span>
-    ${["*","T1","T2","T3"].map(v => nut("bc", v, v === "*" ? "Tất cả" : v, LOC.bc === v)).join("")}
-    <span class="tach"></span>
-    ${nut("xuly", "1", "Chỉ việc phải xử lý (" + soXuLy + ")", LOC.xuly)}
-    <span class="dem-hien" id="eDemHien"></span></div>`;
+  // Nhóm là ô xổ chứ không phải dãy nút: sáu nhóm mà chỉ chọn được một, dãy nút
+  // trông như chọn được nhiều. Ô xổ còn ghi được cả tên nhóm, không chỉ chữ cái.
+  const dsNhom = [{ v: "*", t: "Tất cả — " + DL.muc.length + " thông điệp" }].concat(
+    "ABCDE".split("").map(k => ({
+      v: k, t: k + " · " + (DL.nhom[k] || {}).ten + " (" + DL.muc.filter(x => x.nhom === k).length + ")" })),
+    [{ v: "F", t: "F · " + (DL.nhom.F || {}).ten + " (" + DL.f.length + ")" }]);
+  // Chỉ "hang-loc", không lấy thêm "hang-xo": chung.css cho hang-xo ẩn mọi ô lọc
+  // không phải ô chính trên điện thoại, nên nút "Chỉ việc phải xử lý" sẽ bay mất.
+  const loc = `<div class="hang-loc loc-pmx">
+    <div class="o-loc o-chinh"><label for="oNhom">Nhóm thông điệp</label>
+      <select id="oNhom" class="${LOC.nhom === "*" ? "tat" : ""}">${dsNhom.map(o =>
+        `<option value="${esc(o.v)}"${o.v === LOC.nhom ? " selected" : ""}>${esc(o.t)}</option>`).join("")}</select></div>
+    <div class="o-loc loc-nut">
+      ${nut("xuly", "1", "Chỉ việc phải xử lý (" + soXuLy + ")", LOC.xuly)}
+      <span class="dem-hien" id="eDemHien"></span></div></div>`;
 
   $("ePmx").innerHTML = dau + oEmail + `<div id="eThanhSua">${thanhSua()}</div>` + loc +
     "ABCDE".split("").map(veNhom).join("") + veF();
@@ -337,17 +392,18 @@ function locLai() {
   const muc = [...document.querySelectorAll(".muc")];
   muc.forEach(m => {
     const ok = (LOC.nhom === "*" || m.dataset.nhom === LOC.nhom)
-            && (LOC.bc === "*" || m.dataset.bc === LOC.bc)
             && (!LOC.xuly || m.dataset.xuly === "1");
     m.hidden = !ok;
     if (ok) hien++;
   });
   document.querySelectorAll(".nhom-pmx").forEach(s => {
-    if (s.dataset.nhom === "F") { s.hidden = (LOC.nhom !== "*" || LOC.bc !== "*"); return; }
+    if (s.dataset.nhom === "F") { s.hidden = !(LOC.nhom === "*" || LOC.nhom === "F"); return; }
     s.hidden = !s.querySelector(".muc:not([hidden])");
   });
   const d = $("eDemHien");
-  if (d) d.textContent = hien + "/" + muc.length + " mục";
+  if (d) d.textContent = LOC.nhom === "F"
+    ? DL.f.length + " điểm cần xác minh"
+    : hien + "/" + muc.length + " mục";
 }
 
 function ganCat(goc) {
@@ -456,17 +512,18 @@ async function gui() {
 }
 
 /* ---------- nối sự kiện ---------- */
+$("ePmx").addEventListener("change", (e) => {
+  if (e.target.id !== "oNhom") return;
+  LOC.nhom = e.target.value;
+  e.target.classList.toggle("tat", LOC.nhom === "*");
+  locLai();
+});
+
 $("ePmx").addEventListener("click", (e) => {
   const b = e.target.closest("button[data-loc]");
   if (b) {
-    const k = b.dataset.loc;
-    if (k === "xuly") LOC.xuly = !LOC.xuly;
-    else LOC[k] = b.dataset.gt;
-    document.querySelectorAll(".loc-pmx button").forEach(x => {
-      const kk = x.dataset.loc;
-      x.setAttribute("aria-pressed",
-        kk === "xuly" ? String(LOC.xuly) : String(LOC[kk] === x.dataset.gt));
-    });
+    LOC.xuly = !LOC.xuly;
+    b.setAttribute("aria-pressed", String(LOC.xuly));
     return locLai();
   }
   if (e.target.id === "nGuiSua") return gui();
