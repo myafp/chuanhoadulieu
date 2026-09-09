@@ -28,6 +28,24 @@
 .chu-giai ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
 .chu-giai li{display:flex;align-items:baseline;gap:10px;font-size:13px;color:var(--mut)}
 
+/* Dàn ngang: bốn câu chú giải ngắn mà xếp dọc thì để trống hẳn nửa phải, đẩy
+   ô email và bộ lọc xuống dưới màn hình đầu. Xếp ngang gói cả khối vào hai dòng. */
+.pmx .chu-giai{gap:8px;padding:11px 16px}
+/* Lưới auto-fit chứ không phải flex wrap: bốn câu này dài không đều nhau (284
+   đến 358px), xếp flex thì hai cột lệch nhau trông như xếp sai. auto-fit cũng
+   tự về một cột trên điện thoại, không cần media query riêng. */
+.pmx .chu-giai ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+  gap:8px 24px}
+
+/* Email cũng vậy: nhãn, ô nhập, câu nhắc xếp thành ba tầng cho một ô nhập.
+   Nhãn giữ dòng riêng, câu nhắc dịch sang cạnh ô nhập. */
+.pmx .hang-email{flex-flow:row wrap;align-items:baseline;gap:5px 14px;max-width:100%}
+.pmx .hang-email label{flex:0 0 100%}
+/* Ô nhập giãn được nhưng chặn ở 420px: trên điện thoại nó phải rộng bằng ô xổ
+   ngay bên dưới, kẻo hai ô lệch nhau trông như vẽ sai. */
+.pmx .hang-email input{flex:1 1 320px;max-width:420px}
+.pmx .email-nhac{flex:1 1 250px}
+
 .pmx .loc-pmx{margin:16px 0 4px;align-items:flex-end}
 .loc-nut{flex:1 1 auto;flex-direction:row!important;align-items:center;gap:10px}
 .loc-nut button{font-size:12.5px;font-weight:500;border-radius:20px;padding:7px 13px;color:var(--mut)}
