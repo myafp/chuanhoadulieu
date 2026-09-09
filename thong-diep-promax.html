@@ -54,7 +54,9 @@
 .rail{width:4px;flex:none}
 .rail-vung{background:var(--vung)} .rail-hanche{background:var(--hanche)}
 .rail-noibo{background:var(--noibo)} .rail-na{background:var(--na)}
-.than{padding:13px 16px 14px;flex:1;min-width:0}
+/* than-pmx chu khong phai .than: chung.css lay .than lam luoi hai cot cho trang
+   JD, dung lai ten do la moi muc bi xe doi. */
+.than-pmx{padding:13px 16px 14px;flex:1;min-width:0}
 .dau-muc{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px}
 .ma{font-family:var(--mono);font-size:12.5px;font-weight:500;color:var(--acc2)}
 .chip{font-size:10px;letter-spacing:.05em;text-transform:uppercase;font-weight:700;
@@ -75,8 +77,34 @@
 .muc[data-loai="Bỏ hẳn"] .cau s{color:var(--noibo);text-decoration-color:var(--noibo)}
 
 .o-nhan{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--nhat);
-  font-weight:700;margin-bottom:3px;display:block}
-.khoi-o{margin-bottom:10px}
+  font-weight:700;margin-bottom:4px;display:flex;align-items:baseline;gap:8px}
+.khoi-o{margin-bottom:11px}
+
+/* Ô góp ý ở trang này phải tự nói ra là bấm được. Bảng chuỗi công việc cố ý
+   không kẻ viền ô — ở đó mỗi hàng bảy ô, kẻ hết thì thành một mớ khung. Ở đây
+   mỗi mục chỉ hai ô nằm giữa văn bản đọc, không có viền thì không ai biết chỗ
+   nào gõ được: người ta đọc hết trang rồi đóng tab mà tưởng trang chỉ để xem.
+   Viền nét đứt = còn trống, nét liền = đã có chữ, đỏ = đã sửa. */
+/* line-height và max-height ghi bằng px chứ không bằng em: 4.5em ra 83.5px, cái
+   nửa pixel đó làm ô hai dòng cũng bị coi là bị cắt, ô nào cũng đổi con trỏ
+   thành bấm-để-xem-thêm. 3 dòng 22px cộng 16px padding là số chẵn. */
+.pmx .o-sua{border:1px dashed var(--line);border-radius:8px;padding:8px 11px;margin:0;
+  line-height:22px;max-height:82px;background:#fcfdfd;
+  transition:border-color .12s,background .12s}
+.pmx .o-sua.co-chu{border-style:solid}
+.pmx .o-sua:hover{border-color:var(--acc);border-style:solid;background:var(--acc-nhat)}
+.pmx .o-sua.da-sua,.pmx .o-sua.da-xoa{border:1px solid var(--sua-vien);background:var(--sua-nen);
+  box-shadow:none}
+.pmx .o-sua.da-sua:hover,.pmx .o-sua.da-xoa:hover{border-color:var(--sua);background:#fbe3e1}
+.pmx .o-sua.cau{font-family:var(--chu);font-size:15px}
+
+/* Nhãn ô kiêm luôn chỗ báo trạng thái: trống / đã sửa chưa gửi / đã gửi. Nhét
+   vào nhãn chứ không thêm một dòng nữa — mỗi mục đã có sáu dòng chữ nhỏ. */
+.o-goi{margin-left:auto;font-size:10px;font-weight:700;letter-spacing:.03em;
+  text-transform:none;color:var(--nhat);white-space:nowrap}
+.khoi-o.co-sua .o-goi{color:var(--sua)}
+.khoi-o.da-gui .o-goi{color:var(--vung)}
+.pmx .trong-o{font-style:italic}
 .ghi-tinh{margin:0;display:grid;grid-template-columns:auto 1fr;gap:3px 12px;
   font-size:12.5px;line-height:1.5;color:var(--mut)}
 .ghi-tinh dt{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--nhat);
@@ -184,9 +212,21 @@ function oGopY(ma, truong, goc, lop) {
   const than = s
     ? (s.xoa ? `<s>${esc(goc)}</s> <span class="the-xoa">đề xuất bỏ</span>` : esc(s.moi))
     : (goc ? chuGoc(goc) : '<span class="trong-o">bấm để viết</span>');
-  return `<div class="khoi-o"><span class="o-nhan">${esc(truong)}</span>` +
-    `<div class="o-dai o-sua${s ? (s.xoa ? " da-xoa" : " da-sua") : ""} ${lop || ""}" ` +
-    `data-o="${esc(kh)}" data-goc="${esc(goc)}" title="Bấm để sửa">${than}</div></div>`;
+  const lopO = ["o-dai", "o-sua", lop || ""];
+  if (s) lopO.push(s.xoa ? "da-xoa" : "da-sua");
+  else if (goc) lopO.push("co-chu");
+  return `<div class="khoi-o${s ? (daGui.has(kh) ? " co-sua da-gui" : " co-sua") : ""}">` +
+    `<span class="o-nhan">${esc(truong)}<i class="o-goi">${goiO(kh, s)}</i></span>` +
+    `<div class="${lopO.join(" ").trim()}" data-o="${esc(kh)}" data-goc="${esc(goc)}" ` +
+    `title="Bấm để sửa">${than}</div></div>`;
+}
+
+// Trạng thái ghi thẳng vào nhãn ô, không đợi ai hỏi: chưa gửi thì đỏ, gửi rồi
+// thì xanh và nói rõ là sửa tiếp được — nhân viên hay tưởng gửi xong là khoá.
+function goiO(kh, s) {
+  if (!s) return "bấm để sửa";
+  if (daGui.has(kh)) return "đã gửi · sửa tiếp được";
+  return s.xoa ? "đề xuất bỏ · chưa gửi" : "đã sửa · chưa gửi";
 }
 
 function veMuc(x) {
@@ -194,7 +234,7 @@ function veMuc(x) {
   return `<article class="muc" data-nhom="${esc(x.nhom)}" data-loai="${esc(x.loai)}" ` +
     `data-bc="${esc(x.muc_bc)}" data-xuly="${PHAI_XU_LY.has(x.loai) ? 1 : 0}">
     <div class="rail rail-${lopBc}" title="${esc(giai)}"></div>
-    <div class="than">
+    <div class="than-pmx">
       <div class="dau-muc"><span class="ma">${esc(x.ma)}</span>
         <span class="chip loai-${LOAI[x.loai] || "giu"}">${esc(x.loai)}</span>
         <span class="chip bc-${lopBc}">${esc(x.muc_bc)}</span></div>
@@ -398,6 +438,15 @@ async function gui() {
     goi.forEach(([k]) => daGui.add(k));
     luuNhap();
     $("eThanhSua").innerHTML = thanhSua();
+    // Nhãn ô còn ghi "chưa gửi" thì người ta bấm Gửi lần nữa cho chắc. Đổi tại
+    // chỗ, không dựng lại trang, kẻo mất đúng mục đang đọc.
+    goi.forEach(([k, o]) => {
+      const el = document.querySelector(`[data-o="${CSS.escape(k)}"]`);
+      if (!el) return;
+      el.parentElement.classList.add("da-gui");
+      const g = el.parentElement.querySelector(".o-goi");
+      if (g) g.textContent = goiO(k, o);
+    });
   } catch (e) {
     if (n) { n.disabled = false; n.textContent = "Gửi góp ý"; }
     const t = $("eThanhSua").querySelector(".thanh-sua");
