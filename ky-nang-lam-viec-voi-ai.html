@@ -1489,5 +1489,63 @@ https://docs.google.com/spreadsheets/..."></textarea>
 })();
 </script>
 
+<style id="kqCuStyle">
+#tlCu{position:fixed;left:0;right:0;top:0;z-index:2147483001;display:flex;align-items:center;
+  gap:12px;flex-wrap:wrap;padding:11px 16px;background:var(--wrong-wash);
+  border-bottom:1px solid var(--wrong);color:var(--wrong);font-family:var(--sans);
+  font-size:13.5px;line-height:1.5}
+#tlCu b{font-weight:600}
+#tlCu button{margin-left:auto;font:inherit;font-size:13px;font-weight:600;cursor:pointer;
+  border:1px solid var(--wrong);background:var(--surface);color:var(--wrong);
+  border-radius:var(--r-sm);padding:7px 14px}
+</style>
+
+<script id="kqCuScript">
+(function(){
+  /* ---------- trang tự biết mình đã cũ ----------
+     Bản trên cổng nằm trong một tab mở cả buổi, mà mỗi lần xuất bản là mã trang
+     đổi. Người ta vẫn gõ trên bản cũ, thấy nó không giống thứ được kể, rồi báo là
+     "tính năng không chạy" — chuyện đã xảy ra một lần và mất nguyên buổi gõ.
+
+     Không cần dập số phiên bản vào lúc dựng: lấy luôn giá trị đọc được ở lần đầu
+     làm mốc, sau đó đọc lại mỗi khi người ta quay lại tab. Khác mốc là trang cũ. */
+  (function () {
+    var MOC = null, HEN = 5 * 60 * 1000, cho = 0;
+
+    function doc() {
+      return fetch("phien-ban.json?t=" + Date.now())
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (j) { return j && j.phien_ban; })
+        .catch(function () { return null; });
+    }
+
+    function baoCu() {
+      if (document.getElementById("tlCu")) return;
+      var d = document.createElement("div");
+      d.id = "tlCu";
+      d.innerHTML = '<b>Trang này đã cũ.</b> Bản mới đã lên — tải lại rồi hãy góp ý tiếp, ' +
+                    'kẻo gõ trên bản cũ.<button id="tlCuTai">Tải lại</button>';
+      document.body.appendChild(d);
+      document.getElementById("tlCuTai").onclick = function () { location.reload(true); };
+    }
+
+    function xem() {
+      if (Date.now() - cho < 30000) return;   // đừng dội máy chủ mỗi lần liếc qua tab
+      cho = Date.now();
+      doc().then(function (v) {
+        if (!v) return;
+        if (MOC === null) { MOC = v; return; }
+        if (v !== MOC) baoCu();
+      });
+    }
+
+    xem();
+    setInterval(function () { if (!document.hidden) xem(); }, HEN);
+    document.addEventListener("visibilitychange", function () { if (!document.hidden) xem(); });
+    window.addEventListener("focus", xem);
+  })();
+})();
+</script>
+
 </body>
 </html>
