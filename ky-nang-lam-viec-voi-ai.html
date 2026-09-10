@@ -1276,19 +1276,19 @@ https://docs.google.com/spreadsheets/..."></textarea>
 
 <section id="kqGui">
   <div class="kq-hop">
-    <h2>Gửi kết quả để đối soát</h2>
-    <p class="kq-dan">Bài làm của bạn đang nằm trong trình duyệt này, chưa ai thấy. Gửi đi thì
-       người phụ trách đào tạo đọc được để đối soát và góp ý lại.</p>
+    <h2>Bài làm của bạn</h2>
+    <p class="kq-dan">Điền tên một lần, sau đó bài làm <b>tự lưu</b> về chỗ người phụ trách đào tạo
+       — làm tới đâu lưu tới đó, không phải nhớ bấm gì. Đóng tab giữa chừng cũng không mất.</p>
     <div class="kq-tom" id="kqTom"></div>
     <div class="kq-hang">
       <label for="kqTen">Tên của bạn</label>
       <input id="kqTen" type="text" autocomplete="name" spellcheck="false" placeholder="ví dụ: Tùng Nguyên">
-      <button id="kqNut">Gửi kết quả</button>
+      <button id="kqNut">Lưu ngay</button>
     </div>
     <div class="kq-bao" id="kqBao"></div>
-    <p class="kq-nhac">Gửi đi gồm: điểm bài 1, các câu bạn viết lại ở bài 1 và bài 2, cách bạn chấm
-       ở bài 3, và các câu cần tư vấn ở bài 4. Không gồm gì khác. Làm thêm rồi gửi lại lúc nào
-       cũng được — mỗi lần gửi là một bản ghi riêng, bản cũ không mất.</p>
+    <p class="kq-nhac">Lưu về gồm: điểm bài 1, các câu bạn viết lại ở bài 1 và bài 2, cách bạn chấm
+       ở bài 3, và các câu cần tư vấn ở bài 4. Không gồm gì khác. Chưa điền tên thì chưa lưu gì
+       — không có tên thì không biết bài của ai. Nút <b>Lưu ngay</b> để lưu liền, không phải chờ.</p>
   </div>
 </section>
 
@@ -1385,28 +1385,79 @@ https://docs.google.com/spreadsheets/..."></textarea>
 
   function bao(t, lop) { var b = $("kqBao"); b.textContent = t; b.className = "kq-bao " + (lop || ""); }
 
-  $("kqNut").onclick = function () {
-    var t = trangThai(), ten = $("kqTen").value.trim(), ds = goi(t);
-    if (!ten) { bao("Điền tên đã — không có tên thì không đối soát được của ai.", "loi"); $("kqTen").focus(); return; }
-    if (ds.length <= 1) { bao("Chưa có bài nào để gửi. Làm vài bài rồi quay lại.", "loi"); return; }
+  /* ---------- tự lưu ----------
+     Trông chờ người học nhớ bấm một cái nút ở cuối trang là hỏng: phần lớn làm
+     xong rồi đóng tab. Nên máy tự lưu.
 
-    $("kqNut").disabled = true;
-    bao("Đang gửi…", "cho");
+     Nhưng mỗi lần lưu là một commit vào repo, nên không lưu theo từng phím gõ:
+     dò bản nháp mỗi 5 giây, chỉ lưu khi nội dung THẬT SỰ khác lần trước, và cách
+     lần lưu trước ít nhất 90 giây. Cộng thêm một lần lưu lúc rời tab — đó mới là
+     lần bắt được nhiều người nhất. */
+  var CHO = 90000, DO = 5000;
+  var daLuu = "", lucLuu = 0, dangLuu = false;
+
+  function than() {
+    var ten = $("kqTen").value.trim(), ds = goi(trangThai());
+    if (!ten || ds.length <= 1) return null;
+    return { ten: ten, luong: LUONG, sua: ds, them: [] };
+  }
+
+  function luu(taySai, roiTab) {
+    var b = than();
+    if (!b) {
+      if (taySai) bao($("kqTen").value.trim()
+        ? "Chưa có bài nào để lưu. Làm vài bài rồi quay lại."
+        : "Điền tên đã — không có tên thì không biết bài của ai.", "loi");
+      if (!$("kqTen").value.trim() && taySai) $("kqTen").focus();
+      return;
+    }
+    var chuoi = JSON.stringify(b);
+    if (!taySai && chuoi === daLuu) return;
+    if (dangLuu) return;
+
+    dangLuu = true;
+    if (taySai) bao("Đang lưu…", "cho");
+
+    // Rời tab thì trình duyệt có thể huỷ yêu cầu đang bay; keepalive giữ nó lại.
     fetch(API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ten: ten, luong: LUONG, sua: ds, them: [] })
+      body: chuoi,
+      keepalive: !!roiTab
     }).then(function (r) {
       return r.json().catch(function () { return {}; }).then(function (j) {
-        $("kqNut").disabled = false;
-        if (!r.ok) { bao("Chưa gửi được — " + (j.loi || ("máy chủ trả " + r.status)), "loi"); return; }
-        bao("Đã gửi. Cảm ơn " + ten + ". Làm thêm rồi gửi lại lúc nào cũng được.", "xong");
+        dangLuu = false;
+        if (!r.ok) { bao("Chưa lưu được — " + (j.loi || ("máy chủ trả " + r.status)), "loi"); return; }
+        daLuu = chuoi; lucLuu = Date.now();
+        bao("Đã lưu lúc " + dongHo() + ". Làm tiếp đi, bài tự lưu.", "xong");
       });
     }).catch(function (e) {
-      $("kqNut").disabled = false;
-      bao("Chưa gửi được — " + (e && e.message ? e.message : "mất kết nối."), "loi");
+      dangLuu = false;
+      bao("Chưa lưu được — " + (e && e.message ? e.message : "mất kết nối.") +
+          " Bài vẫn còn trong máy bạn, lát nữa tự thử lại.", "loi");
     });
-  };
+  }
+
+  function dongHo() {
+    var d = new Date();
+    return ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+  }
+
+  $("kqNut").onclick = function () { luu(true, false); };
+
+  setInterval(function () {
+    if (document.hidden || dangLuu) return;
+    if (Date.now() - lucLuu < CHO) return;
+    luu(false, false);
+  }, DO);
+
+  // Đóng tab hay chuyển sang tab khác: lưu ngay, không chờ đủ 90 giây.
+  function roiDi() {
+    var b = than();
+    if (b && JSON.stringify(b) !== daLuu) luu(false, true);
+  }
+  document.addEventListener("visibilitychange", function () { if (document.hidden) roiDi(); });
+  window.addEventListener("pagehide", roiDi);
 
   // Ô tên của trang và ô tên ở đây là một người, đừng bắt gõ hai lần.
   var oGoc = $("learnerName");
@@ -1422,7 +1473,16 @@ https://docs.google.com/spreadsheets/..."></textarea>
     try { $("kqTen").value = (trangThai().name || "").trim(); } catch (e) {}
   }
 
+  function nhacTen() {
+    if ($("kqTen").value.trim() || $("kqBao").textContent) return;
+    bao("Điền tên vào ô bên trên là bài làm bắt đầu tự lưu.", "cho");
+  }
+  $("kqTen").addEventListener("input", function () {
+    if ($("kqTen").value.trim() && $("kqBao").classList.contains("cho")) bao("", "");
+  });
+
   veTom();
+  nhacTen();
   // Bài làm đổi liên tục mà thẻ đứng cuối trang: cứ vài giây đếm lại, để lúc người
   // ta cuộn xuống thì con số đã đúng, không phải tải lại trang.
   setInterval(veTom, 3000);
