@@ -304,7 +304,39 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T08:21:46.555Z",
+   "email": "",
+   "ten": "ng-p2npmnj1j",
+   "sua": [
+    {
+     "rid": "1qm472l",
+     "k": 0,
+     "cot": "Ô nhập",
+     "cu": "1 #1 · Viếng thăm khách hàng theo call plan",
+     "moi": "Benh Vien Da Nang",
+     "xoa": false
+    },
+    {
+     "rid": "1ln6lf2",
+     "k": 0,
+     "cot": "Ô nhập",
+     "cu": "2 #1 · Viếng thăm khách hàng theo call plan",
+     "moi": "Benh Vien Nguyen Tri Phuong",
+     "xoa": false
+    },
+    {
+     "rid": "1go8zrj",
+     "k": 0,
+     "cot": "Ô nhập",
+     "cu": "3 #1 · Viếng thăm khách hàng theo call plan",
+     "moi": "Benh Vien Cho Ray",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T08:21:04.819Z"
+ "cap_nhat": "2026-09-10T08:21:47.064Z"
 }
