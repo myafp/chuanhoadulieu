@@ -47021,7 +47021,7 @@ render(cur);
 /* Lớp thảo luận — dán thêm ở cuối, không sửa một dòng nào của bản mockup.
    Mọi thứ đặt tiền tố tl- và chọn bằng data-attribute chứ không bằng tên lớp,
    để không đụng phải tên lớp nào có sẵn trong 4,5 MB kia. */
-[data-tl="1"]{cursor:text;transition:background .12s}
+[data-tl="1"]{transition:background .12s}
 [data-tl="1"]:hover{background:rgba(15,59,61,.06);box-shadow:inset 0 -1px 0 rgba(15,59,61,.35)}
 [data-tl-sua="1"]{box-shadow:inset 2px 0 0 #b3382b}
 [data-tl-sua="1"]:hover{background:rgba(179,56,43,.07);box-shadow:inset 2px 0 0 #b3382b}
@@ -47255,6 +47255,7 @@ render(cur);
       if (!hopLe(o)) continue;
       o.dataset.tl = "1";
       o.dataset.tlGoc = chu(o);
+      o.title = "Bấm hai lần để sửa chữ này";
       khoaO(o);
     }
     apDung();
@@ -47446,16 +47447,31 @@ render(cur);
     }
   }
   function bao(t, lop) { var b = $("tlBao"); b.textContent = t; b.className = "tl-bao " + (lop || ""); }
-  /* ---------- nối sự kiện ---------- */
-  // Không chặn sự kiện: bản mockup có thể đang nghe click trên chính ô đó, chặn
-  // là mất một hành vi có sẵn. Bảng sửa nổi lên trên, phần còn lại chạy như cũ.
-  document.addEventListener("click", function (e) {
+  /* ---------- nối sự kiện ----------
+     Bấm MỘT lần: không làm gì cả, để nguyên cho bản mockup — người ta bấm tab là
+     chuyển tab, bấm nút là chạy nút, không có hộp nào nhảy ra chắn đường.
+     Bấm HAI lần: mở hộp sửa. Đây là cử chỉ ai cũng biết cho "sửa chữ tại chỗ",
+     và nó không đụng vào cú bấm một lần.
+
+     Vẫn không chặn sự kiện: mockup có thể đang nghe click trên chính ô đó. */
+  document.addEventListener("dblclick", function (e) {
     if (e.target.closest && e.target.closest("#tlBang")) return;
     var o = e.target.closest && e.target.closest('[data-tl="1"]');
-    if (!o) { if (!bang.hidden) dong(); return; }
-    try { if (String(window.getSelection())) return; } catch (err) {}
+    if (!o) return;
+    // Bấm hai lần thì trình duyệt tự tô cả từ. Bỏ vệt tô đó đi, kẻo lát nữa gõ
+    // vào textarea mà nền trang vẫn còn một từ xanh lét.
+    try { window.getSelection().removeAllRanges(); } catch (err) {}
     if (dang && dang.el === o) { dong(); return; }
     mo(o);
+  }, true);
+
+  // Bấm một lần ra ngoài hộp thì đóng hộp — chỉ đóng, không mở gì.
+  document.addEventListener("click", function (e) {
+    if (bang.hidden) return;
+    if (e.target.closest && e.target.closest("#tlBang")) return;
+    if (dang && dang.el && e.target.closest &&
+        e.target.closest('[data-tl="1"]') === dang.el) return;
+    dong();
   }, true);
 
   $("tlLuu").onclick = luu;
