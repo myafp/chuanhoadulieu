@@ -1277,8 +1277,9 @@ https://docs.google.com/spreadsheets/..."></textarea>
 <section id="kqGui">
   <div class="kq-hop">
     <h2>Bài làm của bạn</h2>
-    <p class="kq-dan">Điền tên một lần, sau đó bài làm <b>tự lưu</b> về chỗ người phụ trách đào tạo
-       — làm tới đâu lưu tới đó, không phải nhớ bấm gì. Đóng tab giữa chừng cũng không mất.</p>
+    <p class="kq-dan">Bài làm <b>tự lưu</b> về chỗ người phụ trách đào tạo ngay từ câu đầu tiên —
+       làm tới đâu lưu tới đó, đóng tab giữa chừng cũng không mất. Điền tên để bài gắn tên bạn;
+       chưa điền thì nó vẫn được lưu nhưng ghi bằng mã máy.</p>
     <div class="kq-tom" id="kqTom"></div>
     <div class="kq-hang">
       <label for="kqTen">Tên của bạn</label>
@@ -1287,8 +1288,8 @@ https://docs.google.com/spreadsheets/..."></textarea>
     </div>
     <div class="kq-bao" id="kqBao"></div>
     <p class="kq-nhac">Lưu về gồm: điểm bài 1, các câu bạn viết lại ở bài 1 và bài 2, cách bạn chấm
-       ở bài 3, và các câu cần tư vấn ở bài 4. Không gồm gì khác. Chưa điền tên thì chưa lưu gì
-       — không có tên thì không biết bài của ai. Nút <b>Lưu ngay</b> để lưu liền, không phải chờ.</p>
+       ở bài 3, và các câu cần tư vấn ở bài 4. Không gồm gì khác. Điền tên lúc nào cũng được —
+       phần đã lưu trước đó tự gắn về tên bạn, vì cùng một mã máy. Nút <b>Lưu ngay</b> để lưu liền.</p>
   </div>
 </section>
 
@@ -1298,6 +1299,20 @@ https://docs.google.com/spreadsheets/..."></textarea>
   var API = "https://abp.alpha-5ae.workers.dev";
   var LUONG = "ky-nang-ai";
   var LS = "ai-skills-v1";          // đúng khoá bản gốc đang dùng
+  var LS_MA = "afp-hs-ma";          // mã máy, để lưu được trước khi người ta kịp đặt tên
+
+  /* Mã máy ẩn danh. Chờ điền tên rồi mới lưu thì ai làm xong đóng tab mà chưa đặt
+     tên là mất trắng — mà đó là số đông. Nên lưu ngay từ thao tác đầu, ghi kèm mã;
+     lúc nào người ta điền tên, những lượt trước cùng mã đó tự gắn về tên. */
+  function maMay() {
+    var m;
+    try { m = localStorage.getItem(LS_MA); } catch (e) {}
+    if (!m) {
+      m = "hs-" + Math.random().toString(36).slice(2, 8) + Date.now().toString(36).slice(-3);
+      try { localStorage.setItem(LS_MA, m); } catch (e) {}
+    }
+    return m;
+  }
   var $ = function (id) { return document.getElementById(id); };
 
   function trangThai() {
@@ -1346,6 +1361,7 @@ https://docs.google.com/spreadsheets/..."></textarea>
 
   function goi(t) {
     var ds = [], s = tomTat(t), k, i;
+    ds.push({ rid: "ma", k: 0, cot: "Mã máy", cu: "", moi: maMay() });
     ds.push({ rid: "tong", k: 0, cot: "Tổng kết",
               cu: "", moi: "Bài 1 đúng " + s.dung + "/" + s.tong +
                    " · viết lại " + (s.b1 + s.b2) + " câu · chấm " + s.b3 +
@@ -1397,18 +1413,18 @@ https://docs.google.com/spreadsheets/..."></textarea>
   var daLuu = "", lucLuu = 0, dangLuu = false;
 
   function than() {
+    // ds luôn có sẵn hai mục khung (mã máy, tổng kết); dưới ba mục là chưa làm gì.
     var ten = $("kqTen").value.trim(), ds = goi(trangThai());
-    if (!ten || ds.length <= 1) return null;
-    return { ten: ten, luong: LUONG, sua: ds, them: [] };
+    if (ds.length <= 2) return null;
+    // Worker đòi trường ten không rỗng. Chưa đặt tên thì ghi bằng mã máy, trang
+    // đối soát gộp lại sau — chứ không bịa một cái tên.
+    return { ten: ten || maMay(), luong: LUONG, sua: ds, them: [] };
   }
 
   function luu(taySai, roiTab) {
     var b = than();
     if (!b) {
-      if (taySai) bao($("kqTen").value.trim()
-        ? "Chưa có bài nào để lưu. Làm vài bài rồi quay lại."
-        : "Điền tên đã — không có tên thì không biết bài của ai.", "loi");
-      if (!$("kqTen").value.trim() && taySai) $("kqTen").focus();
+      if (taySai) bao("Chưa có bài nào để lưu. Làm vài bài rồi quay lại.", "loi");
       return;
     }
     var chuoi = JSON.stringify(b);
@@ -1429,7 +1445,10 @@ https://docs.google.com/spreadsheets/..."></textarea>
         dangLuu = false;
         if (!r.ok) { bao("Chưa lưu được — " + (j.loi || ("máy chủ trả " + r.status)), "loi"); return; }
         daLuu = chuoi; lucLuu = Date.now();
-        bao("Đã lưu lúc " + dongHo() + ". Làm tiếp đi, bài tự lưu.", "xong");
+        bao($("kqTen").value.trim()
+          ? "Đã lưu lúc " + dongHo() + ". Làm tiếp đi, bài tự lưu."
+          : "Đã lưu lúc " + dongHo() + " dưới mã " + maMay() +
+            ". Điền tên để bài gắn tên bạn.", "xong");
       });
     }).catch(function (e) {
       dangLuu = false;
@@ -1475,7 +1494,7 @@ https://docs.google.com/spreadsheets/..."></textarea>
 
   function nhacTen() {
     if ($("kqTen").value.trim() || $("kqBao").textContent) return;
-    bao("Điền tên vào ô bên trên là bài làm bắt đầu tự lưu.", "cho");
+    bao("Bài làm đang tự lưu dưới mã " + maMay() + ". Điền tên để nó gắn tên bạn.", "cho");
   }
   $("kqTen").addEventListener("input", function () {
     if ($("kqTen").value.trim() && $("kqBao").classList.contains("cho")) bao("", "");
