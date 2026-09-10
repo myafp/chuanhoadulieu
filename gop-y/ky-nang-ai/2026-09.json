@@ -968,7 +968,47 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T07:04:14.809Z",
+   "email": "",
+   "ten": "phạm mạnh hùng",
+   "sua": [
+    {
+     "rid": "ma",
+     "k": 0,
+     "cot": "Mã máy",
+     "cu": "",
+     "moi": "hs-oty8m2lsh",
+     "xoa": false
+    },
+    {
+     "rid": "tong",
+     "k": 0,
+     "cot": "Tổng kết",
+     "cu": "",
+     "moi": "Bài 1 đúng 3/20 · viết lại 2 câu · chấm 0 mẫu · 0 câu cần tư vấn",
+     "xoa": false
+    },
+    {
+     "rid": "b1-0",
+     "k": 0,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "với vai trò một chuyên gia trong hãy tóm tắt cho tôi những nội dung chính và cốt lõi của tài liệu trên. Hãy tóm tắt tài liệu trên thành 5 ý chính,và chỉ ra những điểm tôi cần lưu ý trước khi ra quyết định",
+     "xoa": false
+    },
+    {
+     "rid": "b1-2",
+     "k": 2,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "từ các nghiên cứu và tìm hiểu về tính hiệu quả và cảm xúc của con người hãy phân tích cho tôi về thời điểm gửi email.",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T07:02:40.084Z"
+ "cap_nhat": "2026-09-10T07:04:15.325Z"
 }
