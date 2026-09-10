@@ -328,7 +328,39 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T06:52:20.186Z",
+   "email": "",
+   "ten": "phạm mạnh hùng",
+   "sua": [
+    {
+     "rid": "ma",
+     "k": 0,
+     "cot": "Mã máy",
+     "cu": "",
+     "moi": "hs-oty8m2lsh",
+     "xoa": false
+    },
+    {
+     "rid": "tong",
+     "k": 0,
+     "cot": "Tổng kết",
+     "cu": "",
+     "moi": "Bài 1 đúng 2/20 · viết lại 1 câu · chấm 0 mẫu · 0 câu cần tư vấn",
+     "xoa": false
+    },
+    {
+     "rid": "b1-0",
+     "k": 0,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "với vai trò một chuyên gia trong hãy tóm tắt cho tôi những nội dung chính và cốt lõi của tài liệu trên",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T06:42:19.978Z"
+ "cap_nhat": "2026-09-10T06:52:20.548Z"
 }
