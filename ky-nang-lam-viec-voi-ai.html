@@ -1268,11 +1268,26 @@ https://docs.google.com/spreadsheets/..."></textarea>
 .kq-bao.loi{color:var(--wrong);font-weight:600}
 .kq-nhac{margin-top:14px;padding-top:13px;border-top:1px solid var(--line);
   font-size:12.5px;line-height:1.6;color:var(--ink-faint)}
+
+/* Thẻ trạng thái nổi: thẻ lưu nằm cuối trang, mà người ta làm bài ở giữa trang —
+   không ai cuộn xuống chỉ để xem đã lưu chưa. */
+#kqChip{position:fixed;right:16px;bottom:16px;z-index:2147482000;display:flex;align-items:center;
+  gap:7px;padding:8px 13px;border-radius:999px;background:var(--surface);
+  border:1px solid var(--line);box-shadow:var(--shadow);font-family:var(--sans);
+  font-size:12.5px;font-weight:500;color:var(--ink-soft);max-width:calc(100vw - 32px)}
+#kqChip .cham{width:7px;height:7px;border-radius:50%;background:var(--good);flex:none}
+#kqChip[data-tt="cho"] .cham{background:var(--amber)}
+#kqChip[data-tt="loi"] .cham{background:var(--wrong)}
+#kqChip[data-tt="loi"]{color:var(--wrong)}
+#kqChip[hidden]{display:none}
+@media (max-width:640px){#kqChip{right:10px;bottom:10px;font-size:12px}}
 @media (max-width:640px){
   .kq-hop{padding:18px 16px 16px}
   #kqTen,#kqNut{flex:1 1 100%;max-width:100%}
 }
 </style>
+
+<div id="kqChip" hidden><span class="cham"></span><span id="kqChipChu"></span></div>
 
 <section id="kqGui">
   <div class="kq-hop">
@@ -1399,7 +1414,24 @@ https://docs.google.com/spreadsheets/..."></textarea>
     return ra.length ? ra.join(" · ") : "(không tick tiêu chí nào)";
   }
 
-  function bao(t, lop) { var b = $("kqBao"); b.textContent = t; b.className = "kq-bao " + (lop || ""); }
+  function bao(t, lop) {
+    var b = $("kqBao");
+    b.textContent = t;
+    b.className = "kq-bao " + (lop || "");
+    chip(t, lop);
+  }
+
+  // Thẻ nổi chỉ nói một câu ngắn: đủ để yên tâm, không đủ để che bài.
+  function chip(t, lop) {
+    var c = $("kqChip");
+    if (!t) { c.hidden = true; return; }
+    c.hidden = false;
+    c.setAttribute("data-tt", lop || "xong");
+    $("kqChipChu").textContent =
+      lop === "loi" ? "Chưa lưu được" :
+      lop === "cho" ? (t.indexOf("Đang lưu") === 0 ? "Đang lưu…" : "Chưa lưu") :
+      "Đã lưu " + dongHo();
+  }
 
   /* ---------- tự lưu ----------
      Trông chờ người học nhớ bấm một cái nút ở cuối trang là hỏng: phần lớn làm
@@ -1477,6 +1509,27 @@ https://docs.google.com/spreadsheets/..."></textarea>
   }
   document.addEventListener("visibilitychange", function () { if (document.hidden) roiDi(); });
   window.addEventListener("pagehide", roiDi);
+
+  /* ---------- lưu ngay ở những nút đáng lưu ----------
+     Ba nút này là lúc người học vừa xong một việc: xem đáp án, sang câu sau, gửi
+     cách mình chấm. Lưu ngay ở đó thì bài về gần như tức thì, không phải chờ 90
+     giây — nhưng KHÔNG chặn nút: mất mạng thì việc học vẫn chạy, lưu tự thử lại
+     lần sau. Chặn nút là biến sự cố lưu thành sự cố dạy học.
+
+     Nghe ở pha bọt (không capture) và hoãn 1,2 giây, vì chính trang mới là bên
+     ghi localStorage khi bấm — đọc trước nó là đọc bản cũ. */
+  var MOC = ["prReveal", "rw2Reveal", "quizNext", "ev3Send", "advSave", "quizRestart"];
+  var henMoc = 0;
+  document.addEventListener("click", function (e) {
+    var n = e.target && e.target.closest ? e.target.closest("button") : null;
+    if (!n || MOC.indexOf(n.id) < 0) return;
+    clearTimeout(henMoc);
+    henMoc = setTimeout(function () {
+      veTom();
+      lucLuu = 0;        // bỏ hạn 90 giây cho đúng lần này
+      luu(false, false);
+    }, 1200);
+  });
 
   // Ô tên của trang và ô tên ở đây là một người, đừng bắt gõ hai lần.
   var oGoc = $("learnerName");
