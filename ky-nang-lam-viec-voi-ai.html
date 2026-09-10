@@ -1,0 +1,1239 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>:root{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Kỹ năng làm việc với AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --paper:#F4F6F2;
+    --surface:#FFFFFF;
+    --surface-2:#EDF0EA;
+    --ink:#18211C;
+    --ink-soft:#4B564E;
+    --ink-faint:#79847B;
+    --line:#DCE1D8;
+    --line-strong:#C3CBBE;
+    --pine:#0C6B5B;
+    --pine-deep:#084F44;
+    --pine-wash:#E4F0EC;
+    --amber:#B5730B;
+    --amber-wash:#F6ECD8;
+    --good:#2E7D5B;
+    --good-wash:#E1F0E7;
+    --wrong:#B23A48;
+    --wrong-wash:#F6E3E5;
+    --shadow:0 1px 2px rgba(24,33,28,.05), 0 8px 24px rgba(24,33,28,.06);
+    --shadow-lift:0 2px 4px rgba(24,33,28,.08), 0 16px 40px rgba(24,33,28,.10);
+    --r-sm:8px; --r-md:14px; --r-lg:20px;
+    --sans:"Be Vietnam Pro",-apple-system,"Segoe UI",system-ui,sans-serif;
+    --serif:"Lora",Georgia,"Times New Roman",serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --paper:#10160F;
+      --surface:#18211B;
+      --surface-2:#1F2A22;
+      --ink:#E8EDE6;
+      --ink-soft:#AEB8AE;
+      --ink-faint:#7C877E;
+      --line:#2A362D;
+      --line-strong:#3A4A3D;
+      --pine:#3FC0A6;
+      --pine-deep:#66D0BA;
+      --pine-wash:#132A25;
+      --amber:#E2AC4B;
+      --amber-wash:#2A2314;
+      --good:#5FC38C;
+      --good-wash:#16281E;
+      --wrong:#E38995;
+      --wrong-wash:#2C1A1D;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+      --shadow-lift:0 2px 4px rgba(0,0,0,.4), 0 16px 40px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#10160F;
+    --surface:#18211B;
+    --surface-2:#1F2A22;
+    --ink:#E8EDE6;
+    --ink-soft:#AEB8AE;
+    --ink-faint:#7C877E;
+    --line:#2A362D;
+    --line-strong:#3A4A3D;
+    --pine:#3FC0A6;
+    --pine-deep:#66D0BA;
+    --pine-wash:#132A25;
+    --amber:#E2AC4B;
+    --amber-wash:#2A2314;
+    --good:#5FC38C;
+    --good-wash:#16281E;
+    --wrong:#E38995;
+    --wrong-wash:#2C1A1D;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    --shadow-lift:0 2px 4px rgba(0,0,0,.4), 0 16px 40px rgba(0,0,0,.5);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--sans);font-size:16px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.2;text-wrap:balance;margin:0}
+  p{margin:0}
+  a{color:var(--pine)}
+  .eyebrow{
+    font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--pine);
+  }
+  .wrap{max-width:960px;margin:0 auto;padding-inline:20px}
+
+  /* ---------- Top bar ---------- */
+  header.topbar{
+    position:sticky;top:0;z-index:40;
+    background:color-mix(in srgb,var(--paper) 88%,transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    max-width:960px;margin:0 auto;padding:12px 20px;
+    display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  }
+  .brand{display:flex;align-items:center;gap:11px;margin-right:auto}
+  .brand .glyph{
+    width:34px;height:34px;flex:none;border-radius:9px;
+    background:var(--pine);color:#fff;display:grid;place-items:center;
+    font-family:var(--serif);font-weight:600;font-size:1.15rem;box-shadow:var(--shadow);
+  }
+  .brand b{font-family:var(--serif);font-size:1.02rem;font-weight:600;letter-spacing:-.01em}
+  .brand span{display:block;font-size:.7rem;color:var(--ink-faint);letter-spacing:.03em}
+  .tabs{display:flex;gap:6px;flex-wrap:wrap}
+  .tab{
+    font:inherit;font-size:.82rem;font-weight:600;cursor:pointer;
+    border:1px solid var(--line-strong);background:var(--surface);color:var(--ink-soft);
+    padding:7px 13px;border-radius:999px;transition:.15s;
+  }
+  .tab:hover{border-color:var(--pine);color:var(--ink)}
+  .tab[aria-current="true"]{background:var(--pine);border-color:var(--pine);color:#fff}
+  .theme-btn{
+    font:inherit;cursor:pointer;width:36px;height:36px;flex:none;border-radius:9px;
+    border:1px solid var(--line-strong);background:var(--surface);color:var(--ink-soft);
+    display:grid;place-items:center;font-size:1.05rem;
+  }
+  .theme-btn:hover{color:var(--ink);border-color:var(--pine)}
+
+  /* progress rail */
+  .progress-rail{height:3px;background:var(--line);position:relative;overflow:hidden}
+  .progress-fill{position:absolute;inset:0 auto 0 0;width:0;background:var(--pine);transition:width .4s ease}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:32px 0 24px}
+  .hero .kicker{margin-bottom:11px}
+  .hero h1{font-size:clamp(1.55rem,3.6vw,2.2rem);letter-spacing:-.01em;margin-bottom:11px}
+  .hero .lede{font-size:1rem;color:var(--ink-soft);max-width:70ch}
+  .hero .namebar{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-top:20px}
+  .hero .namebar label{font-size:.8rem;font-weight:600;color:var(--ink)}
+  .hero .namebar input{font:inherit;font-size:.92rem;color:var(--ink);background:var(--surface);border:1.5px solid var(--line-strong);border-radius:var(--r-sm);padding:9px 13px;min-width:min(240px,100%)}
+  .hero .namebar input:focus{outline:none;border-color:var(--pine)}
+  .hero .namebar .hi{font-size:.9rem;font-weight:600;color:var(--pine)}
+  .hero .namebar .hi[hidden]{display:none}
+  .hero .meta{
+    display:flex;gap:26px;flex-wrap:wrap;margin-top:28px;padding-top:22px;
+    border-top:1px solid var(--line);
+  }
+  .hero .meta div span{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
+  .hero .meta div b{font-family:var(--serif);font-size:1.35rem;font-weight:600}
+
+  /* module intro strip */
+  .modstrip{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+  .modcard{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);
+    padding:20px;box-shadow:var(--shadow);cursor:pointer;transition:.15s;text-align:left;font:inherit;color:inherit;
+    display:flex;flex-direction:column;gap:8px;
+  }
+  .modcard:hover{transform:translateY(-2px);box-shadow:var(--shadow-lift);border-color:var(--pine)}
+  .modcard .num{font-family:var(--serif);font-size:.85rem;color:var(--pine);font-weight:600}
+  .modcard h3{font-size:1.14rem}
+  .modcard p{font-size:.9rem;color:var(--ink-soft)}
+  .modcard .go{font-size:.82rem;font-weight:600;color:var(--pine);margin-top:auto}
+
+  /* ---------- Section shell ---------- */
+  section.module{padding:24px 0 8px;scroll-margin-top:120px}
+  .sec-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:8px}
+  .sec-head .badge{
+    font-family:var(--serif);font-size:1.5rem;font-weight:600;color:#fff;
+    background:var(--pine);width:52px;height:52px;flex:none;border-radius:13px;
+    display:grid;place-items:center;box-shadow:var(--shadow);
+  }
+  .sec-head h2{font-size:1.7rem;letter-spacing:-.01em}
+  .sec-head p{font-size:.95rem;color:var(--ink-soft);margin-top:4px}
+  .prose{max-width:68ch}
+  .prose p{margin-top:14px;color:var(--ink-soft)}
+  .prose p strong{color:var(--ink);font-weight:600}
+
+  /* concept compare */
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0}
+  .qcol{border-radius:var(--r-md);padding:18px;border:1px solid var(--line)}
+  .qcol.closed{background:var(--surface-2)}
+  .qcol.open{background:var(--pine-wash);border-color:color-mix(in srgb,var(--pine) 30%,transparent)}
+  .qcol h4{font-family:var(--sans);font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+  .qcol.closed h4{color:var(--ink-faint)}
+  .qcol.open h4{color:var(--pine-deep)}
+  .qcol .sub{font-size:.82rem;color:var(--ink-faint);margin-bottom:12px}
+  .qcol ul{margin:0;padding-left:18px;font-size:.92rem;color:var(--ink-soft)}
+  .qcol li{margin:7px 0}
+  .qcol li em{font-style:italic;color:var(--ink)}
+
+  /* exercise panel */
+  .exercise{
+    position:relative;
+    background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--amber);
+    border-radius:var(--r-md);box-shadow:var(--shadow);padding:22px;margin:22px 0;
+  }
+  .exercise > .ex-label{padding-right:48px}
+  .exercise > h3{padding-right:48px}
+  .module{position:relative}
+  .module > .sec-head{padding-right:50px}
+  .ex-toggle{
+    position:absolute;top:18px;right:18px;width:34px;height:34px;border-radius:9px;
+    border:1px solid var(--line-strong);background:var(--surface);color:var(--ink-soft);
+    display:grid;place-items:center;cursor:pointer;transition:.15s;z-index:2;
+  }
+  .mod-toggle{top:6px;right:0}
+  .ex-toggle:hover{border-color:var(--pine);color:var(--ink)}
+  .ex-toggle:focus-visible{outline:2px solid var(--pine);outline-offset:2px}
+  .ex-toggle svg{transition:transform .2s}
+  .exercise:not(.collapsed) > .ex-toggle svg{transform:rotate(180deg)}
+  .module:not(.collapsed) > .mod-toggle svg{transform:rotate(180deg)}
+  .exercise.collapsed{padding-bottom:20px}
+  .exercise.collapsed > :not(.ex-label):not(h3):not(.ex-toggle){display:none}
+  .exercise.collapsed > h3{margin-bottom:0}
+  .module.collapsed > :not(.sec-head):not(.mod-toggle){display:none}
+  .exercise > .ex-label{
+    font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);
+    display:flex;align-items:center;gap:8px;margin-bottom:6px;
+  }
+  .exercise h3{font-size:1.2rem;margin-bottom:4px}
+  .exercise > .ex-desc{font-size:.9rem;color:var(--ink-soft);margin-bottom:16px}
+
+  /* quiz */
+  .quiz-q{font-family:var(--serif);font-size:1.2rem;font-weight:500;margin-bottom:16px;text-wrap:balance}
+  .quiz-count{font-size:.78rem;color:var(--ink-faint);font-weight:600;letter-spacing:.04em}
+  .choices{display:flex;gap:10px;flex-wrap:wrap}
+  .choice{
+    flex:1 1 160px;font:inherit;font-weight:600;cursor:pointer;text-align:left;
+    border:1.5px solid var(--line-strong);background:var(--surface);color:var(--ink);
+    padding:13px 16px;border-radius:var(--r-sm);transition:.14s;display:flex;align-items:center;gap:10px;
+  }
+  .choice .dot{width:10px;height:10px;border-radius:50%;border:2px solid var(--ink-faint);flex:none}
+  .choice:hover:not(:disabled){border-color:var(--pine)}
+  .choice.pick-open .dot{border-color:var(--pine)}
+  .choice.pick-closed .dot{border-color:var(--ink-faint)}
+  .choice.correct{background:var(--good-wash);border-color:var(--good);color:var(--ink)}
+  .choice.correct .dot{background:var(--good);border-color:var(--good)}
+  .choice.incorrect{background:var(--wrong-wash);border-color:var(--wrong)}
+  .choice.incorrect .dot{background:var(--wrong);border-color:var(--wrong)}
+  .choice:disabled{cursor:default}
+  .feedback{
+    margin-top:14px;padding:13px 15px;border-radius:var(--r-sm);font-size:.9rem;
+    background:var(--surface-2);border:1px solid var(--line);line-height:1.55;
+  }
+  .feedback[hidden]{display:none}
+  .feedback b{font-weight:600}
+  .feedback .verdict{font-weight:700}
+  .feedback.ok .verdict{color:var(--good)}
+  .feedback.no .verdict{color:var(--wrong)}
+  /* wrong-answer practice */
+  .practice{margin-top:14px;padding:16px 17px;border-radius:var(--r-sm);background:var(--surface-2);border:1px dashed var(--line-strong)}
+  .practice[hidden]{display:none}
+  .pr-tip{font-size:.82rem;font-weight:600;color:var(--amber);margin-bottom:14px}
+  .pr-label{display:block;font-size:.85rem;font-weight:600;color:var(--ink)}
+  .pr-row{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:18px}
+  .pr-select{font:inherit;font-size:.88rem;color:var(--ink);background:var(--surface);border:1.5px solid var(--line-strong);border-radius:var(--r-sm);padding:8px 12px}
+  .pr-select:focus{outline:none;border-color:var(--pine)}
+  .pr-recheck{font-size:.85rem;font-weight:700}
+  .pr-recheck.ok{color:var(--good)}
+  .pr-recheck.no{color:var(--wrong)}
+  .pr-write .pr-label{margin-bottom:7px}
+  .pr-write textarea{font:inherit;font-size:.92rem;color:var(--ink);background:var(--surface);border:1.5px solid var(--line-strong);border-radius:var(--r-sm);padding:10px 12px;width:100%;min-height:62px;resize:vertical;line-height:1.55}
+  .pr-write textarea:focus{outline:none;border-color:var(--pine)}
+  .pr-reveal{margin-top:12px}
+  .pr-reveal:not(:disabled){box-shadow:0 0 0 3px var(--pine-wash)}
+  .pr-model{margin-top:14px;padding:13px 15px;background:var(--pine-wash);border-radius:var(--r-sm);border:1px solid color-mix(in srgb,var(--pine) 25%,transparent)}
+  .pr-model[hidden]{display:none}
+  .pr-model .tag{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--pine-deep);display:block;margin-bottom:3px}
+  .pr-model p{font-family:var(--serif);font-size:1.04rem}
+
+  .quiz-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;flex-wrap:wrap}
+  .btn{
+    font:inherit;font-weight:600;cursor:pointer;border-radius:var(--r-sm);padding:10px 18px;
+    border:1px solid var(--pine);background:var(--pine);color:#fff;transition:.14s;
+  }
+  .btn:hover{background:var(--pine-deep);border-color:var(--pine-deep)}
+  .btn.ghost{background:transparent;color:var(--pine)}
+  .btn.ghost:hover{background:var(--pine-wash)}
+  .btn:disabled{opacity:.4;cursor:default}
+  .scorepill{font-size:.85rem;font-weight:600;color:var(--ink-soft)}
+  .scorepill b{color:var(--pine);font-family:var(--serif)}
+
+  /* rewrite cards */
+  .rw{border:1px solid var(--line);border-radius:var(--r-sm);padding:15px 16px;margin-top:12px;background:var(--surface)}
+  .rw .closed-q{font-size:.95rem}
+  .rw .closed-q .tag{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:2px}
+  .rw .closed-q i{font-style:italic}
+  .rw .reveal-btn{
+    font:inherit;font-size:.82rem;font-weight:600;cursor:pointer;margin-top:11px;
+    background:transparent;border:1px dashed var(--line-strong);color:var(--pine);
+    padding:7px 13px;border-radius:999px;
+  }
+  .rw .reveal-btn:hover{border-color:var(--pine);border-style:solid}
+  .rw .model{margin-top:12px;padding:13px 15px;background:var(--pine-wash);border-radius:var(--r-sm);border:1px solid color-mix(in srgb,var(--pine) 25%,transparent)}
+  .rw .model[hidden]{display:none}
+  .rw .model .tag{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--pine-deep);display:block;margin-bottom:2px}
+  .rw .model p{font-family:var(--serif);font-size:1.02rem}
+  .rw .model .why{font-family:var(--sans);font-size:.83rem;color:var(--ink-soft);margin-top:8px}
+  .rw .rw-label{display:block;font-size:.85rem;font-weight:600;color:var(--ink);margin:13px 0 7px}
+  .rw > .rw-label:first-child{margin-top:2px}
+  .rw .rw2-select{font:inherit;font-size:.9rem;color:var(--ink);background:var(--surface);border:1.5px solid var(--line-strong);border-radius:var(--r-sm);padding:10px 12px;width:100%;max-width:100%}
+  .rw .rw2-select:focus{outline:none;border-color:var(--pine)}
+  .rw .rw-input{font:inherit;font-size:.92rem;color:var(--ink);background:var(--surface);border:1.5px solid var(--line-strong);border-radius:var(--r-sm);padding:10px 12px;width:100%;min-height:58px;resize:vertical;line-height:1.55}
+  .rw .rw-input:focus{outline:none;border-color:var(--pine)}
+  .rw .rw-reveal{margin-top:11px}
+  .rw .rw-reveal:not(:disabled){box-shadow:0 0 0 3px var(--pine-wash)}
+  .rw .rw-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
+  .rw .rw-compare[hidden]{display:none}
+  .rw .rw-side{padding:13px 15px;border-radius:var(--r-sm)}
+  .rw .rw-side.you{background:var(--surface-2);border:1px solid var(--line)}
+  .rw .rw-side.ai{background:var(--pine-wash);border:1px solid color-mix(in srgb,var(--pine) 25%,transparent)}
+  .rw .rw-side .tag{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:5px}
+  .rw .rw-side.you .tag{color:var(--ink-faint)}
+  .rw .rw-side.ai .tag{color:var(--pine-deep)}
+  .rw .rw-side p{font-family:var(--serif);font-size:1rem;line-height:1.45}
+  .rw .rw-side.you p.empty{font-family:var(--sans);font-style:italic;color:var(--ink-faint)}
+  .rw .rw-why{grid-column:1 / -1;font-size:.85rem;color:var(--ink-soft);line-height:1.55}
+  .rw .rw-why b{color:var(--ink);font-weight:600}
+
+  /* rubric checklist */
+  .rubric{display:flex;flex-direction:column;gap:2px;margin-top:4px}
+  .rubric-item{
+    display:flex;gap:13px;align-items:flex-start;padding:13px 4px;
+    border-bottom:1px solid var(--line);cursor:pointer;
+  }
+  .rubric-item:last-child{border-bottom:0}
+  .rubric-item input{position:absolute;opacity:0;width:0;height:0}
+  .rubric-item .box{
+    width:22px;height:22px;flex:none;border-radius:6px;border:2px solid var(--line-strong);
+    display:grid;place-items:center;margin-top:1px;transition:.14s;color:#fff;font-size:.8rem;
+  }
+  .rubric-item input:checked + .box{background:var(--good);border-color:var(--good)}
+  .rubric-item input:focus-visible + .box{outline:2px solid var(--pine);outline-offset:2px}
+  .rubric-item .rtext b{font-weight:600;display:block}
+  .rubric-item .rtext span{font-size:.85rem;color:var(--ink-soft)}
+  .rubric-tally{
+    margin-top:16px;padding:14px 16px;border-radius:var(--r-sm);font-size:.92rem;
+    background:var(--surface-2);border:1px solid var(--line);
+  }
+  .rubric-tally b{font-family:var(--serif);color:var(--pine)}
+
+  /* Bài tập 3 — lượng giá */
+  .ev-sample{margin-top:12px;border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden}
+  .ev-sample .ev-q,.ev-sample .ev-a{padding:13px 15px}
+  .ev-sample .ev-q{background:var(--surface-2);border-bottom:1px solid var(--line)}
+  .ev-sample .tag{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:4px}
+  .ev-sample .ev-a .tag{color:var(--pine-deep)}
+  .ev-sample .ev-q p{font-size:.92rem;color:var(--ink-soft)}
+  .ev-sample .ev-a p{font-family:var(--serif);font-size:1.02rem;line-height:1.5}
+  .ev-score-label{font-size:.85rem;font-weight:600;color:var(--ink);margin:17px 0 4px}
+  .ev-score-label em{font-style:italic;color:var(--pine)}
+  #ev3Send{margin-top:14px}
+  .ev-result{margin-top:16px}
+  .ev-result[hidden]{display:none}
+  .ev-match{font-size:.95rem;font-weight:600;padding:12px 14px;border-radius:var(--r-sm);background:var(--pine-wash);border:1px solid color-mix(in srgb,var(--pine) 25%,transparent);margin-bottom:8px}
+  .ev-match b{font-family:var(--serif)}
+  .ev-ref .ev-row{display:flex;align-items:flex-start;gap:12px;padding:11px 2px;border-bottom:1px solid var(--line)}
+  .ev-ref .ev-row:last-child{border-bottom:0}
+  .ev-ref .ev-badge{font-size:.68rem;font-weight:700;letter-spacing:.03em;padding:3px 9px;border-radius:999px;white-space:nowrap;flex:none;margin-top:2px}
+  .ev-ref .ev-badge.yes{background:var(--good-wash);color:var(--good)}
+  .ev-ref .ev-badge.no{background:var(--surface-2);color:var(--ink-faint)}
+  .ev-ref .ev-crit{flex:1}
+  .ev-ref .ev-crit b{font-weight:600;display:block;font-size:.92rem}
+  .ev-ref .ev-crit .ev-your{font-size:.8rem;font-weight:600}
+  .ev-ref .ev-crit .ev-your.ok{color:var(--good)}
+  .ev-ref .ev-crit .ev-your.miss{color:var(--wrong)}
+
+  /* Bài tập 4 — câu hỏi cần tư vấn */
+  .adv-input{font:inherit;font-size:.92rem;color:var(--ink);background:var(--surface);border:1.5px solid var(--line-strong);border-radius:var(--r-sm);padding:11px 13px;width:100%;min-height:130px;resize:vertical;line-height:1.55}
+  .adv-input:focus{outline:none;border-color:var(--pine)}
+  .adv-row{display:flex;align-items:center;gap:13px;margin-top:13px}
+  .adv-saved{font-size:.85rem;font-weight:600;color:var(--good)}
+  .adv-saved[hidden]{display:none}
+
+  /* ---------- Module 2 workflow ---------- */
+  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}
+  .flow-step{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:16px;box-shadow:var(--shadow);position:relative}
+  .flow-step .n{font-family:var(--serif);font-size:.8rem;font-weight:600;color:#fff;background:var(--pine);width:26px;height:26px;border-radius:8px;display:grid;place-items:center;margin-bottom:10px}
+  .flow-step h4{font-family:var(--sans);font-size:.92rem;font-weight:600;margin-bottom:4px}
+  .flow-step p{font-size:.82rem;color:var(--ink-soft)}
+
+  /* prompt builder */
+  .builder{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+  .field label{font-size:.8rem;font-weight:600;color:var(--ink)}
+  .field .hint{font-size:.75rem;color:var(--ink-faint);font-weight:400}
+  .field input,.field textarea,.field select{
+    font:inherit;font-size:.9rem;color:var(--ink);background:var(--surface);
+    border:1.5px solid var(--line-strong);border-radius:var(--r-sm);padding:10px 12px;width:100%;
+  }
+  .field textarea{resize:vertical;min-height:64px;line-height:1.5}
+  .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--pine)}
+  .fmt-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .fmt{
+    font:inherit;font-size:.82rem;font-weight:600;cursor:pointer;text-align:left;
+    border:1.5px solid var(--line-strong);background:var(--surface);color:var(--ink-soft);
+    padding:9px 11px;border-radius:var(--r-sm);display:flex;flex-direction:column;gap:1px;transition:.14s;
+  }
+  .fmt small{font-weight:400;font-size:.72rem;color:var(--ink-faint)}
+  .fmt:hover{border-color:var(--pine)}
+  .fmt[aria-pressed="true"]{background:var(--pine-wash);border-color:var(--pine);color:var(--pine-deep)}
+  .fmt[aria-pressed="true"] small{color:var(--pine-deep)}
+  .out{display:flex;flex-direction:column}
+  .out-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+  .out-head span{font-size:.8rem;font-weight:600;color:var(--ink)}
+  .copy-btn{font:inherit;font-size:.8rem;font-weight:600;cursor:pointer;border:1px solid var(--pine);background:var(--pine);color:#fff;padding:7px 14px;border-radius:999px;transition:.14s}
+  .copy-btn:hover{background:var(--pine-deep)}
+  .prompt-out{
+    flex:1;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-sm);
+    padding:15px 16px;font-size:.9rem;line-height:1.6;white-space:pre-wrap;color:var(--ink);
+    min-height:260px;overflow:auto;
+  }
+  .prompt-out .ph{color:var(--ink-faint);font-style:italic}
+
+  /* output format guide */
+  .fmt-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:6px}
+  .fmt-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:16px;box-shadow:var(--shadow)}
+  .fmt-card .ic{font-family:var(--serif);font-weight:600;font-size:.95rem;color:var(--pine);border:1px solid var(--line-strong);border-radius:7px;padding:2px 9px;display:inline-block;margin-bottom:9px}
+  .fmt-card h4{font-family:var(--sans);font-size:.92rem;font-weight:600;margin-bottom:4px}
+  .fmt-card p{font-size:.82rem;color:var(--ink-soft)}
+
+  .callout{
+    background:var(--amber-wash);border:1px solid color-mix(in srgb,var(--amber) 35%,transparent);
+    border-radius:var(--r-md);padding:18px 20px;margin:22px 0;
+  }
+  .callout .ct{font-family:var(--sans);font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+  .callout p{font-size:.92rem;color:var(--ink-soft)}
+  .callout p strong{color:var(--ink)}
+
+  footer{border-top:1px solid var(--line);margin-top:48px;padding:28px 0 44px}
+  footer p{font-size:.82rem;color:var(--ink-faint)}
+  footer .reset{font:inherit;font-size:.8rem;font-weight:600;cursor:pointer;background:transparent;border:0;color:var(--pine);padding:0;margin-top:8px;text-decoration:underline}
+
+  .divider{height:1px;background:var(--line);margin:34px 0;border:0}
+
+  @media (max-width:720px){
+    .modstrip,.compare,.builder,.flow,.fmt-cards,.fmt-grid,.rw .rw-compare{grid-template-columns:1fr}
+    .flow{grid-template-columns:1fr 1fr}
+    .hero{padding:26px 0 20px}
+    .brand span{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <span class="glyph">AI</span>
+      <div><b>Kỹ năng làm việc với AI</b><span>Chương trình đào tạo nội bộ</span></div>
+    </div>
+    <nav class="tabs" aria-label="Chuyển module">
+      <button class="tab" data-goto="mod1" aria-current="false">1 · Câu hỏi mở</button>
+      <button class="tab" data-goto="mod2" aria-current="false">2 · Drive + AI</button>
+    </nav>
+    <button class="theme-btn" id="themeBtn" aria-label="Đổi giao diện sáng/tối" title="Sáng / tối">◐</button>
+  </div>
+  <div class="progress-rail"><div class="progress-fill" id="progressFill"></div></div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="kicker eyebrow">Học và làm cùng AI · Tài liệu thực hành</div>
+      <h1>Hỏi đúng cách, dùng đúng tài liệu.</h1>
+      <p class="lede">Hai kỹ năng nền tảng để đưa AI vào công việc: biết <strong>đặt câu hỏi mở</strong> để tự phản biện, và biết <strong>ghép tài liệu Google Drive với AI</strong> để nhận về đúng kết quả cần.</p>
+      <div class="namebar">
+        <label for="learnerName">Tên người học</label>
+        <input id="learnerName" type="text" placeholder="Nhập tên của bạn…" autocomplete="name">
+        <span class="hi" id="learnerHi" hidden></span>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ================= MODULE 1 ================= -->
+    <section class="module" id="mod1">
+      <div class="sec-head">
+        <div class="badge">1</div>
+        <div>
+          <div class="eyebrow">Module 01</div>
+          <h2>Đặt câu hỏi mở cho AI</h2>
+          <p>Chất lượng câu trả lời của AI phụ thuộc trước hết vào chất lượng câu hỏi của bạn.</p>
+        </div>
+      </div>
+
+      <div class="prose">
+        <p><strong>Câu hỏi đóng</strong> thường chỉ mời một câu trả lời ngắn — có/không, một con số, một lựa chọn. Nó hữu ích khi bạn cần xác nhận một sự thật cụ thể. <strong>Câu hỏi mở</strong> mời AI trình bày nhiều góc nhìn, nêu giả định và phương án — hữu ích khi bạn đang muốn <em>hiểu vấn đề</em> chứ chưa cần chốt đáp án. Mục tiêu của bạn: nhận ra mình đang cần loại nào, và hỏi cho đúng loại đó.</p>
+      </div>
+
+      <!-- Exercise 1: classify -->
+      <div class="exercise" id="quizBox">
+        <div class="ex-label">◇ Bài tập 1 — Phân loại</div>
+        <h3>Đây là câu hỏi mở cho AI hay câu hỏi đóng cho AI?</h3>
+        <p class="ex-desc">Đọc từng câu và chọn. Sau khi chọn, bạn sẽ thấy giải thích ngắn.</p>
+
+        <div class="quiz-count" id="quizCount"></div>
+        <p class="quiz-q" id="quizQ"></p>
+        <div class="choices">
+          <button class="choice" data-ans="open"><span class="dot"></span>Câu hỏi mở</button>
+          <button class="choice" data-ans="closed"><span class="dot"></span>Câu hỏi đóng</button>
+        </div>
+        <div class="feedback" id="quizFb" hidden></div>
+
+        <div class="practice" id="quizPractice" hidden>
+          <div class="pr-write">
+            <label class="pr-label" for="prText">Hãy viết lại câu hỏi này thành câu hỏi mở:</label>
+            <textarea id="prText" placeholder="Nhập câu hỏi bạn viết lại ở đây…"></textarea>
+            <button class="btn pr-reveal" id="prReveal" disabled>Xem cách AI viết</button>
+          </div>
+          <div class="pr-model" id="prModel" hidden>
+            <span class="tag">Cách AI viết</span>
+            <p id="prModelText"></p>
+          </div>
+        </div>
+
+        <div class="quiz-foot">
+          <span class="scorepill">Đúng: <b id="quizScore">0</b> / <span id="quizTotal">0</span></span>
+          <div style="display:flex;gap:8px">
+            <button class="btn ghost" id="quizRestart">Làm lại</button>
+            <button class="btn" id="quizNext" disabled>Câu tiếp →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 2: rewrite -->
+      <div class="exercise">
+        <div class="ex-label">◇ Bài tập 2 — Viết lại</div>
+        <h3>Chuyển câu hỏi đóng thành câu hỏi mở</h3>
+        <p class="ex-desc">Chọn một câu hỏi đóng trong danh sách (100 câu), tự viết lại thành câu hỏi mở, rồi bấm “Xem cách AI viết” để đặt cạnh câu của bạn và tự đối chiếu.</p>
+        <div class="rw">
+          <label class="rw-label" for="rw2Select">Chọn câu hỏi đóng để luyện:</label>
+          <select class="rw2-select" id="rw2Select"></select>
+          <label class="rw-label" for="rw2Input">Bạn viết lại thành câu hỏi mở:</label>
+          <textarea class="rw-input" id="rw2Input" placeholder="Nhập câu hỏi mở của bạn…"></textarea>
+          <button class="btn rw-reveal" id="rw2Reveal" type="button" disabled>Xem cách AI viết</button>
+          <div class="rw-compare" id="rw2Compare" hidden>
+            <div class="rw-side you"><span class="tag">Bạn đã viết</span><p class="rw-you" id="rw2You"></p></div>
+            <div class="rw-side ai"><span class="tag">Cách AI viết</span><p id="rw2Ai"></p></div>
+            <div class="rw-why">Thay câu hỏi có/không (hoặc một dữ kiện) bằng câu mời AI trình bày khung suy nghĩ và nhiều lựa chọn. <b>Tự soi:</b> câu của bạn đã mời AI phân tích hoặc đưa nhiều phương án chưa, hay vẫn chỉ dẫn tới trả lời có/không?</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 3: lượng giá -->
+      <div class="exercise" style="border-left-color:var(--pine)">
+        <div class="ex-label" style="color:var(--pine)">◇ Bài tập 3 — Lượng giá</div>
+        <h3>Câu trả lời của AI đã đủ tốt chưa?</h3>
+        <p class="ex-desc">Chọn một câu trả lời mẫu của AI, tự chấm theo 5 tiêu chí, bấm “Gửi cách tôi chấm”, rồi đối chiếu với cách AI tự chấm.</p>
+        <div class="rw">
+          <label class="rw-label" for="ev3Select">Chọn câu trả lời mẫu của AI:</label>
+          <select class="rw2-select" id="ev3Select"></select>
+          <div class="ev-sample">
+            <div class="ev-q"><span class="tag">Câu hỏi</span><p id="ev3Q"></p></div>
+            <div class="ev-a"><span class="tag">Câu trả lời của AI</span><p id="ev3A"></p></div>
+          </div>
+          <div class="ev-score-label">Bạn chấm: tick những tiêu chí câu trả lời này <em>đạt</em></div>
+          <div class="rubric" id="ev3Rubric"></div>
+          <button class="btn rw-reveal" id="ev3Send" type="button">Gửi cách tôi chấm</button>
+          <div class="ev-result" id="ev3Result" hidden>
+            <div class="ev-match" id="ev3Match"></div>
+            <div class="ev-ref" id="ev3Ref"></div>
+            <div class="rw-why" id="ev3Note"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 4: câu hỏi cần tư vấn -->
+      <div class="exercise" style="border-left-color:var(--pine)">
+        <div class="ex-label" style="color:var(--pine)">◇ Bài tập 4 — Các câu hỏi cần tư vấn</div>
+        <h3>Các câu hỏi cần tư vấn thêm</h3>
+        <p class="ex-desc">Hãy mô tả các câu hỏi cần tư vấn thêm dựa trên tình huống cụ thể của bạn. Bạn có thể lưu tối đa 10 câu.</p>
+        <div class="rw">
+          <label class="rw-label" for="advSelect">Chọn câu cần tư vấn:</label>
+          <select class="rw2-select" id="advSelect"></select>
+          <label class="rw-label" for="advInput">Nội dung câu cần tư vấn:</label>
+          <textarea class="adv-input" id="advInput" placeholder="Nhập câu bạn cần được tư vấn thêm ở đây…"></textarea>
+          <div class="adv-row">
+            <button class="btn" id="advSave" type="button">Lưu</button>
+            <span class="adv-saved" id="advSaved" hidden>Đã lưu ✓</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="ct">Ghi nhớ</div>
+        <p><strong>Hỏi mở để hiểu, hỏi đóng để chốt.</strong> Một quy trình tốt thường là: bắt đầu bằng câu hỏi mở để lấy các góc nhìn, rồi thu hẹp bằng câu hỏi đóng để xác nhận. Và luôn lượng giá câu trả lời trước khi dùng nó vào việc thật.</p>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ================= MODULE 2 ================= -->
+    <section class="module" id="mod2">
+      <div class="sec-head">
+        <div class="badge">2</div>
+        <div>
+          <div class="eyebrow">Module 02</div>
+          <h2>Tích hợp Google Drive + AI</h2>
+          <p>Đưa tài liệu của mình cho AI đọc, rồi yêu cầu kết quả đúng định dạng cần dùng.</p>
+        </div>
+      </div>
+
+      <div class="prose">
+        <p>AI mạnh nhất khi làm việc trên <strong>tài liệu thật của bạn</strong>, không phải kiến thức chung chung. Bằng cách dán link Google Drive (tài liệu, sheet, thư mục) kèm một yêu cầu rõ ràng, bạn để AI đọc đúng nguồn rồi trả về: đoạn phân tích ngay trong chat, hoặc file tổng hợp dạng Word, PPT, Excel, hay một trang tương tác (artifact) để chia sẻ.</p>
+      </div>
+
+      <div class="flow">
+        <div class="flow-step"><div class="n">1</div><h4>Chuẩn bị tài liệu</h4><p>Đặt file trên Drive và bật quyền xem cho tài khoản đang dùng với AI.</p></div>
+        <div class="flow-step"><div class="n">2</div><h4>Dán link + nêu vấn đề</h4><p>Gắn link và nói rõ bạn đang cần giải quyết điều gì.</p></div>
+        <div class="flow-step"><div class="n">3</div><h4>Ra yêu cầu đầu ra</h4><p>Chọn định dạng: phân tích, Word, PPT, Excel hay artifact.</p></div>
+        <div class="flow-step"><div class="n">4</div><h4>Lượng giá &amp; hỏi sâu</h4><p>Áp bảng tiêu chí ở Module 1, rồi hỏi tiếp để hoàn thiện.</p></div>
+      </div>
+
+      <!-- Prompt builder -->
+      <div class="exercise" id="builderBox">
+        <div class="ex-label">◇ Công cụ — Trình tạo prompt</div>
+        <h3>Ghép một yêu cầu hoàn chỉnh cho AI</h3>
+        <p class="ex-desc">Điền các ô bên trái, prompt bên phải tự cập nhật. Bấm “Sao chép” rồi dán vào AI kèm link Drive.</p>
+
+        <div class="builder">
+          <div>
+            <div class="field">
+              <label for="fGoal">Vấn đề / mục tiêu bạn cần giải quyết</label>
+              <span class="hint">Càng cụ thể càng tốt — nó là phần quan trọng nhất.</span>
+              <textarea id="fGoal" placeholder="VD: Tổng hợp doanh số 3 tháng gần nhất theo nhóm sản phẩm và chỉ ra sản phẩm đang chững lại."></textarea>
+            </div>
+            <div class="field">
+              <label for="fLinks">Link tài liệu Google Drive</label>
+              <span class="hint">Mỗi link một dòng (file, sheet hoặc thư mục).</span>
+              <textarea id="fLinks" placeholder="https://drive.google.com/...
+https://docs.google.com/spreadsheets/..."></textarea>
+            </div>
+            <div class="field">
+              <label for="fContext">Bối cảnh &amp; ràng buộc <span class="hint">(không bắt buộc)</span></label>
+              <input id="fContext" type="text" placeholder="VD: Người đọc là ban giám đốc; chỉ dùng số liệu trong file.">
+            </div>
+            <div class="field">
+              <label>Định dạng đầu ra mong muốn</label>
+              <div class="fmt-grid" id="fmtGrid">
+                <button class="fmt" data-fmt="chat" aria-pressed="true">Phân tích trong chat<small>Trao đổi, hỏi đáp nhanh</small></button>
+                <button class="fmt" data-fmt="word" aria-pressed="false">File Word<small>Báo cáo, văn bản dài</small></button>
+                <button class="fmt" data-fmt="ppt" aria-pressed="false">Bản trình bày PPT<small>Trình bày, họp</small></button>
+                <button class="fmt" data-fmt="excel" aria-pressed="false">Bảng tính Excel<small>Số liệu, công thức</small></button>
+                <button class="fmt" data-fmt="artifact" aria-pressed="false">Artifact (trang web)<small>Dashboard, chia sẻ link</small></button>
+              </div>
+            </div>
+          </div>
+          <div class="out">
+            <div class="out-head">
+              <span>Prompt của bạn</span>
+              <button class="copy-btn" id="copyBtn">Sao chép</button>
+            </div>
+            <div class="prompt-out" id="promptOut"></div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-size:1.15rem;margin-bottom:4px">Chọn định dạng đầu ra nào?</h3>
+      <p class="prose" style="color:var(--ink-soft);font-size:.92rem;margin-bottom:6px">Cùng một phân tích, đầu ra khác nhau phục vụ mục đích khác nhau.</p>
+      <div class="fmt-cards">
+        <div class="fmt-card"><span class="ic">DOC</span><h4>Word</h4><p>Báo cáo, tờ trình, hợp đồng, văn bản dài cần trình bày chỉn chu và chỉnh sửa tiếp.</p></div>
+        <div class="fmt-card"><span class="ic">PPT</span><h4>PowerPoint</h4><p>Trình bày trong cuộc họp: ý chính, biểu đồ, từng slide một thông điệp.</p></div>
+        <div class="fmt-card"><span class="ic">XLS</span><h4>Excel</h4><p>Số liệu, bảng tính, công thức và phân tích mà người nhận cần tính toán tiếp.</p></div>
+        <div class="fmt-card"><span class="ic">WEB</span><h4>Artifact</h4><p>Trang tương tác: dashboard, công cụ, checklist — mở lại và chia sẻ bằng link.</p></div>
+      </div>
+
+      <div class="callout">
+        <div class="ct">Lưu ý về dữ liệu</div>
+        <p><strong>Chỉ chia sẻ tài liệu mà bạn được phép chia sẻ.</strong> Kiểm tra quyền truy cập trên Drive trước khi dán link, và tránh đưa dữ liệu nhạy cảm hơn mức cần thiết cho câu hỏi.</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>Tài liệu đào tạo nội bộ · Kỹ năng làm việc với AI. Tiến độ và các ô đã tick được lưu ngay trên trình duyệt của bạn.</p>
+      <button class="reset" id="resetBtn">Xoá tiến độ trên máy này</button>
+    </footer>
+  </div>
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var LS="ai-skills-v1";
+  var state={quizDone:{},rubric:{},reveal:{},theme:null};
+  try{var s=localStorage.getItem(LS);if(s)state=Object.assign(state,JSON.parse(s));}catch(e){}
+  function save(){try{localStorage.setItem(LS,JSON.stringify(state));}catch(e){}}
+
+  /* ---------- theme ---------- */
+  var root=document.documentElement, tb=document.getElementById("themeBtn");
+  function applyTheme(){ if(state.theme){root.setAttribute("data-theme",state.theme);} else {root.removeAttribute("data-theme");} }
+  applyTheme();
+  tb.addEventListener("click",function(){
+    var isDark = state.theme ? state.theme==="dark" : matchMedia("(prefers-color-scheme:dark)").matches;
+    state.theme = isDark ? "light":"dark"; applyTheme(); save();
+  });
+
+  /* ---------- learner name ---------- */
+  var nameInput=document.getElementById("learnerName"),nameHi=document.getElementById("learnerHi");
+  function showHi(){
+    if(state.name){nameHi.textContent="Chào "+state.name+"!";nameHi.hidden=false;}
+    else{nameHi.hidden=true;}
+  }
+  if(state.name)nameInput.value=state.name;
+  showHi();
+  nameInput.addEventListener("input",function(){state.name=nameInput.value.trim();save();showHi();});
+
+  /* ---------- nav ---------- */
+  function goto(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:"smooth",block:"start"});}
+  document.querySelectorAll("[data-goto]").forEach(function(b){b.addEventListener("click",function(){goto(b.dataset.goto);});});
+  var tabs=document.querySelectorAll(".tab");
+  var secs=[document.getElementById("mod1"),document.getElementById("mod2")];
+  var obs=new IntersectionObserver(function(en){
+    en.forEach(function(e){ if(e.isIntersecting){
+      tabs.forEach(function(t){t.setAttribute("aria-current", t.dataset.goto===e.target.id ? "true":"false");});
+    }});
+  },{rootMargin:"-45% 0px -45% 0px"});
+  secs.forEach(function(s){if(s)obs.observe(s);});
+
+  /* ---------- QUIZ ---------- */
+  var QUIZ=[
+    {q:"AI có thể tóm tắt tài liệu này giúp tôi không?", a:"closed",
+     e:"Câu hỏi <b>đóng</b> — chỉ mời câu trả lời có/không.",
+     o:"“Hãy tóm tắt tài liệu này thành 5 ý chính, và chỉ ra những điểm tôi cần lưu ý nhất khi ra quyết định.”"},
+    {q:"Làm thế nào để tôi viết email từ chối một lời mời mà vẫn giữ được quan hệ?", a:"open",
+     e:"Câu hỏi <b>mở</b> — mời AI đưa ra cách làm và nhiều lựa chọn diễn đạt."},
+    {q:"Nên gửi email này vào buổi sáng hay buổi chiều?", a:"closed",
+     e:"Câu hỏi <b>đóng</b> — giới hạn trong hai lựa chọn.",
+     o:"“Thời điểm nào trong ngày thường giúp email công việc được đọc và phản hồi tốt hơn, và vì sao?”"},
+    {q:"Có những cách nào để trình bày báo cáo này cho người đọc dễ hiểu hơn?", a:"open",
+     e:"Câu hỏi <b>mở</b> — mời AI đề xuất nhiều phương án trình bày."},
+    {q:"Câu văn này đã đúng ngữ pháp chưa?", a:"closed",
+     e:"Câu hỏi <b>đóng</b> — mời một phán xét đúng/sai.",
+     o:"“Câu này có chỗ nào chưa tự nhiên hoặc chưa rõ nghĩa, và có thể viết lại theo những cách nào cho mạch lạc hơn?”"},
+    {q:"Bản kế hoạch này còn điểm yếu nào, và tôi nên bổ sung những gì?", a:"open",
+     e:"Câu hỏi <b>mở</b> — mời AI phản biện và đề xuất."},
+    {q:"Từ “stakeholder” trong ngữ cảnh này nghĩa là gì?", a:"closed",
+     e:"Câu hỏi <b>đóng</b> — hỏi một định nghĩa cụ thể.",
+     o:"“Trong dự án của tôi, những ai được xem là stakeholder, và mỗi nhóm quan tâm đến điều gì?”"},
+    {q:"Tôi nên chuẩn bị những gì để cuộc họp với khách hàng hiệu quả hơn?", a:"open",
+     e:"Câu hỏi <b>mở</b> — mời AI liệt kê và phân tích."},
+    {q:"Cuộc họp này nên kéo dài 30 phút hay 60 phút?", a:"closed",
+     e:"Câu hỏi <b>đóng</b> — chỉ gồm hai lựa chọn.",
+     o:"“Với nội dung và số người tham dự như thế này, thời lượng họp bao nhiêu là hợp lý, và làm sao để họp gọn mà vẫn đủ ý?”"},
+    {q:"Những rủi ro nào tôi có thể chưa nghĩ tới trong đề xuất này?", a:"open",
+     e:"Câu hỏi <b>mở</b> điển hình để tự phản biện."},
+    {q:"AI có dịch được đoạn văn này sang tiếng Anh không?", a:"closed",
+     e:"Câu hỏi <b>đóng</b> — mời câu trả lời có/không.",
+     o:"“Hãy dịch đoạn này sang tiếng Anh theo văn phong trang trọng, và chỉ ra những chỗ bạn phải diễn đạt lại cho phù hợp.”"},
+    {q:"Vì sao dự án này bị chậm tiến độ, và tôi nên nhìn vào những yếu tố nào?", a:"open",
+     e:"Câu hỏi <b>mở</b> — vừa hỏi nguyên nhân vừa mở rộng hướng phân tích."},
+    {q:"Bản kế hoạch này đã ổn chưa?", a:"closed",
+     e:"Câu hỏi <b>đóng</b> — mời một câu trả lời có/không, dừng cuộc trao đổi lại.",
+     o:"“Bản kế hoạch này mạnh và yếu ở đâu, và có những chỗ nào tôi nên làm rõ hoặc bổ sung trước khi trình?”"},
+    {q:"Làm sao để tôi giải thích khái niệm này cho người không cùng chuyên môn?", a:"open",
+     e:"Câu hỏi <b>mở</b> — mời AI đưa ra cách làm và ví dụ."},
+    {q:"Deadline của dự án là ngày mấy?", a:"closed",
+     e:"Câu hỏi <b>đóng</b> — hỏi một dữ kiện. Nhớ kiểm chứng lại nguồn.",
+     o:"“Dự án này có những mốc thời hạn nào, và nếu trễ mỗi mốc thì ảnh hưởng ra sao?”"},
+    {q:"Những tiêu chí nào tôi nên dùng để đánh giá các ứng viên cho vị trí này?", a:"open",
+     e:"Câu hỏi <b>mở</b> — mời AI đề xuất một bộ tiêu chí."},
+    {q:"Slide này nên dùng nền màu sáng hay màu tối?", a:"closed",
+     e:"Câu hỏi <b>đóng</b> — giới hạn hai lựa chọn.",
+     o:"“Với nơi trình chiếu và nội dung slide này, cách phối màu nào giúp người xem dễ đọc nhất, và vì sao?”"},
+    {q:"Tôi nên sắp xếp một ngày làm việc nhiều đầu việc theo những cách nào?", a:"open",
+     e:"Câu hỏi <b>mở</b> — mời nhiều phương án tổ chức công việc."},
+    {q:"Tiêu đề email này có nên viết ngắn hơn không?", a:"closed",
+     e:"Câu hỏi <b>đóng</b> — mời câu trả lời có/không.",
+     o:"“Tiêu đề email này có thể viết lại theo những cách nào để vừa ngắn gọn vừa khiến người nhận muốn mở ra đọc?”"},
+    {q:"Tôi có thể cải thiện bài thuyết trình này bằng những cách nào?", a:"open",
+     e:"Câu hỏi <b>mở</b> — mời AI đề xuất nhiều hướng cải thiện."}
+  ];
+  var qi=0, qBox=document.getElementById("quizBox");
+  var qCount=document.getElementById("quizCount"),qQ=document.getElementById("quizQ"),qFb=document.getElementById("quizFb");
+  var qScore=document.getElementById("quizScore"),qTotal=document.getElementById("quizTotal"),qNext=document.getElementById("quizNext");
+  var choiceBtns=qBox.querySelectorAll(".choice");
+  qTotal.textContent=QUIZ.length;
+
+  // wrong-answer practice elements
+  var prPanel=document.getElementById("quizPractice"),prText=document.getElementById("prText"),
+      prReveal=document.getElementById("prReveal"),prModel=document.getElementById("prModel"),
+      prModelText=document.getElementById("prModelText");
+  state.rwText=state.rwText||{}; state.rwSeen=state.rwSeen||{};
+  function hidePractice(){
+    prPanel.hidden=true;prModel.hidden=true;
+    prText.value="";prReveal.disabled=true;
+  }
+  function openPractice(){
+    var item=QUIZ[qi];
+    prPanel.hidden=false;
+    prText.value=state.rwText[qi]||"";
+    prReveal.disabled=!prText.value.trim();
+    prModelText.textContent=item.o;
+    prModel.hidden=!state.rwSeen[qi];
+  }
+  prText.addEventListener("input",function(){
+    state.rwText[qi]=prText.value; save();
+    prReveal.disabled=!prText.value.trim();
+    updateNext();
+  });
+  prReveal.addEventListener("click",function(){
+    if(prReveal.disabled)return;
+    prModelText.textContent=QUIZ[qi].o; prModel.hidden=false;
+    state.rwSeen[qi]=true; save();
+  });
+  function isLast(){return qi>=QUIZ.length-1;}
+  function nextAllowed(){
+    if(!state.quizDone.hasOwnProperty(qi))return false; // chưa trả lời
+    if(isLast())return false;
+    if(QUIZ[qi].a==="closed")return !!prText.value.trim(); // câu đóng: phải viết lại xong
+    return true;
+  }
+  function updateNext(){qNext.disabled=!nextAllowed();}
+
+  function scoreCount(){var n=0;for(var k in state.quizDone){if(state.quizDone[k])n++;}return n;}
+  function renderQuiz(){
+    var item=QUIZ[qi];
+    qCount.textContent="Câu "+(qi+1)+" / "+QUIZ.length;
+    qQ.textContent=item.q;
+    qFb.hidden=true;qFb.className="feedback";
+    choiceBtns.forEach(function(b){b.disabled=false;b.className="choice";});
+    hidePractice();
+    qNext.disabled=true;
+    qScore.textContent=scoreCount();
+    var done=state.quizDone.hasOwnProperty(qi);
+    if(done){ lockQuiz(state.quizPick&&state.quizPick[qi]); }
+    updateProgress();
+  }
+  function lockQuiz(pick){
+    var item=QUIZ[qi];
+    choiceBtns.forEach(function(b){
+      b.disabled=true;
+      if(b.dataset.ans===item.a)b.classList.add("correct");
+      if(pick&&b.dataset.ans===pick&&pick!==item.a)b.classList.add("incorrect");
+    });
+    var ok=(pick===item.a);
+    qFb.hidden=false;qFb.className="feedback "+(ok?"ok":"no");
+    qFb.innerHTML='<span class="verdict">'+(ok?"Chính xác. ":"Chưa đúng. ")+'</span>'+item.e;
+    if(item.a==="closed")openPractice(); else hidePractice();
+    updateNext();
+    qScore.textContent=scoreCount();
+  }
+  choiceBtns.forEach(function(b){
+    b.addEventListener("click",function(){
+      if(b.disabled)return;
+      var pick=b.dataset.ans, item=QUIZ[qi], ok=(pick===item.a);
+      state.quizDone[qi]=ok; state.quizPick=state.quizPick||{}; state.quizPick[qi]=pick; save();
+      lockQuiz(pick); updateProgress();
+    });
+  });
+  qNext.addEventListener("click",function(){ if(qi<QUIZ.length-1){qi++;renderQuiz();} });
+  document.getElementById("quizRestart").addEventListener("click",function(){
+    state.quizDone={};state.quizPick={};state.rwText={};state.rwSeen={};qi=0;save();renderQuiz();updateProgress();
+  });
+
+  /* ---------- REWRITE ---------- */
+  var RW2=[
+    {c:"AI có thể tóm tắt tài liệu này giúp tôi không?", o:"“Hãy tóm tắt tài liệu này thành các ý chính, và chỉ ra những điểm tôi cần lưu ý nhất khi ra quyết định.”"},
+    {c:"AI viết được email này giúp tôi không?", o:"“Giúp tôi viết email này sao cho rõ ràng và giữ được thiện chí — gợi ý vài cách mở đầu để tôi chọn.”"},
+    {c:"Câu văn này đã đúng ngữ pháp chưa?", o:"“Câu này có chỗ nào chưa tự nhiên hay chưa rõ nghĩa, và có thể viết lại theo những cách nào cho mạch lạc hơn?”"},
+    {c:"Nên gửi email này vào buổi sáng hay buổi chiều?", o:"“Thời điểm nào trong ngày thường giúp email công việc được đọc và phản hồi tốt hơn, và vì sao?”"},
+    {c:"Tiêu đề email này đã ổn chưa?", o:"“Tiêu đề email này có thể viết lại theo những cách nào để vừa rõ vừa khiến người nhận muốn mở đọc?”"},
+    {c:"Bản kế hoạch này đã ổn chưa?", o:"“Bản kế hoạch này mạnh và yếu ở đâu, và có chỗ nào tôi nên làm rõ hoặc bổ sung trước khi trình?”"},
+    {c:"AI dịch được đoạn này sang tiếng Anh không?", o:"“Hãy dịch đoạn này sang tiếng Anh theo văn phong trang trọng, và chỉ ra những chỗ phải diễn đạt lại cho phù hợp.”"},
+    {c:"Cuộc họp nên kéo dài 30 hay 60 phút?", o:"“Với nội dung và số người như thế này, thời lượng họp bao nhiêu là hợp lý, và làm sao để họp gọn mà đủ ý?”"},
+    {c:"Slide này nên dùng nền sáng hay tối?", o:"“Với nơi trình chiếu và nội dung này, cách phối màu nào giúp người xem dễ đọc nhất, và vì sao?”"},
+    {c:"Từ “stakeholder” trong ngữ cảnh này nghĩa là gì?", o:"“Trong dự án của tôi, những ai được xem là stakeholder, và mỗi nhóm quan tâm đến điều gì?”"},
+    {c:"Deadline của dự án là ngày mấy?", o:"“Dự án này có những mốc thời hạn nào, và nếu trễ mỗi mốc thì ảnh hưởng ra sao?”"},
+    {c:"Báo cáo này dài quá phải không?", o:"“Báo cáo này có phần nào có thể rút gọn, và nên giữ lại những nội dung nào là quan trọng nhất?”"},
+    {c:"Nên dùng biểu đồ cột hay biểu đồ tròn cho dữ liệu này?", o:"“Loại biểu đồ nào thể hiện dữ liệu này rõ nhất, và vì sao nó phù hợp hơn các loại khác?”"},
+    {c:"AI có kiểm tra chính tả giúp tôi không?", o:"“Hãy rà lỗi chính tả và diễn đạt trong văn bản này, và giải thích ngắn gọn vì sao mỗi chỗ nên sửa.”"},
+    {c:"Câu chốt của bài thuyết trình này được chưa?", o:"“Câu chốt này đã đủ mạnh chưa, và có những cách nào để kết bài đọng lại hơn với người nghe?”"},
+    {c:"Nên tuyển ứng viên A hay ứng viên B?", o:"“Mỗi ứng viên mạnh yếu ở đâu so với yêu cầu công việc, và tôi nên cân nhắc những yếu tố nào để quyết định?”"},
+    {c:"Giá này có hợp lý không?", o:"“Mức giá này nên được đánh giá dựa trên những yếu tố nào, và có các hướng định giá nào khác đáng cân nhắc?”"},
+    {c:"Tôi nên dùng phần mềm này đúng không?", o:"“Phần mềm này mạnh và yếu ở đâu so với nhu cầu của tôi, và có lựa chọn nào khác đáng so sánh?”"},
+    {c:"Đoạn mở bài này ổn chưa?", o:"“Đoạn mở bài này đã thu hút chưa, và có những cách mở đầu nào khác để cân nhắc?”"},
+    {c:"AI lập được dàn ý cho bài viết này không?", o:"“Hãy đề xuất vài dàn ý khác nhau cho bài viết này, và nêu ưu điểm của mỗi hướng.”"},
+    {c:"Nên trả lời email khách hàng ngay bây giờ không?", o:"“Với tình huống của khách hàng này, nên phản hồi theo hướng nào và cần chuẩn bị thông tin gì trước khi trả lời?”"},
+    {c:"Bản hợp đồng này có điều khoản nào bất thường không?", o:"“Trong hợp đồng này, những điều khoản nào tôi nên đọc kỹ, và mỗi điều khoản có thể gây rủi ro gì cho tôi?”"},
+    {c:"Tôi nên trình bày phần này trước hay phần kia trước?", o:"“Thứ tự trình bày nào giúp mạch bài dễ theo dõi nhất, và vì sao?”"},
+    {c:"AI gợi ý được tiêu đề cho bài này không?", o:"“Hãy đề xuất vài tiêu đề cho bài này theo các hướng khác nhau, và nêu tiêu đề nào hợp với đối tượng đọc nào.”"},
+    {c:"Con số này có đúng không?", o:"“Con số này nên được kiểm chứng bằng cách nào, và có giả định nào phía sau mà tôi cần soát lại?”"},
+    {c:"Nên họp trực tiếp hay họp online?", o:"“Với mục tiêu và người tham dự của cuộc họp này, hình thức nào phù hợp hơn, và mỗi hình thức được mất gì?”"},
+    {c:"Bài đăng này nên đăng hôm nay không?", o:"“Thời điểm nào đăng bài này sẽ tiếp cận đúng người đọc hơn, và dựa trên những yếu tố nào?”"},
+    {c:"Đề xuất này khả thi không?", o:"“Đề xuất này khả thi tới đâu, những điều kiện nào cần có để thực hiện, và rào cản lớn nhất là gì?”"},
+    {c:"Tôi nên gộp hai phần này lại đúng không?", o:"“Gộp hai phần này có lợi và hại gì, và có cách sắp xếp nào khác giúp nội dung rõ hơn?”"},
+    {c:"Câu trả lời này của AI đúng không?", o:"“Câu trả lời này dựa trên căn cứ nào, có điểm nào chưa chắc chắn, và tôi nên kiểm chứng lại phần nào?”"},
+    {c:"Nên đặt tên dự án là X phải không?", o:"“Tên dự án nên đạt những tiêu chí gì, và có vài phương án đặt tên nào để tôi so sánh?”"},
+    {c:"AI tạo được bảng so sánh này không?", o:"“Hãy lập bảng so sánh các lựa chọn này theo những tiêu chí quan trọng nhất, và giải thích cách chọn tiêu chí.”"},
+    {c:"Đoạn văn này có bị lặp ý không?", o:"“Đoạn văn này có chỗ nào trùng ý hay lan man, và nên cấu trúc lại thế nào cho gọn?”"},
+    {c:"Ngân sách này có đủ không?", o:"“Ngân sách này nên được đánh giá dựa trên những hạng mục nào, và đâu là chỗ dễ phát sinh chi phí ngoài dự tính?”"},
+    {c:"Nên gửi cho sếp bản này chưa?", o:"“Bản này còn thiếu gì trước khi trình sếp, và nên bổ sung hoặc kiểm tra lại những điểm nào?”"},
+    {c:"Bộ từ khóa này có phù hợp không?", o:"“Bộ từ khóa cho nội dung này nên chọn theo tiêu chí gì, và có những từ khóa nào khác đáng cân nhắc?”"},
+    {c:"AI viết được lời cảm ơn khách hàng không?", o:"“Hãy soạn vài phiên bản lời cảm ơn khách hàng theo các sắc thái khác nhau để tôi chọn cho phù hợp.”"},
+    {c:"Cuộc gọi này nên do tôi hay đồng nghiệp thực hiện?", o:"“Ai phù hợp thực hiện cuộc gọi này hơn, dựa trên những yếu tố nào về mối quan hệ và nội dung?”"},
+    {c:"Định dạng file nên là Word hay PDF?", o:"“Với mục đích sử dụng của tài liệu này, định dạng nào phù hợp hơn, và mỗi định dạng có ưu nhược gì?”"},
+    {c:"Bài viết này đủ dài chưa?", o:"“Độ dài bài viết này đã phù hợp với đối tượng đọc chưa, và nên thêm hay bớt phần nào?”"},
+    {c:"Tôi có nên nhận thêm dự án này không?", o:"“Nhận thêm dự án này ảnh hưởng thế nào tới khối lượng công việc hiện tại, và tôi nên cân nhắc những yếu tố nào?”"},
+    {c:"Nên phản hồi đánh giá tiêu cực này không?", o:"“Với đánh giá tiêu cực này, nên phản hồi theo hướng nào để vừa cầu thị vừa giữ hình ảnh, và cần lưu ý gì?”"},
+    {c:"AI phân tích được dữ liệu bảng này không?", o:"“Hãy phân tích bảng dữ liệu này, chỉ ra những xu hướng đáng chú ý và các câu hỏi tôi nên đào sâu.”"},
+    {c:"Câu slogan này ổn chưa?", o:"“Slogan này truyền tải thông điệp tốt tới đâu, và có vài hướng viết khác để tôi so sánh không?”"},
+    {c:"Nên chia tài liệu này thành hai hay ba phần?", o:"“Cấu trúc bao nhiêu phần giúp tài liệu này dễ theo dõi nhất, và nên chia theo logic nào?”"},
+    {c:"Kế hoạch này có rủi ro không?", o:"“Kế hoạch này có những rủi ro nào, mức độ ảnh hưởng ra sao, và cách giảm nhẹ từng rủi ro là gì?”"},
+    {c:"AI soạn được câu hỏi phỏng vấn không?", o:"“Hãy đề xuất bộ câu hỏi phỏng vấn cho vị trí này, và giải thích mỗi câu giúp đánh giá năng lực gì.”"},
+    {c:"Nên dùng giọng văn trang trọng hay thân thiện?", o:"“Với đối tượng đọc này, giọng văn nào phù hợp hơn, và làm sao để giữ giọng đó nhất quán trong bài?”"},
+    {c:"Bảng tính này có lỗi công thức không?", o:"“Hãy rà các công thức trong bảng tính này, chỉ ra chỗ có thể sai và cách kiểm tra lại kết quả.”"},
+    {c:"Nên trả lời tin nhắn này bằng tiếng Việt hay tiếng Anh?", o:"“Với người nhận và ngữ cảnh này, nên dùng ngôn ngữ nào, và cần lưu ý gì về sắc thái khi viết?”"},
+    {c:"Đề tài này có đáng theo đuổi không?", o:"“Đề tài này đáng theo đuổi tới đâu, dựa trên những tiêu chí nào, và đâu là mặt được mất chính?”"},
+    {c:"AI tạo được lịch trình cho ngày làm việc không?", o:"“Hãy giúp tôi sắp xếp một lịch làm việc hợp lý cho ngày nhiều đầu việc, và giải thích cách ưu tiên.”"},
+    {c:"Đoạn kết này đã thuyết phục chưa?", o:"“Đoạn kết này thuyết phục tới đâu, và có những cách nào để chốt lại mạnh hơn?”"},
+    {c:"Nên đặt câu hỏi này trong khảo sát không?", o:"“Câu hỏi khảo sát này có đo đúng điều tôi cần không, và nên diễn đạt lại theo những cách nào cho rõ?”"},
+    {c:"Tài liệu này đã sẵn sàng gửi đi chưa?", o:"“Trước khi gửi tài liệu này, tôi nên kiểm tra lại những điểm nào để chắc chắn không sót lỗi?”"},
+    {c:"AI viết được bản mô tả công việc không?", o:"“Hãy soạn bản mô tả công việc cho vị trí này, làm rõ trách nhiệm chính và tiêu chí thành công.”"},
+    {c:"Nên phản hồi trong hôm nay hay để đến mai?", o:"“Việc phản hồi sớm hay muộn ảnh hưởng thế nào trong tình huống này, và đâu là thời điểm hợp lý?”"},
+    {c:"Con số tăng trưởng này tốt không?", o:"“Con số tăng trưởng này nên được đặt trong bối cảnh nào để đánh giá đúng, và so với đâu thì có ý nghĩa?”"},
+    {c:"AI tóm tắt được biên bản họp này không?", o:"“Hãy tóm tắt biên bản họp này thành các quyết định, việc cần làm và người phụ trách.”"},
+    {c:"Nên giữ đoạn này hay bỏ đi?", o:"“Đoạn này đóng góp gì cho bài, giữ lại hay bỏ đi thì được mất ra sao, và nếu giữ thì nên chỉnh thế nào?”"},
+    {c:"Tiêu đề slide này đủ rõ chưa?", o:"“Tiêu đề slide này đã nói đúng thông điệp chính chưa, và có cách diễn đạt nào rõ hơn?”"},
+    {c:"Nên báo giá cao hay thấp cho khách này?", o:"“Với khách hàng và phạm vi công việc này, nên tiếp cận báo giá theo hướng nào, và cân nhắc những yếu tố gì?”"},
+    {c:"AI viết được tin nhắn xin lỗi khách hàng không?", o:"“Hãy soạn tin nhắn xin lỗi khách hàng cho tình huống này sao cho chân thành và đưa ra hướng khắc phục.”"},
+    {c:"Đoạn hướng dẫn này có dễ làm theo không?", o:"“Đoạn hướng dẫn này có bước nào dễ gây nhầm, nên diễn đạt lại thế nào để ai đọc cũng làm được?”"},
+    {c:"Nên tổ chức sự kiện vào cuối tuần không?", o:"“Thời điểm tổ chức sự kiện này nên cân nhắc những yếu tố nào, và mỗi lựa chọn thời gian được mất gì?”"},
+    {c:"Bản dịch này ổn chưa?", o:"“Bản dịch này có chỗ nào chưa sát nghĩa hoặc chưa tự nhiên, và nên chỉnh theo hướng nào?”"},
+    {c:"Nên phân công việc này cho A hay B?", o:"“Việc này phù hợp với ai hơn dựa trên năng lực và khối lượng hiện tại, và tôi nên cân nhắc gì khi giao?”"},
+    {c:"AI lập được checklist cho quy trình này không?", o:"“Hãy lập checklist cho quy trình này, sắp theo thứ tự thực hiện và ghi rõ điểm dễ sai sót.”"},
+    {c:"Nội dung này có bị lạc đề không?", o:"“Nội dung này bám sát chủ đề tới đâu, và nếu có chỗ lạc đề thì nên xử lý thế nào?”"},
+    {c:"Nên tăng giá sản phẩm không?", o:"“Việc tăng giá sản phẩm nên dựa trên những yếu tố nào, và có thể ảnh hưởng ra sao đến khách hàng và doanh số?”"},
+    {c:"AI viết được lời giới thiệu bản thân không?", o:"“Hãy giúp tôi viết vài phiên bản lời giới thiệu bản thân cho ngữ cảnh này, theo các sắc thái khác nhau.”"},
+    {c:"Đề xuất A tốt hơn đề xuất B đúng không?", o:"“Hai đề xuất này khác nhau ở đâu, mỗi cái mạnh yếu gì, và tôi nên chọn dựa trên tiêu chí nào?”"},
+    {c:"Nên trả lời chi tiết hay ngắn gọn cho câu hỏi này?", o:"“Với người hỏi và ngữ cảnh này, nên trả lời ở mức chi tiết nào, và làm sao để vừa đủ mà không thừa?”"},
+    {c:"Bài này có nên thêm hình minh họa không?", o:"“Hình minh họa giúp ích gì cho bài này, nên đặt ở đâu, và loại hình nào phù hợp với nội dung?”"},
+    {c:"AI phân loại được các email này không?", o:"“Hãy giúp tôi phân loại các email này theo mức ưu tiên, và giải thích cách bạn xác định ưu tiên.”"},
+    {c:"Nên gộp cuộc họp này với cuộc họp kia không?", o:"“Gộp hai cuộc họp có lợi và hại gì cho người tham dự, và khi nào thì nên tách riêng?”"},
+    {c:"Câu này nghe có tự nhiên không?", o:"“Câu này nghe tự nhiên tới đâu với người bản ngữ, và có những cách diễn đạt nào mượt hơn?”"},
+    {c:"Nên dùng mẫu email A hay B?", o:"“Hai mẫu email này khác nhau ở điểm nào, phù hợp tình huống nào, và tôi nên chọn theo tiêu chí gì?”"},
+    {c:"AI đề xuất được chủ đề nội dung không?", o:"“Hãy gợi ý vài chủ đề nội dung cho đối tượng này, và nêu vì sao mỗi chủ đề đáng làm.”"},
+    {c:"Bản kế hoạch có đủ chi tiết chưa?", o:"“Bản kế hoạch này còn chỗ nào chung chung cần cụ thể hơn, và nên bổ sung thông tin gì?”"},
+    {c:"Nên đặt cuộc họp lúc 9h hay 14h?", o:"“Khung giờ nào phù hợp cho cuộc họp này xét theo người tham dự và nội dung, và vì sao?”"},
+    {c:"AI viết được bản tin nội bộ không?", o:"“Hãy soạn bản tin nội bộ cho tuần này, chọn lọc thông tin đáng chú ý và trình bày dễ đọc.”"},
+    {c:"Đoạn này có quá kỹ thuật không?", o:"“Đoạn này có phù hợp với trình độ người đọc chưa, và nên diễn đạt lại thế nào cho dễ hiểu hơn?”"},
+    {c:"Nên gửi nhắc nhở cho khách hàng chưa?", o:"“Với tình huống này, khi nào và bằng cách nào nhắc khách hàng là hợp lý mà không gây khó chịu?”"},
+    {c:"Con số dự báo này đáng tin không?", o:"“Dự báo này dựa trên những giả định nào, độ tin cậy tới đâu, và tôi nên kiểm chứng lại điều gì?”"},
+    {c:"AI viết được kịch bản cuộc gọi bán hàng không?", o:"“Hãy phác kịch bản cuộc gọi bán hàng cho tình huống này, và giải thích mục đích của từng bước.”"},
+    {c:"Nên để phần Q&A ở đầu hay cuối buổi?", o:"“Đặt phần Q&A ở đâu giúp buổi trình bày hiệu quả hơn, và mỗi cách bố trí được mất gì?”"},
+    {c:"Bản thiết kế này đã đẹp chưa?", o:"“Bản thiết kế này đang mạnh yếu ở đâu về bố cục và độ rõ, và nên cải thiện những điểm nào?”"},
+    {c:"Nên gộp báo cáo tuần và tháng làm một không?", o:"“Gộp hai báo cáo này có lợi và hại gì cho người đọc, và khi nào nên để riêng?”"},
+    {c:"AI đề xuất được cách tiết kiệm thời gian không?", o:"“Trong quy trình này, có những chỗ nào đang tốn thời gian, và có cách nào rút gọn mà vẫn đảm bảo chất lượng?”"},
+    {c:"Câu hỏi khảo sát này có bị dẫn dắt không?", o:"“Câu hỏi khảo sát này có vô tình dẫn dắt câu trả lời không, và nên diễn đạt trung lập lại thế nào?”"},
+    {c:"Nên chốt phương án hôm nay không?", o:"“Đã đủ thông tin để chốt phương án chưa, còn thiếu dữ kiện nào, và rủi ro nếu chốt sớm là gì?”"},
+    {c:"AI viết được đoạn kêu gọi hành động không?", o:"“Hãy viết vài phiên bản đoạn kêu gọi hành động cho nội dung này, theo các mức độ thúc đẩy khác nhau.”"},
+    {c:"Nội dung này phù hợp đăng LinkedIn không?", o:"“Nội dung này nên điều chỉnh thế nào để phù hợp với người đọc trên LinkedIn, và giữ lại điều gì?”"},
+    {c:"Tôi nên học công cụ này trước hay công cụ kia?", o:"“Nên ưu tiên học công cụ nào trước dựa trên nhu cầu công việc của tôi, và vì sao?”"},
+    {c:"Bản tóm tắt này đã đủ ý chưa?", o:"“Bản tóm tắt này còn bỏ sót ý quan trọng nào không, và nên cân đối lại các phần thế nào?”"},
+    {c:"AI so sánh được hai tài liệu này không?", o:"“Hãy so sánh hai tài liệu này, chỉ ra điểm giống, khác và những chỗ mâu thuẫn cần lưu ý.”"},
+    {c:"Nên trả lời tất cả câu hỏi hay chọn lọc?", o:"“Trong tình huống này nên trả lời những câu hỏi nào trước, và dựa trên tiêu chí gì để chọn lọc?”"},
+    {c:"Đoạn mở đầu email này lịch sự chưa?", o:"“Đoạn mở đầu email này đã phù hợp với người nhận chưa, và có cách mở lời nào khác để cân nhắc?”"},
+    {c:"AI giúp tôi lập được mục tiêu quý không?", o:"“Hãy giúp tôi phác các mục tiêu quý này sao cho cụ thể và đo lường được, và giải thích cách ưu tiên.”"}
+  ];
+  var rw2Select=document.getElementById("rw2Select"),rw2Input=document.getElementById("rw2Input"),
+      rw2Reveal=document.getElementById("rw2Reveal"),rw2Compare=document.getElementById("rw2Compare"),
+      rw2You=document.getElementById("rw2You"),rw2Ai=document.getElementById("rw2Ai");
+  state.rw2Text=state.rw2Text||{}; state.rw2Seen=state.rw2Seen||{};
+  RW2.forEach(function(item,i){
+    var op=document.createElement("option");op.value=String(i);
+    op.textContent="Câu "+(i+1)+": "+item.c; rw2Select.appendChild(op);
+  });
+  var rwIdx=parseInt(state.rw2Cur,10); if(isNaN(rwIdx)||rwIdx<0||rwIdx>=RW2.length)rwIdx=0;
+  rw2Select.value=String(rwIdx);
+  function rwFillYou(){var v=rw2Input.value.trim();rw2You.textContent=v||"(bạn chưa nhập gì)";rw2You.className=v?"":"empty";}
+  function rwLoad(){
+    var item=RW2[rwIdx];
+    rw2Input.value=state.rw2Text[rwIdx]||"";
+    rw2Reveal.disabled=!rw2Input.value.trim();
+    rw2Ai.textContent=item.o;
+    if(state.rw2Seen[rwIdx]&&rw2Input.value.trim()){rw2Compare.hidden=false;rwFillYou();}
+    else{rw2Compare.hidden=true;}
+  }
+  rw2Select.addEventListener("change",function(){
+    rwIdx=parseInt(rw2Select.value,10)||0; state.rw2Cur=rwIdx; save(); rwLoad();
+  });
+  rw2Input.addEventListener("input",function(){
+    state.rw2Text[rwIdx]=rw2Input.value; save();
+    rw2Reveal.disabled=!rw2Input.value.trim();
+    if(!rw2Compare.hidden)rwFillYou();
+  });
+  rw2Reveal.addEventListener("click",function(){
+    if(rw2Reveal.disabled)return;
+    rw2Ai.textContent=RW2[rwIdx].o; rw2Compare.hidden=false; rwFillYou();
+    state.rw2Seen[rwIdx]=true; save(); updateProgress();
+  });
+  rwLoad();
+
+  /* ---------- Bài tập 3: Lượng giá ---------- */
+  var CRIT=[
+    {b:"Đúng trọng tâm",s:"Trả lời đúng điều được hỏi, không lạc đề."},
+    {b:"Có căn cứ",s:"Dựa trên dữ kiện, nguồn hoặc lập luận cụ thể, không chung chung."},
+    {b:"Nêu giả định & giới hạn",s:"Nói rõ điều kiện áp dụng và chỗ còn chưa chắc chắn."},
+    {b:"Có phương án & đánh đổi",s:"Đưa nhiều lựa chọn và so sánh được–mất, không áp một đáp án."},
+    {b:"Kiểm chứng & minh bạch",s:"Có thể đối chiếu lại và gợi mở bước hỏi tiếp."}
+  ];
+  var EV3=[
+    {q:"Doanh số tháng này giảm, tôi nên làm gì?", a:"Bạn nên cải thiện marketing và chăm sóc khách hàng tốt hơn để doanh số tăng trở lại.", met:[0], note:"Đúng chủ đề nhưng chung chung: không dựa trên dữ liệu, không nêu giả định, chỉ là lời khuyên chung, không có phương án so sánh."},
+    {q:"Doanh số tháng này giảm, tôi nên nhìn vào đâu?", a:"Có thể do mùa vụ, do một nhóm sản phẩm chững lại, hoặc do một kênh bán yếu đi. Nên bóc tách theo sản phẩm, theo kênh và theo tuần để khoanh vùng; giả định số liệu trong kỳ đầy đủ. Muốn chắc thì đối chiếu với cùng kỳ năm trước.", met:[0,1,2,3,4], note:"Đạt cả 5: đúng trọng tâm, nêu căn cứ, nói giả định, đưa nhiều hướng và chỉ cách kiểm chứng (đối chiếu cùng kỳ)."},
+    {q:"Nên chọn nhà cung cấp A hay B?", a:"Chọn A.", met:[0], note:"Có trả lời câu hỏi nhưng cụt: không căn cứ, không tiêu chí, không so sánh được–mất, không thể kiểm chứng."},
+    {q:"Nên chọn nhà cung cấp A hay B?", a:"Tùy tiêu chí ưu tiên: cần giá thấp thì A nhỉnh hơn, cần giao nhanh và bảo hành tốt thì B. Với đơn gấp như bạn mô tả, B có lợi hơn. Đây là so sánh dựa trên thông tin bạn cung cấp; nên xác nhận lại thời gian giao thực tế của B trước khi chốt.", met:[0,1,2,3,4], note:"Đạt cả 5: bám câu hỏi, có căn cứ theo tiêu chí, nêu giả định, so sánh đánh đổi và gợi bước kiểm chứng."},
+    {q:"Thị trường sẽ tăng trưởng bao nhiêu năm tới?", a:"Thị trường chắc chắn sẽ tăng trưởng mạnh 20% mỗi năm.", met:[0], note:"Đúng chủ đề nhưng khẳng định chắc nịch, không nguồn, không giả định hay khoảng tin cậy — thiếu căn cứ và không kiểm chứng được."},
+    {q:"Bản kế hoạch này có rủi ro gì?", a:"Kế hoạch nào cũng có rủi ro, bạn nên cẩn thận.", met:[], note:"Không đạt tiêu chí nào: né câu hỏi, không chỉ ra rủi ro cụ thể, hoàn toàn chung chung."},
+    {q:"Bản kế hoạch này có rủi ro gì?", a:"Ba rủi ro chính: tiến độ phụ thuộc một nhà thầu duy nhất, ngân sách chưa có khoản dự phòng, và chưa rõ ai chịu trách nhiệm khâu nghiệm thu. Giả định phạm vi công việc giữ nguyên như mô tả. Mỗi rủi ro kèm một dấu hiệu sớm để bạn theo dõi.", met:[0,1,2,4], note:"Đạt 4/5: cụ thể, có giả định, kiểm chứng được qua dấu hiệu sớm — nhưng mới liệt kê rủi ro chứ chưa đưa các phương án xử lý để so sánh."},
+    {q:"Email này viết ổn chưa?", a:"Ổn rồi, bạn gửi được.", met:[0], note:"Trả lời đúng câu hỏi nhưng chỉ là phán xét chung, không chỉ ra dựa trên đâu, không nêu điểm cần lưu ý."},
+    {q:"Email này viết ổn chưa?", a:"Nội dung rõ, nhưng câu mở đầu hơi đường đột và lời kêu gọi hành động chưa cụ thể. Có thể mở bằng một câu dẫn ngắn, và nêu rõ bạn muốn người nhận làm gì trước ngày nào. Đây là góp ý về văn phong; bạn cân nhắc theo mức trang trọng mong muốn.", met:[0,1,3,4], note:"Đạt 4/5: chỉ ra căn cứ cụ thể (mở đầu, lời kêu gọi hành động), đưa hướng chỉnh và mở đường cân nhắc; chưa nêu rõ giả định về bối cảnh người nhận."},
+    {q:"Nên tăng giá sản phẩm không?", a:"Nên tăng, vì lạm phát đang cao.", met:[0,1], note:"Có bám câu hỏi và nêu một căn cứ (lạm phát), nhưng một chiều: không nêu rủi ro mất khách, không so sánh phương án, không nói cần kiểm chứng gì."},
+    {q:"Nên tăng giá sản phẩm không?", a:"Nên cân theo chi phí đầu vào, độ nhạy giá của khách và vị thế so với đối thủ. Ba hướng: giữ giá và cắt chi phí, tăng nhẹ kèm thêm giá trị, hoặc tăng mạnh nhóm ít nhạy giá. Giả định nhu cầu ổn định; nên thử trên một nhóm nhỏ trước khi áp toàn bộ.", met:[0,1,2,3,4], note:"Đạt cả 5: đúng trọng tâm, có căn cứ, nêu giả định, đưa nhiều phương án có đánh đổi và cách kiểm chứng (thử nghiệm nhóm nhỏ)."},
+    {q:"Công cụ này có tốt không?", a:"Rất tốt, ai cũng khen.", met:[], note:"Không đạt: “ai cũng khen” là ý kiến mơ hồ, không tiêu chí, không so sánh, không kiểm chứng được."},
+    {q:"Nên họp online hay trực tiếp?", a:"Với mục tiêu ra quyết định và nhóm ở nhiều nơi: online tiết kiệm thời gian nhưng khó đọc phản ứng; trực tiếp gắn kết hơn nhưng tốn di chuyển. Cần chốt nhanh thì online, cần xây lòng tin thì trực tiếp.", met:[0,3], note:"Đạt 2/5: bám câu hỏi và so sánh được–mất hai phương án, nhưng thiếu căn cứ cụ thể về nhóm này, không nêu giả định rõ và không gợi cách kiểm chứng."},
+    {q:"Số liệu trong báo cáo này đáng tin không?", a:"Đáng tin.", met:[0], note:"Trả lời cụt, không chỉ ra dựa vào đâu, không nói cách đối chiếu — thiếu gần hết tiêu chí."},
+    {q:"Số liệu trong báo cáo này đáng tin không?", a:"Phần doanh thu khớp với sổ bán hàng, nhưng cột chi phí có một dòng chưa rõ nguồn. Giả định các số còn lại lấy từ hệ thống kế toán. Bạn nên đối chiếu dòng chi phí đó với chứng từ gốc trước khi dùng.", met:[0,1,2,4], note:"Đạt 4/5: cụ thể (khớp/không khớp ở đâu), nêu giả định và chỉ cách kiểm chứng; đây là câu xác minh nên tiêu chí “phương án & đánh đổi” ít áp dụng."},
+    {q:"Làm sao cải thiện quy trình duyệt hồ sơ?", a:"Số hóa hết đi cho nhanh.", met:[0], note:"Đúng chủ đề nhưng một câu chung chung: không phân tích khâu nào đang vướng, không phương án, không đánh đổi."},
+    {q:"Làm sao cải thiện quy trình duyệt hồ sơ?", a:"Nên xem khâu nào tốn thời gian nhất. Vài hướng: gộp bước trùng, đặt hạn cho mỗi bước, hoặc số hóa phần ký duyệt — mỗi hướng có chi phí và mức thay đổi thói quen khác nhau. Giả định khối lượng hồ sơ giữ nguyên; nên đo thời gian từng khâu trước và sau khi đổi.", met:[0,1,2,3,4], note:"Đạt cả 5: khoanh vùng vấn đề, nhiều phương án có đánh đổi, nêu giả định và cách kiểm chứng (đo thời gian trước–sau)."},
+    {q:"Nên tuyển ứng viên nào?", a:"Ứng viên A giỏi hơn nên chọn A.", met:[0], note:"Trả lời câu hỏi nhưng “giỏi hơn” là nhận định chung, không theo tiêu chí, không so sánh có cấu trúc, không kiểm chứng."},
+    {q:"Nên tuyển ứng viên nào?", a:"Xét theo yêu cầu vị trí: A mạnh kinh nghiệm nhưng yếu kỹ năng mềm; B ngược lại. Nếu vai trò cần làm việc nhóm nhiều thì B phù hợp hơn. Đây là đánh giá từ hồ sơ; nên kiểm chứng thêm bằng phỏng vấn tình huống và tham chiếu.", met:[0,1,2,3,4], note:"Đạt cả 5: theo tiêu chí, so sánh đánh đổi, nêu giả định (từ hồ sơ) và cách kiểm chứng (phỏng vấn, tham chiếu)."},
+    {q:"Bài thuyết trình này nên chỉnh gì?", a:"Cho thêm nhiều hình cho đẹp.", met:[0], note:"Đúng chủ đề nhưng lời khuyên hời hợt, không dựa trên nội dung cụ thể của bài, không phương án rõ."},
+    {q:"Bài thuyết trình này nên chỉnh gì?", a:"Ba điểm: slide mở đầu chưa nêu thông điệp chính, một số slide quá nhiều chữ, và phần kết chưa có lời kêu gọi hành động. Có thể mỗi slide chỉ giữ một ý, chuyển bớt chữ thành biểu đồ. Đây là góp ý dựa trên bản hiện tại; tùy người nghe mà cân nhắc mức chi tiết.", met:[0,1,3,4], note:"Đạt 4/5: chỉ ra chỗ cụ thể, đưa hướng chỉnh và mở đường cân nhắc theo người nghe; chưa tách bạch giả định/giới hạn rõ ràng."},
+    {q:"Dự án chậm tiến độ, nguyên nhân do đâu?", a:"Do mọi người làm việc chưa hiệu quả.", met:[0], note:"Quy chụp chung chung, đổ lỗi mơ hồ, không dữ kiện, không phân tích các nguyên nhân khả dĩ."},
+    {q:"Dự án chậm tiến độ, nguyên nhân do đâu?", a:"Vài giả thuyết: phạm vi công việc phình ra, phụ thuộc một đầu mối bị nghẽn, hoặc ước lượng thời gian ban đầu quá lạc quan. Nên đối chiếu tiến độ thực với kế hoạch ở từng mốc để xác định. Giả định dữ liệu tiến độ được ghi nhận đầy đủ.", met:[0,1,2,4], note:"Đạt 4/5: đưa nhiều giả thuyết nguyên nhân có căn cứ, nêu giả định và cách kiểm chứng (đối chiếu từng mốc); đây là câu chẩn đoán nên “phương án & đánh đổi” ít áp dụng."},
+    {q:"Có nên nhận thêm dự án này không?", a:"Cứ nhận đi, càng nhiều việc càng tốt.", met:[0], note:"Trả lời có, nhưng cổ vũ một chiều: không cân nhắc khối lượng hiện tại, không nêu đánh đổi hay điều kiện."}
+  ];
+  var ev3Select=document.getElementById("ev3Select"),ev3Q=document.getElementById("ev3Q"),
+      ev3A=document.getElementById("ev3A"),ev3RubricEl=document.getElementById("ev3Rubric"),
+      ev3Send=document.getElementById("ev3Send"),ev3Result=document.getElementById("ev3Result"),
+      ev3Match=document.getElementById("ev3Match"),ev3Ref=document.getElementById("ev3Ref"),
+      ev3Note=document.getElementById("ev3Note");
+  state.ev3Marks=state.ev3Marks||{}; state.ev3Sent=state.ev3Sent||{};
+  EV3.forEach(function(item,i){
+    var op=document.createElement("option");op.value=String(i);
+    op.textContent="Mẫu "+(i+1)+": "+item.q; ev3Select.appendChild(op);
+  });
+  var evBoxes=[];
+  CRIT.forEach(function(c,idx){
+    var lab=document.createElement("label");lab.className="rubric-item";
+    lab.innerHTML='<input type="checkbox"><span class="box">✓</span><span class="rtext"><b>'+c.b+'</b><span>'+c.s+'</span></span>';
+    var cb=lab.querySelector("input");
+    cb.addEventListener("change",function(){
+      var m=(state.ev3Marks[evIdx]||[]).slice(),pos=m.indexOf(idx);
+      if(cb.checked){if(pos<0)m.push(idx);}else{if(pos>=0)m.splice(pos,1);}
+      state.ev3Marks[evIdx]=m; save();
+      if(state.ev3Sent[evIdx]){state.ev3Sent[evIdx]=false;ev3Result.hidden=true;save();updateProgress();}
+    });
+    evBoxes.push(cb); ev3RubricEl.appendChild(lab);
+  });
+  var evIdx=parseInt(state.ev3Cur,10); if(isNaN(evIdx)||evIdx<0||evIdx>=EV3.length)evIdx=0;
+  ev3Select.value=String(evIdx);
+  function evShowResult(){
+    var item=EV3[evIdx],m=state.ev3Marks[evIdx]||[],met=item.met,matches=0,rows="";
+    CRIT.forEach(function(c,idx){
+      var aiYes=met.indexOf(idx)>=0,youYes=m.indexOf(idx)>=0,ok=(aiYes===youYes);
+      if(ok)matches++;
+      rows+='<div class="ev-row"><span class="ev-badge '+(aiYes?'yes':'no')+'">'+(aiYes?'AI: Đạt':'AI: Chưa')+'</span>'+
+        '<span class="ev-crit"><b>'+c.b+'</b><span class="ev-your '+(ok?'ok':'miss')+'">'+(ok?'✓ Bạn chấm khớp':'✗ Bạn chấm lệch')+'</span></span></div>';
+    });
+    ev3Ref.innerHTML=rows;
+    ev3Match.innerHTML="Bạn khớp <b>"+matches+"</b>/5 tiêu chí với cách AI chấm. Câu trả lời này AI đánh giá đạt <b>"+met.length+"</b>/5 tiêu chí.";
+    ev3Note.innerHTML="<b>Nhận xét:</b> "+item.note;
+    ev3Result.hidden=false;
+  }
+  function evLoad(){
+    var item=EV3[evIdx];
+    ev3Q.textContent=item.q; ev3A.textContent=item.a;
+    var m=state.ev3Marks[evIdx]||[];
+    evBoxes.forEach(function(cb,idx){cb.checked=m.indexOf(idx)>=0;});
+    if(state.ev3Sent[evIdx])evShowResult(); else ev3Result.hidden=true;
+  }
+  ev3Select.addEventListener("change",function(){
+    evIdx=parseInt(ev3Select.value,10)||0; state.ev3Cur=evIdx; save(); evLoad();
+  });
+  ev3Send.addEventListener("click",function(){
+    state.ev3Sent[evIdx]=true; save(); evShowResult(); updateProgress();
+  });
+  evLoad();
+
+  /* ---------- Bài tập 4: câu hỏi cần tư vấn (tối đa 10 câu) ---------- */
+  var advSelect=document.getElementById("advSelect"),advInput=document.getElementById("advInput"),
+      advSave=document.getElementById("advSave"),advSaved=document.getElementById("advSaved"),advTimer=null;
+  state.advList=state.advList||{};
+  if(state.adv){state.advList[0]=state.adv;delete state.adv;} // chuyển dữ liệu cũ
+  for(var an=0;an<10;an++){var op=document.createElement("option");op.value=String(an);advSelect.appendChild(op);}
+  function advRefreshLabels(){
+    for(var i=0;i<10;i++){
+      var has=state.advList[i]&&state.advList[i].trim();
+      advSelect.options[i].textContent="Câu cần tư vấn "+(i+1)+(has?" ✓":"");
+    }
+  }
+  var advIdx=parseInt(state.advCur,10); if(isNaN(advIdx)||advIdx<0||advIdx>9)advIdx=0;
+  advSelect.value=String(advIdx);
+  function advLoad(){advInput.value=state.advList[advIdx]||"";advSaved.hidden=true;}
+  advRefreshLabels(); advLoad();
+  advSelect.addEventListener("change",function(){advIdx=parseInt(advSelect.value,10)||0;state.advCur=advIdx;save();advLoad();});
+  advInput.addEventListener("input",function(){advSaved.hidden=true;});
+  advSave.addEventListener("click",function(){
+    state.advList[advIdx]=advInput.value; save(); advRefreshLabels(); updateProgress();
+    advSaved.hidden=false;
+    if(advTimer)clearTimeout(advTimer);
+    advTimer=setTimeout(function(){advSaved.hidden=true;},2500);
+  });
+
+  /* ---------- PROMPT BUILDER ---------- */
+  var fGoal=document.getElementById("fGoal"),fLinks=document.getElementById("fLinks"),
+      fContext=document.getElementById("fContext"),promptOut=document.getElementById("promptOut"),
+      fmtGrid=document.getElementById("fmtGrid"),copyBtn=document.getElementById("copyBtn");
+  var curFmt="chat";
+  var FMT={
+    chat:"Trình bày kết quả dưới dạng phân tích ngay trong đoạn chat: nêu các phát hiện chính, kèm giả định và những điểm tôi nên kiểm chứng.",
+    word:"Xuất kết quả thành một file Word (.docx) hoàn chỉnh: có tiêu đề, các mục rõ ràng và phần tóm tắt đầu văn bản.",
+    ppt:"Xuất kết quả thành bản trình bày PowerPoint (.pptx): mỗi slide một thông điệp chính, kèm số liệu và biểu đồ khi phù hợp.",
+    excel:"Xuất kết quả thành bảng tính Excel (.xlsx): dữ liệu đặt trong bảng có tiêu đề cột rõ ràng, thêm công thức tính toán khi cần.",
+    artifact:"Tạo một artifact (trang web tương tác) để tôi mở lại và chia sẻ bằng link, trình bày kết quả một cách trực quan."
+  };
+  function buildPrompt(){
+    var goal=fGoal.value.trim(), links=fLinks.value.trim(), ctx=fContext.value.trim();
+    if(!goal && !links){
+      promptOut.innerHTML='<span class="ph">Điền “vấn đề/mục tiêu” và dán link Drive ở bên trái — prompt sẽ hiện ra ở đây.</span>';
+      return;
+    }
+    var lines=[];
+    lines.push("Tôi cần bạn giúp giải quyết vấn đề sau:");
+    lines.push(goal||"(mô tả vấn đề của bạn)");
+    lines.push("");
+    lines.push("Hãy đọc kỹ các tài liệu Google Drive dưới đây trước khi trả lời, và chỉ dựa trên nội dung trong đó:");
+    if(links){ links.split(/\n+/).forEach(function(l){l=l.trim();if(l)lines.push("- "+l);}); }
+    else { lines.push("- (dán link tài liệu Drive của bạn vào đây)"); }
+    if(ctx){ lines.push(""); lines.push("Bối cảnh & ràng buộc: "+ctx); }
+    lines.push("");
+    lines.push("Yêu cầu về cách trả lời:");
+    lines.push("- Nêu rõ giả định bạn dùng và những điểm còn chưa chắc chắn.");
+    lines.push("- Trích dẫn phần tài liệu làm căn cứ cho mỗi kết luận quan trọng.");
+    lines.push("- Nếu có nhiều phương án, hãy so sánh ưu/nhược thay vì chỉ đưa một đáp án.");
+    lines.push("- "+FMT[curFmt]);
+    lines.push("");
+    lines.push("Nếu tài liệu chưa đủ để kết luận, hãy nói rõ còn thiếu thông tin gì.");
+    promptOut.textContent=lines.join("\n");
+  }
+  [fGoal,fLinks,fContext].forEach(function(el){el.addEventListener("input",buildPrompt);});
+  fmtGrid.querySelectorAll(".fmt").forEach(function(b){
+    b.addEventListener("click",function(){
+      curFmt=b.dataset.fmt;
+      fmtGrid.querySelectorAll(".fmt").forEach(function(x){x.setAttribute("aria-pressed", x===b ? "true":"false");});
+      buildPrompt();
+    });
+  });
+  copyBtn.addEventListener("click",function(){
+    var txt=promptOut.textContent;
+    if(!txt || promptOut.querySelector(".ph")){return;}
+    function done(){var o=copyBtn.textContent;copyBtn.textContent="Đã sao chép ✓";setTimeout(function(){copyBtn.textContent=o;},1600);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,fallback);}else{fallback();}
+    function fallback(){try{var t=document.createElement("textarea");t.value=txt;document.body.appendChild(t);t.select();document.execCommand("copy");document.body.removeChild(t);done();}catch(e){}}
+  });
+  buildPrompt();
+
+  /* ---------- PROGRESS ---------- */
+  var fill=document.getElementById("progressFill"),pct=document.getElementById("pctLabel");
+  function updateProgress(){
+    var total=QUIZ.length + 3; // 20 câu + Bài tập 2 + Bài tập 3 + Bài tập 4
+    var done=0;
+    for(var k in state.quizDone){if(state.quizDone.hasOwnProperty(k))done++;}
+    var seen2=false;for(var r in state.rw2Seen){if(state.rw2Seen[r]){seen2=true;break;}}
+    if(seen2)done++;
+    var sent3=false;for(var s in state.ev3Sent){if(state.ev3Sent[s]){sent3=true;break;}}
+    if(sent3)done++;
+    var adv4=false;if(state.advList){for(var av in state.advList){if(state.advList[av]&&state.advList[av].trim()){adv4=true;break;}}}
+    if(adv4)done++;
+    var p=Math.min(100,Math.round(done/total*100));
+    fill.style.width=p+"%";if(pct)pct.textContent=p+"%";
+  }
+
+  /* ---------- RESET ---------- */
+  document.getElementById("resetBtn").addEventListener("click",function(){
+    var keep=state.theme,keepName=state.name,keepOpen=state.openEx,keepMod=state.modCollapsed;
+    state={quizDone:{},quizPick:{},rwText:{},rwSeen:{},rw2Text:{},rw2Seen:{},rw2Cur:0,ev3Marks:{},ev3Sent:{},ev3Cur:0,advList:{},advCur:0,openEx:keepOpen,modCollapsed:keepMod,theme:keep,name:keepName};
+    save();
+    qi=0;renderQuiz();
+    rwIdx=0; rw2Select.value="0"; rwLoad();
+    evIdx=0; ev3Select.value="0"; evBoxes.forEach(function(cb){cb.checked=false;}); ev3Result.hidden=true; evLoad();
+    advIdx=0; advSelect.value="0"; advInput.value=""; advSaved.hidden=true; advRefreshLabels();
+    updateProgress();
+  });
+
+  /* ---------- thu gọn / mở rộng (accordion) ---------- */
+  function makeToggle(cls){
+    var btn=document.createElement("button");
+    btn.className=cls;btn.type="button";
+    btn.setAttribute("aria-label","Thu gọn hoặc mở rộng");
+    btn.title="Thu gọn / mở rộng";
+    btn.innerHTML='<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    return btn;
+  }
+  // Bài tập: accordion — mặc định thu gọn hết, mở 1 thì các bài khác co lại
+  var exEls=Array.prototype.slice.call(document.querySelectorAll(".exercise"));
+  if(typeof state.openEx!=="number")state.openEx=-1;
+  function applyEx(){
+    exEls.forEach(function(ex,i){
+      var open=(i===state.openEx);
+      ex.classList.toggle("collapsed",!open);
+      if(ex._tg)ex._tg.setAttribute("aria-expanded",open?"true":"false");
+    });
+  }
+  exEls.forEach(function(ex,i){
+    var btn=makeToggle("ex-toggle");
+    ex._tg=btn; ex.insertBefore(btn,ex.firstChild);
+    btn.addEventListener("click",function(){
+      state.openEx=(i===state.openEx)?-1:i; save(); applyEx();
+    });
+  });
+  applyEx();
+  // Module: nút thu gọn riêng, mặc định mở
+  var modEls=Array.prototype.slice.call(document.querySelectorAll("section.module"));
+  state.modCollapsed=state.modCollapsed||{};
+  if(!state.modInit){modEls.forEach(function(_,i){state.modCollapsed[i]=true;});state.modInit=1;save();}
+  modEls.forEach(function(mod,i){
+    var btn=makeToggle("mod-toggle ex-toggle");
+    mod.insertBefore(btn,mod.firstChild);
+    if(state.modCollapsed[i])mod.classList.add("collapsed");
+    btn.setAttribute("aria-expanded",state.modCollapsed[i]?"false":"true");
+    btn.addEventListener("click",function(){
+      var c=mod.classList.toggle("collapsed");
+      state.modCollapsed[i]=c; save();
+      btn.setAttribute("aria-expanded",c?"false":"true");
+    });
+  });
+
+  renderQuiz();
+  updateProgress();
+})();
+</script>
+
+</body>
+</html>
