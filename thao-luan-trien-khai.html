@@ -47027,6 +47027,11 @@ render(cur);
 [data-tl-sua="1"]:hover{background:rgba(179,56,43,.07);box-shadow:inset 2px 0 0 #b3382b}
 /* Đếm vẽ bằng ::after chứ không chèn thẻ vào trong ô: ô có thể là một nút hay
    một thẻ liên kết, chèn thẻ con vào là vỡ bố cục của nó. */
+/* Chỉ phần khác mới đổi màu. Đỏ cả ô thì biết "có người sửa" nhưng không biết
+   sửa chữ nào — mà đó mới là thứ người đọc cần thấy. */
+.tl-moi ins{text-decoration:none;color:#b3382b;font-weight:600;background:#fbdedb;
+  border-radius:3px;padding:0 2px;margin:0 -1px}
+.tl-moi del{color:#8695a1;text-decoration-color:#8695a1}
 [data-tl-dem]::after{content:attr(data-tl-dem);display:inline-block;margin-left:6px;
   padding:0 5px;border-radius:9px;font-size:10px;font-weight:600;line-height:16px;
   color:#fff;background:#b3382b;vertical-align:1px}
@@ -47279,7 +47284,7 @@ render(cur);
   function hopLe(o) {
     if (o.dataset.tl === "1") return false;
     if (BO_QUA.test(o.tagName)) return false;
-    if (o.closest("#tlBang")) return false;
+    if (o.closest("#tlBang") || o.closest(".tl-moi")) return false;
     if (o.isContentEditable) return false;
     if (!laLa(o)) return false;
     var t = chu(o);
@@ -47298,15 +47303,76 @@ render(cur);
   }
 
   /* ---------- áp bản đã lưu lên ô ---------- */
-  // Chỉ thay nội dung của nút chữ, không gán textContent: ô có thể kèm một biểu
-  // tượng svg không mang chữ, gán textContent là xoá mất nó.
-  function datChu(o, s) {
-    var w = document.createTreeWalker(o, NodeFilter.SHOW_TEXT, null), n, dau = null;
-    while ((n = w.nextNode())) {
-      if (!n.data.trim()) continue;
-      if (dau) n.data = ""; else { dau = n; n.data = s; }
+  /* ---------- so chữ: chữ thêm đỏ, chữ bỏ gạch ngang ----------
+     Cắt theo từ chứ không theo ký tự: đổi một dấu thanh mà tô lẻ từng chữ cái thì
+     cả câu thành một mớ lốm đốm, đọc còn khó hơn không tô. */
+  function catTu(s) { return String(s == null ? "" : s).trim().split(/\s+/).filter(Boolean); }
+
+  function veKhac(cu, moi) {
+    var f = document.createDocumentFragment(), a = catTu(cu), b = catTu(moi), i, j;
+    function the(ten, t) {
+      var e = document.createElement(ten);
+      e.textContent = t;
+      return e;
     }
-    if (!dau) o.textContent = s;
+    if (!a.length) { if (moi) f.appendChild(the("ins", moi)); return f; }
+    if (!b.length) { f.appendChild(the("del", cu)); return f; }
+
+    // LCS thường: một ô dài lắm là vài chục từ, bảng n×m vẫn nhẹ tênh.
+    var n = a.length, m = b.length;
+    var d = [], k;
+    for (i = 0; i <= n; i++) d.push(new Uint16Array(m + 1));
+    for (i = n - 1; i >= 0; i--)
+      for (j = m - 1; j >= 0; j--)
+        d[i][j] = a[i] === b[j] ? d[i + 1][j + 1] + 1 : Math.max(d[i + 1][j], d[i][j + 1]);
+
+    // Gom từ liền nhau cùng loại thành một đoạn, kẻo mỗi từ một thẻ thì nền bo
+    // góc bị cắt vụn giữa các từ.
+    var doan = [];
+    function day(loai, t) {
+      var c = doan[doan.length - 1];
+      if (c && c.loai === loai) c.tu.push(t); else doan.push({ loai: loai, tu: [t] });
+    }
+    i = 0; j = 0;
+    while (i < n && j < m) {
+      if (a[i] === b[j]) { day("giu", a[i]); i++; j++; }
+      else if (d[i + 1][j] >= d[i][j + 1]) { day("bo", a[i]); i++; }
+      else { day("them", b[j]); j++; }
+    }
+    while (i < n) day("bo", a[i++]);
+    while (j < m) day("them", b[j++]);
+
+    for (k = 0; k < doan.length; k++) {
+      if (k) f.appendChild(document.createTextNode(" "));
+      var t = doan[k].tu.join(" ");
+      if (doan[k].loai === "giu") f.appendChild(document.createTextNode(t));
+      else f.appendChild(the(doan[k].loai === "them" ? "ins" : "del", t));
+    }
+    return f;
+  }
+
+  // Không gán textContent: ô có thể kèm một biểu tượng svg không mang chữ, gán
+  // textContent là xoá mất nó. Nên chỉ thay đúng nút chữ đầu tiên, và thay bằng
+  // một khối .tl-moi để lần sau gỡ ra trả lại nguyên trạng được.
+  function nutChu(o) {
+    var w = document.createTreeWalker(o, NodeFilter.SHOW_TEXT, null), n, ds = [];
+    while ((n = w.nextNode())) if (n.data.trim()) ds.push(n);
+    return ds;
+  }
+  function datChu(o, cu, moi) {
+    var cu_ = o.querySelector(".tl-moi"), ds;
+    if (moi === null) {                       // trả về chữ gốc
+      if (cu_) cu_.parentNode.replaceChild(document.createTextNode(cu), cu_);
+      return;
+    }
+    var hop = document.createElement("span");
+    hop.className = "tl-moi";
+    hop.appendChild(veKhac(cu, moi));
+    if (cu_) { cu_.parentNode.replaceChild(hop, cu_); return; }
+    ds = nutChu(o);
+    if (!ds.length) { o.appendChild(hop); return; }
+    for (var i = 1; i < ds.length; i++) ds[i].data = "";
+    ds[0].parentNode.replaceChild(hop, ds[0]);
   }
   function apDung() {
     var os = document.querySelectorAll('[data-tl="1"]'), i = 0, o, l, moiNhat;
@@ -47315,15 +47381,16 @@ render(cur);
       l = ds.get(o.dataset.tlKhoa);
       if (!l || !l.length) {
         if (o.dataset.tlSua === "1") {
-          datChu(o, o.dataset.tlGoc);
+          datChu(o, o.dataset.tlGoc, null);
           delete o.dataset.tlSua;
+          delete o.dataset.tlHien;
           o.removeAttribute("data-tl-dem");
         }
         continue;
       }
       moiNhat = l[l.length - 1];
       if (o.dataset.tlHien !== moiNhat.luc || o.dataset.tlDem !== String(l.length)) {
-        datChu(o, moiNhat.noi);
+        datChu(o, o.dataset.tlGoc, moiNhat.noi);
         o.dataset.tlHien = moiNhat.luc;
         o.dataset.tlDem = String(l.length);
         o.dataset.tlSua = "1";
@@ -47406,7 +47473,11 @@ render(cur);
       bao("Đã lưu. Cảm ơn " + KHO.ten(ten) + ".", "tl-xong");
       veTruoc(k);
       apDung();
-      setTimeout(dong, 900);
+      // Chỉ đóng nếu người ta vẫn đang ở đúng ô này. Lưu xong mà bấm ngay sang ô
+      // khác thì hẹn giờ cũ sẽ đóng mất bảng vừa mở, và cú bấm Lưu kế tiếp rơi vào
+      // hư không — không báo lỗi, không lưu gì.
+      var oNay = dang;
+      setTimeout(function () { if (dang === oNay) dong(); }, 900);
     }
   }
   function bao(t, lop) { var b = $("tlBao"); b.textContent = t; b.className = "tl-bao " + (lop || ""); }
