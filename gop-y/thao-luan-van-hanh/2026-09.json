@@ -208,7 +208,23 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T08:12:28.900Z",
+   "email": "",
+   "ten": "ng-p2npmnj1j",
+   "sua": [
+    {
+     "rid": "10p8w5n",
+     "k": 0,
+     "cot": "Ô nhập",
+     "cu": "1 #2 · Hoàn thành phần chỉ tiêu doanh thu được…",
+     "moi": "Theo dõi đơn hàng và công nợ khách phụ trách",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T08:06:45.066Z"
+ "cap_nhat": "2026-09-10T08:12:31.480Z"
 }
