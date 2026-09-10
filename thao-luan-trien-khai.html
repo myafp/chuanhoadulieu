@@ -47076,9 +47076,9 @@ render(cur);
   <span class="tl-duong" id="tlDuong"></span>
   <button class="tl-dong" id="tlDong" title="Đóng" aria-label="Đóng">&times;</button>
   <textarea id="tlNoi" aria-label="Nội dung đề xuất"></textarea>
-  <span class="tl-nhan">Email Alpha France của bạn</span>
+  <span class="tl-nhan">Tên của bạn</span>
   <div class="tl-hang">
-    <input id="tlTen" type="email" autocomplete="email" spellcheck="false" placeholder="ten@alpha-france.com">
+    <input id="tlTen" type="text" autocomplete="name" spellcheck="false" placeholder="ví dụ: Tùng Nguyên">
     <button class="tl-nut" id="tlBoQua">Bỏ qua</button>
     <button class="tl-nut tl-luu" id="tlLuu">Lưu</button>
   </div>
@@ -47089,7 +47089,7 @@ render(cur);
 <script id="tlScript">
 (function () {
   "use strict";
-  var KHOA_TEN = "afp-cong-email";
+  var KHOA_TEN = "afp-thao-luan-ten";
 
   /* ---------- chỗ lưu ----------
      Hai bản dùng chung đúng một bộ giao diện, chỉ khác chỗ cất góp ý: bản artifact
@@ -47102,13 +47102,12 @@ render(cur);
     var API = "https://abp.alpha-5ae.workers.dev";
     var REPO = "myafp/chuanhoadulieu";
     var LUONG = "thao-luan-van-hanh";
-    var HAU_TO = "@alpha-france.com";
     var SO_THANG = 6;            // dò ngược mấy tháng file góp ý
     var duLieu = new Map(), baoLai = null;
 
-    // Worker chỉ giữ đúng những khoá nó biết — rid, k, cot, cu, moi, xoa — nên
-    // không nhét thêm trường tên vào được. Danh tính là email, và tên hiện ra lấy
-    // từ phần trước @, y như trang tổng hợp góp ý vẫn làm.
+    // Luồng này chỉ hỏi tên, không hỏi email — Worker có LUONG_HOI_TEN cho phép.
+    // Những lượt gửi trước lúc đổi vẫn mang email, nên vẫn phải đọc được cả hai:
+    // có ten thì lấy ten, không thì lấy phần trước @ như trang tổng hợp vẫn làm.
     var TEN = { "tuan": "Tuấn", "tung.nguyen": "Tùng Nguyên", "ha.dang": "Hà Đăng",
                 "quan.le": "Quân Lê" };
 
@@ -47139,7 +47138,7 @@ render(cur);
               if (!o.rid) continue;
               if (!m.has(o.rid)) m.set(o.rid, []);
               m.get(o.rid).push({ o: o.rid, noi: o.moi, cu: o.cu, duong: o.cot,
-                                  ten: muc.email, luc: muc.luc });
+                                  ten: muc.ten || muc.email, luc: muc.luc });
             }
           }
         }
@@ -47152,14 +47151,12 @@ render(cur);
     }
 
     return {
-      nhacId: "Cần một địa chỉ " + HAU_TO + " hợp lệ mới gửi được.",
-      hopLeId: function (v) {
-        v = String(v || "").trim().toLowerCase();
-        return v.length > HAU_TO.length && v.indexOf(" ") < 0 &&
-               v.slice(-HAU_TO.length) === HAU_TO;
-      },
+      nhacId: "Điền tên đã — không có tên thì không biết hỏi lại ai.",
+      hopLeId: function (v) { return !!String(v || "").trim(); },
       ten: function (v) {
-        var t = String(v || "").split("@")[0];
+        v = String(v || "");
+        if (v.indexOf("@") < 0) return v || "Không tên";   // lượt mới: đã là tên
+        var t = v.split("@")[0];
         return TEN[t] || t || "Không tên";
       },
       san: function () { return true; },
@@ -47176,7 +47173,7 @@ render(cur);
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            email: String(muc.ten || "").trim().toLowerCase(),
+            ten: String(muc.ten || "").trim(),
             luong: LUONG,
             sua: [{ rid: muc.o, k: 0, cot: String(muc.duong || "").slice(0, 40),
                     cu: muc.cu, moi: muc.noi, xoa: false }],
