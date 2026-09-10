@@ -1808,7 +1808,39 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T07:38:47.849Z",
+   "email": "",
+   "ten": "Me Thuy",
+   "sua": [
+    {
+     "rid": "ma",
+     "k": 0,
+     "cot": "Mã máy",
+     "cu": "",
+     "moi": "hs-d9zj2ieur",
+     "xoa": false
+    },
+    {
+     "rid": "tong",
+     "k": 0,
+     "cot": "Tổng kết",
+     "cu": "",
+     "moi": "Bài 1 đúng 1/20 · viết lại 1 câu · chấm 0 mẫu · 0 câu cần tư vấn",
+     "xoa": false
+    },
+    {
+     "rid": "b1-0",
+     "k": 0,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "Bạn",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T07:38:24.842Z"
+ "cap_nhat": "2026-09-10T07:38:48.167Z"
 }
