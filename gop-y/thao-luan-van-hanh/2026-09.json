@@ -272,7 +272,23 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T08:20:21.267Z",
+   "email": "",
+   "ten": "ng-p2npmnj1j",
+   "sua": [
+    {
+     "rid": "55yhwu",
+     "k": 0,
+     "cot": "Ô nhập",
+     "cu": "1 #2 · Hoàn thành chỉ tiêu doanh thu tại bệnh…",
+     "moi": "Hoàn thành phần chỉ tiêu doanh thu được giao cho vùng",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T08:15:06.862Z"
+ "cap_nhat": "2026-09-10T08:20:21.760Z"
 }
