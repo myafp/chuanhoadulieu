@@ -1696,7 +1696,63 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T07:37:30.067Z",
+   "email": "",
+   "ten": "hương",
+   "sua": [
+    {
+     "rid": "ma",
+     "k": 0,
+     "cot": "Mã máy",
+     "cu": "",
+     "moi": "hs-k8zscrb7g",
+     "xoa": false
+    },
+    {
+     "rid": "tong",
+     "k": 0,
+     "cot": "Tổng kết",
+     "cu": "",
+     "moi": "Bài 1 đúng 7/20 · viết lại 4 câu · chấm 0 mẫu · 0 câu cần tư vấn",
+     "xoa": false
+    },
+    {
+     "rid": "b1-0",
+     "k": 0,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "tóm tắt tài liệu này cho tôi theo dạng mindmap để tôi có thể đọc và nắm chi tiết từng ý",
+     "xoa": false
+    },
+    {
+     "rid": "b1-2",
+     "k": 2,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "tôi nên gửi email này vào lúc nào để người nhận có thể đọc và mang lại hiệu quả cao",
+     "xoa": false
+    },
+    {
+     "rid": "b1-4",
+     "k": 4,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "tôi muốn viết lại câu này cho đúng",
+     "xoa": false
+    },
+    {
+     "rid": "b1-6",
+     "k": 6,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "từ  \"stakeholder\" được dùng như thế nào",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T07:36:46.490Z"
+ "cap_nhat": "2026-09-10T07:37:30.802Z"
 }
