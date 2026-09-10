@@ -1,0 +1,54 @@
+{
+ "v": 1,
+ "gop_y": [
+  {
+   "luc": "2026-09-10T04:18:07.727Z",
+   "email": "",
+   "ten": "Tuấn",
+   "sua": [
+    {
+     "rid": "tong",
+     "k": 0,
+     "cot": "Tổng kết",
+     "cu": "",
+     "moi": "Bài 1 đúng 2/20 · viết lại 2 câu · chấm 1 mẫu · 1 câu cần tư vấn",
+     "xoa": false
+    },
+    {
+     "rid": "b1-0",
+     "k": 0,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "THU KỸ THUẬT — sẽ xoá",
+     "xoa": false
+    },
+    {
+     "rid": "b2-5",
+     "k": 5,
+     "cot": "Bài 2 · viết lại",
+     "cu": "Câu 6: Bản kế hoạch này đã ổn chưa?",
+     "moi": "THU KỸ THUẬT — sẽ xoá",
+     "xoa": false
+    },
+    {
+     "rid": "b3-2",
+     "k": 2,
+     "cot": "Bài 3 · chấm",
+     "cu": "Mẫu 3: Nên chọn nhà cung cấp A hay B?",
+     "moi": "Đúng trọng tâm · Nêu giả định & giới hạn · Kiểm chứng & minh bạch",
+     "xoa": false
+    },
+    {
+     "rid": "b4-0",
+     "k": 0,
+     "cot": "Bài 4 · cần tư vấn",
+     "cu": "Câu cần tư vấn 1 ✓",
+     "moi": "THU KỸ THUẬT — sẽ xoá",
+     "xoa": false
+    }
+   ],
+   "them": []
+  }
+ ],
+ "cap_nhat": "2026-09-10T04:18:08.096Z"
+}
