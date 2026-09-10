@@ -47589,8 +47589,12 @@ render(cur);
   }
   function khoaONhap(el) {
     if (el.dataset.tlKhoaO) return el.dataset.tlKhoaO;
-    var k = bam([timKhu(el), nhanO(el), el.type || "", el.id || "",
-                 duongCay(el)].join("|"));
+    /* Khoá chỉ lấy từ CẤU TRÚC, không lấy chữ. Bản đầu tôi băm cả tiêu đề khu vào
+       khoá, và dữ liệu thật cho thấy ngay hậu quả: một người điền ô "1 #2" lúc
+       08:06 rồi sửa lại lúc 08:12, nhưng tiêu đề khu của ô đó là chữ mà chính họ
+       vừa gõ ở ô trên — nên khoá đổi theo, và một ô sửa hai lần bị ghi thành hai
+       ô khác nhau. Đường trong cây DOM là duy nhất rồi, thêm chữ vào chỉ làm hỏng. */
+    var k = bam([el.type || "", el.id || "", duongCay(el)].join("|"));
     el.dataset.tlKhoaO = k;
     return k;
   }
