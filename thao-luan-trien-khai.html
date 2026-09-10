@@ -47129,6 +47129,20 @@ render(cur);
         nhan(trongLuot);          // rỗng: vào là bản gốc
       },
 
+      // Nhiều ô nhập một lần: một gói, một commit. Không dùng chung đường với ghi()
+      // vì ghi() còn phải nhớ vào trongLuot để ô hiện đỏ, còn ô nhập thì chữ người
+      // ta gõ đã nằm ngay trong ô rồi, không cần tô lại.
+      ghiNhieu: function (ds, ten, roiTab) {
+        return fetch(API, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ten: ten, luong: LUONG, sua: ds, them: [] }),
+          keepalive: !!roiTab
+        }).then(function (r) {
+          if (!r.ok) throw new Error("máy chủ trả " + r.status);
+        });
+      },
+
       ghi: function (muc) {
         return fetch(API, {
           method: "POST",
@@ -47501,6 +47515,157 @@ render(cur);
       quet();
     }
   }).observe(document.body, { childList: true, subtree: true });
+
+  /* ---------- thu cả những gì người ta điền vào ô nhập ----------
+     Lớp này vốn chỉ nhận chữ có sẵn trên bản dựng và cố ý bỏ qua input/select/
+     textarea. Nhưng màn Hoạch định là một cái form 192 ô — người ta điền cả buổi
+     vào đó mà không có gì được ghi lại, nên xem xong không biết họ đã thử những gì.
+
+     Ba điều khác với phần sửa chữ:
+     · Không cần bấm gì. Rời khỏi ô là ghi (sự kiện change) — ô nhập không có "bản
+       gốc" để so, nên chẳng có gì để mà quyết định lưu hay không lưu.
+     · Gom lại gửi một lần. Một form 11 ô mà mỗi ô một commit thì 11 commit; nên
+       chờ 6 giây sau cú sửa cuối, và gửi ngay lúc rời tab.
+     · Chưa đặt tên vẫn ghi, ghi dưới mã máy. Chờ người ta mở hộp sửa để điền tên
+       thì gần như không bao giờ có. Trang gom khớp lại sau theo mã. */
+  var KHOA_MA = "afp-tl-ma";
+  var BO_O = /^(hidden|file|password|submit|button|reset|image)$/;
+  var choGui = new Map(), henGui = 0;
+
+  function maMay() {
+    var m;
+    try { m = localStorage.getItem(KHOA_MA); } catch (e) {}
+    if (!m) {
+      m = "ng-" + Math.random().toString(36).slice(2, 8) + Date.now().toString(36).slice(-3);
+      try { localStorage.setItem(KHOA_MA, m); } catch (e) {}
+    }
+    return m;
+  }
+  function aiDo() {
+    var t = "";
+    try { t = (localStorage.getItem(KHOA_TEN) || "").trim(); } catch (e) {}
+    return t || maMay();
+  }
+
+  // Nhãn của ô nhập: <label for>, rồi label bọc ngoài, rồi chữ gần nhất trong cùng
+  // khối. Nhãn nào cũng được miễn cố định — nó vừa là ngữ cảnh cho người đọc, vừa
+  // là một phần của khoá.
+  function nhanO(el) {
+    var l, p, t, n;
+    if (el.id) {
+      try { l = document.querySelector('label[for="' + el.id.replace(/"/g, '\\"') + '"]'); } catch (e) {}
+      if (l && chu(l)) return chu(l);
+    }
+    l = el.closest("label");
+    if (l && chu(l)) return chu(l);
+    p = el.parentElement;
+    for (n = 0; p && n < 3; n++, p = p.parentElement) {
+      t = [].slice.call(p.querySelectorAll("label,legend,b,strong,span,div"))
+            .filter(function (y) { return !y.contains(el) && chu(y) && chu(y).length < 90; })[0];
+      if (t) return chu(t);
+    }
+    return "";
+  }
+  // Đường trong cây DOM, dạng DIV[2]/TD[0]/TEXTAREA[3]. Phải có nó: màn Hoạch định
+  // có 132 textarea, phần lớn cùng một tiêu đề khu và một nhãn chung chung, nên
+  // băm từ tiêu đề với nhãn thôi là trùng khoá — ô này ghi đè ô kia, mất chữ.
+  // Chỗ này khác phần sửa chữ: chữ có sẵn thì băm từ chính nội dung được, còn ô
+  // nhập lúc đầu rỗng nên chỉ còn cấu trúc để mà phân biệt.
+  function duongCay(el) {
+    var d = [], p, i, n = 0;
+    while (el && el !== document.body && n < 14) {
+      p = el.parentElement;
+      i = 0;
+      if (p) {
+        for (var j = 0; j < p.children.length; j++) {
+          if (p.children[j] === el) break;
+          if (p.children[j].tagName === el.tagName) i++;
+        }
+      }
+      d.push(el.tagName + "[" + i + "]");
+      el = p; n++;
+    }
+    return d.reverse().join("/");
+  }
+  function khoaONhap(el) {
+    if (el.dataset.tlKhoaO) return el.dataset.tlKhoaO;
+    var k = bam([timKhu(el), nhanO(el), el.type || "", el.id || "",
+                 duongCay(el)].join("|"));
+    el.dataset.tlKhoaO = k;
+    return k;
+  }
+  /* Nhãn hiện cho người đọc. Ba việc, vì bản thô đọc lên không dùng được:
+     · Nhãn ô đứng TRƯỚC, tiêu đề khu cắt ngắn đứng sau — nhãn mới là thứ phân biệt,
+       mà tiêu đề khu ở màn này là một câu dài giống nhau ở mọi ô.
+     · Đánh số khi nhiều ô cùng nhãn: màn này có ba ô đều tên "DÀI HẠN", không có số
+       thì lúc đối soát không biết là ô nào.
+     · Xếp số một lần rồi nhớ vào phần tử. Tính nhãn phải quét cây tổ tiên, làm 192
+       lần mỗi cú gõ thì nặng. */
+  var demNhan = 0;
+  function xepNhan() {
+    var ds = [].slice.call(document.querySelectorAll("input,select,textarea"))
+              .filter(function (x) { return !x.closest("#tlBang"); });
+    if (ds.length === demNhan) return;      // chưa có ô mới thì khỏi xếp lại
+    demNhan = ds.length;
+    var theo = {};
+    ds.forEach(function (x) {
+      var n = nhanO(x) || "(ô không nhãn)";
+      x.dataset.tlNhan = n;
+      (theo[n] = theo[n] || []).push(x);
+    });
+    Object.keys(theo).forEach(function (n) {
+      if (theo[n].length < 2) return;
+      theo[n].forEach(function (x, i) { x.dataset.tlSo = String(i + 1); });
+    });
+  }
+  function cat(t, n) {
+    t = String(t || "");
+    return t.length > n ? t.slice(0, n).replace(/\s+\S*$/, "") + "…" : t;
+  }
+  function nhanDay(el) {
+    xepNhan();
+    var n = el.dataset.tlNhan || nhanO(el) || "(ô không nhãn)";
+    var k = cat(timKhu(el), 40);
+    return n + (el.dataset.tlSo ? " #" + el.dataset.tlSo : "") + (k ? " · " + k : "");
+  }
+
+  function giaTri(el) {
+    if (el.type === "checkbox" || el.type === "radio")
+      return el.checked ? "✓ có tick" : "bỏ tick";
+    if (el.tagName === "SELECT")
+      return el.selectedIndex >= 0 ? chu(el.options[el.selectedIndex]) : "";
+    return String(el.value == null ? "" : el.value).trim();
+  }
+
+  function xaHangCho(roiTab) {
+    clearTimeout(henGui);
+    if (!choGui.size || !KHO.ghiNhieu) return;
+    var ds = [];
+    choGui.forEach(function (v) { ds.push(v); });
+    choGui.clear();
+    KHO.ghiNhieu(ds, aiDo(), !!roiTab).catch(function () {
+      // Gửi lỗi thì trả lại hàng chờ để lát nữa thử tiếp; đừng làm mất chữ đã gõ.
+      ds.forEach(function (m) { if (!choGui.has(m.rid)) choGui.set(m.rid, m); });
+    });
+  }
+
+  document.addEventListener("change", function (e) {
+    var el = e.target;
+    if (!el || !el.tagName || !/^(INPUT|SELECT|TEXTAREA)$/.test(el.tagName)) return;
+    if (el.closest("#tlBang")) return;                 // hộp sửa của chính lớp này
+    if (el.type && BO_O.test(el.type)) return;
+    var v = giaTri(el);
+    if (!v) return;                                    // để trống thì không ghi gì
+    var k = khoaONhap(el);
+    choGui.set(k, { rid: k, k: 0, cot: "Ô nhập", cu: nhanDay(el), moi: v, xoa: false });
+    clearTimeout(henGui);
+    henGui = setTimeout(function () { xaHangCho(false); }, 6000);
+  }, true);
+
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) xaHangCho(true);
+  });
+  window.addEventListener("pagehide", function () { xaHangCho(true); });
 
   quet();
 
