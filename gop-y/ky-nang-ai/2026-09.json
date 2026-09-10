@@ -1528,7 +1528,63 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T07:34:02.899Z",
+   "email": "",
+   "ten": "Me Thuy",
+   "sua": [
+    {
+     "rid": "ma",
+     "k": 0,
+     "cot": "Mã máy",
+     "cu": "",
+     "moi": "hs-d9zj2ieur",
+     "xoa": false
+    },
+    {
+     "rid": "tong",
+     "k": 0,
+     "cot": "Tổng kết",
+     "cu": "",
+     "moi": "Bài 1 đúng 6/20 · viết lại 4 câu · chấm 0 mẫu · 0 câu cần tư vấn",
+     "xoa": false
+    },
+    {
+     "rid": "b1-0",
+     "k": 0,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "Tóm tắt các tài liệu trên theo hướng ngắn gọn, cập nhật các điểm chính.",
+     "xoa": false
+    },
+    {
+     "rid": "b1-2",
+     "k": 2,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "Với nội dung email tôi vừa soạn, đề xuất giúp tôi nên gửi buổi sáng hay buổi chiều",
+     "xoa": false
+    },
+    {
+     "rid": "b1-4",
+     "k": 4,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "Kiểm tra giúp tôi câu văn trên về mặt ngữ pháp như thế nào?",
+     "xoa": false
+    },
+    {
+     "rid": "b1-6",
+     "k": 6,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "Hãy giải thích từ “stakeholder”",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T07:33:36.772Z"
+ "cap_nhat": "2026-09-10T07:34:03.481Z"
 }
