@@ -32,7 +32,39 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T04:51:07.722Z",
+   "email": "",
+   "ten": "hs-1lbncsu43",
+   "sua": [
+    {
+     "rid": "ma",
+     "k": 0,
+     "cot": "Mã máy",
+     "cu": "",
+     "moi": "hs-1lbncsu43",
+     "xoa": false
+    },
+    {
+     "rid": "tong",
+     "k": 0,
+     "cot": "Tổng kết",
+     "cu": "",
+     "moi": "Bài 1 đúng 2/20 · viết lại 1 câu · chấm 0 mẫu · 0 câu cần tư vấn",
+     "xoa": false
+    },
+    {
+     "rid": "b1-0",
+     "k": 0,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "THU ẨN DANH — sẽ xoá",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T04:51:06.273Z"
+ "cap_nhat": "2026-09-10T04:51:08.126Z"
 }
