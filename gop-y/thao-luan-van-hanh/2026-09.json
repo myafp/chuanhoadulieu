@@ -48,7 +48,23 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T04:33:48.364Z",
+   "email": "",
+   "ten": "phạm mạnh hùng",
+   "sua": [
+    {
+     "rid": "9rdz6t",
+     "k": 0,
+     "cot": "aerpHub",
+     "cu": "CTCP DEMO",
+     "moi": "CTCP HP",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T04:03:30.872Z"
+ "cap_nhat": "2026-09-10T04:33:48.738Z"
 }
