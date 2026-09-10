@@ -1019,7 +1019,17 @@ https://docs.google.com/spreadsheets/..."></textarea>
       ev3Send=document.getElementById("ev3Send"),ev3Result=document.getElementById("ev3Result"),
       ev3Match=document.getElementById("ev3Match"),ev3Ref=document.getElementById("ev3Ref"),
       ev3Note=document.getElementById("ev3Note");
-  state.ev3Marks=state.ev3Marks||{}; state.ev3Sent=state.ev3Sent||{};
+  state.ev3Marks=state.ev3Marks||{};
+  // Bài 3 trước đây có 24 câu trả lời mẫu, nay còn 10 mục tiêu. Ai đã chấm bằng
+  // bản cũ thì còn lại những khoá 10..23 trỏ vào chỗ không còn gì — đếm vào tiến
+  // độ sai, và bản lưu về thì hiện một dòng trống không tên. Dọn một lần khi nạp.
+  ["ev3Marks","ev3Sent"].forEach(function(k){
+    Object.keys(state[k]||{}).forEach(function(i){
+      if(!(parseInt(i,10)>=0)||parseInt(i,10)>=EV3.length)delete state[k][i];
+    });
+  });
+  if(!(parseInt(state.ev3Cur,10)>=0)||parseInt(state.ev3Cur,10)>=EV3.length)state.ev3Cur=0;
+  save(); state.ev3Sent=state.ev3Sent||{};
   EV3.forEach(function(item,i){
     var op=document.createElement("option");op.value=String(i);
     op.textContent=(i+1)+". "+item.muc; ev3Select.appendChild(op);
@@ -1388,13 +1398,17 @@ https://docs.google.com/spreadsheets/..."></textarea>
     return ds;
   }
 
-  // ev3Marks giữ mảng đúng/sai theo 5 tiêu chí; đổi sang tên tiêu chí đọc được.
+  /* ev3Marks là DANH SÁCH SỐ THỨ TỰ tiêu chí đã tick — [0,1] nghĩa là tiêu chí 1
+     và 2 — chứ không phải mảng đúng/sai. Trước đây tôi đọc nó như mảng đúng/sai:
+     m[0] bằng 0 nên bị coi là không tick, còn m[1] bằng 1 lại thành có tick. Ra
+     một danh sách tiêu chí gần như ngẫu nhiên, và mọi bản đã lưu trước 10/09/2026
+     đều sai ở cột này. */
   function tieuChi(m) {
     var ten = [], ds = document.querySelectorAll("#ev3Rubric .rtext b"), i;
     for (i = 0; i < ds.length; i++) ten.push(ds[i].textContent.trim());
-    if (!m) return "(không tick tiêu chí nào)";
+    if (!m || !m.length) return "(không tick tiêu chí nào)";
     var ra = [];
-    for (i = 0; i < ten.length; i++) if (m[i]) ra.push(ten[i]);
+    for (i = 0; i < m.length; i++) if (ten[m[i]]) ra.push(ten[m[i]]);
     return ra.length ? ra.join(" · ") : "(không tick tiêu chí nào)";
   }
 
