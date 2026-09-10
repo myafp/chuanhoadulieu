@@ -2944,7 +2944,103 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T07:48:06.145Z",
+   "email": "",
+   "ten": "hương",
+   "sua": [
+    {
+     "rid": "ma",
+     "k": 0,
+     "cot": "Mã máy",
+     "cu": "",
+     "moi": "hs-k8zscrb7g",
+     "xoa": false
+    },
+    {
+     "rid": "tong",
+     "k": 0,
+     "cot": "Tổng kết",
+     "cu": "",
+     "moi": "Bài 1 đúng 17/20 · viết lại 9 câu · chấm 0 mẫu · 0 câu cần tư vấn",
+     "xoa": false
+    },
+    {
+     "rid": "b1-0",
+     "k": 0,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "tóm tắt tài liệu này cho tôi theo dạng mindmap để tôi có thể đọc và nắm chi tiết từng ý",
+     "xoa": false
+    },
+    {
+     "rid": "b1-2",
+     "k": 2,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "tôi nên gửi email này vào lúc nào để người nhận có thể đọc và mang lại hiệu quả cao",
+     "xoa": false
+    },
+    {
+     "rid": "b1-4",
+     "k": 4,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "tôi muốn viết lại câu này cho đúng",
+     "xoa": false
+    },
+    {
+     "rid": "b1-6",
+     "k": 6,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "từ  \"stakeholder\" được dùng như thế nào trong tài liệu của tôi",
+     "xoa": false
+    },
+    {
+     "rid": "b1-8",
+     "k": 8,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "cuộc họp này nên thực hiện trong khoảng thời gian bao lâu để đạt hiệu quả mà vẫn không ảnh hưởng đến công việc hàng ngày của nhân viên trong phòng",
+     "xoa": false
+    },
+    {
+     "rid": "b1-10",
+     "k": 10,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "dịch đoạn văn này sang tiếng Anh theo giọng văn khoa học và chuẩn xác",
+     "xoa": false
+    },
+    {
+     "rid": "b1-12",
+     "k": 12,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "bản kế hoạch này cần điều chỉnh những điểm nào để đạt hiệu quả hơn",
+     "xoa": false
+    },
+    {
+     "rid": "b1-14",
+     "k": 14,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "làm thế nào để chạy đúng deadline",
+     "xoa": false
+    },
+    {
+     "rid": "b1-16",
+     "k": 16,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "màu sắc của slide này nhìn không được thu hút, hãy chỉnh sửa cho tôi để có thể",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T07:47:12.894Z"
+ "cap_nhat": "2026-09-10T07:48:06.512Z"
 }
