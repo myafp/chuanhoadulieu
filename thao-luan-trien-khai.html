@@ -47103,86 +47103,40 @@ render(cur);
      Hai bản dùng chung đúng một bộ giao diện, chỉ khác chỗ cất góp ý: bản artifact
      cất vào kho của chính artifact, bản trên cổng gửi qua Worker rồi đọc lại từ
      repo công khai. Nên phần đó tách hẳn ra sau đây, phần trên không biết gì. */
-  // Bản trên cổng: gửi qua Worker rồi đọc lại từ repo công khai — cùng đúng một
-  // đường mà trang từ điển và trang Promax đang dùng, nên góp ý của ba luồng nằm
-  // cạnh nhau trong gop-y/ và bộ sinh trang duyệt đọc được cả ba.
+  // Bản trên cổng: gửi qua Worker, KHÔNG đọc lại gì.
+  //
+  // Trước đây lớp này đọc sáu tháng góp ý từ repo rồi áp hết lên trang, nên người
+  // thứ hai mở link là thấy một bản mockup đã bị người thứ nhất sửa be bét — "CTCP
+  // DEMO HP", "Đăng xuất" gạch ngang. Không ai góp ý được trên một bản như vậy vì
+  // không còn biết bản gốc nói gì.
+  //
+  // Nay mỗi người vào là một bản mới hoàn toàn. Chỉ ô mình vừa sửa trong lượt này
+  // mới hiện đỏ, để còn biết mình đã đổi những đâu; tải lại là sạch. Góp ý vẫn vào
+  // repo đủ, việc gom lại là việc của trang tổng hợp chứ không phải của trang này.
   var KHO = (function () {
     var API = "https://abp.alpha-5ae.workers.dev";
-    var REPO = "myafp/chuanhoadulieu";
     var LUONG = "thao-luan-van-hanh";
-    var SO_THANG = 6;            // dò ngược mấy tháng file góp ý
-    var duLieu = new Map(), baoLai = null;
-
-    // Luồng này chỉ hỏi tên, không hỏi email — Worker có LUONG_HOI_TEN cho phép.
-    // Những lượt gửi trước lúc đổi vẫn mang email, nên vẫn phải đọc được cả hai:
-    // có ten thì lấy ten, không thì lấy phần trước @ như trang tổng hợp vẫn làm.
-    var TEN = { "tuan": "Tuấn", "tung.nguyen": "Tùng Nguyên", "ha.dang": "Hà Đăng",
-                "quan.le": "Quân Lê" };
-
-    function thangLui(i) {
-      var d = new Date();
-      d.setDate(1);
-      d.setMonth(d.getMonth() - i);
-      return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2);
-    }
-
-    function tai() {
-      var xong = [], i;
-      for (i = 0; i < SO_THANG; i++) {
-        xong.push(fetch("https://raw.githubusercontent.com/" + REPO + "/main/gop-y/" +
-          LUONG + "/" + thangLui(i) + ".json?t=" + Date.now())
-          .then(function (r) { return r.ok ? r.json() : null; })
-          .catch(function () { return null; }));
-      }
-      return Promise.all(xong).then(function (ds) {
-        var m = new Map(), j, k, l, muc, o;
-        for (j = 0; j < ds.length; j++) {
-          l = ds[j] && ds[j].gop_y;
-          if (!l) continue;
-          for (k = 0; k < l.length; k++) {
-            muc = l[k];
-            for (var n = 0; n < (muc.sua || []).length; n++) {
-              o = muc.sua[n];
-              if (!o.rid) continue;
-              if (!m.has(o.rid)) m.set(o.rid, []);
-              m.get(o.rid).push({ o: o.rid, noi: o.moi, cu: o.cu, duong: o.cot,
-                                  ten: muc.ten || muc.email, luc: muc.luc });
-            }
-          }
-        }
-        m.forEach(function (x) {
-          x.sort(function (a, b) { return String(a.luc) < String(b.luc) ? -1 : 1; });
-        });
-        duLieu = m;
-        return m;
-      });
-    }
+    var trongLuot = new Map(), baoLai = null;
 
     return {
       nhacId: "Điền tên đã — không có tên thì không biết hỏi lại ai.",
       hopLeId: function (v) { return !!String(v || "").trim(); },
-      ten: function (v) {
-        v = String(v || "");
-        if (v.indexOf("@") < 0) return v || "Không tên";   // lượt mới: đã là tên
-        var t = v.split("@")[0];
-        return TEN[t] || t || "Không tên";
-      },
+      ten: function (v) { return String(v || "") || "Không tên"; },
       san: function () { return true; },
 
       nap: function (nhan) {
         baoLai = nhan;
-        tai().then(nhan).catch(function () {});
+        nhan(trongLuot);          // rỗng: vào là bản gốc
       },
 
       ghi: function (muc) {
-        // Đường dẫn cắt còn 40 ký tự vì Worker cắt đúng mức đó cho trường cot —
-        // cắt sẵn ở đây để thứ hiện trên trang đúng bằng thứ được ghi xuống.
         return fetch(API, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             ten: String(muc.ten || "").trim(),
             luong: LUONG,
+            // Đường dẫn cắt còn 40 ký tự vì Worker cắt đúng mức đó cho trường cot.
             sua: [{ rid: muc.o, k: 0, cot: String(muc.duong || "").slice(0, 40),
                     cu: muc.cu, moi: muc.noi, xoa: false }],
             them: []
@@ -47190,11 +47144,10 @@ render(cur);
         }).then(function (r) {
           return r.json().catch(function () { return {}; }).then(function (j) {
             if (!r.ok) throw new Error(j.loi || ("máy chủ trả " + r.status));
-            // Hiện ngay bản vừa gửi, khỏi chờ GitHub cập nhật bản raw (chậm vài phút).
-            var l = duLieu.get(muc.o) || [];
+            var l = trongLuot.get(muc.o) || [];
             l.push(muc);
-            duLieu.set(muc.o, l);
-            if (baoLai) baoLai(duLieu);
+            trongLuot.set(muc.o, l);
+            if (baoLai) baoLai(trongLuot);
           });
         });
       }
@@ -47460,6 +47413,13 @@ render(cur);
     if (!dang) return;
     var k = dang.khoa;
     var noi = $("tlNoi").value.trim(), ten = $("tlTen").value.trim();
+    // Sáu trong tám ô góp ý đầu tiên là người mở ra xem rồi bấm Lưu mà không đổi
+    // chữ nào — Lưu là nút to nhất trong hộp nên tay tự bấm. Chặn ở đây, kẻo trang
+    // tổng hợp đầy những dòng "không đổi gì" và người duyệt phải lọc tay.
+    if (noi === String(dang.goc || "").trim()) {
+      bao("Chữ chưa đổi gì so với bản dựng. Sửa rồi hãy Lưu, hoặc bấm Bỏ qua.", "tl-loi");
+      return;
+    }
     if (!noi) { bao("Chưa có nội dung để lưu.", "tl-loi"); return; }
     if (!KHO.hopLeId(ten)) { bao(KHO.nhacId, "tl-loi"); $("tlTen").focus(); return; }
     try { localStorage.setItem(KHOA_TEN, ten); } catch (e) {}
