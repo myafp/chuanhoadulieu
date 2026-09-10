@@ -160,7 +160,23 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T05:00:35.288Z",
+   "email": "",
+   "ten": "TEST",
+   "sua": [
+    {
+     "rid": "ylgkyh",
+     "k": 0,
+     "cot": "Chào mừng CEO AFP",
+     "cu": "Văn hóa",
+     "moi": "Văn hóa",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T04:55:22.946Z"
+ "cap_nhat": "2026-09-10T05:00:35.703Z"
 }
