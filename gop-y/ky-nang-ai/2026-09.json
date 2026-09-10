@@ -7080,7 +7080,47 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T08:18:00.451Z",
+   "email": "",
+   "ten": "phạm mạnh hùng",
+   "sua": [
+    {
+     "rid": "ma",
+     "k": 0,
+     "cot": "Mã máy",
+     "cu": "",
+     "moi": "hs-oty8m2lsh",
+     "xoa": false
+    },
+    {
+     "rid": "tong",
+     "k": 0,
+     "cot": "Tổng kết",
+     "cu": "",
+     "moi": "Bài 1 đúng 1/20 · viết lại 0 câu · chấm 1 mẫu · 1 câu cần tư vấn",
+     "xoa": false
+    },
+    {
+     "rid": "b3-6",
+     "k": 6,
+     "cot": "Bài 3 · chấm",
+     "cu": "7. Viết một prompt dùng lại cho việc lặp đi lặp lại",
+     "moi": "Mở, không đóng · Có bối cảnh · Nói rõ cần gì · Không gài đáp án",
+     "xoa": false
+    },
+    {
+     "rid": "b4-0",
+     "k": 0,
+     "cot": "Bài 4 · cần tư vấn",
+     "cu": "Câu cần tư vấn 1 ✓",
+     "moi": "tôi mới tìm hiểu và học về kế toán kho và giá thành. với mục tiêu hiểu từ nền tảng cơ bản đến thành thạo cho công việc mới. hãy phân tích cho tôi những lỗi sai người mới như tôi hay mắc phải khi bắt tay vào làm thật.",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T08:17:47.708Z"
+ "cap_nhat": "2026-09-10T08:18:01.103Z"
 }
