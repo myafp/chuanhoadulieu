@@ -32,7 +32,39 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T04:34:22.932Z",
+   "email": "",
+   "ten": "Tuấn",
+   "sua": [
+    {
+     "rid": "tong",
+     "k": 0,
+     "cot": "Tổng kết",
+     "cu": "",
+     "moi": "Bài 1 đúng 3/20 · viết lại 1 câu · chấm 0 mẫu · 1 câu cần tư vấn",
+     "xoa": false
+    },
+    {
+     "rid": "b1-0",
+     "k": 0,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "THU TỰ LƯU — sẽ xoá",
+     "xoa": false
+    },
+    {
+     "rid": "b4-0",
+     "k": 0,
+     "cot": "Bài 4 · cần tư vấn",
+     "cu": "Câu cần tư vấn 1 ✓",
+     "moi": "THU TỰ LƯU — sẽ xoá",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T04:33:55.570Z"
+ "cap_nhat": "2026-09-10T04:34:23.292Z"
 }
