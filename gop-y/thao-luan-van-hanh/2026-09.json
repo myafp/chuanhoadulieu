@@ -256,7 +256,23 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T08:15:06.516Z",
+   "email": "",
+   "ten": "ng-p2npmnj1j",
+   "sua": [
+    {
+     "rid": "1ssxkve",
+     "k": 0,
+     "cot": "Ô nhập",
+     "cu": "3 #1 · Theo dõi đơn hàng và công nợ khách phụ…",
+     "moi": "Benh Vien Dai Hoc Y Duoc Cs1",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T08:14:59.372Z"
+ "cap_nhat": "2026-09-10T08:15:06.862Z"
 }
