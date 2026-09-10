@@ -1136,7 +1136,55 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T07:13:22.727Z",
+   "email": "",
+   "ten": "phạm mạnh hùng",
+   "sua": [
+    {
+     "rid": "ma",
+     "k": 0,
+     "cot": "Mã máy",
+     "cu": "",
+     "moi": "hs-oty8m2lsh",
+     "xoa": false
+    },
+    {
+     "rid": "tong",
+     "k": 0,
+     "cot": "Tổng kết",
+     "cu": "",
+     "moi": "Bài 1 đúng 3/20 · viết lại 2 câu · chấm 1 mẫu · 0 câu cần tư vấn",
+     "xoa": false
+    },
+    {
+     "rid": "b1-0",
+     "k": 0,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "với vai trò một chuyên gia trong hãy tóm tắt cho tôi những nội dung chính và cốt lõi của tài liệu trên. Hãy tóm tắt tài liệu trên thành 5 ý chính,và chỉ ra những điểm tôi cần lưu ý trước khi ra quyết định",
+     "xoa": false
+    },
+    {
+     "rid": "b1-2",
+     "k": 2,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "từ các nghiên cứu và tìm hiểu về tính hiệu quả và cảm xúc của con người hãy phân tích cho tôi về thời điểm gửi email thế nào là hiệu quả?",
+     "xoa": false
+    },
+    {
+     "rid": "b3-6",
+     "k": 6,
+     "cot": "Bài 3 · chấm",
+     "cu": "7. Viết một prompt dùng lại cho việc lặp đi lặp lại",
+     "moi": "Có bối cảnh · Nói rõ cần gì · Không gài đáp án",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T07:07:10.649Z"
+ "cap_nhat": "2026-09-10T07:13:23.229Z"
 }
