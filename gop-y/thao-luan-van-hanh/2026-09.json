@@ -288,7 +288,23 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T08:21:04.316Z",
+   "email": "",
+   "ten": "ng-p2npmnj1j",
+   "sua": [
+    {
+     "rid": "55yhwu",
+     "k": 0,
+     "cot": "Ô nhập",
+     "cu": "1 #2 · Hoàn thành phần chỉ tiêu doanh thu được…",
+     "moi": "Viếng thăm khách hàng theo call plan",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T08:20:21.760Z"
+ "cap_nhat": "2026-09-10T08:21:04.819Z"
 }
