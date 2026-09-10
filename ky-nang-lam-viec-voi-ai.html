@@ -548,17 +548,17 @@
 
       <!-- Exercise 3: lượng giá -->
       <div class="exercise" style="border-left-color:var(--pine)">
-        <div class="ex-label" style="color:var(--pine)">◇ Bài tập 3 — Lượng giá</div>
-        <h3>Câu trả lời của AI đã đủ tốt chưa?</h3>
-        <p class="ex-desc">Chọn một câu trả lời mẫu của AI, tự chấm theo 5 tiêu chí, bấm “Gửi cách tôi chấm”, rồi đối chiếu với cách AI tự chấm.</p>
+        <div class="ex-label" style="color:var(--pine)">◇ Bài tập 3 — Chấm điểm câu hỏi</div>
+        <h3>Chấm điểm các câu hỏi mẫu</h3>
+        <p class="ex-desc">Chọn một mục tiêu cần hỏi. Trang sẽ đưa ra câu hỏi mà AI đề xuất dùng cho mục tiêu đó — bạn chấm câu <em>hỏi</em> ấy theo 5 tiêu chí, bấm “Gửi cách tôi chấm”, rồi đọc phân tích. Mười câu có năm câu hỏi tốt và năm câu kém, không theo thứ tự.</p>
         <div class="rw">
-          <label class="rw-label" for="ev3Select">Chọn câu trả lời mẫu của AI:</label>
+          <label class="rw-label" for="ev3Select">Chọn mục tiêu cần hỏi:</label>
           <select class="rw2-select" id="ev3Select"></select>
           <div class="ev-sample">
-            <div class="ev-q"><span class="tag">Câu hỏi</span><p id="ev3Q"></p></div>
-            <div class="ev-a"><span class="tag">Câu trả lời của AI</span><p id="ev3A"></p></div>
+            <div class="ev-q"><span class="tag">Mục tiêu</span><p id="ev3Q"></p></div>
+            <div class="ev-a"><span class="tag">Câu hỏi AI đề xuất</span><p id="ev3A"></p></div>
           </div>
-          <div class="ev-score-label">Bạn chấm: tick những tiêu chí câu trả lời này <em>đạt</em></div>
+          <div class="ev-score-label">Bạn chấm: tick những tiêu chí câu <em>hỏi</em> này đạt</div>
           <div class="rubric" id="ev3Rubric"></div>
           <button class="btn rw-reveal" id="ev3Send" type="button">Gửi cách tôi chấm</button>
           <div class="ev-result" id="ev3Result" hidden>
@@ -996,37 +996,23 @@ https://docs.google.com/spreadsheets/..."></textarea>
 
   /* ---------- Bài tập 3: Lượng giá ---------- */
   var CRIT=[
-    {b:"Đúng trọng tâm",s:"Trả lời đúng điều được hỏi, không lạc đề."},
-    {b:"Có căn cứ",s:"Dựa trên dữ kiện, nguồn hoặc lập luận cụ thể, không chung chung."},
-    {b:"Nêu giả định & giới hạn",s:"Nói rõ điều kiện áp dụng và chỗ còn chưa chắc chắn."},
-    {b:"Có phương án & đánh đổi",s:"Đưa nhiều lựa chọn và so sánh được–mất, không áp một đáp án."},
-    {b:"Kiểm chứng & minh bạch",s:"Có thể đối chiếu lại và gợi mở bước hỏi tiếp."}
+    {b:"Mở, không đóng",s:"Mời AI trình bày nhiều góc nhìn, không dẫn tới trả lời có/không."},
+    {b:"Có bối cảnh",s:"Nói rõ tình huống, người trong việc và ràng buộc, để AI khỏi trả lời chung chung."},
+    {b:"Nói rõ cần gì",s:"Ghi ra kết quả mình muốn nhận: so sánh, các bước, hay mấy phương án."},
+    {b:"Không gài đáp án",s:"Không cài sẵn giả định hay mớm câu trả lời mình muốn nghe."},
+    {b:"Kiểm được",s:"Trả lời xong có cách đối chiếu lại, không phải chuyện chỉ tin hay không."}
   ];
   var EV3=[
-    {q:"Doanh số tháng này giảm, tôi nên làm gì?", a:"Bạn nên cải thiện marketing và chăm sóc khách hàng tốt hơn để doanh số tăng trở lại.", met:[0], note:"Đúng chủ đề nhưng chung chung: không dựa trên dữ liệu, không nêu giả định, chỉ là lời khuyên chung, không có phương án so sánh."},
-    {q:"Doanh số tháng này giảm, tôi nên nhìn vào đâu?", a:"Có thể do mùa vụ, do một nhóm sản phẩm chững lại, hoặc do một kênh bán yếu đi. Nên bóc tách theo sản phẩm, theo kênh và theo tuần để khoanh vùng; giả định số liệu trong kỳ đầy đủ. Muốn chắc thì đối chiếu với cùng kỳ năm trước.", met:[0,1,2,3,4], note:"Đạt cả 5: đúng trọng tâm, nêu căn cứ, nói giả định, đưa nhiều hướng và chỉ cách kiểm chứng (đối chiếu cùng kỳ)."},
-    {q:"Nên chọn nhà cung cấp A hay B?", a:"Chọn A.", met:[0], note:"Có trả lời câu hỏi nhưng cụt: không căn cứ, không tiêu chí, không so sánh được–mất, không thể kiểm chứng."},
-    {q:"Nên chọn nhà cung cấp A hay B?", a:"Tùy tiêu chí ưu tiên: cần giá thấp thì A nhỉnh hơn, cần giao nhanh và bảo hành tốt thì B. Với đơn gấp như bạn mô tả, B có lợi hơn. Đây là so sánh dựa trên thông tin bạn cung cấp; nên xác nhận lại thời gian giao thực tế của B trước khi chốt.", met:[0,1,2,3,4], note:"Đạt cả 5: bám câu hỏi, có căn cứ theo tiêu chí, nêu giả định, so sánh đánh đổi và gợi bước kiểm chứng."},
-    {q:"Thị trường sẽ tăng trưởng bao nhiêu năm tới?", a:"Thị trường chắc chắn sẽ tăng trưởng mạnh 20% mỗi năm.", met:[0], note:"Đúng chủ đề nhưng khẳng định chắc nịch, không nguồn, không giả định hay khoảng tin cậy — thiếu căn cứ và không kiểm chứng được."},
-    {q:"Bản kế hoạch này có rủi ro gì?", a:"Kế hoạch nào cũng có rủi ro, bạn nên cẩn thận.", met:[], note:"Không đạt tiêu chí nào: né câu hỏi, không chỉ ra rủi ro cụ thể, hoàn toàn chung chung."},
-    {q:"Bản kế hoạch này có rủi ro gì?", a:"Ba rủi ro chính: tiến độ phụ thuộc một nhà thầu duy nhất, ngân sách chưa có khoản dự phòng, và chưa rõ ai chịu trách nhiệm khâu nghiệm thu. Giả định phạm vi công việc giữ nguyên như mô tả. Mỗi rủi ro kèm một dấu hiệu sớm để bạn theo dõi.", met:[0,1,2,4], note:"Đạt 4/5: cụ thể, có giả định, kiểm chứng được qua dấu hiệu sớm — nhưng mới liệt kê rủi ro chứ chưa đưa các phương án xử lý để so sánh."},
-    {q:"Email này viết ổn chưa?", a:"Ổn rồi, bạn gửi được.", met:[0], note:"Trả lời đúng câu hỏi nhưng chỉ là phán xét chung, không chỉ ra dựa trên đâu, không nêu điểm cần lưu ý."},
-    {q:"Email này viết ổn chưa?", a:"Nội dung rõ, nhưng câu mở đầu hơi đường đột và lời kêu gọi hành động chưa cụ thể. Có thể mở bằng một câu dẫn ngắn, và nêu rõ bạn muốn người nhận làm gì trước ngày nào. Đây là góp ý về văn phong; bạn cân nhắc theo mức trang trọng mong muốn.", met:[0,1,3,4], note:"Đạt 4/5: chỉ ra căn cứ cụ thể (mở đầu, lời kêu gọi hành động), đưa hướng chỉnh và mở đường cân nhắc; chưa nêu rõ giả định về bối cảnh người nhận."},
-    {q:"Nên tăng giá sản phẩm không?", a:"Nên tăng, vì lạm phát đang cao.", met:[0,1], note:"Có bám câu hỏi và nêu một căn cứ (lạm phát), nhưng một chiều: không nêu rủi ro mất khách, không so sánh phương án, không nói cần kiểm chứng gì."},
-    {q:"Nên tăng giá sản phẩm không?", a:"Nên cân theo chi phí đầu vào, độ nhạy giá của khách và vị thế so với đối thủ. Ba hướng: giữ giá và cắt chi phí, tăng nhẹ kèm thêm giá trị, hoặc tăng mạnh nhóm ít nhạy giá. Giả định nhu cầu ổn định; nên thử trên một nhóm nhỏ trước khi áp toàn bộ.", met:[0,1,2,3,4], note:"Đạt cả 5: đúng trọng tâm, có căn cứ, nêu giả định, đưa nhiều phương án có đánh đổi và cách kiểm chứng (thử nghiệm nhóm nhỏ)."},
-    {q:"Công cụ này có tốt không?", a:"Rất tốt, ai cũng khen.", met:[], note:"Không đạt: “ai cũng khen” là ý kiến mơ hồ, không tiêu chí, không so sánh, không kiểm chứng được."},
-    {q:"Nên họp online hay trực tiếp?", a:"Với mục tiêu ra quyết định và nhóm ở nhiều nơi: online tiết kiệm thời gian nhưng khó đọc phản ứng; trực tiếp gắn kết hơn nhưng tốn di chuyển. Cần chốt nhanh thì online, cần xây lòng tin thì trực tiếp.", met:[0,3], note:"Đạt 2/5: bám câu hỏi và so sánh được–mất hai phương án, nhưng thiếu căn cứ cụ thể về nhóm này, không nêu giả định rõ và không gợi cách kiểm chứng."},
-    {q:"Số liệu trong báo cáo này đáng tin không?", a:"Đáng tin.", met:[0], note:"Trả lời cụt, không chỉ ra dựa vào đâu, không nói cách đối chiếu — thiếu gần hết tiêu chí."},
-    {q:"Số liệu trong báo cáo này đáng tin không?", a:"Phần doanh thu khớp với sổ bán hàng, nhưng cột chi phí có một dòng chưa rõ nguồn. Giả định các số còn lại lấy từ hệ thống kế toán. Bạn nên đối chiếu dòng chi phí đó với chứng từ gốc trước khi dùng.", met:[0,1,2,4], note:"Đạt 4/5: cụ thể (khớp/không khớp ở đâu), nêu giả định và chỉ cách kiểm chứng; đây là câu xác minh nên tiêu chí “phương án & đánh đổi” ít áp dụng."},
-    {q:"Làm sao cải thiện quy trình duyệt hồ sơ?", a:"Số hóa hết đi cho nhanh.", met:[0], note:"Đúng chủ đề nhưng một câu chung chung: không phân tích khâu nào đang vướng, không phương án, không đánh đổi."},
-    {q:"Làm sao cải thiện quy trình duyệt hồ sơ?", a:"Nên xem khâu nào tốn thời gian nhất. Vài hướng: gộp bước trùng, đặt hạn cho mỗi bước, hoặc số hóa phần ký duyệt — mỗi hướng có chi phí và mức thay đổi thói quen khác nhau. Giả định khối lượng hồ sơ giữ nguyên; nên đo thời gian từng khâu trước và sau khi đổi.", met:[0,1,2,3,4], note:"Đạt cả 5: khoanh vùng vấn đề, nhiều phương án có đánh đổi, nêu giả định và cách kiểm chứng (đo thời gian trước–sau)."},
-    {q:"Nên tuyển ứng viên nào?", a:"Ứng viên A giỏi hơn nên chọn A.", met:[0], note:"Trả lời câu hỏi nhưng “giỏi hơn” là nhận định chung, không theo tiêu chí, không so sánh có cấu trúc, không kiểm chứng."},
-    {q:"Nên tuyển ứng viên nào?", a:"Xét theo yêu cầu vị trí: A mạnh kinh nghiệm nhưng yếu kỹ năng mềm; B ngược lại. Nếu vai trò cần làm việc nhóm nhiều thì B phù hợp hơn. Đây là đánh giá từ hồ sơ; nên kiểm chứng thêm bằng phỏng vấn tình huống và tham chiếu.", met:[0,1,2,3,4], note:"Đạt cả 5: theo tiêu chí, so sánh đánh đổi, nêu giả định (từ hồ sơ) và cách kiểm chứng (phỏng vấn, tham chiếu)."},
-    {q:"Bài thuyết trình này nên chỉnh gì?", a:"Cho thêm nhiều hình cho đẹp.", met:[0], note:"Đúng chủ đề nhưng lời khuyên hời hợt, không dựa trên nội dung cụ thể của bài, không phương án rõ."},
-    {q:"Bài thuyết trình này nên chỉnh gì?", a:"Ba điểm: slide mở đầu chưa nêu thông điệp chính, một số slide quá nhiều chữ, và phần kết chưa có lời kêu gọi hành động. Có thể mỗi slide chỉ giữ một ý, chuyển bớt chữ thành biểu đồ. Đây là góp ý dựa trên bản hiện tại; tùy người nghe mà cân nhắc mức chi tiết.", met:[0,1,3,4], note:"Đạt 4/5: chỉ ra chỗ cụ thể, đưa hướng chỉnh và mở đường cân nhắc theo người nghe; chưa tách bạch giả định/giới hạn rõ ràng."},
-    {q:"Dự án chậm tiến độ, nguyên nhân do đâu?", a:"Do mọi người làm việc chưa hiệu quả.", met:[0], note:"Quy chụp chung chung, đổ lỗi mơ hồ, không dữ kiện, không phân tích các nguyên nhân khả dĩ."},
-    {q:"Dự án chậm tiến độ, nguyên nhân do đâu?", a:"Vài giả thuyết: phạm vi công việc phình ra, phụ thuộc một đầu mối bị nghẽn, hoặc ước lượng thời gian ban đầu quá lạc quan. Nên đối chiếu tiến độ thực với kế hoạch ở từng mốc để xác định. Giả định dữ liệu tiến độ được ghi nhận đầy đủ.", met:[0,1,2,4], note:"Đạt 4/5: đưa nhiều giả thuyết nguyên nhân có căn cứ, nêu giả định và cách kiểm chứng (đối chiếu từng mốc); đây là câu chẩn đoán nên “phương án & đánh đổi” ít áp dụng."},
-    {q:"Có nên nhận thêm dự án này không?", a:"Cứ nhận đi, càng nhiều việc càng tốt.", met:[0], note:"Trả lời có, nhưng cổ vũ một chiều: không cân nhắc khối lượng hiện tại, không nêu đánh đổi hay điều kiện."}
+    {muc:"Bắt đầu học AI từ đâu khi chưa biết gì", q:"AI có giúp được công việc của tôi không?", met:[], note:"Câu này đóng: AI chỉ có thể trả lời có hoặc không, mà đằng nào nó cũng nói có. Hỏi xong bạn không biết thêm điều gì để làm ngày mai. Nó cũng không có bối cảnh — AI không biết bạn làm vị trí gì, một ngày của bạn gồm những việc nào, nên chỉ trả lời được bằng những câu chung chung đúng với mọi người và vì thế vô dụng với bạn. Không nói mình cần gì, nên AI tự chọn hình thức trả lời. Không có gì để kiểm lại. Sửa: thay bằng “Tôi làm kế toán bán hàng, một tuần của tôi gồm những việc này… Trong đó việc nào giao cho AI thì đỡ nhất, việc nào nên tự làm, vì sao?”. Cùng một ý muốn biết, nhưng câu sau buộc AI phải nhìn vào việc thật của bạn."},
+    {muc:"Chọn việc nào giao cho AI làm trước", q:"Tôi làm kế toán bán hàng, mỗi tuần mất nhiều thời gian nhất cho ba việc: đối chiếu công nợ, dựng báo cáo doanh số, và trả lời email khách. Việc nào nên giao cho AI trước thì đỡ nhất, việc nào nên tự làm? Xếp theo thứ tự và nói rõ vì sao.", met:[0,1,2,3], note:"Câu hỏi tốt. Nó mở — mời AI xếp thứ tự và giải thích, không dẫn tới có/không. Có bối cảnh thật: vị trí, ba việc cụ thể, và tiêu chí “mất nhiều thời gian nhất”, nên AI không thể trả lời chung chung. Nói rõ cần gì: một thứ tự kèm lý do, chứ không phải một bài giảng về AI. Không gài đáp án — nó hỏi cả hai chiều, việc nào nên giao và việc nào nên giữ, thay vì chỉ hỏi “việc nào giao được”. Chỗ còn thiếu là cách kiểm: câu trả lời hay dở thế nào thì bạn cũng chỉ biết bằng cảm nhận. Thêm một câu “với mỗi việc, nói rõ dấu hiệu nào cho biết giao cho AI là sai” là đủ năm tiêu chí."},
+    {muc:"Kiểm xem AI có nói sai không", q:"AI vừa gửi tôi một bản phân tích có mấy con số tôi không tự kiểm được. Có những cách nào để kiểm lại những con số đó? Cách nào rẻ nhất, cách nào chắc nhất, và mỗi cách bỏ sót loại sai nào?", met:[0,1,2,3,4], note:"Đạt cả năm. Mở, vì nó đòi một danh sách cách làm kèm so sánh. Có bối cảnh: một bản phân tích đã có, những con số bạn không tự kiểm được — đủ hẹp để AI trả lời đúng việc. Nói rõ cần gì, và nói theo hai trục rẻ nhất với chắc nhất, nên câu trả lời buộc phải có đánh đổi chứ không phải một đáp án duy nhất. Không gài đáp án: nó không giả định AI đã sai hay đã đúng. Và phần hay nhất là câu cuối — “mỗi cách bỏ sót loại sai nào” biến câu trả lời thành thứ kiểm được: bạn đọc xong biết mình vẫn còn mù ở đâu. Đây là mẫu nên bắt chước."},
+    {muc:"Đưa tài liệu nội bộ cho AI mà không lộ", q:"Đưa tài liệu công ty cho AI có an toàn không?", met:[], note:"Câu đóng, và là loại đóng tệ nhất: câu trả lời trung thực duy nhất là “tuỳ”, nên AI sẽ hoặc nói an toàn hoặc nói không an toàn, và cả hai đều sai. Không bối cảnh: tài liệu nào, chứa gì, đưa cho công cụ nào, tài khoản công ty hay tài khoản cá nhân — mỗi tổ hợp một câu trả lời khác. Không nói mình cần gì: bạn cần một quy tắc để làm hằng ngày, chứ không cần một lời phán. Sửa: “Tôi cần đưa bảng doanh số theo khách hàng cho AI đọc để tổng hợp. Có những cách nào giảm chỗ phải phơi ra — bỏ cột nào, thay tên khách bằng mã, hay chỉ đưa số tổng? Mỗi cách mất gì trong kết quả?”"},
+    {muc:"Dạy lại kỹ năng AI cho đồng nghiệp trong phòng", q:"Phòng tôi sáu người: hai người dùng AI khá thành thạo, bốn người chưa mở lần nào. Tôi có 90 phút để hướng dẫn cả phòng. Nên chia thời gian thế nào, và nên bỏ hẳn những gì để vừa buổi?", met:[0,1,2,3], note:"Câu hỏi tốt, và điểm mạnh nằm ở chỗ ít ai nghĩ tới: nó hỏi cả “nên bỏ hẳn những gì”. Phần lớn người hỏi chỉ hỏi nên làm gì, nên nhận về một danh sách dài hơn thời gian có, rồi tự vỡ kế hoạch. Ràng buộc 90 phút và trình độ chia hai nhóm là bối cảnh thật, buộc AI phải cân đối chứ không kể lể. Mở, không gài đáp án. Thiếu phần kiểm: sau buổi dạy làm sao biết bốn người kia đã dùng được. Thêm “nêu một cách kiểm nhanh cuối buổi cho thấy họ tự làm được” thì đủ năm."},
+    {muc:"Biết khi nào không nên dùng AI", q:"AI làm được hết mọi việc rồi phải không?", met:[], note:"Câu này vừa đóng vừa gài đáp án — hai lỗi nặng cùng lúc. Cụm “phải không” mớm sẵn câu trả lời, và mô hình có xu hướng đi theo giọng người hỏi, nên bạn nhận về đúng thứ mình vừa nói ra rồi tưởng là mình được xác nhận. Đây là cái bẫy đáng sợ nhất khi làm việc với AI: hỏi kiểu này thì càng hỏi càng tin, mà không thêm một dữ kiện nào. Không bối cảnh, không nói cần gì, không kiểm được. Sửa cho đúng chủ đề bạn đang cần: “Với công việc của tôi, có những loại việc nào mà giao cho AI thì hại hơn lợi? Cho dấu hiệu nhận ra sớm.” Câu này mời AI phản biện lại chính nó."},
+    {muc:"Viết một prompt dùng lại cho việc lặp đi lặp lại", q:"Mỗi tháng tôi tổng hợp báo cáo doanh số từ ba file Excel theo cùng một khuôn. Tôi muốn viết một prompt dùng lại được cho việc này. Prompt cần nói rõ những gì, và tháng nào cũng dễ sai ở chỗ nào?", met:[0,1,2,3,4], note:"Đạt cả năm, và đạt theo cách đáng học. Bối cảnh gọn mà đủ: việc lặp hằng tháng, ba file, một khuôn cố định. Nói rõ cần gì: danh sách những thứ phải ghi vào prompt. Mở, không gài đáp án. Câu cuối là chỗ hay — “tháng nào cũng dễ sai ở chỗ nào” đòi AI tự chỉ ra điểm yếu của cách làm mà nó vừa đề xuất, và đó chính là phần kiểm được: tháng sau bạn đối chiếu xem có sai đúng những chỗ nó cảnh báo hay không. Hỏi việc lặp lại thì luôn nên kèm câu này, vì cái giá của một prompt sai không phải một lần mà là mười hai lần một năm."},
+    {muc:"Đo xem AI có thật sự tiết kiệm thời gian", q:"Dùng AI tiết kiệm được bao nhiêu phần trăm thời gian?", met:[], note:"Câu này đòi một con số mà không ai trả lời đúng được, nên AI sẽ đưa ra một con số nghe hợp lý và bạn không có cách nào biết nó lấy từ đâu. Đây là kiểu câu hỏi sinh ra số liệu giả: bạn mang “tiết kiệm 40% thời gian” đi họp, rồi bị hỏi nguồn. Không bối cảnh — tiết kiệm cho việc nào, ai làm, so với cách làm cũ nào. Không kiểm được, vì chẳng có gì để đối chiếu. Sửa thành câu đo được: “Tôi muốn đo xem AI có giúp tôi làm báo cáo tháng nhanh hơn không. Nên đo những gì, đo trong bao lâu thì đủ tin, và cách đo nào tự lừa mình?” Câu sau cho bạn một phép đo; câu trước chỉ cho bạn một con số."},
+    {muc:"Xử lý khi AI trả lời chung chung", q:"AI trả lời tôi rất chung chung dù tôi đã hỏi khá dài. Câu hỏi của tôi thường thiếu những gì? Chỉ ra vài chỗ hay thiếu nhất và cho ví dụ sửa lại một câu.", met:[0,2,3,4], note:"Câu hỏi tốt. Mở, và mời AI chẩn đoán chứ không mời nó khen. Nói rõ cần gì, lại còn đòi một ví dụ sửa lại — nên câu trả lời buộc phải cụ thể, không thoát được bằng lời khuyên chung. Không gài đáp án: nó không giả định lỗi nằm ở đâu. Kiểm được, vì bạn áp ngay ví dụ sửa lại vào câu hỏi thật của mình rồi xem kết quả có khác. Chỗ thiếu là bối cảnh: “đã hỏi khá dài” chưa nói lên gì, và dài không phải là vấn đề — thiếu cụ thể mới là vấn đề. Dán kèm một câu hỏi thật bạn từng dùng là câu này lên đủ năm tiêu chí, vì AI có vật thật để mổ."},
+    {muc:"Giữ chuyên môn của mình khi dùng AI nhiều", q:"Dùng AI nhiều có làm mình kém đi không?", met:[0], note:"Đúng chủ đề — nó hỏi thật một điều đáng lo, nên được một tiêu chí. Nhưng đóng: câu trả lời sẽ là “có, nếu…” rồi vài dòng chung chung, và bạn đọc xong vẫn không đổi cách làm việc. Không bối cảnh: kém đi ở kỹ năng nào, nghề của bạn sống bằng khả năng gì, bạn đang giao cho AI phần nào của công việc. Không nói cần gì và không kiểm được. Sửa: “Việc của tôi là đọc hợp đồng và soát điều khoản rủi ro. Nếu tôi để AI soát trước rồi mình đọc lại, sau một năm kỹ năng nào của tôi mòn đi, kỹ năng nào lại khoẻ hơn? Có cách chia việc nào giữ được phần mòn đó?” Câu này mới ra được một cách làm, không chỉ ra một lời cảnh báo."}
   ];
   var ev3Select=document.getElementById("ev3Select"),ev3Q=document.getElementById("ev3Q"),
       ev3A=document.getElementById("ev3A"),ev3RubricEl=document.getElementById("ev3Rubric"),
@@ -1036,7 +1022,7 @@ https://docs.google.com/spreadsheets/..."></textarea>
   state.ev3Marks=state.ev3Marks||{}; state.ev3Sent=state.ev3Sent||{};
   EV3.forEach(function(item,i){
     var op=document.createElement("option");op.value=String(i);
-    op.textContent="Mẫu "+(i+1)+": "+item.q; ev3Select.appendChild(op);
+    op.textContent=(i+1)+". "+item.muc; ev3Select.appendChild(op);
   });
   var evBoxes=[];
   CRIT.forEach(function(c,idx){
@@ -1054,21 +1040,19 @@ https://docs.google.com/spreadsheets/..."></textarea>
   var evIdx=parseInt(state.ev3Cur,10); if(isNaN(evIdx)||evIdx<0||evIdx>=EV3.length)evIdx=0;
   ev3Select.value=String(evIdx);
   function evShowResult(){
-    var item=EV3[evIdx],m=state.ev3Marks[evIdx]||[],met=item.met,matches=0,rows="";
-    CRIT.forEach(function(c,idx){
-      var aiYes=met.indexOf(idx)>=0,youYes=m.indexOf(idx)>=0,ok=(aiYes===youYes);
-      if(ok)matches++;
-      rows+='<div class="ev-row"><span class="ev-badge '+(aiYes?'yes':'no')+'">'+(aiYes?'AI: Đạt':'AI: Chưa')+'</span>'+
-        '<span class="ev-crit"><b>'+c.b+'</b><span class="ev-your '+(ok?'ok':'miss')+'">'+(ok?'✓ Bạn chấm khớp':'✗ Bạn chấm lệch')+'</span></span></div>';
-    });
-    ev3Ref.innerHTML=rows;
-    ev3Match.innerHTML="Bạn khớp <b>"+matches+"</b>/5 tiêu chí với cách AI chấm. Câu trả lời này AI đánh giá đạt <b>"+met.length+"</b>/5 tiêu chí.";
-    ev3Note.innerHTML="<b>Nhận xét:</b> "+item.note;
+    var item=EV3[evIdx],m=state.ev3Marks[evIdx]||[],met=item.met,matches=0;
+    CRIT.forEach(function(c,idx){ if((met.indexOf(idx)>=0)===(m.indexOf(idx)>=0))matches++; });
+    // Không bày lại bảng tiêu chí nữa: người học vừa tick xong, nhìn lại một lượt
+    // nữa chỉ tốn chỗ. Thứ họ chưa có là lời giải thích vì sao chấm như vậy.
+    var hang=met.length>=4?"Đây là một câu hỏi tốt":(met.length<=1?"Đây là một câu hỏi kém":"Câu hỏi này được một nửa");
+    ev3Ref.innerHTML="";
+    ev3Match.innerHTML=hang+" — đạt <b>"+met.length+"</b>/5 tiêu chí. Bạn chấm khớp <b>"+matches+"</b>/5.";
+    ev3Note.innerHTML="<b>Phân tích:</b> "+item.note;
     ev3Result.hidden=false;
   }
   function evLoad(){
     var item=EV3[evIdx];
-    ev3Q.textContent=item.q; ev3A.textContent=item.a;
+    ev3Q.textContent=item.muc; ev3A.textContent=item.q;
     var m=state.ev3Marks[evIdx]||[];
     evBoxes.forEach(function(cb,idx){cb.checked=m.indexOf(idx)>=0;});
     if(state.ev3Sent[evIdx])evShowResult(); else ev3Result.hidden=true;
