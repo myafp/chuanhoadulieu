@@ -1235,5 +1235,199 @@ https://docs.google.com/spreadsheets/..."></textarea>
 })();
 </script>
 
+<style id="kqStyle">
+/* Thẻ gửi kết quả — dán thêm ở cuối, không sửa dòng nào của bản gốc. Dùng lại
+   đúng bộ biến màu và bộ chữ của trang để nó không lạc kiểu, và tự đổi theo nút
+   sáng/tối có sẵn. */
+#kqGui{max-width:var(--kq-rong,860px);margin:0 auto 56px;padding:0 20px}
+.kq-hop{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);
+  box-shadow:var(--shadow);padding:22px 24px 20px;font-family:var(--sans)}
+.kq-hop h2{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--ink);
+  margin:0 0 6px;letter-spacing:-.01em}
+.kq-dan{margin:0 0 16px;font-size:14.5px;line-height:1.6;color:var(--ink-soft);max-width:62ch}
+.kq-tom{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.kq-o{display:flex;flex-direction:column;gap:2px;flex:1 1 150px;background:var(--surface-2);
+  border-radius:var(--r-md);padding:10px 13px}
+.kq-o b{font-size:19px;font-weight:600;color:var(--pine);font-variant-numeric:tabular-nums}
+.kq-o span{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);
+  font-weight:600}
+.kq-hang{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.kq-hang label{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-faint);font-weight:600;flex:1 1 100%}
+#kqTen{flex:1 1 240px;max-width:340px;font:inherit;font-size:15px;color:var(--ink);
+  background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--r-sm);
+  padding:10px 12px}
+#kqTen:focus{outline:none;border-color:var(--pine)}
+#kqNut{font:inherit;font-size:15px;font-weight:600;cursor:pointer;border:1px solid var(--pine);
+  background:var(--pine);color:#fff;border-radius:var(--r-sm);padding:11px 20px}
+#kqNut:hover{background:var(--pine-deep);border-color:var(--pine-deep)}
+#kqNut:disabled{opacity:.55;cursor:default}
+.kq-bao{margin-top:12px;font-size:14px;line-height:1.55}
+.kq-bao.cho{color:var(--ink-faint)}
+.kq-bao.xong{color:var(--good);font-weight:600}
+.kq-bao.loi{color:var(--wrong);font-weight:600}
+.kq-nhac{margin-top:14px;padding-top:13px;border-top:1px solid var(--line);
+  font-size:12.5px;line-height:1.6;color:var(--ink-faint)}
+@media (max-width:640px){
+  .kq-hop{padding:18px 16px 16px}
+  #kqTen,#kqNut{flex:1 1 100%;max-width:100%}
+}
+</style>
+
+<section id="kqGui">
+  <div class="kq-hop">
+    <h2>Gửi kết quả để đối soát</h2>
+    <p class="kq-dan">Bài làm của bạn đang nằm trong trình duyệt này, chưa ai thấy. Gửi đi thì
+       người phụ trách đào tạo đọc được để đối soát và góp ý lại.</p>
+    <div class="kq-tom" id="kqTom"></div>
+    <div class="kq-hang">
+      <label for="kqTen">Tên của bạn</label>
+      <input id="kqTen" type="text" autocomplete="name" spellcheck="false" placeholder="ví dụ: Tùng Nguyên">
+      <button id="kqNut">Gửi kết quả</button>
+    </div>
+    <div class="kq-bao" id="kqBao"></div>
+    <p class="kq-nhac">Gửi đi gồm: điểm bài 1, các câu bạn viết lại ở bài 1 và bài 2, cách bạn chấm
+       ở bài 3, và các câu cần tư vấn ở bài 4. Không gồm gì khác. Làm thêm rồi gửi lại lúc nào
+       cũng được — mỗi lần gửi là một bản ghi riêng, bản cũ không mất.</p>
+  </div>
+</section>
+
+<script id="kqScript">
+(function () {
+  "use strict";
+  var API = "https://abp.alpha-5ae.workers.dev";
+  var LUONG = "ky-nang-ai";
+  var LS = "ai-skills-v1";          // đúng khoá bản gốc đang dùng
+  var $ = function (id) { return document.getElementById(id); };
+
+  function trangThai() {
+    try { return JSON.parse(localStorage.getItem(LS) || "{}") || {}; }
+    catch (e) { return {}; }
+  }
+  // Đếm số khoá có giá trị thật — state giữ cả những ô người ta mở ra rồi bỏ trống.
+  function dem(o, loc) {
+    var n = 0, k;
+    o = o || {};
+    for (k in o) if (Object.prototype.hasOwnProperty.call(o, k) && loc(o[k])) n++;
+    return n;
+  }
+  var coChu = function (v) { return String(v == null ? "" : v).trim().length > 0; };
+  var laDung = function (v) { return v === true; };
+
+  // Nhãn câu hỏi lấy từ chính các ô xổ của trang: gửi lên số thứ tự không thôi thì
+  // lúc đối soát phải mở trang ra dò xem "câu 37" là câu nào.
+  function nhan(idSelect, i) {
+    var s = $(idSelect);
+    return (s && s.options[i]) ? s.options[i].text : "";
+  }
+
+  function tomTat(t) {
+    var tong = parseInt(($("quizTotal") || {}).textContent, 10) || 0;
+    return {
+      dung: dem(t.quizDone, laDung),
+      tong: tong,
+      b1: dem(t.rwText, coChu),
+      b2: dem(t.rw2Text, coChu),
+      b3: dem(t.ev3Sent, laDung),
+      b4: dem(t.advList, coChu)
+    };
+  }
+
+  function veTom() {
+    var s = tomTat(trangThai());
+    $("kqTom").innerHTML =
+      o(s.dung + "/" + s.tong, "Bài 1 · đúng") +
+      o(s.b1 + s.b2, "Câu đã viết lại") +
+      o(s.b3, "Mẫu đã chấm") +
+      o(s.b4, "Câu cần tư vấn");
+    function o(v, t) { return '<div class="kq-o"><b>' + v + "</b><span>" + t + "</span></div>"; }
+    return s;
+  }
+
+  function goi(t) {
+    var ds = [], s = tomTat(t), k, i;
+    ds.push({ rid: "tong", k: 0, cot: "Tổng kết",
+              cu: "", moi: "Bài 1 đúng " + s.dung + "/" + s.tong +
+                   " · viết lại " + (s.b1 + s.b2) + " câu · chấm " + s.b3 +
+                   " mẫu · " + s.b4 + " câu cần tư vấn" });
+
+    for (k in (t.rwText || {})) if (coChu(t.rwText[k])) {
+      ds.push({ rid: "b1-" + k, k: Number(k) || 0, cot: "Bài 1 · viết lại",
+                cu: "", moi: String(t.rwText[k]).trim() });
+    }
+    for (k in (t.rw2Text || {})) if (coChu(t.rw2Text[k])) {
+      i = Number(k) || 0;
+      ds.push({ rid: "b2-" + k, k: i, cot: "Bài 2 · viết lại",
+                cu: nhan("rw2Select", i), moi: String(t.rw2Text[k]).trim() });
+    }
+    for (k in (t.ev3Sent || {})) if (t.ev3Sent[k] === true) {
+      i = Number(k) || 0;
+      ds.push({ rid: "b3-" + k, k: i, cot: "Bài 3 · chấm",
+                cu: nhan("ev3Select", i), moi: tieuChi((t.ev3Marks || {})[k]) });
+    }
+    for (k in (t.advList || {})) if (coChu(t.advList[k])) {
+      i = Number(k) || 0;
+      ds.push({ rid: "b4-" + k, k: i, cot: "Bài 4 · cần tư vấn",
+                cu: nhan("advSelect", i), moi: String(t.advList[k]).trim() });
+    }
+    return ds;
+  }
+
+  // ev3Marks giữ mảng đúng/sai theo 5 tiêu chí; đổi sang tên tiêu chí đọc được.
+  function tieuChi(m) {
+    var ten = [], ds = document.querySelectorAll("#ev3Rubric .rtext b"), i;
+    for (i = 0; i < ds.length; i++) ten.push(ds[i].textContent.trim());
+    if (!m) return "(không tick tiêu chí nào)";
+    var ra = [];
+    for (i = 0; i < ten.length; i++) if (m[i]) ra.push(ten[i]);
+    return ra.length ? ra.join(" · ") : "(không tick tiêu chí nào)";
+  }
+
+  function bao(t, lop) { var b = $("kqBao"); b.textContent = t; b.className = "kq-bao " + (lop || ""); }
+
+  $("kqNut").onclick = function () {
+    var t = trangThai(), ten = $("kqTen").value.trim(), ds = goi(t);
+    if (!ten) { bao("Điền tên đã — không có tên thì không đối soát được của ai.", "loi"); $("kqTen").focus(); return; }
+    if (ds.length <= 1) { bao("Chưa có bài nào để gửi. Làm vài bài rồi quay lại.", "loi"); return; }
+
+    $("kqNut").disabled = true;
+    bao("Đang gửi…", "cho");
+    fetch(API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ten: ten, luong: LUONG, sua: ds, them: [] })
+    }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (j) {
+        $("kqNut").disabled = false;
+        if (!r.ok) { bao("Chưa gửi được — " + (j.loi || ("máy chủ trả " + r.status)), "loi"); return; }
+        bao("Đã gửi. Cảm ơn " + ten + ". Làm thêm rồi gửi lại lúc nào cũng được.", "xong");
+      });
+    }).catch(function (e) {
+      $("kqNut").disabled = false;
+      bao("Chưa gửi được — " + (e && e.message ? e.message : "mất kết nối."), "loi");
+    });
+  };
+
+  // Ô tên của trang và ô tên ở đây là một người, đừng bắt gõ hai lần.
+  var oGoc = $("learnerName");
+  if (oGoc) {
+    if (oGoc.value.trim()) $("kqTen").value = oGoc.value.trim();
+    oGoc.addEventListener("input", function () {
+      if (!$("kqTen").value.trim() || $("kqTen").value.trim() === oGoc.dataset.kqCu)
+        $("kqTen").value = oGoc.value.trim();
+      oGoc.dataset.kqCu = oGoc.value.trim();
+    });
+  }
+  if (!$("kqTen").value.trim()) {
+    try { $("kqTen").value = (trangThai().name || "").trim(); } catch (e) {}
+  }
+
+  veTom();
+  // Bài làm đổi liên tục mà thẻ đứng cuối trang: cứ vài giây đếm lại, để lúc người
+  // ta cuộn xuống thì con số đã đúng, không phải tải lại trang.
+  setInterval(veTom, 3000);
+})();
+</script>
+
 </body>
 </html>
