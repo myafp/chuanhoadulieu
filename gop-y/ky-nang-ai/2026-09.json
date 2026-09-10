@@ -4712,7 +4712,71 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T07:59:57.514Z",
+   "email": "",
+   "ten": "Me Thuy",
+   "sua": [
+    {
+     "rid": "ma",
+     "k": 0,
+     "cot": "Mã máy",
+     "cu": "",
+     "moi": "hs-d9zj2ieur",
+     "xoa": false
+    },
+    {
+     "rid": "tong",
+     "k": 0,
+     "cot": "Tổng kết",
+     "cu": "",
+     "moi": "Bài 1 đúng 10/20 · viết lại 5 câu · chấm 0 mẫu · 0 câu cần tư vấn",
+     "xoa": false
+    },
+    {
+     "rid": "b1-0",
+     "k": 0,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "Dựa trên tài liệu tôi gửi, bạn hãy tóm tắt lại những ý chính giúp tôi",
+     "xoa": false
+    },
+    {
+     "rid": "b1-2",
+     "k": 2,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "Dựa trên thông tin email tôi gửi, xem và đề xuất giúp tôi email trên nên gửi sáng hay chiều",
+     "xoa": false
+    },
+    {
+     "rid": "b1-4",
+     "k": 4,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "Xem giúp tôi câu văn trên về mặt ngữ pháp cần điều chỉnh gì?",
+     "xoa": false
+    },
+    {
+     "rid": "b1-6",
+     "k": 6,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "Giải thích giúp tôi từ “stakeholder” trong ngữ cảnh trên được hiểu như thế nào?",
+     "xoa": false
+    },
+    {
+     "rid": "b1-8",
+     "k": 8,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "Dựa trên nội dung cuộc hởi, xem giúp tôi với nội dung trên thời gian họp nên trong khoảng bao lâu?",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T07:58:24.982Z"
+ "cap_nhat": "2026-09-10T07:59:58.389Z"
 }
