@@ -7400,7 +7400,151 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T08:21:52.620Z",
+   "email": "",
+   "ten": "Me Thuy",
+   "sua": [
+    {
+     "rid": "ma",
+     "k": 0,
+     "cot": "Mã máy",
+     "cu": "",
+     "moi": "hs-d9zj2ieur",
+     "xoa": false
+    },
+    {
+     "rid": "tong",
+     "k": 0,
+     "cot": "Tổng kết",
+     "cu": "",
+     "moi": "Bài 1 đúng 18/20 · viết lại 15 câu · chấm 0 mẫu · 0 câu cần tư vấn",
+     "xoa": false
+    },
+    {
+     "rid": "b1-0",
+     "k": 0,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "Dựa trên tài liệu tôi gửi, bạn hãy tóm tắt lại những ý chính giúp tôi",
+     "xoa": false
+    },
+    {
+     "rid": "b1-2",
+     "k": 2,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "Dựa trên thông tin email tôi gửi, xem và đề xuất giúp tôi email trên nên gửi sáng hay chiều",
+     "xoa": false
+    },
+    {
+     "rid": "b1-4",
+     "k": 4,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "Xem giúp tôi câu văn trên về mặt ngữ pháp cần điều chỉnh gì?",
+     "xoa": false
+    },
+    {
+     "rid": "b1-6",
+     "k": 6,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "Giải thích giúp tôi từ “stakeholder” trong ngữ cảnh trên được hiểu như thế nào?",
+     "xoa": false
+    },
+    {
+     "rid": "b1-8",
+     "k": 8,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "Dựa trên nội dung cuộc hởi, xem giúp tôi với nội dung trên thời gian họp nên trong khoảng bao lâu?",
+     "xoa": false
+    },
+    {
+     "rid": "b1-10",
+     "k": 10,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "Dịch lại giúp tôi đoạn văn trên sang tiếng anh?",
+     "xoa": false
+    },
+    {
+     "rid": "b1-12",
+     "k": 12,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "Phân tích giúp tôi ở góc độ là chuyên gia trong việc lên kế hoạch có điểm nào tôi cần phải xem lại",
+     "xoa": false
+    },
+    {
+     "rid": "b1-14",
+     "k": 14,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "Dựa trên các thông tin tôi gửi, xem giúp tôi dealine của dự án",
+     "xoa": false
+    },
+    {
+     "rid": "b1-16",
+     "k": 16,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "Dựa trên nội dung slide tôi gửi, bạn đề xuất giúp tôi nền của slide này nhé",
+     "xoa": false
+    },
+    {
+     "rid": "b1-18",
+     "k": 18,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "Dựa trên thông tin tôi gửi, bạn đề xuất giúp tôi tiêu đề email nhé",
+     "xoa": false
+    },
+    {
+     "rid": "b2-0",
+     "k": 0,
+     "cot": "Bài 2 · viết lại",
+     "cu": "Câu 1: AI có thể tóm tắt tài liệu này giúp tôi không?",
+     "moi": "Dựa trên các tài liệu tôi gửi, bạn tóm tắt giúp tôi các ý chính",
+     "xoa": false
+    },
+    {
+     "rid": "b2-1",
+     "k": 1,
+     "cot": "Bài 2 · viết lại",
+     "cu": "Câu 2: AI viết được email này giúp tôi không?",
+     "moi": "Dựa trên thông tin tôi gửi, bạn viết giúp tôi email theo văn phong trang trọng",
+     "xoa": false
+    },
+    {
+     "rid": "b2-2",
+     "k": 2,
+     "cot": "Bài 2 · viết lại",
+     "cu": "Câu 3: Câu văn này đã đúng ngữ pháp chưa?",
+     "moi": "Với câu văn tôi vừa gửi, kiểm tra giúp tôi các điểm ngữ pháp. Liệt kê ra",
+     "xoa": false
+    },
+    {
+     "rid": "b2-3",
+     "k": 3,
+     "cot": "Bài 2 · viết lại",
+     "cu": "Câu 4: Nên gửi email này vào buổi sáng hay buổi chiều?",
+     "moi": "Dựa trên nội dung email đã gửi, xem giúp tôi nên gửi vào thời điểm nào là phù hợp",
+     "xoa": false
+    },
+    {
+     "rid": "b2-4",
+     "k": 4,
+     "cot": "Bài 2 · viết lại",
+     "cu": "Câu 5: Tiêu đề email này đã ổn chưa?",
+     "moi": "Dựa trên",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T08:21:41.514Z"
+ "cap_nhat": "2026-09-10T08:21:53.706Z"
 }
