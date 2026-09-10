@@ -80,7 +80,23 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T04:47:33.978Z",
+   "email": "",
+   "ten": "minh",
+   "sua": [
+    {
+     "rid": "346d6y",
+     "k": 0,
+     "cot": "Sức khoẻ 1 công ty ô hiện % hoàn thành k",
+     "cu": "Chiến lược",
+     "moi": "Chiến lược",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T04:45:18.602Z"
+ "cap_nhat": "2026-09-10T04:47:34.299Z"
 }
