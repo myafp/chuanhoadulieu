@@ -60,7 +60,22 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T03:40:40.724Z",
+   "email": "tuan@alpha-france.com",
+   "sua": [
+    {
+     "rid": "kygpa5",
+     "k": 0,
+     "cot": "Sức khoẻ 1 công ty ô hiện % hoàn thành k",
+     "cu": "Kế hoạch năm",
+     "moi": "Kế hoạch nămáddf",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T03:40:32.821Z"
+ "cap_nhat": "2026-09-10T03:40:41.011Z"
 }
