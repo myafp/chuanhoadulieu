@@ -45,7 +45,22 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T03:40:32.514Z",
+   "email": "tuan@alpha-france.com",
+   "sua": [
+    {
+     "rid": "adeqti",
+     "k": 0,
+     "cot": "Sức khoẻ 1 công ty ô hiện % hoàn thành k",
+     "cu": "Hoạch định",
+     "moi": "Hoạch địnhdsad",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T03:39:44.144Z"
+ "cap_nhat": "2026-09-10T03:40:32.821Z"
 }
