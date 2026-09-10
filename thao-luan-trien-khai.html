@@ -47070,6 +47070,15 @@ render(cur);
 .tl-y b{color:#0f3b3d}
 .tl-y i{font-style:normal;color:#9aa7a8;font-size:11px;margin-left:6px}
 .tl-y p{margin:2px 0 0;color:#3c4a4b;white-space:pre-wrap}
+
+#tlCu{position:fixed;left:0;right:0;top:0;z-index:2147483001;display:flex;align-items:center;
+  gap:12px;flex-wrap:wrap;padding:11px 16px;background:#fdeeed;border-bottom:1px solid #e2bdb9;
+  color:#b3382b;font-family:'Be Vietnam Pro',-apple-system,sans-serif;font-size:13.5px;
+  line-height:1.5;box-shadow:0 2px 10px rgba(15,59,61,.1)}
+#tlCu b{font-weight:600}
+#tlCu button{margin-left:auto;font:inherit;font-size:13px;font-weight:600;cursor:pointer;
+  border:1px solid #e2bdb9;background:#fff;color:#b3382b;border-radius:8px;padding:7px 14px}
+#tlCu button:hover{background:#fbe3e1}
 </style>
 
 <div id="tlBang" hidden>
@@ -47520,6 +47529,48 @@ render(cur);
 
   quet();
 
+  /* ---------- trang tự biết mình đã cũ ----------
+     Bản trên cổng nằm trong một tab mở cả buổi, mà mỗi lần xuất bản là mã trang
+     đổi. Người ta vẫn gõ trên bản cũ, thấy nó không giống thứ được kể, rồi báo là
+     "tính năng không chạy" — chuyện đã xảy ra một lần và mất nguyên buổi gõ.
+
+     Không cần dập số phiên bản vào lúc dựng: lấy luôn giá trị đọc được ở lần đầu
+     làm mốc, sau đó đọc lại mỗi khi người ta quay lại tab. Khác mốc là trang cũ. */
+  (function () {
+    var MOC = null, HEN = 5 * 60 * 1000, cho = 0;
+
+    function doc() {
+      return fetch("phien-ban.json?t=" + Date.now())
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (j) { return j && j.phien_ban; })
+        .catch(function () { return null; });
+    }
+
+    function baoCu() {
+      if (document.getElementById("tlCu")) return;
+      var d = document.createElement("div");
+      d.id = "tlCu";
+      d.innerHTML = '<b>Trang này đã cũ.</b> Bản mới đã lên — tải lại rồi hãy góp ý tiếp, ' +
+                    'kẻo gõ trên bản cũ.<button id="tlCuTai">Tải lại</button>';
+      document.body.appendChild(d);
+      document.getElementById("tlCuTai").onclick = function () { location.reload(true); };
+    }
+
+    function xem() {
+      if (Date.now() - cho < 30000) return;   // đừng dội máy chủ mỗi lần liếc qua tab
+      cho = Date.now();
+      doc().then(function (v) {
+        if (!v) return;
+        if (MOC === null) { MOC = v; return; }
+        if (v !== MOC) baoCu();
+      });
+    }
+
+    xem();
+    setInterval(function () { if (!document.hidden) xem(); }, HEN);
+    document.addEventListener("visibilitychange", function () { if (!document.hidden) xem(); });
+    window.addEventListener("focus", xem);
+  })();
   KHO.nap(function (m) {
     ds = m;
     apDung();
