@@ -96,7 +96,23 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T04:48:09.731Z",
+   "email": "",
+   "ten": "minh",
+   "sua": [
+    {
+     "rid": "fjjxmh",
+     "k": 0,
+     "cot": "Sức khoẻ 1 công ty ô hiện % hoàn thành k",
+     "cu": "Mục tiêu",
+     "moi": "Mục tiêu",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T04:47:34.299Z"
+ "cap_nhat": "2026-09-10T04:48:10.161Z"
 }
