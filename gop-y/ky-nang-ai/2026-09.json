@@ -3432,7 +3432,47 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T07:49:27.652Z",
+   "email": "",
+   "ten": "Me Thuy",
+   "sua": [
+    {
+     "rid": "ma",
+     "k": 0,
+     "cot": "Mã máy",
+     "cu": "",
+     "moi": "hs-d9zj2ieur",
+     "xoa": false
+    },
+    {
+     "rid": "tong",
+     "k": 0,
+     "cot": "Tổng kết",
+     "cu": "",
+     "moi": "Bài 1 đúng 4/20 · viết lại 2 câu · chấm 0 mẫu · 0 câu cần tư vấn",
+     "xoa": false
+    },
+    {
+     "rid": "b1-0",
+     "k": 0,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "Dựa trên tài liệu tôi gửi, bạn hãy tóm tắt lại những ý chính giúp tôi",
+     "xoa": false
+    },
+    {
+     "rid": "b1-2",
+     "k": 2,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "Dựa trên thông tin email tôi gửi, xem và đề xuất giúp tôi email trên nên gửi sáng hay chiều",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T07:49:26.747Z"
+ "cap_nhat": "2026-09-10T07:49:29.728Z"
 }
