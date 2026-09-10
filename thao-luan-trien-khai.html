@@ -28665,10 +28665,10 @@ function splitTable(it){
   const CUST=ST&&D==='18_Detailing Sales'&&(it.unit==='Triệu đồng')&&/doanh\s*(thu|số)/i.test((it.mtName||'')+' '+(it.nm||''));
   const custList=(()=>{try{const c=window.KH_CUST||{};return c[D]||c._default||[]}catch(e){return []}})();
   const SPL=(()=>{try{return window.SP_DICT||[]}catch(e){return []}})();
-  const spSel=(r)=>`<td><select class="khc-sel khc-sp"${d}><option value="">— nhãn —</option>${SPL.map(x=>`<option value="${esc(x[0])}"${(window.SP_CANON?SP_CANON(r.sp||it.sp):(r.sp||it.sp))===x[0]?' selected':''}>${esc(x[1])}</option>`).join('')}</select></td>`;
+  const spSel=(r)=>`<td><select class="khc-sel khc-sp"${d} onchange="KHC.reflow()"><option value="">— nhãn —</option>${SPL.map(x=>`<option value="${esc(x[0])}"${(window.SP_CANON?SP_CANON(r.sp||it.sp):(r.sp||it.sp))===x[0]?' selected':''}>${esc(x[1])}</option>`).join('')}</select></td>`;
   const rows=arr.length?arr.map((r,i)=>`<tr data-rid="${r.id}">
       <td class="c"><span class="stepno">${i+1}</span></td>
-      ${ST?'':`<td><select class="khc-sel khc-to"${d}>${opts.map(o=>`<option value="${esc(o[0])}"${o[0]===r.to?' selected':''}>${esc(o[1])}</option>`).join('')}</select></td>`}
+      ${ST?'':`<td><select class="khc-sel khc-to"${d} onchange="KHC.reflow()">${opts.map(o=>`<option value="${esc(o[0])}"${o[0]===r.to?' selected':''}>${esc(o[1])}</option>`).join('')}</select></td>`}
       <td>${ST
         ?(CUST
           ?(r.manual
@@ -28680,10 +28680,10 @@ function splitTable(it){
       <td class="c"><span class="dvt">${esc(it.unit||'')}</span></td>
       <td>${PCT
         ?`<span class="calcc">${fmt(r.kh)}</span><span class="pctrow"><input class="khc-num pctin" data-f="khp" value="${it.kh?fmt(Math.round((+r.kh||0)/it.kh*1000)/10):0}"${d} onchange="KHC.reflow()"><i>% CT</i></span>`
-        :`<input class="khc-num" data-f="kh" value="${fmt(r.kh)}"${d}><span class="subpct">${it.kh?Math.round((+r.kh||0)/it.kh*1000)/10:0}% CT</span>`}</td>
-      <td><input class="khc-num" data-f="p" value="${fmt(r.p)}"${d}><span class="pctrow"><input class="khc-num pctin nsb" data-f="pp" data-prev="${fmt(rp3(r,'p'))}" data-base="${(+r.p||0)+(+r.o||0)+(+r.iv||0)}" value="${fmt(rp3(r,'p'))}"${d} onchange="KHC.reflow()"><i>%</i></span></td>
-      <td><input class="khc-num" data-f="o" value="${fmt(r.o)}"${d}><span class="pctrow"><input class="khc-num pctin nsb" data-f="op" data-prev="${fmt(rp3(r,'o'))}" data-base="${(+r.p||0)+(+r.o||0)+(+r.iv||0)}" value="${fmt(rp3(r,'o'))}"${d} onchange="KHC.reflow()"><i>%</i></span></td>
-      <td><input class="khc-num" data-f="iv" value="${fmt(r.iv)}"${d}><span class="pctrow"><input class="khc-num pctin nsb" data-f="ivp" data-prev="${fmt(rp3(r,'iv'))}" data-base="${(+r.p||0)+(+r.o||0)+(+r.iv||0)}" value="${fmt(rp3(r,'iv'))}"${d} onchange="KHC.reflow()"><i>%</i></span></td>
+        :`<input class="khc-num" data-f="kh" value="${fmt(r.kh)}"${d} onchange="KHC.reflow()"><span class="subpct">${it.kh?Math.round((+r.kh||0)/it.kh*1000)/10:0}% CT</span>`}</td>
+      <td><input class="khc-num" data-f="p" value="${fmt(r.p)}"${d} onchange="KHC.reflow()"><span class="pctrow"><input class="khc-num pctin nsb" data-f="pp" data-prev="${fmt(rp3(r,'p'))}" data-base="${(+r.p||0)+(+r.o||0)+(+r.iv||0)}" value="${fmt(rp3(r,'p'))}"${d} onchange="KHC.reflow()"><i>%</i></span></td>
+      <td><input class="khc-num" data-f="o" value="${fmt(r.o)}"${d} onchange="KHC.reflow()"><span class="pctrow"><input class="khc-num pctin nsb" data-f="op" data-prev="${fmt(rp3(r,'o'))}" data-base="${(+r.p||0)+(+r.o||0)+(+r.iv||0)}" value="${fmt(rp3(r,'o'))}"${d} onchange="KHC.reflow()"><i>%</i></span></td>
+      <td><input class="khc-num" data-f="iv" value="${fmt(r.iv)}"${d} onchange="KHC.reflow()"><span class="pctrow"><input class="khc-num pctin nsb" data-f="ivp" data-prev="${fmt(rp3(r,'iv'))}" data-base="${(+r.p||0)+(+r.o||0)+(+r.iv||0)}" value="${fmt(rp3(r,'iv'))}"${d} onchange="KHC.reflow()"><i>%</i></span></td>
       <td><span class="calcc">${fmt((+r.p||0)+(+r.o||0)+(+r.iv||0))}</span><span class="pctrow"><input class="khc-num pctin" data-f="nsp" data-prev="${fmt(nspOf((+r.p||0)+(+r.o||0)+(+r.iv||0)))}" value="${fmt(nspOf((+r.p||0)+(+r.o||0)+(+r.iv||0)))}"${d} onchange="KHC.reflow()"><i>% NS</i></span></td>
       <td class="c"><button class="del" onclick="KHC.delRow(${r.id})"${d}>✕</button></td></tr>`).join('')
     :`<tr class="khc-emptyrow"><td colspan="${ST?10:11}">Chưa chia — bấm <b>＋ Thêm dòng</b> để ${ST?'tách đầu việc của bạn':'giao xuống '+esc(TIER[T].down)}</td></tr>`;
@@ -28788,7 +28788,8 @@ function saveAll(){syncDOM();const L=items();let n=0;
   L.forEach(x=>{if(flowOf(x.key)==='draft'&&recvOf(x.key)==='confirmed'&&rowsOf(x.key).length){b().flow[x.key]='saved';n++}});
   render();toast(n?('Đã lưu nháp '+n+' dòng phân bổ.'):'Không có dòng nháp nào để lưu.');}
 function nmPick(el){
-  if(el.value!=='__manual')return;
+  // Ô chọn khách hàng, cùng bệnh với nmDict ở trên.
+  if(el.value!=='__manual'){reflow();return;}
   const tr=el.closest('tr');if(!tr)return;
   syncDOM();
   const it=items()[CUR];if(!it)return;
@@ -28905,7 +28906,13 @@ function dashData(tier,dept,who){
 }
 window.KHC_DASH=dashData;
 window.KHC={dash:dashData,mount:mount,pick:pick,setWho:setWho,setYear:setYear,lflt:function(m){KHLF=m;render();},nmPick:nmPick,nmDict:function(sel){
-  if(sel.value!=='__manual')return;
+  /* Chọn từ từ điển cũng phải đồng bộ vào dữ liệu. Bản cũ thoát ngay ở đây nên tên
+     đầu việc chỉ nằm trên màn hình mà không vào r.nm — mà nút "Chốt kế hoạch" lấy
+     điều kiện từ dữ liệu, nên bảng trông đủ hết mà nút vẫn xám. Lý do thì nằm trong
+     title của chính cái nút đang disabled, mà trình duyệt không hiện tooltip trên
+     phần tử disabled: người dùng thấy một cái nút chết, không lời giải thích nào.
+     Chỉ nhánh "nhập tay" mới cần đổi ô. */
+  if(sel.value!=='__manual'){reflow();return;}
   window.dictManualSwap(sel,'Nội dung chưa có trong từ điển công ty — gõ rồi Enter…',function(){reflow();},'khc-in khc-nm');},nmList:nmList,setKMode:setKMode,addRow:addRow,delRow:delRow,fillRest:fillRest,splitEven:splitEven,
   recvConfirm:recvConfirm,recvReview:recvReview,recvNote:recvNote,recvSendReview:recvSendReview,ovAll:ovAll,recvAll:recvAll,
   fSave:fSave,fEdit:fEdit,fSend:fSend,fSelfAll:fSelfAll,reflow:reflow,fReopen:fReopen,fReopenCancel:fReopenCancel,saveAll:saveAll,render:render,
