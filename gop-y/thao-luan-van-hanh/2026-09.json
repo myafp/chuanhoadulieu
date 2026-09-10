@@ -128,7 +128,23 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T04:54:58.165Z",
+   "email": "",
+   "ten": "minh",
+   "sua": [
+    {
+     "rid": "z48tn4",
+     "k": 0,
+     "cot": "CTCP DEMO · Ban Điều hành",
+     "cu": "Trưởng ban điều hành (CEO)",
+     "moi": "Trưởng ban điều hành (CEO)",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T04:53:52.177Z"
+ "cap_nhat": "2026-09-10T04:54:58.544Z"
 }
