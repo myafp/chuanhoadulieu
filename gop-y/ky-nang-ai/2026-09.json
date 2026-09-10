@@ -96,7 +96,47 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-10T04:51:27.814Z",
+   "email": "",
+   "ten": "Hà Đăng",
+   "sua": [
+    {
+     "rid": "ma",
+     "k": 0,
+     "cot": "Mã máy",
+     "cu": "",
+     "moi": "hs-1lbncsu43",
+     "xoa": false
+    },
+    {
+     "rid": "tong",
+     "k": 0,
+     "cot": "Tổng kết",
+     "cu": "",
+     "moi": "Bài 1 đúng 2/20 · viết lại 1 câu · chấm 0 mẫu · 1 câu cần tư vấn",
+     "xoa": false
+    },
+    {
+     "rid": "b1-0",
+     "k": 0,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "THU ẨN DANH — sẽ xoá",
+     "xoa": false
+    },
+    {
+     "rid": "b4-0",
+     "k": 0,
+     "cot": "Bài 4 · cần tư vấn",
+     "cu": "Câu cần tư vấn 1",
+     "moi": "THU ẨN DANH — sẽ xoá",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-10T04:51:09.716Z"
+ "cap_nhat": "2026-09-10T04:51:28.184Z"
 }
