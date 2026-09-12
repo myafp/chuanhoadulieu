@@ -14232,7 +14232,167 @@
     }
    ],
    "them": []
+  },
+  {
+   "luc": "2026-09-12T02:19:26.416Z",
+   "email": "",
+   "ten": "phạm mạnh hùng",
+   "sua": [
+    {
+     "rid": "ma",
+     "k": 0,
+     "cot": "Mã máy",
+     "cu": "",
+     "moi": "hs-oty8m2lsh",
+     "xoa": false
+    },
+    {
+     "rid": "tong",
+     "k": 0,
+     "cot": "Tổng kết",
+     "cu": "",
+     "moi": "Bài 1 đúng 1/20 · viết lại 13 câu · chấm 3 mẫu · 1 câu cần tư vấn",
+     "xoa": false
+    },
+    {
+     "rid": "b1-0",
+     "k": 0,
+     "cot": "Bài 1 · viết lại",
+     "cu": "",
+     "moi": "hãy tóm tắt tài liêu trên thành 5 đầu mục chính theo các vấn đề cốt lõi. viết cho tôi những lưu ý cần xem trước khi ra quyết định.",
+     "xoa": false
+    },
+    {
+     "rid": "b2-1",
+     "k": 1,
+     "cot": "Bài 2 · viết lại",
+     "cu": "Câu 2: AI viết được email này giúp tôi không?",
+     "moi": "bạn hãy xem một số mẫu email của tôi để hiểu giọng văn và phong cách trả lời. sau đó hãy viết email cho tôi.",
+     "xoa": false
+    },
+    {
+     "rid": "b2-2",
+     "k": 2,
+     "cot": "Bài 2 · viết lại",
+     "cu": "Câu 3: Câu văn này đã đúng ngữ pháp chưa?",
+     "moi": "Hãy đóng vai trò một chuyên gia ngôn ngữ hãy chỉnh lại câu văn trên cho đúng ngữ pháp, có thể đưa thêm một số ví dụ để tôi tham khảo.",
+     "xoa": false
+    },
+    {
+     "rid": "b2-3",
+     "k": 3,
+     "cot": "Bài 2 · viết lại",
+     "cu": "Câu 4: Nên gửi email này vào buổi sáng hay buổi chiều?",
+     "moi": "hãy phân tích về tính hiệu quả của email ở các thời điểm khác nhau trong ngày",
+     "xoa": false
+    },
+    {
+     "rid": "b2-4",
+     "k": 4,
+     "cot": "Bài 2 · viết lại",
+     "cu": "Câu 5: Tiêu đề email này đã ổn chưa?",
+     "moi": "hãy chỉnh lai tiêu đề của email sau cho ngắn gọn, đầy đủ.",
+     "xoa": false
+    },
+    {
+     "rid": "b2-5",
+     "k": 5,
+     "cot": "Bài 2 · viết lại",
+     "cu": "Câu 6: Bản kế hoạch này đã ổn chưa?",
+     "moi": "hãy đọc kỹ và phân tích bản kế hoạch này. phân tích và phản biện cho tôi những điểm cần lưu ý trước khi nộp.",
+     "xoa": false
+    },
+    {
+     "rid": "b2-6",
+     "k": 6,
+     "cot": "Bài 2 · viết lại",
+     "cu": "Câu 7: AI dịch được đoạn này sang tiếng Anh không?",
+     "moi": "hãy đóng vai một chuyên gia trong ghành này để dịch",
+     "xoa": false
+    },
+    {
+     "rid": "b2-89",
+     "k": 89,
+     "cot": "Bài 2 · viết lại",
+     "cu": "Câu 90: AI đề xuất được cách tiết kiệm thời gian không?",
+     "moi": "hãy phân tích cho tôi thế nào là tiết kiệm thời gian theo góc nhìn của chuyên gia. những giá trị cốt lõi dược tạo ra khi tiết kiệm thời gian. từ đó hãy đề xuất cho tôi 6 phương pháp tiết kiệm thời gian hiệu quả  trong công việc nhờ sự hỗ trợ của AI.",
+     "xoa": false
+    },
+    {
+     "rid": "b2-95",
+     "k": 95,
+     "cot": "Bài 2 · viết lại",
+     "cu": "Câu 96: Bản tóm tắt này đã đủ ý chưa?",
+     "moi": "đọc bản tóm tắt bạn đánh giá như thế nào? hãy xem lại những ý chính đã đầy đủ chưa, cần bổ sung thêm ý nào hãy lưu ý cho tôi.",
+     "xoa": false
+    },
+    {
+     "rid": "b2-96",
+     "k": 96,
+     "cot": "Bài 2 · viết lại",
+     "cu": "Câu 97: AI so sánh được hai tài liệu này không?",
+     "moi": "hãy đọc kỹ và so sánh hai tài liệu trên, những điểm tương đồng và khác nhau nào là đáng lưu ý nhất.",
+     "xoa": false
+    },
+    {
+     "rid": "b2-97",
+     "k": 97,
+     "cot": "Bài 2 · viết lại",
+     "cu": "Câu 98: Nên trả lời tất cả câu hỏi hay chọn lọc?",
+     "moi": "hãy giúp tôi đánh giá và phân tích về việc đánh giá câu hỏi để nhận định rõ ràng về câu hỏi",
+     "xoa": false
+    },
+    {
+     "rid": "b2-98",
+     "k": 98,
+     "cot": "Bài 2 · viết lại",
+     "cu": "Câu 99: Đoạn mở đầu email này lịch sự chưa?",
+     "moi": "hãy đọc kỹ xem đoạn mở đầu email này có được lịch sự. phân tích cho tôi những điểm cần sửa lại kèm theo 5 mẫu mở đầu email để tôi tham khảo",
+     "xoa": false
+    },
+    {
+     "rid": "b2-99",
+     "k": 99,
+     "cot": "Bài 2 · viết lại",
+     "cu": "Câu 100: AI giúp tôi lập được mục tiêu quý không?",
+     "moi": "Từ những tài liệu tôi cung cấp mô tả cụ thể về những lợi thế và khó khăn trong tình hình kinh tế hiện nay. hãy lập cho tôi mục tiêu quý với đầy đủ các mức để đo lường đánh giá trước khi đưa ra lựa chọn.",
+     "xoa": false
+    },
+    {
+     "rid": "b3-1",
+     "k": 1,
+     "cot": "Bài 3 · chấm",
+     "cu": "2. Chọn việc nào giao cho AI làm trước",
+     "moi": "Có bối cảnh · Mở, không đóng · Nói rõ cần gì · Không gài đáp án · Kiểm được",
+     "xoa": false
+    },
+    {
+     "rid": "b3-4",
+     "k": 4,
+     "cot": "Bài 3 · chấm",
+     "cu": "5. Dạy lại kỹ năng AI cho đồng nghiệp trong phòng",
+     "moi": "Có bối cảnh · Không gài đáp án · Mở, không đóng",
+     "xoa": false
+    },
+    {
+     "rid": "b3-6",
+     "k": 6,
+     "cot": "Bài 3 · chấm",
+     "cu": "7. Viết một prompt dùng lại cho việc lặp đi lặp lại",
+     "moi": "Mở, không đóng · Có bối cảnh · Nói rõ cần gì · Không gài đáp án",
+     "xoa": false
+    },
+    {
+     "rid": "b4-0",
+     "k": 0,
+     "cot": "Bài 4 · cần tư vấn",
+     "cu": "Câu cần tư vấn 1 ✓",
+     "moi": "tôi mới tìm hiểu và học về kế toán kho và giá thành. với mục tiêu hiểu từ nền tảng cơ bản đến thành thạo cho công việc mới. hãy phân tích cho tôi những lỗi sai người mới như tôi hay mắc phải khi bắt tay vào làm thật.",
+     "xoa": false
+    }
+   ],
+   "them": []
   }
  ],
- "cap_nhat": "2026-09-11T09:47:31.309Z"
+ "cap_nhat": "2026-09-12T02:19:28.101Z"
 }
